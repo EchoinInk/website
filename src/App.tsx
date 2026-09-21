@@ -15,6 +15,7 @@ const LumoPage = lazy(() => import('@/pages/LumoPage').then((module) => ({ defau
 const StudioPage = lazy(() => import('@/pages/StudioPage').then((module) => ({ default: module.StudioPage })));
 const ContactPage = lazy(() => import('@/pages/ContactPage').then((module) => ({ default: module.ContactPage })));
 const SystemsPage = lazy(() => import('@/pages/SystemsPage').then((module) => ({ default: module.SystemsPage })));
+const ServicesPage = lazy(() => import('@/pages/ServicesPage').then((module) => ({ default: module.ServicesPage })));
 const ArchivePage = lazy(() => import('@/pages/ArchivePage').then((module) => ({ default: module.ArchivePage })));
 const ArchiveEssayPage = lazy(() => import('@/pages/ArchiveEssayPage').then((module) => ({ default: module.ArchiveEssayPage })));
 const ArchiveNotesPage = lazy(() => import('@/pages/ArchiveNotesPage').then((module) => ({ default: module.ArchiveNotesPage })));
@@ -24,6 +25,7 @@ const OrbitalsPage = lazy(() =>
     default: module.OrbitalsPage,
   })),
 );
+const NotFoundPage = lazy(() => import('@/pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })));
 
 function AppRoutes() {
   const location = useLocation();
@@ -41,12 +43,15 @@ function AppRoutes() {
           <Route path="/works/lumo" element={<LumoPage />} />
           <Route path="/studio" element={<StudioPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/systems" element={<SystemsPage />} />
+          <Route path="/insights" element={<ArchivePage />} />
           <Route path="/archive" element={<ArchivePage />} />
           <Route path="/archive/atmosphere-is-information" element={<ArchiveEssayPage />} />
           <Route path="/archive/notes" element={<ArchiveNotesPage />} />
           <Route path="/archive/map" element={<ArchiveIndexPage />} />
-              <Route path="/internal/orbitals" element={<OrbitalsPage />} />
+          <Route path="/internal/orbitals" element={<OrbitalsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </AnimatePresence>
@@ -59,7 +64,7 @@ function App() {
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <a
           href="#main-content"
-          className="ei-type-color-primary sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-white/0 focus:rounded focus:outline-none focus:ring-2 focus:ring-white/55"
+          className="ei-type-color-primary sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[9999] focus:rounded focus:bg-[var(--ei-theme-surface)] focus:px-4 focus:py-2 focus:outline-none focus:ring-2 focus:ring-[var(--ei-theme-focus)]"
         >
           Skip to main content
         </a>

@@ -3,20 +3,15 @@ import { Link } from "react-router-dom";
 
 import { OrbitalVisual } from "@/components/ui/OrbitalVisual";
 import {
+  primaryNavigation,
+  secondaryNavigation,
+} from "@/data/siteNavigation";
+import {
   atmosphericFade,
   EASE_LUXURY,
   DURATION,
   VIEWPORT,
 } from "@/system/motion/cinematic";
-
-const navLinks = [
-  { label: "Studio", href: "/studio" },
-  { label: "Systems", href: "/systems" },
-  { label: "Work", href: "/works" },
-  { label: "Lumo", href: "/works/lumo" },
-  { label: "About", href: "/studio" },
-  { label: "Contact", href: "/contact" },
-];
 
 const socialLinks = [
   { label: "IG", href: "https://instagram.com" },
@@ -26,7 +21,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="ei-footer relative overflow-hidden pb-0">
+    <footer data-theme="deep" className="ei-footer relative overflow-hidden pb-0">
       {/* Top boundary */}
       <div
         aria-hidden="true"
@@ -73,13 +68,13 @@ export default function Footer() {
             </div>
 
             {/* Col 2 — Navigation */}
-            <nav aria-label="Footer navigation">
+            <nav aria-label="Footer primary navigation">
               <span className="ei-type-footer-label mb-4 block font-mono text-[9px] uppercase tracking-[0.22em]">
                 Navigation
               </span>
 
               <ul className="grid grid-cols-2 gap-x-7 gap-y-2">
-                {navLinks.map((link) => (
+                {primaryNavigation.map((link) => (
                   <li key={link.label}>
                     <Link
                       to={link.href}
@@ -154,6 +149,37 @@ export default function Footer() {
             </div>
           </div>
         </motion.div>
+
+        <motion.nav
+          aria-label="Explore deeper"
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT.normal}
+          variants={atmosphericFade}
+          transition={{
+            duration: DURATION.slower,
+            ease: EASE_LUXURY,
+            delay: 0.16,
+          }}
+          className="border-t border-[rgb(var(--ei-ice-white-rgb)/0.055)] py-5"
+        >
+          <span className="ei-type-footer-label mb-3 block font-mono text-[9px] uppercase tracking-[0.22em]">
+            Explore deeper
+          </span>
+
+          <ul className="flex flex-wrap gap-x-5 gap-y-1.5">
+            {secondaryNavigation.map((link) => (
+              <li key={link.label}>
+                <Link
+                  to={link.href}
+                  className="ei-type-footer-meta inline-flex min-h-9 items-center font-structural text-[10px] tracking-[0.06em] opacity-75 transition-[color,opacity] duration-400 hover:opacity-100 focus-visible:opacity-100"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </motion.nav>
 
         {/* Bottom row */}
         <motion.div

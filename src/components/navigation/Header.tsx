@@ -1,75 +1,169 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { DURATION } from "@/lib/motion-cinematic";
 import wordmark from "@/assets/brand/marks/echo-in-ink-wordmark.png";
+import { useSectionAwareTheme } from "@/components/navigation/useSectionAwareTheme";
+import {
+  isNavigationItemActive,
+  primaryCallToAction,
+  primaryNavigation
+} from "@/data/siteNavigation";
+import { DURATION } from "@/lib/motion-cinematic";
 
-const navItems = [
-  { label: "Studio", href: "/studio" },
-  { label: "Works", href: "/works" },
-  { label: "Identity", href: "/identity" },
-  { label: "Sessions", href: "/sessions" },
-  { label: "Worlds", href: "/worlds" },
-  { label: "Archive", href: "/archive" },
-];
+const mobileMenuId = "site-mobile-navigation";
+const mobileMenuTitleId = "site-mobile-navigation-title";
+const focusableSelector = [
+  "a[href]",
+  "button:not([disabled])",
+  '[tabindex]:not([tabindex="-1"])'
+].join(",");
+
+function getReducedMotionPreference() {
+  return window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+}
 
 export function Header() {
   const { pathname } = useLocation();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(getReducedMotionPreference);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuDialogRef = useRef<HTMLDivElement>(null);
+  const menuWasOpenRef = useRef(false);
+  const { headerRef, theme, family } = useSectionAwareTheme();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (!mediaQuery) return;
+
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      if (menuWasOpenRef.current) {
+        menuWasOpenRef.current = false;
+        window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+      }
+      return;
+    }
+
+    menuWasOpenRef.current = true;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const focusFrame = window.requestAnimationFrame(() => {
+      menuDialogRef.current?.querySelector<HTMLElement>("[data-mobile-nav-first]")?.focus();
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = Array.from(
+        menuDialogRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? []
+      ).filter((element) => !element.hasAttribute("disabled"));
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      } else if (!menuDialogRef.current?.contains(document.activeElement)) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
 
   if (pathname === "/works/lumo") {
     return null;
   }
 
   const closeMenu = () => setMenuOpen(false);
-  const isPathActive = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
-  const contactActive = isPathActive("/contact");
+  const contactActive = isNavigationItemActive(pathname, primaryCallToAction);
+  const menuTransition = prefersReducedMotion
+    ? { duration: 0.01 }
+    : { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
     <>
       <motion.header
-        initial={{ opacity: 0, y: -12 }}
+        ref={headerRef}
+        data-theme={theme}
+        data-header-surface={family}
+        data-reduced-motion={prefersReducedMotion ? "true" : undefined}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: DURATION.slower,
+          duration: prefersReducedMotion ? 0.01 : DURATION.slower,
           ease: "easeOut",
-          delay: 0.3,
+          delay: prefersReducedMotion ? 0 : 0.3
         }}
         className="fixed left-0 top-0 z-50 w-full px-6 py-4 md:px-10 md:py-7 lg:px-12"
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 backdrop-blur-[1px]"
+          className="pointer-events-none absolute inset-0 backdrop-blur-[1px] transition-colors duration-500"
           style={{
             background:
-              "linear-gradient(to bottom, var(--ei-theme-header) 0%, color-mix(in srgb, var(--ei-theme-header) 54%, transparent) 45%, transparent 100%)",
+              "linear-gradient(to bottom, var(--ei-theme-header) 0%, color-mix(in srgb, var(--ei-theme-header) 54%, transparent) 45%, transparent 100%)"
           }}
         />
 
-        <nav className="relative flex items-center justify-between">
-          <Link to="/" className="group shrink-0" onClick={closeMenu}>
+        <nav aria-label="Primary navigation" className="relative flex items-center justify-between">
+          <Link
+            to="/"
+            className="ei-focus-rounded group inline-flex min-h-[44px] shrink-0 items-center rounded-sm"
+            aria-label="Echo in Ink home"
+            onClick={closeMenu}
+          >
             <img
               src={wordmark}
-              alt="Echo in Ink"
-              className="h-3.5 w-auto opacity-75 transition-opacity duration-500 group-hover:opacity-95 md:h-4"
+              alt=""
+              className="h-3.5 w-auto opacity-75 transition-[filter,opacity] duration-500 group-hover:opacity-95 md:h-4"
+              style={{ filter: "var(--ei-header-logo-filter)" }}
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden items-center gap-8 md:flex lg:gap-10">
-            <div className="flex gap-6 lg:gap-7">
-              {navItems.map((item) => {
-                const active = isPathActive(item.href);
+          <div className="hidden items-center gap-4 md:flex lg:gap-8">
+            <div className="flex gap-3 lg:gap-7">
+              {primaryNavigation.map((item) => {
+                const active = isNavigationItemActive(pathname, item);
 
                 return (
                   <Link
                     key={item.label}
                     to={item.href}
+                    aria-current={active ? "page" : undefined}
                     className={`
                       group relative pb-1.5
-                      font-structural text-[0.70rem] font-medium leading-none uppercase tracking-[0.17em]
+                      font-structural text-[0.61rem] font-medium leading-none uppercase tracking-[0.14em] lg:text-[0.70rem] lg:tracking-[0.17em]
                       transition-colors duration-500
                       ${
                         active
@@ -81,6 +175,7 @@ export function Header() {
                     {item.label}
 
                     <span
+                      aria-hidden="true"
                       className={`
                         pointer-events-none absolute -bottom-0.5 left-0 h-px rounded-full
                         bg-[linear-gradient(90deg,rgb(var(--ei-halo-blue-rgb)/0.95),rgb(var(--ei-echo-magenta-rgb)/0.72))]
@@ -99,14 +194,15 @@ export function Header() {
             </div>
 
             <Link
-              to="/contact"
+              to={primaryCallToAction.href}
+              aria-current={contactActive ? "page" : undefined}
               className={`
                 ei-focus-rounded rounded-full
                 border border-[var(--ei-theme-border)]
                 bg-[var(--ei-theme-surface)]
-                px-3.5 py-2
-                font-structural text-[0.68rem] font-semibold uppercase tracking-[0.19em]
-                transition-all duration-700
+                px-3 py-2
+                font-structural text-[0.6rem] font-semibold uppercase tracking-[0.14em] lg:px-3.5 lg:text-[0.68rem] lg:tracking-[0.19em]
+                transition-all duration-500
                 hover:border-[var(--ei-theme-focus)]
                 hover:bg-[var(--ei-theme-surface-elevated)]
                 hover:!text-[var(--ei-header-text-hover)]
@@ -119,17 +215,16 @@ export function Header() {
                 }
               `}
             >
-              Start a Conversation
+              {primaryCallToAction.label}
             </Link>
           </div>
 
-          {/* Mobile Menu Trigger */}
           <button
+            ref={menuButtonRef}
             type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-label={
-              menuOpen ? "Close navigation menu" : "Open navigation menu"
-            }
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open navigation menu"
+            aria-controls={mobileMenuId}
             aria-expanded={menuOpen}
             className="
               ei-focus-rounded flex min-h-[44px] min-w-[60px] items-center justify-end rounded-full
@@ -140,23 +235,29 @@ export function Header() {
               md:hidden
             "
           >
-            {menuOpen ? "Close" : "Menu"}
+            Menu
           </button>
         </nav>
       </motion.header>
 
-      {/* Mobile Menu Sheet */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            ref={menuDialogRef}
+            id={mobileMenuId}
             key="mobile-menu"
-            initial={{ opacity: 0, y: -14 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={mobileMenuTitleId}
+            data-theme="deep"
+            data-reduced-motion={prefersReducedMotion ? "true" : undefined}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -12 }}
+            transition={menuTransition}
             className="
-              fixed left-0 right-0 top-0 z-40
-              max-h-[82vh] overflow-y-auto
+              fixed left-0 right-0 top-0 z-[60]
+              max-h-[82dvh] overflow-y-auto
               rounded-b-[28px]
               border-b border-[rgb(var(--ei-ice-white-rgb)/0.1)]
               bg-[rgb(var(--ei-void-rgb)/0.96)]
@@ -165,13 +266,12 @@ export function Header() {
               md:hidden
             "
           >
-            {/* Atmosphere */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 80% 50% at 72% 18%, rgb(var(--ei-violet-rgb) / 0.16) 0%, transparent 62%), radial-gradient(ellipse 60% 42% at 22% 82%, rgb(var(--ei-halo-blue-rgb) / 0.1) 0%, transparent 64%)",
+                  "radial-gradient(ellipse 80% 50% at 72% 18%, rgb(var(--ei-violet-rgb) / 0.16) 0%, transparent 62%), radial-gradient(ellipse 60% 42% at 22% 82%, rgb(var(--ei-halo-blue-rgb) / 0.1) 0%, transparent 64%)"
               }}
             />
 
@@ -180,41 +280,72 @@ export function Header() {
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgb(var(--ei-void-rgb) / 0.74) 0%, rgb(var(--ei-void-rgb) / 0.96) 100%)",
+                  "linear-gradient(180deg, rgb(var(--ei-void-rgb) / 0.74) 0%, rgb(var(--ei-void-rgb) / 0.96) 100%)"
               }}
             />
+
+            <div className="relative z-20 flex items-center justify-between px-6 py-4">
+              <Link
+                to="/"
+                aria-label="Echo in Ink home"
+                onClick={closeMenu}
+                className="ei-focus-rounded inline-flex min-h-[44px] items-center rounded-sm"
+              >
+                <img src={wordmark} alt="" className="h-3.5 w-auto opacity-80" />
+              </Link>
+
+              <button
+                type="button"
+                onClick={closeMenu}
+                aria-label="Close navigation menu"
+                className="ei-focus-rounded flex min-h-[44px] min-w-[60px] items-center justify-end rounded-full font-structural text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--ei-header-text)] transition-colors duration-500 hover:text-[var(--ei-header-text-hover)]"
+              >
+                Close
+              </button>
+            </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 16, filter: "blur(10px)" }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 16, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex flex-col px-6 pb-8 pt-24"
+              exit={
+                prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10, filter: "blur(8px)" }
+              }
+              transition={
+                prefersReducedMotion
+                  ? { duration: 0.01 }
+                  : { duration: 0.65, ease: [0.22, 1, 0.36, 1] }
+              }
+              className="relative z-10 flex flex-col px-6 pb-8 pt-6"
             >
-              <span className="mb-6 font-structural text-[10px] uppercase tracking-[0.28em] text-[var(--ei-header-text-muted)]">
+              <span
+                id={mobileMenuTitleId}
+                className="mb-6 font-structural text-[10px] uppercase tracking-[0.28em] text-[var(--ei-header-text-muted)]"
+              >
                 Navigation
               </span>
 
               <div className="flex flex-col">
-                {navItems.map((item, index) => {
-                  const active = isPathActive(item.href);
+                {primaryNavigation.map((item, index) => {
+                  const active = isNavigationItemActive(pathname, item);
 
                   return (
                     <motion.div
                       key={item.label}
-                      initial={{ opacity: 0, y: 12 }}
+                      initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
-                        duration: 0.5,
+                        duration: prefersReducedMotion ? 0.01 : 0.5,
                         ease: [0.22, 1, 0.36, 1],
-                        delay: 0.06 + index * 0.04,
+                        delay: prefersReducedMotion ? 0 : 0.06 + index * 0.04
                       }}
                     >
                       <Link
                         to={item.href}
                         onClick={closeMenu}
+                        aria-current={active ? "page" : undefined}
+                        data-mobile-nav-first={index === 0 ? "true" : undefined}
                         className={`
-                          group relative flex items-center justify-between
+                          group relative flex min-h-[56px] items-center justify-between
                           border-b border-[rgb(var(--ei-ice-white-rgb)/0.07)]
                           py-4
                           font-editorial text-[1.55rem] leading-none tracking-[-0.03em]
@@ -229,6 +360,7 @@ export function Header() {
                         <span>{item.label}</span>
 
                         <span
+                          aria-hidden="true"
                           className={`
                             font-structural text-[0.65rem] uppercase tracking-[0.2em]
                             transition-all duration-500
@@ -243,6 +375,7 @@ export function Header() {
                         </span>
 
                         <span
+                          aria-hidden="true"
                           className={`
                             pointer-events-none absolute bottom-[-1px] left-0 h-px
                             bg-[linear-gradient(90deg,rgb(var(--ei-halo-blue-rgb)/0.95),rgb(var(--ei-echo-magenta-rgb)/0.64))]
@@ -259,10 +392,10 @@ export function Header() {
 
               <div className="pt-7">
                 <Link
-                  to="/contact"
+                  to={primaryCallToAction.href}
                   onClick={closeMenu}
                   className="
-                    inline-flex min-h-[44px] w-full items-center justify-center rounded-full
+                    ei-focus-rounded inline-flex min-h-[44px] w-full items-center justify-center rounded-full
                     border border-[rgb(var(--ei-halo-blue-rgb)/0.24)]
                     bg-[linear-gradient(to_bottom,rgb(var(--ei-midnight-rgb)/0.64),rgb(var(--ei-void-rgb)/0.9))]
                     px-6 py-3
@@ -274,12 +407,11 @@ export function Header() {
                     hover:text-[var(--ei-button-text-primary-hover)]
                   "
                 >
-                  Start a Conversation
+                  {primaryCallToAction.label}
                 </Link>
 
                 <p className="ei-type-color-muted mt-4 max-w-[32ch] font-[var(--ei-font-copy)] text-[0.72rem] leading-[1.65] tracking-[-0.004em]">
-                  Designing worlds that hold meaning, atmosphere, and emotional
-                  intelligence.
+                  Designing worlds that hold meaning, atmosphere, and emotional intelligence.
                 </p>
               </div>
             </motion.div>

@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { useLayoutEffect, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Footer from '@/components/navigation/Footer';
 
@@ -55,7 +55,7 @@ export function PageShell({
   withFooter = true,
   withTopSpacing = true,
 }: PageShellProps) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.dataset.pageTheme = theme;
     return () => delete document.documentElement.dataset.pageTheme;
   }, [theme]);
