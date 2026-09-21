@@ -1,0 +1,435 @@
+@layer components {
+  .ei-services-page {
+    overflow: clip;
+  }
+
+  .ei-services-page .ei-section[data-theme] {
+    position: relative;
+    background: var(--ei-theme-canvas);
+    color: var(--ei-theme-text-primary);
+  }
+
+  .ei-services-hero {
+    min-height: min(900px, 100svh);
+    display: flex;
+    align-items: center;
+    padding-block: clamp(9.5rem, 19vh, 13rem) clamp(5rem, 11vh, 8.5rem);
+    background:
+      radial-gradient(circle at 78% 32%, rgb(var(--ei-moonlight-violet-rgb) / 0.13), transparent 26%),
+      radial-gradient(circle at 90% 78%, rgb(69 104 181 / 0.08), transparent 30%),
+      linear-gradient(142deg, var(--ei-moonlight-surface) 0%, var(--ei-moonlight-canvas) 58%, #ebe6f2 100%) !important;
+    isolation: isolate;
+  }
+
+  .ei-services-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.24;
+    background-image:
+      linear-gradient(rgb(var(--ei-moonlight-ink-rgb) / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--ei-moonlight-ink-rgb) / 0.07) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(90deg, transparent 0%, black 64%, black 100%);
+  }
+
+  .ei-services-hero-layout {
+    display: grid;
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+  }
+
+  .ei-services-hero-copy {
+    max-width: 58rem;
+  }
+
+  .ei-services-hero-kicker {
+    margin-top: clamp(2.25rem, 5vw, 4.5rem);
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-structural);
+    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+    letter-spacing: 0.01em;
+  }
+
+  .ei-services-hero h1 {
+    max-width: 16ch;
+    margin-top: 1.1rem;
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(3rem, 7.15vw, 6.8rem);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+
+  .ei-services-hero-description {
+    max-width: 59ch;
+    margin-top: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-copy);
+    font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+    line-height: 1.68;
+  }
+
+  .ei-services-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2.25rem;
+  }
+
+  .ei-services-hero-index {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-services-hero-index li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.5rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--ei-theme-border);
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-structural);
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .ei-services-hero-index li span {
+    color: var(--ei-theme-link);
+    font-size: 0.67rem;
+    letter-spacing: 0.14em;
+  }
+
+  .ei-services-hero-orbit {
+    position: absolute;
+    z-index: -1;
+    top: 8%;
+    right: -18rem;
+    width: min(62vw, 58rem);
+    aspect-ratio: 1;
+    border: 1px solid rgb(var(--ei-moonlight-violet-rgb) / 0.15);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+    pointer-events: none;
+  }
+
+  .ei-services-hero-orbit::before,
+  .ei-services-hero-orbit::after,
+  .ei-services-hero-orbit span {
+    content: "";
+    position: absolute;
+    border: 1px solid rgb(var(--ei-moonlight-violet-rgb) / 0.11);
+    border-radius: 50%;
+  }
+
+  .ei-services-hero-orbit::before {
+    inset: 12%;
+  }
+
+  .ei-services-hero-orbit::after {
+    inset: 31%;
+  }
+
+  .ei-services-hero-orbit span:nth-child(1) {
+    inset: 48% auto auto -0.35rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border: 0;
+    background: var(--ei-moonlight-violet);
+    box-shadow: 0 0 24px rgb(var(--ei-moonlight-violet-rgb) / 0.45);
+  }
+
+  .ei-services-hero-orbit span:nth-child(2) {
+    inset: 18% 17% auto auto;
+    width: 0.45rem;
+    height: 0.45rem;
+    border: 0;
+    background: var(--ei-moonlight-blue);
+  }
+
+  .ei-services-hero-orbit span:nth-child(3) {
+    inset: auto 29% 21% auto;
+    width: 0.55rem;
+    height: 0.55rem;
+    border: 0;
+    background: var(--ei-moonlight-magenta);
+  }
+
+  .ei-services-section-inner {
+    width: min(100%, 82rem);
+    margin-inline: auto;
+    padding-block: clamp(5.5rem, 11vw, 9.5rem);
+  }
+
+  .ei-services-section-heading {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .ei-services-section-heading h2 {
+    max-width: 17ch;
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(2.35rem, 4.7vw, 4.6rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  .ei-services-section-heading p {
+    max-width: 54ch;
+    margin-top: 1.35rem;
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-copy);
+    font-size: clamp(1rem, 1.25vw, 1.16rem);
+    line-height: 1.72;
+  }
+
+  .ei-services-capability-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ei-services-capability-card,
+  .ei-services-engagement-card {
+    --ei-card-bg: var(--ei-theme-card);
+    --ei-card-bg-soft: var(--ei-theme-card);
+    --ei-card-bg-hover: var(--ei-theme-card-hover);
+    --ei-card-border: var(--ei-theme-border);
+    --ei-card-shadow: var(--ei-theme-shadow);
+    --ei-card-inner-highlight: inset 0 1px 0 rgb(255 255 255 / 0.72);
+    height: 100%;
+    color: var(--ei-theme-text-secondary);
+  }
+
+  .ei-services-capability-card {
+    min-height: 21rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ei-services-card-meta {
+    display: flex;
+    min-height: 5.25rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--ei-theme-link);
+    font-family: var(--ei-font-structural);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+  }
+
+  .ei-services-card-meta > div {
+    color: var(--ei-theme-link);
+    opacity: 0.76;
+  }
+
+  .ei-services-capability-card h3,
+  .ei-services-engagement-card h3 {
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(1.55rem, 2.2vw, 2rem);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+  }
+
+  .ei-services-capability-card p,
+  .ei-services-engagement-card p {
+    margin-top: 1rem;
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-copy);
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  .ei-services-capability-note {
+    display: grid;
+    gap: 0.65rem;
+    max-width: 48rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-services-capability-note span {
+    color: var(--ei-theme-link);
+    font-family: var(--ei-font-structural);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ei-services-capability-note p,
+  .ei-services-engagement-note {
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-copy);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .ei-services-engagements {
+    background:
+      radial-gradient(circle at 18% 15%, rgb(var(--ei-moonlight-violet-rgb) / 0.09), transparent 28%),
+      var(--ei-theme-canvas) !important;
+  }
+
+  .ei-services-engagement-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .ei-services-engagement-card {
+    min-height: 23rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ei-services-engagement-card[data-variant="offer"] {
+    background:
+      radial-gradient(circle at 86% 10%, rgb(var(--ei-moonlight-violet-rgb) / 0.15), transparent 40%),
+      var(--ei-theme-card);
+  }
+
+  .ei-services-engagement-index {
+    display: inline-block;
+    margin-bottom: auto;
+    padding-bottom: 4rem;
+    color: var(--ei-theme-link);
+    font-family: var(--ei-font-structural);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+  }
+
+  .ei-services-engagement-card .ei-btn-primary-cinematic,
+  .ei-services-engagement-card a {
+    align-self: flex-start;
+  }
+
+  .ei-services-engagement-card a {
+    margin-top: 1.75rem;
+  }
+
+  .ei-services-engagement-card a,
+  .ei-services-closing .ei-cta-section-actions a {
+    min-height: 44px;
+  }
+
+  .ei-services-engagement-note {
+    max-width: 58ch;
+    margin-top: 2.25rem;
+  }
+
+  .ei-services-closing {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 20%, rgb(var(--ei-violet-rgb) / 0.18), transparent 35%),
+      radial-gradient(circle at 82% 70%, rgb(var(--ei-echo-magenta-rgb) / 0.1), transparent 26%),
+      var(--ei-theme-canvas) !important;
+  }
+
+  .ei-services-closing .ei-cta-section {
+    padding-block: clamp(6rem, 13vw, 11rem);
+  }
+
+  .ei-services-closing .ei-cta-section-copy {
+    max-width: 58rem;
+  }
+
+  .ei-services-closing .ei-cta-section-heading {
+    font-size: clamp(2.6rem, 5.8vw, 5.6rem);
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+  }
+
+  .ei-services-closing .ei-cta-section-body {
+    max-width: 56ch;
+    font-size: clamp(1rem, 1.3vw, 1.16rem);
+  }
+
+  .ei-services-closing .ei-cta-section-actions {
+    align-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .ei-services-capability-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ei-services-hero-index {
+      max-width: 36rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ei-services-section-heading {
+      grid-template-columns: minmax(11rem, 0.42fr) minmax(0, 1fr);
+      gap: 3rem;
+    }
+
+    .ei-services-engagement-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ei-services-hero-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+    }
+
+    .ei-services-capability-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .ei-services-capability-card {
+      min-height: 25rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .ei-services-hero-actions,
+    .ei-services-closing .ei-cta-section-actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .ei-services-hero-actions a,
+    .ei-services-closing .ei-cta-section-actions a {
+      width: 100%;
+    }
+
+    .ei-services-hero-orbit {
+      top: 2%;
+      right: -11rem;
+      width: 27rem;
+    }
+
+    .ei-services-hero::before {
+      background-size: 48px 48px;
+    }
+
+    .ei-services-capability-card,
+    .ei-services-engagement-card {
+      min-height: 0;
+    }
+
+    .ei-services-engagement-index {
+      padding-bottom: 3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ei-services-hero-orbit {
+      transform: none;
+    }
+  }
+}

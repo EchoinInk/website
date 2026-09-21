@@ -22,6 +22,7 @@
 @import './03-components/lumo.css' layer(components);
 @import './03-components/contact.css' layer(components);
 @import './03-components/home.css' layer(components);
+@import './03-components/services.css' layer(components);
 
 @import './04-utilities/mobile.css' layer(utilities);
 
