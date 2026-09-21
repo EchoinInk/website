@@ -16,12 +16,12 @@ const proofItems = [
     body: "Lumo leads as an independent product concept and prototype case study, with status made explicit before the deeper story.",
   },
   {
-    label: "Applied studio work",
-    body: "Commissioned proof is kept attributable where it appears, including the Vortex Group client reflection.",
+    label: "Evidence with context",
+    body: "Provenance, status, and demonstrated capabilities stay separate so concepts and prototypes are never presented as client delivery.",
   },
   {
     label: "Clear taxonomy",
-    body: "Selected work, independent concepts, prototypes, and internal system experiments are separated instead of blurred together.",
+    body: "Independent products, concept projects, internal projects, prototypes, and exploratory studies are separated instead of blurred together.",
   },
 ] as const;
 

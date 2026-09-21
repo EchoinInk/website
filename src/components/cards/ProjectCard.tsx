@@ -13,12 +13,13 @@ interface ProjectCardProps extends WorkProject {
 export function ProjectCard({
   title,
   category,
-  disciplines,
   proofLine,
   image,
   href,
   presentation,
-  context,
+  capabilities,
+  classification,
+  scope,
   index = 0
 }: ProjectCardProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -43,26 +44,24 @@ export function ProjectCard({
       <div className="ei-works-project-copy">
         <div className="ei-works-project-header">
           <div className="ei-works-project-meta">
-            <span>{context?.status ?? 'Selected study'}</span>
+            <span>{classification.provenance}</span>
             <span>{number}</span>
           </div>
           <h3>{title}</h3>
           <p className="ei-works-project-category">{category}</p>
         </div>
 
-        <ProjectContext context={context} compact className="ei-works-project-context" />
-
-        <p className="ei-works-project-disciplines ei-type-meta">
-          {disciplines.join(' · ')}
-        </p>
+        <ProjectContext
+          classification={classification}
+          capabilities={capabilities}
+          scope={scope}
+          compact
+          className="ei-works-project-context"
+        />
         <p className="ei-works-project-proof">{proofLine}</p>
 
         <span className="ei-card-action">
-          {isLinked
-            ? 'View case study'
-            : presentation === 'fragment'
-              ? 'Concept preview'
-              : 'Selected study'}
+          {isLinked ? 'View case study' : classification.status}
           {isLinked ? <span className="ei-card-action-arrow ei-cta-arrow-right">→</span> : null}
         </span>
       </div>
@@ -71,7 +70,7 @@ export function ProjectCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={VIEWPORT.normal}
       transition={{
@@ -88,13 +87,13 @@ export function ProjectCard({
         padding="none"
         className="ei-works-project-card"
         data-presentation={presentation}
-        aria-label={!isLinked ? `${title} — ${context?.status ?? category}` : undefined}
+        aria-label={!isLinked ? `${title} — ${classification.provenance}, ${classification.status}` : undefined}
       >
         {href ? (
           <Link
             to={href}
             className="ei-works-project-link"
-            aria-label={`${title} — ${context?.status ?? category}. ${disciplines.join(', ')}. ${proofLine}`}
+            aria-label={`${title} — ${classification.provenance}, ${classification.status}. ${proofLine}`}
           >
             {content}
           </Link>

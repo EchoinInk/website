@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
+import type { SemanticTheme } from "@/components/layout/PageShell";
 import { PageOfferAnchor } from "@/components/sections/PageOfferAnchor";
 import { Button } from "@/components/ui/Button";
 import {
@@ -27,6 +28,9 @@ interface PageSectionHeroProps {
   mobileImage: string;
   imageAlt: string;
   align?: "left" | "center";
+  theme?: SemanticTheme;
+  tone?: "cinematic" | "editorial";
+  headingId?: string;
 }
 
 export function PageSectionHero({
@@ -44,25 +48,32 @@ export function PageSectionHero({
   mobileImage,
   imageAlt,
   align = "left",
+  theme,
+  tone = "cinematic",
+  headingId = "editorial-hero-heading",
 }: PageSectionHeroProps) {
+  const prefersReducedMotion = useReducedMotion();
   const titleParts = italicWord
     ? title.split(new RegExp(`(${italicWord})`, "i"))
     : [title];
 
   const isLeft = align === "left";
+  const isEditorial = tone === "editorial";
 
   return (
     <motion.section
       variants={staggerContainer(STAGGER.cinematic, 0)}
-      initial="hidden"
+      initial={prefersReducedMotion ? false : "hidden"}
       whileInView="visible"
       viewport={VIEWPORT.loose}
+      data-theme={theme}
+      data-tone={tone}
       className=" ei-page-section-hero
   relative flex min-h-[620px] w-full items-start overflow-hidden
   bg-[var(--ei-color-background-canvas)]
   md:min-h-[720px] lg:min-h-[760px]
 "
-      aria-labelledby="editorial-hero-heading"
+      aria-labelledby={headingId}
     >
       <picture
         className="ei-page-section-hero-media absolute inset-0 z-0 block"
@@ -90,8 +101,12 @@ export function PageSectionHero({
         className="ei-page-section-hero-side-scrim pointer-events-none absolute inset-0 z-[1]"
         style={{
           background: isLeft
-            ? "linear-gradient(90deg, transparent 0%, transparent 44%, rgb(var(--ei-ink-rgb) / 0.16) 100%)"
-            : "linear-gradient(90deg, rgb(var(--ei-ink-rgb) / 0.16) 0%, transparent 56%, transparent 100%)",
+            ? isEditorial
+              ? "linear-gradient(90deg, var(--ei-color-background-canvas) 0%, rgb(var(--ei-moonlight-canvas-rgb) / 0.92) 40%, transparent 78%)"
+              : "linear-gradient(90deg, transparent 0%, transparent 44%, rgb(var(--ei-ink-rgb) / 0.16) 100%)"
+            : isEditorial
+              ? "linear-gradient(270deg, var(--ei-color-background-canvas) 0%, rgb(var(--ei-moonlight-canvas-rgb) / 0.92) 40%, transparent 78%)"
+              : "linear-gradient(90deg, rgb(var(--ei-ink-rgb) / 0.16) 0%, transparent 56%, transparent 100%)",
         }}
       />
 
@@ -100,8 +115,12 @@ export function PageSectionHero({
         className="ei-page-section-hero-copy-scrim pointer-events-none absolute inset-0 z-[2]"
         style={{
           background: isLeft
-            ? "radial-gradient(ellipse 52% 64% at 16% 46%, rgb(var(--ei-ink-rgb) / 0.78) 0%, rgb(var(--ei-ink-rgb) / 0.48) 42%, transparent 74%), linear-gradient(90deg, rgb(var(--ei-ink-rgb) / 0.52) 0%, transparent 58%)"
-            : "radial-gradient(ellipse 52% 64% at 84% 46%, rgb(var(--ei-ink-rgb) / 0.78) 0%, rgb(var(--ei-ink-rgb) / 0.48) 42%, transparent 74%), linear-gradient(270deg, rgb(var(--ei-ink-rgb) / 0.52) 0%, transparent 58%)",
+            ? isEditorial
+              ? "radial-gradient(ellipse 62% 78% at 12% 48%, rgb(var(--ei-moonlight-canvas-rgb) / 0.98) 0%, rgb(var(--ei-moonlight-canvas-rgb) / 0.84) 52%, transparent 82%)"
+              : "radial-gradient(ellipse 52% 64% at 16% 46%, rgb(var(--ei-ink-rgb) / 0.78) 0%, rgb(var(--ei-ink-rgb) / 0.48) 42%, transparent 74%), linear-gradient(90deg, rgb(var(--ei-ink-rgb) / 0.52) 0%, transparent 58%)"
+            : isEditorial
+              ? "radial-gradient(ellipse 62% 78% at 88% 48%, rgb(var(--ei-moonlight-canvas-rgb) / 0.98) 0%, rgb(var(--ei-moonlight-canvas-rgb) / 0.84) 52%, transparent 82%)"
+              : "radial-gradient(ellipse 52% 64% at 84% 46%, rgb(var(--ei-ink-rgb) / 0.78) 0%, rgb(var(--ei-ink-rgb) / 0.48) 42%, transparent 74%), linear-gradient(270deg, rgb(var(--ei-ink-rgb) / 0.52) 0%, transparent 58%)",
         }}
       />
 
@@ -110,7 +129,9 @@ export function PageSectionHero({
         className="ei-page-section-hero-bottom-fade pointer-events-none absolute right-0 bottom-0 left-0 z-[5] h-[24vh]"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 0%, rgb(var(--ei-ink-rgb) / 0.42) 70%, var(--ei-ink) 100%)",
+            isEditorial
+              ? "linear-gradient(to bottom, transparent 0%, rgb(var(--ei-moonlight-canvas-rgb) / 0.72) 68%, var(--ei-color-background-canvas) 100%)"
+              : "linear-gradient(to bottom, transparent 0%, rgb(var(--ei-ink-rgb) / 0.42) 70%, var(--ei-ink) 100%)",
         }}
       />
 
@@ -152,11 +173,12 @@ export function PageSectionHero({
             </div>
 
             <h1
-              id="editorial-hero-heading"
+              id={headingId}
               className="ei-type-hero-home ei-page-section-hero-title max-w-[24ch] whitespace-pre-line"
               style={{
-                textShadow:
-                  "0 2px 28px rgb(0 0 0 / 0.4), 0 0 48px rgb(var(--ei-violet-rgb) / 0.08)",
+                textShadow: isEditorial
+                  ? "none"
+                  : "0 2px 28px rgb(0 0 0 / 0.4), 0 0 48px rgb(var(--ei-violet-rgb) / 0.08)",
               }}
             >
               {italicWord

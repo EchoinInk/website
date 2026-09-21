@@ -3,33 +3,25 @@ import auroraImage from '@/assets/imagery/sections/works-image-6.webp';
 import obsidianImage from '@/assets/imagery/sections/works-image-5.webp';
 import verdeImage from '@/assets/imagery/sections/works-image-4.webp';
 import nexusImage from '@/assets/imagery/sections/works-image-1.webp';
+import {
+  primaryCapabilities,
+  type ServiceCapabilityId
+} from '@/data/servicesContent';
 
 export type ProjectPresentation = 'study' | 'fragment';
 
-export type ProjectTag =
-  | 'Identity Systems'
-  | 'Digital Experiences'
-  | 'Narrative Worlds'
-  | 'UI Systems';
+export type ProjectProvenance = 'Independent Product' | 'Concept Project' | 'Internal Project';
 
-export type ProjectStatus =
-  | 'Commissioned'
-  | 'Independent concept'
-  | 'Independent product concept'
-  | 'Prototype'
-  | 'Exploratory study'
-  | 'Internal system experiment';
+export type ProjectStatus = 'Prototype' | 'Exploratory Study';
 
-export interface ProjectContext {
-  status?: ProjectStatus;
-  scope?: string;
-  type?: string;
+export interface ProjectClassification {
+  provenance: ProjectProvenance;
+  status: ProjectStatus;
 }
 
 export interface WorkProject {
   title: string;
   category: string;
-  disciplines: string[];
   description: string;
   proofLine: string;
   challenge: string;
@@ -38,17 +30,16 @@ export interface WorkProject {
   result: string;
   image: string;
   href?: string;
-  tags: ProjectTag[];
+  capabilities: readonly ServiceCapabilityId[];
   presentation: ProjectPresentation;
   featured?: boolean;
-  context?: ProjectContext;
+  classification: ProjectClassification;
 }
 
 export const worksProjects: WorkProject[] = [
   {
     title: 'LUMO',
     category: 'Emotionally supportive companion app concept',
-    disciplines: ['Identity System', 'Digital Experience', 'Emotional UX'],
     description:
       'An emotionally supportive companion app concept shaped around gentle planning, reduced cognitive load, and emotionally safe interaction.',
     proofLine:
@@ -59,21 +50,19 @@ export const worksProjects: WorkProject[] = [
     result: 'A calmer, more recognisable expression of Lumo across its core touchpoints.',
     image: lumoFeatured,
     href: '/works/lumo',
-    tags: ['Identity Systems', 'Digital Experiences'],
+    capabilities: ['brand-identity', 'websites-experiences', 'digital-products'],
     presentation: 'study',
     featured: true,
-    context: {
-      status: 'Independent product concept',
-      scope: 'Identity direction, interface concept, visual system',
-      type: 'Prototype case study',
+    classification: {
+      provenance: 'Independent Product',
+      status: 'Prototype',
     },
   },
   {
     title: 'Aurora Payments',
     category: 'Premium financial identity system',
-    disciplines: ['Identity System', 'Visual Direction'],
     description:
-      'For a next-generation payments platform seeking a clearer, more credible financial presence.',
+      'An independent fintech identity concept exploring how a payments platform could feel clearer and more credible.',
     proofLine:
       'Clarifying positioning, architecture, and trust signals for a more confident financial experience.',
     challenge: 'Make seamless global transactions feel clear, modern, and trustworthy.',
@@ -81,20 +70,18 @@ export const worksProjects: WorkProject[] = [
     output: 'A focused fintech identity concept with a distinct trust signal.',
     result: 'A concept demonstrating how clarity and confidence can coexist without visual noise.',
     image: auroraImage,
-    tags: ['Identity Systems'],
+    capabilities: ['brand-identity'],
     presentation: 'study',
-    context: {
-      status: 'Independent concept',
-      scope: 'Identity concept and visual direction',
-      type: 'Exploratory study',
+    classification: {
+      provenance: 'Concept Project',
+      status: 'Exploratory Study',
     },
   },
   {
     title: 'Obsidian',
     category: 'Private investment digital experience concept',
-    disciplines: ['Digital Experience', 'Narrative Architecture', 'Art Direction'],
     description:
-      'For a private investment collective needing a more coherent digital presence for long-term, trust-led work.',
+      'An independent digital experience concept exploring a more coherent presence for long-term, trust-led investment work.',
     proofLine:
       'Creating a more confident digital presence built around clarity, patience, and quiet confidence.',
     challenge: 'Express privacy, patience, and long-term vision without financial clichés.',
@@ -102,18 +89,16 @@ export const worksProjects: WorkProject[] = [
     output: 'A restrained digital prototype with an editorial investment atmosphere.',
     result: 'A concept demonstrating a quieter, more tangible expression of long-term value.',
     image: obsidianImage,
-    tags: ['Digital Experiences'],
+    capabilities: ['websites-experiences'],
     presentation: 'study',
-    context: {
+    classification: {
+      provenance: 'Concept Project',
       status: 'Prototype',
-      scope: 'Brand experience concept and web direction',
-      type: 'Independent concept',
     },
   },
   {
     title: 'Verde',
     category: 'Luxury skincare identity concept',
-    disciplines: ['Brand Identity', 'Material Direction'],
     description:
       'A skincare identity concept balancing natural purity with quiet luxury and long-term recognition.',
     proofLine:
@@ -123,18 +108,16 @@ export const worksProjects: WorkProject[] = [
     output: 'A material-led visual direction for a premium skincare world.',
     result: 'A concept demonstrating quiet recognition through restraint and natural texture.',
     image: verdeImage,
-    tags: ['Identity Systems'],
+    capabilities: ['brand-identity'],
     presentation: 'fragment',
-    context: {
-      status: 'Exploratory study',
-      scope: 'Brand identity concept',
-      type: 'Independent concept',
+    classification: {
+      provenance: 'Concept Project',
+      status: 'Exploratory Study',
     },
   },
   {
     title: 'Nexus Design System',
     category: 'Scalable UI system prototype',
-    disciplines: ['UI System', 'Interaction Patterns'],
     description:
       'A modular interface system prototype built to keep digital products coherent as they expand.',
     proofLine:
@@ -144,26 +127,26 @@ export const worksProjects: WorkProject[] = [
     output: 'A modular component and interaction language.',
     result: 'A prototype demonstrating how reusable patterns can support clarity at scale.',
     image: nexusImage,
-    tags: ['UI Systems'],
+    capabilities: ['digital-products', 'systems-automation'],
     presentation: 'fragment',
-    context: {
-      status: 'Internal system experiment',
-      scope: 'UI system prototype',
-      type: 'Prototype',
+    classification: {
+      provenance: 'Internal Project',
+      status: 'Prototype',
     },
   },
 ];
 
+export const lumoProject = worksProjects[0];
+
+export function getCapabilityLabels(capabilities: readonly ServiceCapabilityId[]) {
+  return primaryCapabilities
+    .filter((capability) => capabilities.includes(capability.id))
+    .map((capability) => capability.title);
+}
+
 export const workFilters = [
-  'All Works',
-  'Identity Systems',
-  'Digital Experiences',
-  'Narrative Worlds',
-  'UI Systems',
+  'All Work',
+  ...primaryCapabilities.map((capability) => capability.title),
 ] as const;
 
 export type WorkFilter = (typeof workFilters)[number];
-
-export const workSortOptions = ['Latest', 'Featured', 'A–Z'] as const;
-
-export type WorkSort = (typeof workSortOptions)[number];

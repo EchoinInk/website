@@ -80,12 +80,12 @@ describe("homepage reference implementation", () => {
       expect(image).toHaveAttribute("alt", "");
       expect(image).toHaveAttribute("aria-hidden", "true");
     });
-    expect(within(selectedWork).getAllByText("Independent concept").length).toBeGreaterThan(0);
+    expect(within(selectedWork).getAllByText("Concept Project").length).toBeGreaterThan(0);
     expect(within(selectedWork).getAllByText("Prototype").length).toBeGreaterThan(0);
-    expect(within(selectedWork).getAllByText("Exploratory study").length).toBeGreaterThan(0);
+    expect(within(selectedWork).getAllByText("Exploratory Study").length).toBeGreaterThan(0);
 
     const lumo = container.querySelector<HTMLElement>(".ei-home-lumo")!;
-    expect(within(lumo).getByText("Independent product concept")).toBeInTheDocument();
+    expect(within(lumo).getByText("Independent Product")).toBeInTheDocument();
     expect(within(lumo).getByText("React Native")).toBeInTheDocument();
     expect(within(lumo).getByAltText("LUMO — atmospheric UI exploration")).toBeInTheDocument();
     expect(screen.queryByText("The Vortex Group")).not.toBeInTheDocument();

@@ -20,6 +20,7 @@ import youTriedCloud from "@/assets/projects/lumo/lumo-clouds/lumo-youtriedcloud
 import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
 import { ProjectContext } from "@/components/works/ProjectContext";
+import { lumoProject } from "@/data/worksProjects";
 import { blurEmergence, driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const railItems = [
@@ -122,12 +123,6 @@ const outcomes = [
   "Designed for Real Life",
   "Built for Neurodivergent Minds",
 ];
-
-const lumoProjectContext = {
-  status: "Independent product concept",
-  scope: "Identity direction, interface concept, visual system",
-  type: "Prototype case study",
-} as const;
 
 const lumoEvidence = [
   {
@@ -310,7 +305,12 @@ function LumoHeroPanel() {
             Lumo is an ADHD life-planner concept that turns emotionally supportive planning into
             a calm, clear, and intelligent product world.
           </p>
-          <ProjectContext context={lumoProjectContext} className="ei-lumo-hero-context" />
+          <ProjectContext
+            classification={lumoProject.classification}
+            capabilities={lumoProject.capabilities}
+            scope={lumoProject.scope}
+            className="ei-lumo-hero-context"
+          />
         </motion.div>
         <motion.figure variants={blurEmergence} className="ei-lumo-hero-art">
           <img
