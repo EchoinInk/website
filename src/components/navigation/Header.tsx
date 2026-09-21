@@ -44,7 +44,7 @@ export function Header() {
           className="pointer-events-none absolute inset-0 backdrop-blur-[1px]"
           style={{
             background:
-              "linear-gradient(to bottom, rgb(11 13 42 / 0.78) 0%, rgb(11 13 42 / 0.42) 45%, transparent 100%)",
+              "linear-gradient(to bottom, var(--ei-theme-header) 0%, color-mix(in srgb, var(--ei-theme-header) 54%, transparent) 45%, transparent 100%)",
           }}
         />
 
@@ -73,8 +73,8 @@ export function Header() {
                       transition-colors duration-500
                       ${
                         active
-                          ? "!text-[rgb(var(--ei-moonlit-rgb)/0.96)] [text-shadow:0_0_16px_rgb(var(--ei-halo-blue-rgb)/0.24)]"
-                          : "!text-[rgb(var(--ei-moonlit-rgb)/0.84)] hover:!text-[var(--ei-header-text-hover)] focus-visible:!text-[var(--ei-header-text-hover)]"
+                          ? "!text-[var(--ei-header-text)] [text-shadow:0_0_16px_rgb(var(--ei-halo-blue-rgb)/0.24)]"
+                          : "!text-[var(--ei-header-text)] opacity-80 hover:!text-[var(--ei-header-text-hover)] hover:opacity-100 focus-visible:!text-[var(--ei-header-text-hover)]"
                       }
                     `}
                   >
@@ -102,20 +102,20 @@ export function Header() {
               to="/contact"
               className={`
                 ei-focus-rounded rounded-full
-                border border-[rgb(var(--ei-ice-white-rgb)/0.12)]
-                bg-[rgb(var(--ei-ice-white-rgb)/0.035)]
+                border border-[var(--ei-theme-border)]
+                bg-[var(--ei-theme-surface)]
                 px-3.5 py-2
                 font-structural text-[0.68rem] font-semibold uppercase tracking-[0.19em]
                 transition-all duration-700
-                hover:border-[rgb(var(--ei-halo-blue-rgb)/0.32)]
-                hover:bg-[rgb(var(--ei-ice-white-rgb)/0.07)]
+                hover:border-[var(--ei-theme-focus)]
+                hover:bg-[var(--ei-theme-surface-elevated)]
                 hover:!text-[var(--ei-header-text-hover)]
                 hover:shadow-[0_0_24px_rgb(var(--ei-halo-blue-rgb)/0.12)]
                 focus-visible:!text-[var(--ei-header-text-hover)]
                 ${
                   contactActive
-                    ? "border-[rgb(var(--ei-halo-blue-rgb)/0.34)] bg-[rgb(var(--ei-ice-white-rgb)/0.065)] !text-[rgb(var(--ei-moonlit-rgb)/0.96)] shadow-[0_0_22px_rgb(var(--ei-halo-blue-rgb)/0.12)]"
-                    : "!text-[rgb(var(--ei-moonlit-rgb)/0.84)]"
+                    ? "border-[var(--ei-theme-focus)] bg-[var(--ei-theme-surface-elevated)] !text-[var(--ei-header-text)] shadow-[0_0_22px_rgb(var(--ei-halo-blue-rgb)/0.12)]"
+                    : "!text-[var(--ei-header-text)] opacity-80"
                 }
               `}
             >

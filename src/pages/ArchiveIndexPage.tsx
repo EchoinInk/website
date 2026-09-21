@@ -73,7 +73,7 @@ export function ArchiveIndexPage() {
   }, [activeFilter, query, sortBy]);
 
   return (
-    <PageShell atmosphere="default" withTopSpacing={false} className="ei-editorial-page ei-index-page">
+    <PageShell atmosphere="default" theme="deep" withTopSpacing={false} className="ei-editorial-page ei-index-page">
       <Helmet>
         <title>Archive Index — Echo in Ink</title>
         <meta

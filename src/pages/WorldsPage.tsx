@@ -186,6 +186,7 @@ export function WorldsPage() {
   return (
     <PageShell
       atmosphere="worlds"
+      theme="deep"
       withTopSpacing={false}
       className="ei-worlds-page"
     >

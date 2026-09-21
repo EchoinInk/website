@@ -38,7 +38,7 @@ export function Button({
     transition-all duration-500 ease-out
     focus-visible:outline-none
     focus-visible:ring-2
-    focus-visible:ring-[rgb(var(--ei-halo-blue-rgb)/0.72)]
+    focus-visible:ring-[var(--ei-theme-focus)]
     focus-visible:ring-offset-2
     focus-visible:ring-offset-[var(--ei-color-background-canvas)]
     disabled:pointer-events-none
@@ -67,17 +67,17 @@ export function Button({
       group
       min-h-[44px]
       rounded-full
-      border border-[rgb(var(--ei-ice-white-rgb)/0.09)]
-      bg-[rgb(var(--ei-void-rgb)/0.26)]
+      border border-[var(--ei-button-secondary-border)]
+      bg-[var(--ei-button-secondary-bg)]
       px-6 py-3.5
       text-[10px]
       font-medium
       tracking-[0.18em]
       text-[var(--ei-button-text-secondary)]
-      shadow-[inset_0_1px_0_rgb(var(--ei-ice-white-rgb)/0.05)]
+      shadow-[var(--ei-card-shadow)]
       hover:-translate-y-[1px]
-      hover:border-[rgb(var(--ei-ice-white-rgb)/0.18)]
-      hover:bg-[rgb(var(--ei-void-rgb)/0.32)]
+      hover:border-[var(--ei-button-secondary-border-hover)]
+      hover:bg-[var(--ei-button-secondary-bg-hover)]
       hover:text-[var(--ei-button-text-secondary-hover)]
       active:translate-y-0
     `,

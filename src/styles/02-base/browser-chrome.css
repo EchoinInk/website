@@ -18,30 +18,30 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgb(var(--ei-ice-white-rgb) / 0.08);
+    background: var(--ei-theme-scrollbar);
     border-radius: 3px;
     transition: background 0.3s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgb(var(--ei-ice-white-rgb) / 0.15);
+    background: var(--ei-theme-scrollbar-hover);
   }
 
   /* Firefox scrollbar */
   html {
     scrollbar-width: thin;
-    scrollbar-color: rgb(var(--ei-ice-white-rgb) / 0.08) transparent;
+    scrollbar-color: var(--ei-theme-scrollbar) transparent;
   }
 
   /* ── Text Selection ──────────────────────────────────────────── */
   ::selection {
-    background: rgb(var(--ei-halo-blue-rgb) / 0.26);
-    color: var(--ei-color-text-primary);
+    background: var(--ei-selection-bg);
+    color: var(--ei-selection-color);
   }
 
   ::-moz-selection {
-    background: rgb(var(--ei-halo-blue-rgb) / 0.26);
-    color: var(--ei-color-text-primary);
+    background: var(--ei-selection-bg);
+    color: var(--ei-selection-color);
   }
 
   /* ── Tap Highlight (Mobile) ──────────────────────────────────── */

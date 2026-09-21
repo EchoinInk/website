@@ -49,6 +49,7 @@ export function IdentityPage() {
   return (
     <PageShell
       atmosphere="identity"
+      theme="deep"
       withTopSpacing={false}
       className="ei-identity-page"
     >

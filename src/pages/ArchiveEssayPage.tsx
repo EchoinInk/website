@@ -14,7 +14,7 @@ import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from '@/lib/mo
 
 export function ArchiveEssayPage() {
   return (
-    <PageShell atmosphere="default" withTopSpacing={false} className="ei-editorial-page">
+    <PageShell atmosphere="default" theme="deep" withTopSpacing={false} className="ei-editorial-page">
       <Helmet>
         <title>Atmosphere is information — Echo in Ink</title>
         <meta name="description" content={archiveFeatured.excerpt} />

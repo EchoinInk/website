@@ -115,7 +115,7 @@ function scrollToSessionProcess() {
 
 export function SessionsPage() {
   return (
-    <PageShell atmosphere="sessions" withTopSpacing={false} className="ei-sessions-page">
+    <PageShell atmosphere="sessions" theme="deep" withTopSpacing={false} className="ei-sessions-page">
       <Helmet>
         <title>Echo Sessions — Echo in Ink</title>
         <meta

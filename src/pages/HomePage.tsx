@@ -12,7 +12,7 @@ import { PageShell } from "@/components/layout/PageShell";
 
 export function HomePage() {
   return (
-    <PageShell id="main-content" atmosphere="default" withTopSpacing={false}>
+    <PageShell id="main-content" atmosphere="default" theme="deep" withTopSpacing={false}>
       <Helmet>
         <title>Echo in Ink — We design worlds</title>
         <meta

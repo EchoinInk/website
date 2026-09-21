@@ -373,6 +373,7 @@ export function BookingPage() {
   return (
     <PageShell
       atmosphere="sessions"
+      theme="deep"
       withTopSpacing={false}
       className="ei-booking-page"
     >

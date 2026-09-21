@@ -98,11 +98,11 @@
     background-image: linear-gradient(
         45deg,
         transparent 50%,
-        rgb(var(--ei-ice-white-rgb) / 0.62) 50%
+        var(--ei-color-text-secondary) 50%
       ),
       linear-gradient(
         135deg,
-        rgb(var(--ei-ice-white-rgb) / 0.62) 50%,
+        var(--ei-color-text-secondary) 50%,
         transparent 50%
       );
     background-repeat: no-repeat;
@@ -112,7 +112,7 @@
   }
 
   .ei-form-select option {
-    background: var(--ei-void);
+    background: var(--ei-theme-surface-elevated);
     color: var(--ei-color-text-tertiary);
     padding: 0.5rem;
   }
@@ -135,8 +135,8 @@
 
     /* Refined button styling */
     padding: 1.25rem 3rem;
-    background: rgb(var(--ei-ice-white-rgb) / 0.03);
-    border: 1px solid rgb(var(--ei-ice-white-rgb) / 0.1);
+    background: var(--ei-button-secondary-bg);
+    border: 1px solid var(--ei-button-secondary-border);
     border-radius: 0;
     cursor: pointer;
 
@@ -148,8 +148,8 @@
   }
 
   .ei-form-submit:hover:not(:disabled) {
-    background: rgb(var(--ei-ice-white-rgb) / 0.06);
-    border-color: rgb(var(--ei-ice-white-rgb) / 0.18);
+    background: var(--ei-button-secondary-bg-hover);
+    border-color: var(--ei-button-secondary-border-hover);
     color: var(--ei-color-text-primary);
   }
 
@@ -178,7 +178,7 @@
   .ei-form-input:-webkit-autofill:hover,
   .ei-form-input:-webkit-autofill:focus {
     -webkit-text-fill-color: var(--ei-color-text-secondary);
-    -webkit-box-shadow: 0 0 0px 1000px var(--ei-void) inset;
+    -webkit-box-shadow: 0 0 0px 1000px var(--ei-theme-form) inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 }

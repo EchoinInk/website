@@ -35,7 +35,7 @@ import {
 
 export function SystemsPage() {
   return (
-    <PageShell atmosphere="works" withTopSpacing={false} className="ei-systems-page">
+    <PageShell atmosphere="works" theme="deep" withTopSpacing={false} className="ei-systems-page">
       <Helmet>
         <title>Systems — Echo in Ink</title>
         <meta name="description" content={systemsHero.description} />

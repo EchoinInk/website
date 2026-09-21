@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Footer from '@/components/navigation/Footer';
 
@@ -10,11 +10,14 @@ export type PageAtmosphere =
   | 'works'
   | 'studio';
 
+export type SemanticTheme = 'light' | 'lightElevated' | 'mist' | 'atmospheric' | 'deep';
+
 interface PageShellProps {
   children: ReactNode;
   title?: string;
   description?: string;
   atmosphere?: PageAtmosphere;
+  theme?: SemanticTheme;
   className?: string;
   id?: string;
   withFooter?: boolean;
@@ -46,15 +49,23 @@ export function PageShell({
   title,
   description,
   atmosphere = 'default',
+  theme = 'light',
   className = '',
   id = 'main-content',
   withFooter = true,
   withTopSpacing = true,
 }: PageShellProps) {
+  useEffect(() => {
+    document.documentElement.dataset.pageTheme = theme;
+    return () => delete document.documentElement.dataset.pageTheme;
+  }, [theme]);
+
   return (
     <main
       id={id}
+      data-theme={theme}
       className={`
+        ei-page-shell ei-theme-${theme}
         relative
         ${atmosphereClasses[atmosphere]}
         ${withTopSpacing ? 'pt-24 md:pt-32' : ''}

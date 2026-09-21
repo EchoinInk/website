@@ -124,7 +124,7 @@ export function WorksPage() {
   const [sortBy, setSortBy] = useState<WorkSort>('Latest');
 
   return (
-    <PageShell atmosphere="works" withTopSpacing={false} className="ei-works-page">
+    <PageShell atmosphere="works" theme="deep" withTopSpacing={false} className="ei-works-page">
       <Helmet>
         <title>Works | Echo In Ink</title>
         <meta

@@ -126,7 +126,7 @@ const process = [
 
 export function StudioPage() {
   return (
-    <PageShell atmosphere="studio" withTopSpacing={false} className="ei-studio-page">
+    <PageShell atmosphere="studio" theme="deep" withTopSpacing={false} className="ei-studio-page">
       <Helmet>
         <title>Studio | Echo In Ink</title>
         <meta

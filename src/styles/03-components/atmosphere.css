@@ -11,6 +11,11 @@
    ──────────────────────────────────────────────────────────────── */
 
 @layer components {
+  html:not([data-page-theme="deep"]):not([data-page-theme="atmospheric"]) {
+    --ei-cursor-violet-opacity: 0.018;
+    --ei-cursor-blue-opacity: 0.012;
+    --ei-cursor-blend-mode: multiply;
+  }
   /* ── Legacy / Soft Atmospheric Glows ─────────────────────────── */
   .ei-glow-violet-soft {
     background: radial-gradient(

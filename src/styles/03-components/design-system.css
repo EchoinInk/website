@@ -796,18 +796,12 @@
   html,
   body,
   #root {
-    background-color: var(--ei-ink);
+    background-color: var(--ei-color-background-canvas);
   }
 
   body {
-    color: rgb(var(--ei-moonlit-rgb) / 0.9);
-    background:
-      radial-gradient(
-        ellipse 80% 55% at 50% 0%,
-        rgb(var(--ei-violet-rgb) / 0.055) 0%,
-        transparent 62%
-      ),
-      var(--ei-ink);
+    color: var(--ei-color-text-primary);
+    background: var(--ei-color-background-canvas);
   }
 
   .ei-studio-page,
@@ -820,7 +814,7 @@
   .ei-lumo-page,
   .ei-page-section-hero,
   .ei-lumo-hero {
-    background-color: var(--ei-ink);
+    background-color: var(--ei-color-background-canvas);
   }
 
   .ei-page-section-hero-button {
@@ -829,11 +823,11 @@
 
   .ei-page-section-hero img,
   .ei-lumo-hero img {
-    background-color: var(--ei-ink);
+    background-color: var(--ei-color-background-canvas);
   }
 
   .ei-page-section-hero-media img {
-    filter: brightness(0.86) saturate(0.92) contrast(1.04);
+    filter: var(--ei-theme-image-filter, brightness(0.86) saturate(0.92) contrast(1.04));
   }
 
   .ei-page-section-hero-scrim {
@@ -847,16 +841,14 @@
   .ei-page-section-hero-title,
   .ei-type-section {
     color: var(--ei-color-text-primary);
-    text-shadow:
-      0 2px 28px rgb(0 0 0 / 0.44),
-      0 0 54px rgb(var(--ei-violet-rgb) / 0.08);
+    text-shadow: var(--ei-theme-heading-shadow);
   }
 
   p,
   .ei-type-body,
   .ei-type-studio-body,
   .ei-page-section-hero-description {
-    color: rgb(var(--ei-moonlit-rgb) / 0.8);
+    color: var(--ei-color-text-secondary);
   }
 
   .ei-page-offer-anchor {
@@ -879,7 +871,7 @@
   }
 
   .ei-page-offer-anchor-text {
-    color: rgb(var(--ei-moonlit-rgb) / 0.9);
+    color: var(--ei-color-text-secondary);
     font-family: var(--ei-font-copy);
     font-size: clamp(0.95rem, 1.08vw, 1.05rem);
     line-height: 1.68;
@@ -891,7 +883,7 @@
   small,
   figcaption,
   .ei-color-text-tertiary {
-    color: rgb(var(--ei-moonlit-rgb) / 0.64);
+    color: var(--ei-color-text-tertiary);
   }
 
   .ei-color-text-muted,
@@ -902,11 +894,11 @@
   [class*="eyebrow"],
   [class*="kicker"],
   [class*="meta"] {
-    color: rgb(var(--ei-moonlit-rgb) / 0.62);
+    color: var(--ei-color-text-muted);
   }
 
  a:not(.ei-button):not(.ei-btn-primary-cinematic):not(.ei-btn-secondary-cinematic):not(.ei-home-systems-link) {
-  color: rgb(var(--ei-moonlit-rgb) / 0.9);
+  color: var(--ei-color-text-primary);
 }
 
   a:not(.ei-button):not(.ei-btn-primary-cinematic):not(.ei-btn-secondary-cinematic):hover {
@@ -916,12 +908,12 @@
   .ei-card,
   .ei-echo-card,
   .ei-form-panel {
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.13);
+    border-color: var(--ei-card-border);
   }
 
   .ei-card p,
   .ei-echo-card p {
-    color: rgb(var(--ei-moonlit-rgb) / 0.74);
+    color: var(--ei-color-text-secondary);
   }
 
   input,
@@ -948,7 +940,7 @@
     .ei-type-body,
     .ei-type-studio-body,
     .ei-page-section-hero-description {
-      color: rgb(var(--ei-moonlit-rgb) / 0.84);
+      color: var(--ei-color-text-secondary);
     }
 
     .ei-page-offer-anchor {
@@ -967,7 +959,7 @@
     .ei-type-studio-body-small,
     small,
     figcaption {
-      color: rgb(var(--ei-moonlit-rgb) / 0.68);
+      color: var(--ei-color-text-tertiary);
     }
 
     .ei-section-label,
@@ -975,7 +967,7 @@
     [class*="eyebrow"],
     [class*="kicker"],
     [class*="meta"] {
-      color: rgb(var(--ei-moonlit-rgb) / 0.64);
+      color: var(--ei-color-text-muted);
     }
 
     .ei-cta-section[data-variant="slim"] .ei-cta-section-panel {

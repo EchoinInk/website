@@ -59,7 +59,7 @@ export function PageSectionHero({
       viewport={VIEWPORT.loose}
       className=" ei-page-section-hero
   relative flex min-h-[620px] w-full items-start overflow-hidden
-  bg-[var(--ei-ink)]
+  bg-[var(--ei-color-background-canvas)]
   md:min-h-[720px] lg:min-h-[760px]
 "
       aria-labelledby="editorial-hero-heading"
@@ -81,7 +81,7 @@ export function PageSectionHero({
         className="ei-page-section-hero-scrim pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            "linear-gradient(180deg, rgb(var(--ei-ink-rgb) / 0.12) 0%, rgb(var(--ei-ink-rgb) / 0.46) 100%)",
+            "var(--ei-theme-image-scrim)",
         }}
       />
 

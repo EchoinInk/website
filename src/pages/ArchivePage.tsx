@@ -85,7 +85,7 @@ export function ArchivePage() {
       : archiveIndex.filter((entry) => entry.category === activeFilter);
 
   return (
-    <PageShell atmosphere="default" withTopSpacing={false} className="ei-archive-page">
+    <PageShell atmosphere="default" theme="deep" withTopSpacing={false} className="ei-archive-page">
       <Helmet>
         <title>Archive — Echo in Ink</title>
         <meta name="description" content={archiveHero.description} />

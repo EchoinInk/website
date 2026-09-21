@@ -49,6 +49,7 @@ export function ArchiveNotesPage() {
   return (
     <PageShell
       atmosphere="default"
+      theme="deep"
       withTopSpacing={false}
       className="ei-editorial-page ei-notes-page"
     >

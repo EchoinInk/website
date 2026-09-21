@@ -38,6 +38,20 @@
     --ei-moonlit-rgb: 227 216 253;
     --ei-ice-white-rgb: 247 245 250;
 
+    /* Moonlight raw palette. Existing deep Echo tokens retain their meanings. */
+    --ei-moonlight-canvas: #f3f0f7;
+    --ei-moonlight-surface: #faf8fc;
+    --ei-moonlight-ink: #171426;
+    --ei-moonlight-muted: #5f596d;
+    --ei-moonlight-border: #ddd7e5;
+    --ei-moonlight-violet: #6954c6;
+    --ei-moonlight-blue: #4568b5;
+    --ei-moonlight-magenta: #a33c83;
+    --ei-moonlight-canvas-rgb: 243 240 247;
+    --ei-moonlight-surface-rgb: 250 248 252;
+    --ei-moonlight-ink-rgb: 23 20 38;
+    --ei-moonlight-violet-rgb: 105 84 198;
+
     /* ────────────────────────────────────────────────────────────────
        SEMANTIC COLORS
        ──────────────────────────────────────────────────────────────── */
@@ -320,5 +334,98 @@
     --ei-duration-normal: 0.4s;
     --ei-duration-slow: 0.8s;
     --ei-duration-slower: 1.2s;
+
+    /* Semantic theme contract. Components use these aliases rather than raw
+       canvas values, allowing each section to set contrast independently. */
+    --ei-theme-canvas: var(--ei-moonlight-canvas);
+    --ei-theme-surface: var(--ei-moonlight-surface);
+    --ei-theme-surface-elevated: #ffffff;
+    --ei-theme-text-primary: var(--ei-moonlight-ink);
+    --ei-theme-text-secondary: var(--ei-moonlight-muted);
+    --ei-theme-text-muted: #756e80;
+    --ei-theme-text-faint: #8e8798;
+    --ei-theme-border: var(--ei-moonlight-border);
+    --ei-theme-link: var(--ei-moonlight-violet);
+    --ei-theme-focus: var(--ei-moonlight-blue);
+    --ei-theme-shadow: 0 18px 48px rgb(var(--ei-moonlight-ink-rgb) / 0.12);
+    --ei-theme-shadow-elevated: 0 24px 72px rgb(var(--ei-moonlight-ink-rgb) / 0.16);
+    --ei-theme-card: rgb(var(--ei-moonlight-surface-rgb) / 0.92);
+    --ei-theme-card-hover: #ffffff;
+    --ei-theme-form: #ffffff;
+    --ei-theme-form-hover: rgb(var(--ei-moonlight-surface-rgb) / 0.82);
+    --ei-theme-form-focus: #ffffff;
+    --ei-theme-button: var(--ei-moonlight-violet);
+    --ei-theme-button-hover: #5944b2;
+    --ei-theme-button-text: #ffffff;
+    --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.86);
+    --ei-theme-header-text: var(--ei-moonlight-ink);
+    --ei-theme-image-scrim: linear-gradient(180deg, rgb(var(--ei-moonlight-ink-rgb) / 0.04), rgb(var(--ei-moonlight-ink-rgb) / 0.32));
+    --ei-theme-selection: rgb(var(--ei-moonlight-violet-rgb) / 0.24);
+    --ei-theme-scrollbar: rgb(var(--ei-moonlight-ink-rgb) / 0.2);
+    --ei-theme-scrollbar-hover: rgb(var(--ei-moonlight-ink-rgb) / 0.34);
+    --ei-theme-heading-shadow: none;
+    --ei-theme-image-filter: none;
+
+    --ei-color-background-html: var(--ei-theme-canvas);
+    --ei-color-background-body: var(--ei-theme-canvas);
+    --ei-color-background-canvas: var(--ei-theme-canvas);
+    --ei-color-surface: var(--ei-theme-surface);
+    --ei-color-surface-elevated: var(--ei-theme-surface-elevated);
+    --ei-color-surface-hover: var(--ei-theme-card-hover);
+    --ei-color-surface-glass: rgb(var(--ei-moonlight-surface-rgb) / 0.72);
+    --ei-color-surface-scrim: var(--ei-theme-image-scrim);
+    --ei-color-text-primary: var(--ei-theme-text-primary);
+    --ei-color-text-secondary: var(--ei-theme-text-secondary);
+    --ei-color-text-tertiary: var(--ei-theme-text-muted);
+    --ei-color-text-muted: var(--ei-theme-text-muted);
+    --ei-color-text-faint: var(--ei-theme-text-faint);
+    --ei-color-text-accent: var(--ei-theme-link);
+    --ei-card-bg: var(--ei-theme-card);
+    --ei-card-bg-hover: var(--ei-theme-card-hover);
+    --ei-card-border: var(--ei-theme-border);
+    --ei-card-border-hover: rgb(var(--ei-moonlight-violet-rgb) / 0.48);
+    --ei-card-shadow: var(--ei-theme-shadow);
+    --ei-card-shadow-hover: var(--ei-theme-shadow-elevated);
+    --ei-button-bg: var(--ei-theme-button);
+    --ei-button-bg-hover: var(--ei-theme-button-hover);
+    --ei-button-border: transparent;
+    --ei-button-border-hover: transparent;
+    --ei-button-text: var(--ei-theme-button-text);
+    --ei-button-secondary-bg: var(--ei-theme-surface);
+    --ei-button-secondary-bg-hover: var(--ei-theme-surface-elevated);
+    --ei-button-secondary-border: var(--ei-theme-border);
+    --ei-button-secondary-border-hover: rgb(var(--ei-moonlight-violet-rgb) / 0.46);
+    --ei-button-secondary-text: var(--ei-theme-text-primary);
+    --ei-header-text: var(--ei-theme-header-text);
+    --ei-header-text-hover: var(--ei-theme-link);
+    --ei-header-text-active: var(--ei-theme-link);
+    --ei-header-text-muted: var(--ei-theme-text-muted);
+    --ei-form-control-bg: var(--ei-theme-form);
+    --ei-form-control-bg-hover: var(--ei-theme-form-hover);
+    --ei-form-control-bg-focus: var(--ei-theme-form-focus);
+    --ei-form-control-border: var(--ei-theme-border);
+    --ei-form-control-border-focus: var(--ei-theme-focus);
+    --ei-form-control-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9);
+    --ei-form-panel-bg: var(--ei-theme-surface);
+    --ei-form-panel-bg-elevated: var(--ei-theme-surface-elevated);
+    --ei-shadow-soft: var(--ei-theme-shadow);
+    --ei-shadow-elevated: var(--ei-theme-shadow-elevated);
+    --ei-shadow-hover: var(--ei-theme-shadow-elevated);
+    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas), 0 0 0 4px var(--ei-theme-focus);
+    --ei-button-focus-ring: var(--ei-ring-focus);
+    --ei-selection-bg: var(--ei-theme-selection);
+    --ei-selection-color: var(--ei-theme-text-primary);
+  }
+
+  [data-theme="light"] { --ei-theme-canvas: var(--ei-moonlight-canvas); --ei-theme-surface: var(--ei-moonlight-surface); --ei-theme-surface-elevated: #ffffff; }
+  [data-theme="lightElevated"] { --ei-theme-canvas: var(--ei-moonlight-surface); --ei-theme-surface: #ffffff; --ei-theme-surface-elevated: #ffffff; --ei-theme-card: #ffffff; }
+  [data-theme="mist"] { --ei-theme-canvas: #ece8f1; --ei-theme-surface: var(--ei-moonlight-canvas); --ei-theme-surface-elevated: var(--ei-moonlight-surface); --ei-theme-card: rgb(var(--ei-moonlight-surface-rgb) / 0.84); --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.78); }
+  html[data-page-theme="atmospheric"], html[data-page-theme="deep"], [data-theme="atmospheric"], [data-theme="deep"] {
+    --ei-theme-canvas: var(--ei-ink); --ei-theme-surface: rgb(var(--ei-midnight-rgb) / 0.64); --ei-theme-surface-elevated: rgb(var(--ei-midnight-rgb) / 0.82); --ei-theme-text-primary: #f4eeff; --ei-theme-text-secondary: #d9cff6; --ei-theme-text-muted: #b4a1d7; --ei-theme-text-faint: #9489b7; --ei-theme-border: rgb(var(--ei-moonlit-rgb) / 0.12); --ei-theme-link: var(--ei-halo-blue); --ei-theme-focus: var(--ei-halo-blue); --ei-theme-shadow: 0 20px 80px rgb(0 0 0 / 0.34); --ei-theme-shadow-elevated: 0 28px 120px rgb(0 0 0 / 0.48); --ei-theme-card: rgb(var(--ei-midnight-rgb) / 0.84); --ei-theme-card-hover: rgb(var(--ei-midnight-rgb) / 0.9); --ei-theme-form: rgb(var(--ei-void-rgb) / 0.22); --ei-theme-form-hover: rgb(var(--ei-ice-white-rgb) / 0.025); --ei-theme-form-focus: rgb(var(--ei-void-rgb) / 0.32); --ei-theme-button: var(--ei-gradient-primary); --ei-theme-button-hover: var(--ei-gradient-primary-hover); --ei-theme-button-text: var(--ei-ice-white); --ei-theme-header: rgb(var(--ei-midnight-rgb) / 0.78); --ei-theme-header-text: var(--ei-moonlit); --ei-theme-image-scrim: linear-gradient(180deg, rgb(var(--ei-void-rgb) / 0), rgb(var(--ei-void-rgb) / 0.84)); --ei-theme-selection: rgb(var(--ei-halo-blue-rgb) / 0.26); --ei-theme-scrollbar: rgb(var(--ei-ice-white-rgb) / 0.08); --ei-theme-scrollbar-hover: rgb(var(--ei-ice-white-rgb) / 0.15); --ei-color-surface-glass: rgb(var(--ei-moonlit-rgb) / 0.055); --ei-color-surface-scrim: rgb(var(--ei-void-rgb) / 0.72); --ei-card-border-hover: rgb(var(--ei-moonlit-rgb) / 0.2); --ei-button-border: rgb(var(--ei-ice-white-rgb) / 0.18); --ei-button-border-hover: rgb(var(--ei-ice-white-rgb) / 0.34); --ei-button-secondary-bg: rgb(var(--ei-moonlit-rgb) / 0.055); --ei-button-secondary-bg-hover: rgb(var(--ei-moonlit-rgb) / 0.085); --ei-button-secondary-border: rgb(var(--ei-moonlit-rgb) / 0.14); --ei-button-secondary-border-hover: rgb(var(--ei-moonlit-rgb) / 0.24); --ei-button-secondary-text: var(--ei-moonlit); --ei-form-control-shadow: inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04); --ei-form-panel-bg: linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.34), rgb(var(--ei-void-rgb) / 0.9)); --ei-form-panel-bg-elevated: linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.52), rgb(var(--ei-void-rgb) / 0.88)); --ei-selection-color: var(--ei-ice-white);
+  }
+
+  html[data-page-theme="atmospheric"], html[data-page-theme="deep"], [data-theme="atmospheric"], [data-theme="deep"] {
+    --ei-theme-heading-shadow: 0 2px 28px rgb(0 0 0 / 0.44), 0 0 54px rgb(var(--ei-violet-rgb) / 0.08);
+    --ei-theme-image-filter: brightness(0.86) saturate(0.92) contrast(1.04);
   }
 }

@@ -52,9 +52,9 @@ export function AtmosphericCursor() {
         width: 'clamp(380px, 36vw, 620px)',
         height: 'clamp(380px, 36vw, 620px)',
         background:
-          'radial-gradient(circle, rgb(113, 7, 234 / 0.062) 0%, rgb(73, 133, 253 / 0.032) 42%, transparent 70%)',
+          'radial-gradient(circle, rgb(var(--ei-violet-rgb) / var(--ei-cursor-violet-opacity, 0.062)) 0%, rgb(var(--ei-halo-blue-rgb) / var(--ei-cursor-blue-opacity, 0.032)) 42%, transparent 70%)',
         filter: 'blur(40px)',
-        mixBlendMode: 'screen',
+        mixBlendMode: 'var(--ei-cursor-blend-mode, screen)' as never,
       }}
     />
   );

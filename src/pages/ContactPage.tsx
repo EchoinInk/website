@@ -235,6 +235,7 @@ export function ContactPage() {
   return (
     <PageShell
       atmosphere="default"
+      theme="deep"
       withTopSpacing={false}
       className="ei-contact-page"
     >
