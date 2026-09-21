@@ -378,10 +378,10 @@ export function BookingPage() {
       className="ei-booking-page"
     >
       <Helmet>
-        <title>Request an Echo Session — Echo in Ink</title>
+        <title>Request a Strategy Session — Echo in Ink</title>
         <meta
           name="description"
-          content="Send a considered Echo Session request with your preferred week, timezone, and context. Echo in Ink replies with available times and the clearest next step."
+          content="Send a considered Strategy Session request with your preferred week, timezone, and context. Echo in Ink replies with available times and the clearest next step."
         />
       </Helmet>
 
@@ -394,7 +394,7 @@ export function BookingPage() {
             className="mx-auto max-w-[1180px] ei-booking-intro-grid"
           >
             <motion.div variants={driftUp}>
-              <SectionLabel label="Echo Session request" />
+              <SectionLabel label="Strategy Session request" />
               <motion.h1 variants={blurEmergence}>
                 Request a quieter room for the real question.
               </motion.h1>
@@ -449,7 +449,7 @@ export function BookingPage() {
                 <span className="ei-booking-summary-kicker">
                   One-to-one creative direction
                 </span>
-                <h2>Echo Session</h2>
+                <h2>Strategy Session</h2>
                 <p>
                   For founders, artists, writers, and makers who need clearer
                   language, structure, or emotional direction before the next
@@ -603,7 +603,7 @@ export function BookingPage() {
                           aria-pressed="true"
                         >
                           <span>
-                            <strong>Echo Session</strong>
+                            <strong>Strategy Session</strong>
                             <small>
                               60 minutes · Private video room · $120-$150 NZD
                             </small>
@@ -790,7 +790,7 @@ export function BookingPage() {
                         <dl className="ei-booking-review">
                           <div>
                             <dt>Session</dt>
-                            <dd>Echo Session · 60 minutes · $120-$150 NZD</dd>
+                            <dd>Strategy Session · 60 minutes · $120-$150 NZD</dd>
                           </div>
                           <div>
                             <dt>Week</dt>
@@ -931,10 +931,10 @@ export function BookingPage() {
         variant="editorialInvitation"
         eyebrow="Before you send"
         heading="Need more context on the room?"
-        body="Explore the full Echo Sessions offer, process, and fit before returning to request a session."
+        body="Explore the full Strategy Sessions offer, process, and fit before returning to request a session."
         actions={
           <Button to="/sessions" variant="secondary">
-            View Echo Sessions
+            View Strategy Sessions
           </Button>
         }
         className="ei-booking-closing"

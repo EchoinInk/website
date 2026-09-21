@@ -43,6 +43,20 @@ export const primaryCapabilities = [
   },
 ] as const satisfies readonly ServiceCapability[];
 
+export const brandIdentityCapability = primaryCapabilities[0];
+
+/**
+ * An advanced expression of Brand & Identity, intentionally kept outside the
+ * four primary capabilities.
+ */
+export const brandWorldsCapability = {
+  id: "brand-worlds",
+  title: "Brand Worlds & Creative Direction",
+  description:
+    "Extends an identity into a coherent creative environment through visual direction, imagery, atmosphere, interaction and expression.",
+  href: "/worlds",
+} as const;
+
 export type EngagementModelId =
   | "strategy-sessions"
   | "digital-reset"
@@ -82,3 +96,5 @@ export const engagementModels = [
     href: primaryCallToAction.href,
   },
 ] as const satisfies readonly EngagementModel[];
+
+export const strategySessionsEngagement = engagementModels[0];

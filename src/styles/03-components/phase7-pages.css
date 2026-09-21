@@ -1,0 +1,515 @@
+@layer components {
+  .ei-phase7-page {
+    overflow: clip;
+  }
+
+  .ei-phase7-page .ei-section[data-theme] {
+    position: relative;
+    background: var(--ei-theme-canvas);
+    color: var(--ei-theme-text-primary);
+  }
+
+  .ei-phase7-page .ei-page-section-hero {
+    min-height: min(850px, 100svh);
+  }
+
+  .ei-phase7-page .ei-page-section-hero-title {
+    max-width: 12ch;
+    color: var(--ei-theme-text-primary);
+    font-size: clamp(3rem, 6.3vw, 6.25rem);
+    line-height: 0.95;
+  }
+
+  .ei-phase7-page .ei-page-section-hero-description {
+    max-width: 52ch;
+    color: var(--ei-theme-text-secondary);
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    line-height: 1.65;
+  }
+
+  .ei-phase7-page .ei-page-section-hero-image {
+    object-position: 70% 50%;
+    opacity: 0.54;
+    filter: saturate(0.82) contrast(0.94);
+  }
+
+  .ei-phase7-page .ei-page-section-hero-copy-scrim {
+    background:
+      radial-gradient(ellipse 70% 84% at 14% 48%, rgb(var(--ei-moonlight-canvas-rgb) / 0.99) 0%, rgb(var(--ei-moonlight-canvas-rgb) / 0.92) 52%, transparent 82%),
+      linear-gradient(90deg, rgb(var(--ei-moonlight-canvas-rgb) / 0.94) 0%, rgb(var(--ei-moonlight-canvas-rgb) / 0.74) 58%, transparent 86%) !important;
+  }
+
+  .ei-phase7-page a,
+  .ei-phase7-page button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .ei-phase7-page a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .ei-phase7-page .ei-page-section-hero-button,
+  .ei-phase7-page .ei-cta-section-actions > *,
+  .ei-phase7-relationship > .group {
+    min-height: 44px;
+  }
+
+  .ei-phase7-section {
+    isolation: isolate;
+  }
+
+  .ei-phase7-inner {
+    width: min(100%, 82rem);
+    margin-inline: auto;
+    padding-block: clamp(5.5rem, 10vw, 9rem);
+  }
+
+  .ei-phase7-heading {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: clamp(2.75rem, 5.5vw, 5rem);
+  }
+
+  .ei-phase7-heading > div {
+    max-width: 57rem;
+  }
+
+  .ei-phase7-heading h2,
+  .ei-phase7-relationship h2,
+  .ei-sessions-room-copy > h2 {
+    max-width: 18ch;
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(2.3rem, 4.6vw, 4.5rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  .ei-phase7-heading p,
+  .ei-phase7-relationship p,
+  .ei-phase7-card p,
+  .ei-worlds-expression-grid p,
+  .ei-phase7-process p,
+  .ei-sessions-room-copy > p,
+  .ei-sessions-arc p,
+  .ei-sessions-expectation-list dd {
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-copy);
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  .ei-phase7-heading h2 + p {
+    max-width: 58ch;
+    margin-top: 1.4rem;
+  }
+
+  .ei-phase7-card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ei-phase7-card {
+    --ei-card-bg: var(--ei-theme-card);
+    --ei-card-bg-soft: var(--ei-theme-card);
+    --ei-card-bg-hover: var(--ei-theme-card-hover);
+    --ei-card-border: var(--ei-theme-border);
+    --ei-card-shadow: var(--ei-theme-shadow);
+    height: 100%;
+    min-height: 17rem;
+    color: var(--ei-theme-text-secondary);
+  }
+
+  .ei-phase7-card-meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .ei-phase7-card-meta > span,
+  .ei-phase7-card-index,
+  .ei-worlds-expression-grid > div > span,
+  .ei-phase7-process > li > span,
+  .ei-sessions-arc > li > span {
+    color: var(--ei-theme-link);
+    font-family: var(--ei-font-structural);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .ei-phase7-card h3,
+  .ei-worlds-expression-grid h3,
+  .ei-phase7-process h3,
+  .ei-sessions-arc h3 {
+    margin-top: 2.2rem;
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    font-weight: 400;
+    line-height: 1.12;
+  }
+
+  .ei-phase7-card h3 + p,
+  .ei-worlds-expression-grid h3 + p,
+  .ei-phase7-process h3 + p,
+  .ei-sessions-arc h3 + p {
+    margin-top: 0.9rem;
+  }
+
+  .ei-identity-system-map {
+    display: grid;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .ei-identity-system-map > div {
+    min-width: 0;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--ei-theme-border);
+    background: rgb(var(--ei-ink-rgb) / 0.24);
+    box-shadow: var(--ei-theme-shadow);
+  }
+
+  .ei-identity-system-map > div > span {
+    display: block;
+    margin-bottom: 1.4rem;
+    color: var(--ei-theme-link);
+    font-family: var(--ei-font-structural);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ei-identity-system-map p {
+    padding-block: 0.68rem;
+    border-bottom: 1px solid var(--ei-theme-border);
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-copy);
+  }
+
+  .ei-identity-system-core {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    min-height: 17rem;
+    text-align: center;
+  }
+
+  .ei-identity-system-core strong {
+    margin-top: 1.25rem;
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: 1.7rem;
+    font-weight: 400;
+  }
+
+  .ei-phase7-process {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-phase7-process li {
+    min-width: 0;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-phase7-process h3 {
+    margin-top: 1.35rem;
+  }
+
+  .ei-phase7-relationship {
+    display: grid;
+    gap: 2rem;
+    align-items: end;
+    margin-top: clamp(3rem, 7vw, 6rem);
+    padding: clamp(1.75rem, 4vw, 3.5rem);
+    border: 1px solid var(--ei-theme-border);
+    border-radius: var(--ei-radius-lg);
+    background: var(--ei-theme-card);
+    box-shadow: var(--ei-theme-shadow);
+  }
+
+  .ei-phase7-relationship > div > span {
+    display: block;
+    margin-bottom: 1.15rem;
+    color: var(--ei-theme-link);
+    font-family: var(--ei-font-structural);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .ei-phase7-relationship h2 {
+    font-size: clamp(2rem, 3.7vw, 3.5rem);
+  }
+
+  .ei-phase7-relationship h2 + p {
+    max-width: 64ch;
+    margin-top: 1rem;
+  }
+
+  .ei-sessions-use-case-grid,
+  .ei-worlds-layer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ei-sessions-expectation-list {
+    margin: 0;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-sessions-expectation-list > div {
+    display: grid;
+    gap: 0.65rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-sessions-expectation-list dt {
+    color: var(--ei-theme-text-primary);
+    font-family: var(--ei-font-structural);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .ei-sessions-room-layout {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+  }
+
+  .ei-sessions-room-copy > h2 {
+    margin-top: 1.8rem;
+  }
+
+  .ei-sessions-room-copy > p {
+    max-width: 52ch;
+    margin-top: 1.4rem;
+  }
+
+  .ei-sessions-arc {
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-sessions-arc li {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
+    padding-block: 1.15rem;
+    border-bottom: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-sessions-arc h3 {
+    margin-top: 0;
+    font-size: 1.25rem;
+  }
+
+  .ei-sessions-room-image {
+    overflow: hidden;
+    min-height: 22rem;
+    margin: 0;
+    border: 1px solid var(--ei-theme-border);
+    border-radius: var(--ei-radius-lg);
+    background: var(--ei-theme-card);
+  }
+
+  .ei-sessions-room-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    object-fit: cover;
+  }
+
+  .ei-worlds-expression-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-worlds-expression-grid > div {
+    padding: 1.7rem 0;
+    border-bottom: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-worlds-expression-grid h3 {
+    margin-top: 1rem;
+  }
+
+  .ei-worlds-atmosphere-image {
+    position: relative;
+    overflow: hidden;
+    min-height: 24rem;
+    margin: clamp(3rem, 7vw, 6rem) 0 0;
+    border: 1px solid var(--ei-theme-border);
+    border-radius: var(--ei-radius-lg);
+  }
+
+  .ei-worlds-atmosphere-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(var(--ei-ink-rgb) / 0.9), transparent 58%);
+    pointer-events: none;
+  }
+
+  .ei-worlds-atmosphere-image img {
+    width: 100%;
+    height: clamp(24rem, 44vw, 38rem);
+    object-fit: cover;
+  }
+
+  .ei-worlds-atmosphere-image figcaption {
+    position: absolute;
+    z-index: 1;
+    right: clamp(1.5rem, 4vw, 3rem);
+    bottom: clamp(1.5rem, 4vw, 3rem);
+    left: clamp(1.5rem, 4vw, 3rem);
+    max-width: 37ch;
+    color: var(--ei-moonlit);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(1.45rem, 3vw, 2.6rem);
+    line-height: 1.12;
+  }
+
+  .ei-phase7-closing {
+    background: var(--ei-theme-canvas);
+  }
+
+  .ei-phase7-closing .ei-cta-section {
+    background: transparent;
+  }
+
+  .ei-phase7-closing .ei-cta-section-actions {
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 640px) {
+    .ei-phase7-card-grid,
+    .ei-worlds-expression-grid,
+    .ei-phase7-process {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ei-phase7-process li:nth-child(odd),
+    .ei-worlds-expression-grid > div:nth-child(odd) {
+      padding-right: 1.5rem;
+      border-right: 1px solid var(--ei-theme-border);
+    }
+
+    .ei-phase7-process li:nth-child(even),
+    .ei-worlds-expression-grid > div:nth-child(even) {
+      padding-left: 1.5rem;
+    }
+
+    .ei-sessions-expectation-list > div {
+      grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ei-phase7-heading {
+      grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1fr);
+      gap: clamp(2.5rem, 7vw, 7rem);
+    }
+
+    .ei-phase7-card-grid-four,
+    .ei-sessions-use-case-grid,
+    .ei-worlds-layer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ei-identity-system-map {
+      grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.8fr) minmax(0, 1fr);
+    }
+
+    .ei-phase7-relationship {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .ei-sessions-room-layout {
+      grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.75fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ei-phase7-card-grid-four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .ei-sessions-use-case-grid,
+    .ei-worlds-layer-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .ei-worlds-expression-grid,
+    .ei-phase7-process {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .ei-phase7-process li,
+    .ei-phase7-process li:nth-child(odd),
+    .ei-phase7-process li:nth-child(even),
+    .ei-worlds-expression-grid > div,
+    .ei-worlds-expression-grid > div:nth-child(odd),
+    .ei-worlds-expression-grid > div:nth-child(even) {
+      padding: 1.75rem;
+      border-right: 1px solid var(--ei-theme-border);
+    }
+
+    .ei-phase7-process li:first-child,
+    .ei-worlds-expression-grid > div:first-child {
+      padding-left: 0;
+    }
+
+    .ei-phase7-process li:last-child,
+    .ei-worlds-expression-grid > div:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .ei-phase7-page .ei-page-section-hero {
+      min-height: 760px;
+    }
+
+    .ei-phase7-page .ei-page-section-hero-title {
+      font-size: clamp(2.75rem, 14vw, 3.8rem);
+    }
+
+    .ei-phase7-page .ei-page-section-hero-image {
+      object-position: 64% 50%;
+      opacity: 0.34;
+    }
+
+    .ei-phase7-page .ei-page-section-hero-copy-scrim {
+      background: linear-gradient(90deg, rgb(var(--ei-moonlight-canvas-rgb) / 0.92), rgb(var(--ei-moonlight-canvas-rgb) / 0.72)) !important;
+    }
+
+    .ei-phase7-page .ei-page-section-hero-actions .group,
+    .ei-phase7-closing .ei-cta-section-actions .group {
+      width: 100%;
+    }
+
+    .ei-phase7-relationship > .group {
+      width: 100%;
+    }
+  }
+}

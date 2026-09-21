@@ -23,6 +23,7 @@
 @import './03-components/contact.css' layer(components);
 @import './03-components/home.css' layer(components);
 @import './03-components/services.css' layer(components);
+@import './03-components/phase7-pages.css' layer(components);
 
 @import './04-utilities/mobile.css' layer(utilities);
 

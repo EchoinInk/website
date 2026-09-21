@@ -1,9 +1,7 @@
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import sessionsHeroDesktop from "@/assets/imagery/hero/sessions-hero-luminous-threshold-desktop.webp";
 import sessionsHeroMobile from "@/assets/imagery/hero/sessions-hero-luminous-threshold-mobile.webp";
-import imageCTA from "@/assets/imagery/sections/sessions-cta-desktop.webp";
 import imageOffer from "@/assets/imagery/sections/sessions-offer-desktop.webp";
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
@@ -12,389 +10,185 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageSectionHero } from "@/components/sections/PageSectionHero";
 import { Button } from "@/components/ui/Button";
 import { EchoCard } from "@/components/ui/EchoCard";
-import { IconWell } from "@/components/ui/IconWell";
-import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import {
-  sessionsApproach,
-  sessionsAudience,
-  sessionsBring,
-  sessionsClosing,
-  sessionsHero,
-  sessionsOrientation,
-  sessionsOutcomes,
-  sessionsPricing
-} from "@/data/sessionsContent";
-import {
-  blurEmergence,
-  driftUp,
-  fadeSoft,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT
-} from "@/lib/motion-cinematic";
+import { strategySessionsEngagement } from "@/data/servicesContent";
+import { primaryCallToAction } from "@/data/siteNavigation";
+import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
-const offerFacts = [
-  { label: "Duration", value: "60 or 90 minutes" },
-  { label: "Room", value: "Private video session" },
-  { label: "Recording", value: "Available by request" },
-  { label: "Follow-up", value: "Reflection note optional" },
-  { label: "References", value: "Fragments are welcome" }
-];
+const sessionUseCases = [
+  ["Website direction", "Decide what the site needs to communicate, prioritise or change."],
+  ["Brand clarity", "Clarify positioning, language or visual direction before expression begins."],
+  ["Product direction", "Work through the shape, audience or next decision for a digital product."],
+  ["Digital strategy", "Create direction around a defined digital challenge or opportunity."],
+  ["UX problems", "Untangle a specific journey, interaction or information problem."],
+  ["Technical scoping", "Frame an initiative clearly enough to identify sensible next steps."],
+] as const;
 
-const outcomes: Array<{
-  title: string;
-  description: string;
-  icon: OrbitalVariant;
-}> = [
-  {
-    title: "Clarity",
-    description:
-      "Find the language beneath the noise and name what the work is really trying to become.",
-    icon: "focusDial"
-  },
-  {
-    title: "Direction",
-    description:
-      "Turn scattered references and instincts into a practical creative path you can act on.",
-    icon: "signalBridge"
-  },
-  {
-    title: "Coherence",
-    description:
-      "Align the emotional, visual, and verbal parts of the project around one trustworthy centre.",
-    icon: "chorusCore"
-  }
-];
+const sessionArc = [
+  ["Define", "Name the question and what would make the conversation useful."],
+  ["Explore", "Examine the context, constraints, references and tensions around it."],
+  ["Shape", "Turn the strongest signals into a clearer direction or decision."],
+  ["Close", "Identify the next moves worth carrying forward after the room."],
+] as const;
 
-const process = [
-  {
-    title: "Prepare",
-    description: "Bring the idea, tension, question, or fragment that needs attention."
-  },
-  {
-    title: "Align",
-    description: "We define what would make the conversation genuinely useful."
-  },
-  {
-    title: "Explore",
-    description: "We listen for patterns across language, references, feeling, and intent."
-  },
-  {
-    title: "Shape",
-    description: "We turn the strongest signal into a clear creative direction."
-  },
-  {
-    title: "Close & plan",
-    description: "We name the decisions, language, and next moves worth carrying forward."
-  }
-];
-
-const leaveWith = [
-  ...sessionsOutcomes.items.slice(0, 6),
-  "A recording of the conversation, when requested",
-  "Optional written Session Reflection Note"
-];
-
-const notFor = [
-  "A generic business coaching call",
-  "A done-for-you identity or website",
-  "A performance review or pitch session",
-  "A substitute for a full creative engagement"
-];
-
-function scrollToSessionProcess() {
-  const processSection = document.getElementById("inside-the-session");
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  processSection?.scrollIntoView({
-    behavior: prefersReducedMotion ? "auto" : "smooth",
-    block: "start"
-  });
-}
+const sessionExpectations = [
+  ["Format", "A focused 60–90 minute private video session, shaped around one defined question."],
+  ["What to bring", "The question plus any useful fragments: a draft, reference, screenshot or short context note."],
+  ["What you leave with", "Clearer decisions, language and practical next steps appropriate to the question."],
+  ["Notes and recording", "A reflection note may be available; recording only happens when agreed in advance and is never automatic."],
+] as const;
 
 export function SessionsPage() {
+  const prefersReducedMotion = useReducedMotion();
+  const reveal = {
+    variants: staggerContainer(STAGGER.loose, 0),
+    initial: prefersReducedMotion ? false : "hidden",
+    whileInView: "visible",
+    viewport: VIEWPORT.normal,
+  } as const;
+
   return (
-    <PageShell atmosphere="sessions" theme="deep" withTopSpacing={false} className="ei-sessions-page">
-      <Helmet>
-        <title>Echo Sessions — Echo in Ink</title>
-        <meta
-          name="description"
-          content="One-to-one creative direction sessions for founders, artists, writers, and makers seeking clearer language, identity, structure, and direction."
-        />
-      </Helmet>
-
-     <PageSectionHero
-  eyebrow="Echo Sessions"
-  title="Clarity before expression."
-  description={sessionsHero.body[0]}
-  offerAnchor="A focused creative-direction session for founders and teams who need clarity before committing to a larger build."
-  image={sessionsHeroDesktop}
-  mobileImage={sessionsHeroMobile}
-  imageAlt="Luminous blue-violet threshold over a dark cinematic horizon"
-  align="left"
-  
-  ctaLabel="Request a session"
-  ctaHref={sessionsHero.primaryCta.href}
-  secondaryCtaLabel="Explore the studio"
-  secondaryCtaHref="/studio"
-/>
-
-      <Section spacing="none" className="ei-sessions-section ei-sessions-definition">
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div variants={fadeSoft}>
-              <EchoCard variant="offer" padding="none" className="ei-sessions-definition-panel">
-                <div className="ei-sessions-definition-copy">
-                  <SectionLabel label="The offer" index="01" />
-                  <motion.h2 variants={blurEmergence}>
-                    A quiet working room for the real shape of the project.
-                  </motion.h2>
-                  <div className="ei-sessions-definition-body">
-                    {sessionsOrientation.paragraphs.map((paragraph) => (
-                      <p key={paragraph} className="ei-type-body-editorial">{paragraph}</p>
-                    ))}
-                  </div>
-                  <p className="ei-sessions-definition-note">
-                    Part mirror, part map, part creative direction. You do not need a finished
-                    brief; bring whatever feels alive, unresolved, or difficult to name.
-                  </p>
-                </div>
-
-                <div className="ei-sessions-definition-media" aria-hidden="true">
-                  <img src={imageOffer} alt="" loading="lazy" />
-                </div>
-
-                <dl className="ei-sessions-facts">
-                  {offerFacts.map((fact) => (
-                    <div key={fact.label}>
-                      <dt>{fact.label}</dt>
-                      <dd>{fact.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </EchoCard>
-            </motion.div>
-          </motion.div>
-        </Container>
-      </Section>
-
-      <Section spacing="none" className="ei-sessions-section ei-sessions-outcomes">
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div variants={driftUp} className="ei-sessions-section-heading">
-              <SectionLabel label="Three outcomes" index="02" />
-              <h2 className="ei-type-section-heading">Leave with a direction you can trust.</h2>
-              <p className="ei-type-body-editorial">
-                The session makes the intangible practical without flattening what gives the work
-                its meaning.
-              </p>
-            </motion.div>
-
-            <div className="ei-sessions-outcome-grid">
-              {outcomes.map((outcome, index) => (
-                <motion.div key={outcome.title} variants={driftUp}>
-                  <EchoCard
-                    variant={index === 1 ? "feature" : "static"}
-                    padding="lg"
-                    className="ei-sessions-outcome-card"
-                  >
-                    <IconWell size="lg" tone={index === 2 ? "magenta" : "violet"} orbital glow>
-                      <OrbitalVisual variant={outcome.icon} size={54} />
-                    </IconWell>
-                    <span className="ei-sessions-card-index">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3>{outcome.title}</h3>
-                    <p className="ei-type-body-editorial">{outcome.description}</p>
-                  </EchoCard>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </Container>
-      </Section>
-
-      <Section
-        id="inside-the-session"
-        spacing="none"
-        className="ei-sessions-section ei-sessions-process"
-      >
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div variants={driftUp} className="ei-sessions-section-heading">
-              <SectionLabel label="Inside the session" index="03" />
-              <h2 className="ei-type-section-heading">A focused arc, with room to follow the signal.</h2>
-            </motion.div>
-
-            <ol className="ei-sessions-process-list">
-              {process.map((step, index) => (
-                <motion.li key={step.title} variants={driftUp}>
-                  <span className="ei-sessions-process-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="ei-sessions-process-dot" aria-hidden="true" />
-                  <h3>{step.title}</h3>
-                  <p className="ei-type-body-editorial">{step.description}</p>
-                </motion.li>
-              ))}
-            </ol>
-          </motion.div>
-        </Container>
-      </Section>
-
-      <Section spacing="none" className="ei-sessions-section ei-sessions-takeaways">
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px] ei-sessions-takeaways-layout"
-          >
-            <motion.div variants={driftUp} className="ei-sessions-takeaways-copy">
-              <SectionLabel label="What you leave with" index="04" />
-              <h2 className="ei-type-section-heading">{sessionsOutcomes.heading}</h2>
-              <p className="ei-type-body-editorial">{sessionsOutcomes.intro}</p>
-              <blockquote>“{sessionsApproach.heading}”</blockquote>
-            </motion.div>
-
-            <motion.div variants={fadeSoft}>
-              <EchoCard variant="proof" padding="lg" className="ei-sessions-checklist-panel">
-                <ul>
-                  {leaveWith.map((item) => (
-                    <li key={item}>
-                      <span aria-hidden="true">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </EchoCard>
-            </motion.div>
-          </motion.div>
-        </Container>
-      </Section>
-
-      <Section spacing="none" className="ei-sessions-section ei-sessions-fit">
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div variants={driftUp}>
-              <SectionLabel label="Fit" index="05" />
-            </motion.div>
-            <div className="ei-sessions-fit-grid">
-              <motion.div variants={driftUp}>
-                <h2 className="ei-type-section-heading">This is for you if...</h2>
-                <p className="ei-type-body-editorial">{sessionsAudience}</p>
-                <ul>
-                  {sessionsBring.items.slice(0, 5).map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </motion.div>
-              <motion.div variants={driftUp}>
-                <h2 className="ei-type-section-heading">This is not...</h2>
-                <p className="ei-type-body-editorial">
-                  The room is intimate and directional. Its value comes from attention, reflection,
-                  and honest creative decisions.
-                </p>
-                <ul>
-                  {notFor.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
-          </motion.div>
-        </Container>
-      </Section>
-
-      <Section spacing="none" className="ei-sessions-section ei-sessions-formats">
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div variants={driftUp} className="ei-sessions-section-heading">
-              <SectionLabel label="Session formats" index="06" />
-              <h2 className="ei-type-section-heading">{sessionsPricing.heading}</h2>
-              <p className="ei-type-body-editorial">
-                Choose the depth that matches the question. Both formats are one-to-one and shaped
-                around the work you bring.
-              </p>
-            </motion.div>
-
-            <div className="ei-sessions-format-grid">
-              {sessionsPricing.tiers.map((tier, index) => (
-                <motion.div key={tier.name} variants={driftUp}>
-                  <EchoCard
-                    variant={index === 1 ? "offer" : "index"}
-                    padding="lg"
-                    className="ei-sessions-format-card"
-                  >
-                    <div>
-                      <span className="ei-sessions-format-number">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span>{tier.duration}</span>
-                    </div>
-                    <h3>{tier.name}</h3>
-                    <p className="ei-type-body-editorial">{tier.description}</p>
-                    <strong>{tier.price} NZD</strong>
-                  </EchoCard>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.p variants={fadeSoft} className="ei-sessions-format-note">
-              Unsure which format fits? Start with the 60-minute session. The request form gives you
-              space to describe what you are carrying before a time is suggested.
-            </motion.p>
-          </motion.div>
-        </Container>
-      </Section>
-
-      <CTASection
-        variant="imagePanel"
-        eyebrow="Request an Echo Session"
-        heading={sessionsClosing.heading}
-        body={sessionsClosing.subline}
-        image={imageCTA}
-        imageAlt=""
-        className="ei-sessions-closing"
-        actions={
-          <Button to={sessionsClosing.cta.href} variant="primary">
-            Request a session <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
-          </Button>
-        }
-        secondary="60 or 90 minutes · Private one-to-one creative direction · NZD pricing"
+    <PageShell
+      title="Strategy Sessions — Echo in Ink"
+      description="Focused 60–90 minute Strategy Sessions for resolving a defined question, creating direction or scoping a digital initiative."
+      atmosphere="sessions"
+      theme="light"
+      withTopSpacing={false}
+      className="ei-sessions-page ei-phase7-page"
+    >
+      <PageSectionHero
+        eyebrow="STRATEGY SESSIONS"
+        title="Clarity before expression."
+        italicWord="Clarity"
+        description="A Strategy Session is a focused 60–90 minute engagement for resolving a defined question, creating direction, scoping an initiative or working through a specific digital problem."
+        offerAnchor={strategySessionsEngagement.description}
+        image={sessionsHeroDesktop}
+        mobileImage={sessionsHeroMobile}
+        imageAlt="A luminous threshold suggesting a clear way forward"
+        theme="light"
+        tone="editorial"
+        ctaLabel={strategySessionsEngagement.cta}
+        ctaHref={strategySessionsEngagement.href}
+        secondaryCtaLabel={primaryCallToAction.label}
+        secondaryCtaHref={primaryCallToAction.href}
+        headingId="sessions-heading"
       />
+
+      <Section theme="lightElevated" spacing="none" className="ei-phase7-section ei-sessions-use-cases" aria-labelledby="sessions-use-cases-heading">
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-phase7-inner">
+            <motion.div variants={driftUp} className="ei-phase7-heading">
+              <SectionLabel label="When a session is useful" tone="accent" />
+              <div>
+                <h2 id="sessions-use-cases-heading">Bring one question that needs a clearer way forward.</h2>
+                <p>
+                  These are examples of the kinds of questions a session can hold—not six new
+                  services. The best fit is a defined problem that benefits from focused strategic
+                  and creative attention.
+                </p>
+              </div>
+            </motion.div>
+            <div className="ei-phase7-card-grid ei-sessions-use-case-grid">
+              {sessionUseCases.map(([title, description], index) => (
+                <motion.div key={title} variants={driftUp}>
+                  <EchoCard padding="lg" variant={index === 0 ? "feature" : "static"} className="ei-phase7-card">
+                    <span className="ei-phase7-card-index">{String(index + 1).padStart(2, "0")}</span>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                  </EchoCard>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </Container>
+      </Section>
+
+      <Section theme="mist" transitionTo="atmospheric" spacing="none" className="ei-phase7-section ei-sessions-expectations" aria-labelledby="sessions-expectations-heading">
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-phase7-inner">
+            <motion.div variants={driftUp} className="ei-phase7-heading">
+              <SectionLabel label="What to expect" tone="accent" />
+              <div>
+                <h2 id="sessions-expectations-heading">A practical format with room to think properly.</h2>
+                <p>
+                  Echo Sessions is the broader brand language for the room. The commercial
+                  engagement is Strategy Sessions: focused, one-to-one and centred on the question
+                  you bring.
+                </p>
+              </div>
+            </motion.div>
+            <dl className="ei-sessions-expectation-list">
+              {sessionExpectations.map(([term, description]) => (
+                <motion.div key={term} variants={driftUp}>
+                  <dt>{term}</dt>
+                  <dd>{description}</dd>
+                </motion.div>
+              ))}
+            </dl>
+          </motion.div>
+        </Container>
+      </Section>
+
+      <Section theme="atmospheric" transitionTo="light" spacing="none" className="ei-phase7-section ei-sessions-room" aria-labelledby="sessions-room-heading">
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-phase7-inner ei-sessions-room-layout">
+            <motion.div variants={driftUp} className="ei-sessions-room-copy">
+              <SectionLabel label="Inside the session" />
+              <h2 id="sessions-room-heading">Part mirror, part map, part creative direction.</h2>
+              <p>
+                The conversation follows a simple arc, but it is not a scripted workshop. It stays
+                close to the real question and the decisions that can move it forward.
+              </p>
+              <ol className="ei-sessions-arc">
+                {sessionArc.map(([title, description], index) => (
+                  <li key={title}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <div><h3>{title}</h3><p>{description}</p></div>
+                  </li>
+                ))}
+              </ol>
+            </motion.div>
+            <motion.figure variants={fadeSoft} className="ei-sessions-room-image">
+              <img src={imageOffer} alt="Abstract violet forms creating a calm, focused space" loading="lazy" />
+            </motion.figure>
+          </motion.div>
+        </Container>
+      </Section>
+
+      <Section theme="light" transitionTo="deep" spacing="none" className="ei-phase7-section ei-sessions-standalone" aria-labelledby="sessions-standalone-heading">
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-phase7-inner">
+            <motion.aside variants={driftUp} className="ei-phase7-relationship">
+              <div>
+                <span>A complete engagement in its own right</span>
+                <h2 id="sessions-standalone-heading">A Strategy Session can stand alone.</h2>
+                <p>
+                  It is not a mandatory discovery call or a sales gateway to a larger project. If
+                  the session resolves the question, it has done its job. If you already have a
+                  defined project, you can go directly to Start a Project.
+                </p>
+              </div>
+              <Button to={primaryCallToAction.href} variant="secondary">{primaryCallToAction.label}</Button>
+            </motion.aside>
+          </motion.div>
+        </Container>
+      </Section>
+
+      <Section theme="deep" spacing="none" className="ei-phase7-closing">
+        <CTASection
+          variant="editorialInvitation"
+          eyebrow="Bring the question"
+          heading="Clarity before expression."
+          body="The booking flow begins with a request. Share the timing, timezone and context; a session is only confirmed after a real time is offered and accepted."
+          actions={
+            <>
+              <Button to={strategySessionsEngagement.href}>{strategySessionsEngagement.cta}</Button>
+              <Button to={primaryCallToAction.href} variant="secondary">{primaryCallToAction.label}</Button>
+            </>
+          }
+          headingId="sessions-cta-heading"
+        />
+      </Section>
     </PageShell>
   );
 }

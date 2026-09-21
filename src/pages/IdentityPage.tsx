@@ -1,5 +1,4 @@
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import identityHeroDesktop from "@/assets/imagery/hero/identity-hero-orbital-system-desktop.webp";
 import identityHeroMobile from "@/assets/imagery/hero/identity-hero-orbital-system-mobile.webp";
@@ -10,390 +9,207 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageSectionHero } from "@/components/sections/PageSectionHero";
 import { Button } from "@/components/ui/Button";
 import { EchoCard } from "@/components/ui/EchoCard";
-import { IconWell } from "@/components/ui/IconWell";
-import { OrbitalVisual } from "@/components/ui/OrbitalVisual";
+import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import {
-  identityApplications,
-  identityAudience,
-  identityClosing,
-  identityDeliverables,
-  identityHero,
-  identityPricing,
-  identityProcess,
-  identityTransformation,
-  identityUseCases,
-} from "@/data/identityContent";
-import {
-  blurEmergence,
-  driftUp,
-  fadeSoft,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT,
-} from "@/lib/motion-cinematic";
+import { identityApplications, identityProcess, identityTransformation } from "@/data/identityContent";
+import { brandIdentityCapability, brandWorldsCapability } from "@/data/servicesContent";
+import { primaryCallToAction } from "@/data/siteNavigation";
+import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
-function scrollToProcess() {
-  const processSection = document.getElementById("identity-process");
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-
-  processSection?.scrollIntoView({
-    behavior: prefersReducedMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
+const identityAreas: Array<{ title: string; description: string; icon: OrbitalVariant }> = [
+  {
+    title: "Brand strategy",
+    description: "Clarify the position, audience, purpose and central idea the identity needs to carry.",
+    icon: "focusDial",
+  },
+  {
+    title: "Visual identity",
+    description: "Shape a distinctive visual language through typography, colour, imagery and composition.",
+    icon: "prismMirror",
+  },
+  {
+    title: "Identity systems",
+    description: "Create principles and patterns that keep expression consistent without making it rigid.",
+    icon: "chorusCore",
+  },
+  {
+    title: "Digital expression",
+    description: "Carry the identity into websites, products, launches and the other places people meet it.",
+    icon: "signalBridge",
+  },
+];
 
 export function IdentityPage() {
+  const prefersReducedMotion = useReducedMotion();
+  const reveal = {
+    variants: staggerContainer(STAGGER.loose, 0),
+    initial: prefersReducedMotion ? false : "hidden",
+    whileInView: "visible",
+    viewport: VIEWPORT.normal,
+  } as const;
+
   return (
     <PageShell
+      title="Brand & Identity — Echo in Ink"
+      description="Brand strategy, visual identity, identity systems and digital expression shaped into a coherent, recognisable whole."
       atmosphere="identity"
-      theme="deep"
+      theme="light"
       withTopSpacing={false}
-      className="ei-identity-page"
+      className="ei-identity-page ei-phase7-page"
     >
-      <Helmet>
-        <title>Atmospheric Identity Direction — Echo in Ink</title>
-        <meta
-          name="description"
-          content="Atmospheric Identity Kits translate the emotional shape of your work into clear creative direction — palette, typography, mood, tone, and visual notes."
-        />
-      </Helmet>
-
       <PageSectionHero
-        eyebrow="01  IDENTITY"
+        eyebrow="BRAND & IDENTITY"
         title="Every world begins with a feeling."
         italicWord="feeling."
-        description="Before a name. Before a logo. Before the visuals.
-
-Identity begins as a feeling — an atmosphere waiting to be understood, shaped, and expressed.
-
-I translate that feeling into visual language, rhythm, and voice."
-        offerAnchor="Identity direction, visual language, and digital foundations for teams becoming more recognisable and more coherent."
+        description="Echo shapes brand strategy, visual identity, identity systems and digital expression into a coherent presence people can recognise and trust."
+        offerAnchor={brandIdentityCapability.description}
         image={identityHeroDesktop}
         mobileImage={identityHeroMobile}
-        imageAlt="Orbital violet identity system over a dark cinematic field"
-        align="left" 
-        ctaLabel="Discuss identity direction"
-        ctaHref="/contact?inquiry=project"
-        secondaryCtaLabel="View selected work"
-        secondaryCtaHref="/works"
+        imageAlt="Orbital violet identity system suggesting connected brand elements"
+        theme="light"
+        tone="editorial"
+        ctaLabel={primaryCallToAction.label}
+        ctaHref={primaryCallToAction.href}
+        secondaryCtaLabel="Explore Services"
+        secondaryCtaHref="/services"
+        headingId="identity-heading"
       />
-      <Section
-        spacing="none"
-        className="ei-identity-section ei-identity-section-anchor ei-identity-orientation"
-      >
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px] ei-identity-orientation-grid"
-          >
-            <motion.div
-              variants={driftUp}
-              className="ei-identity-orientation-copy"
-            >
-              <SectionLabel label="Who it is for" index="02" />
-              <h2 className="ei-type-section-heading">
-                For the creator who can <em>feel</em> the world, but cannot yet
-                see it clearly.
-              </h2>
-              <div>
-                {identityAudience.intro.map((paragraph) => (
-                  <p key={paragraph} className="ei-type-body-editorial">{paragraph}</p>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeSoft}>
-              <EchoCard
-                variant="index"
-                padding="lg"
-                className="ei-identity-use-cases"
-              >
-                <p className="ei-identity-overline">
-                  This may be the right moment if
-                </p>
-                <ul>
-                  {identityUseCases.map((item) => (
-                    <li key={item}>
-                      <span aria-hidden="true">+</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </EchoCard>
-            </motion.div>
-          </motion.div>
-        </Container>
-      </Section>
 
       <Section
+        theme="lightElevated"
+        transitionTo="atmospheric"
         spacing="none"
-        className="ei-identity-section ei-identity-section-anchor ei-identity-kit"
+        className="ei-phase7-section ei-identity-capability"
+        aria-labelledby="identity-capability-heading"
       >
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div
-              variants={driftUp}
-              className="ei-identity-section-heading"
-            >
-              <SectionLabel label="What you receive" index="03" />
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-phase7-inner">
+            <motion.div variants={driftUp} className="ei-phase7-heading">
+              <SectionLabel label="What the work can involve" tone="accent" />
               <div>
-                <h2 className="ei-type-section-heading">{identityDeliverables.heading}</h2>
-                <p className="ei-type-body-editorial">
-                  A concise direction system covering palette, type, tone,
-                  visual references, usage principles, and launch guidance.
+                <h2 id="identity-capability-heading">More than a logo. A system for being recognised.</h2>
+                <p>
+                  Identity creates coherence across the places a brand appears. The exact scope is
+                  shaped around the problem; these are connected areas of the same capability, not
+                  separate packages or guaranteed deliverables.
                 </p>
               </div>
             </motion.div>
 
-            <div className="ei-identity-kit-grid">
-              {identityDeliverables.items.map((item, index) => (
-                <motion.div key={item.title} variants={driftUp}>
-                  <EchoCard
-                    variant={index === 0 || index === 3 ? "feature" : "static"}
-                    padding="lg"
-                    className="ei-identity-kit-card"
-                  >
-                    <div className="ei-identity-kit-card-heading">
-                      <IconWell
-                        size="md"
-                        tone={index === 4 ? "magenta" : "violet"}
-                        orbital
-                        glow
-                      >
-                        <OrbitalVisual variant={item.icon} size={40} />
-                      </IconWell>
+            <div className="ei-phase7-card-grid ei-phase7-card-grid-four">
+              {identityAreas.map((area, index) => (
+                <motion.div key={area.title} variants={driftUp}>
+                  <EchoCard padding="lg" variant={index === 1 ? "feature" : "static"} className="ei-phase7-card">
+                    <div className="ei-phase7-card-meta">
                       <span>{String(index + 1).padStart(2, "0")}</span>
+                      <OrbitalVisual variant={area.icon} size={54} />
                     </div>
-                    <h3>{item.title}</h3>
-                    <p className="ei-type-body-editorial">{item.description}</p>
-                    <ul>
-                      {item.includes.map((include) => (
-                        <li key={include}>{include}</li>
-                      ))}
-                    </ul>
+                    <h3>{area.title}</h3>
+                    <p>{area.description}</p>
                   </EchoCard>
                 </motion.div>
               ))}
             </div>
-
-            <motion.p variants={fadeSoft} className="ei-identity-kit-note">
-              {identityDeliverables.closing}
-            </motion.p>
           </motion.div>
         </Container>
       </Section>
 
       <Section
+        theme="atmospheric"
+        transitionTo="light"
         spacing="none"
-        className="ei-identity-section ei-identity-section-anchor ei-identity-coherence"
+        className="ei-phase7-section ei-identity-coherence"
+        aria-labelledby="identity-coherence-heading"
       >
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div
-              variants={driftUp}
-              className="ei-identity-section-heading"
-            >
-              <SectionLabel label="From signal to world" index="04" />
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-phase7-inner">
+            <motion.div variants={driftUp} className="ei-phase7-heading">
+              <SectionLabel label="Coherent expression" />
               <div>
-                <h2 className="ei-type-section-heading">{identityTransformation.heading}</h2>
-                <p className="ei-type-body-editorial">{identityTransformation.intro}</p>
+                <h2 id="identity-coherence-heading">From scattered signals to one recognisable centre.</h2>
+                <p>{identityTransformation.intro}</p>
               </div>
             </motion.div>
 
-            <motion.div variants={fadeSoft}>
-              <EchoCard
-                variant="offer"
-                padding="none"
-                className="ei-identity-coherence-panel"
-              >
-                <div className="ei-identity-signal-cloud">
-                  <p>Scattered signals</p>
-                  {identityTransformation.signals.map((signal) => (
-                    <span key={signal}>{signal}</span>
-                  ))}
-                </div>
-
-                <div className="ei-identity-coherence-core" aria-hidden="true">
-                  <span className="ei-identity-coherence-line" />
-                  <IconWell size="lg" tone="violet" orbital glow>
-                    <OrbitalVisual variant="chorusCore" size={58} />
-                  </IconWell>
-                  <strong>One centre</strong>
-                </div>
-
-                <div className="ei-identity-world-output">
-                  <p>Coherent expression</p>
-                  <strong>{identityTransformation.output}</strong>
-                  <span>{identityTransformation.divider}</span>
-                </div>
-              </EchoCard>
+            <motion.div variants={fadeSoft} className="ei-identity-system-map">
+              <div>
+                <span>Inputs</span>
+                {identityTransformation.signals.map((signal) => <p key={signal}>{signal}</p>)}
+              </div>
+              <div className="ei-identity-system-core">
+                <OrbitalVisual variant="chorusCore" size={78} />
+                <strong>Identity system</strong>
+              </div>
+              <div>
+                <span>Expression</span>
+                {identityApplications.map((application) => <p key={application.title}>{application.title}</p>)}
+              </div>
             </motion.div>
-
-            <div className="ei-identity-application-grid">
-              {identityApplications.map((application, index) => (
-                <motion.div key={application.title} variants={driftUp}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <h3>{application.title}</h3>
-                  <p className="ei-type-body-editorial">{application.description}</p>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </Container>
       </Section>
 
       <Section
-        id="identity-process"
+        theme="mist"
+        transitionTo="deep"
         spacing="none"
-        className="ei-identity-section ei-identity-section-anchor ei-identity-process"
+        className="ei-phase7-section ei-identity-method"
+        aria-labelledby="identity-method-heading"
       >
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div
-              variants={driftUp}
-              className="ei-identity-section-heading"
-            >
-              <SectionLabel label="The process" index="05" />
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-phase7-inner">
+            <motion.div variants={driftUp} className="ei-phase7-heading">
+              <SectionLabel label="How the direction takes shape" tone="accent" />
               <div>
-                <h2 className="ei-type-section-heading">{identityProcess.heading}</h2>
-                <p className="ei-type-body-editorial">
-                  A deliberate progression from instinct to a direction you can
-                  use.
+                <h2 id="identity-method-heading">Feeling becomes a usable visual and verbal system.</h2>
+                <p>
+                  The existing Echo method moves from the signals already present in the work to
+                  principles that can guide consistent expression in real contexts.
                 </p>
               </div>
             </motion.div>
 
-            <ol className="ei-identity-process-list">
+            <ol className="ei-phase7-process">
               {identityProcess.steps.map((step, index) => (
                 <motion.li key={step.title} variants={driftUp}>
-                  <span className="ei-identity-process-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className="ei-identity-process-dot"
-                    aria-hidden="true"
-                  />
+                  <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{step.title}</h3>
-                  <p className="ei-type-body-editorial">{step.description}</p>
+                  <p>{step.description}</p>
                 </motion.li>
               ))}
             </ol>
 
-            <motion.p
-              variants={fadeSoft}
-              className="ei-identity-process-closing"
-            >
-              {identityProcess.closing}
-            </motion.p>
-          </motion.div>
-        </Container>
-      </Section>
-
-      <Section
-        spacing="none"
-        className="ei-identity-section ei-identity-section-anchor ei-identity-engagement"
-      >
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT.normal}
-            className="mx-auto max-w-[1180px]"
-          >
-            <motion.div
-              variants={driftUp}
-              className="ei-identity-section-heading"
-            >
-              <SectionLabel label={identityPricing.eyebrow} index="06" />
+            <motion.aside variants={fadeSoft} className="ei-phase7-relationship">
               <div>
-                <h2 className="ei-type-section-heading">{identityPricing.heading}</h2>
-                <p className="ei-type-body-editorial">{identityPricing.intro}</p>
+                <span>Go deeper when the work needs it</span>
+                <h2>{brandWorldsCapability.title}</h2>
+                <p>
+                  Brand &amp; Identity establishes the system. Brand Worlds explores how that system
+                  becomes an environment. A Brand World is an optional advanced layer—not a
+                  requirement for an identity project.
+                </p>
               </div>
-            </motion.div>
-
-            <div className="ei-identity-engagement-grid">
-              {identityPricing.tiers.map((tier, index) => (
-                <motion.div key={tier.name} variants={driftUp}>
-                  <EchoCard
-                    variant={tier.featured ? "feature" : "static"}
-                    padding="lg"
-                    className="ei-identity-engagement-card"
-                  >
-                    <div className="ei-identity-engagement-topline">
-                      <p>{tier.name}</p>
-                      <span>{index === 0 ? "Focused" : "Expanded"}</span>
-                    </div>
-                    <p className="ei-identity-price">
-                      {tier.price} <span>{tier.currency}</span>
-                    </p>
-                    <p className="ei-identity-engagement-summary ei-type-body-editorial">
-                      {tier.summary}
-                    </p>
-                    <ul>
-                      {tier.features.map((feature) => (
-                        <li key={feature}>{feature}</li>
-                      ))}
-                    </ul>
-                    <Button
-                      to={tier.cta.href}
-                      variant={tier.featured ? "primary" : "secondary"}
-                    >
-                      {tier.cta.label} <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
-                    </Button>
-                  </EchoCard>
-                </motion.div>
-              ))}
-
-              <motion.aside
-                variants={blurEmergence}
-                className="ei-identity-engagement-anchor"
-              >
-                <span aria-hidden="true">✦</span>
-                <p>{identityPricing.anchor}</p>
-              </motion.aside>
-            </div>
+              <Button to={brandWorldsCapability.href} variant="secondary">Explore Brand Worlds</Button>
+            </motion.aside>
           </motion.div>
         </Container>
       </Section>
 
-      <CTASection
-        variant="editorialInvitation"
-        eyebrow="Begin with the feeling"
-        heading={identityClosing.heading}
-        body={identityClosing.subline}
-        actions={
-          <Button to={identityClosing.cta.href} variant="primary">
-            Discuss identity direction <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
-          </Button>
-        }
-        className="ei-identity-cta"
-        headingId="identity-cta-heading"
-      />
+      <Section theme="deep" spacing="none" className="ei-phase7-closing">
+        <CTASection
+          variant="editorialInvitation"
+          eyebrow="Build a coherent identity"
+          heading="Make the brand recognisable wherever it appears."
+          body="Begin with the business, audience and feeling the identity needs to hold. Echo will shape the right scope from there."
+          actions={
+            <>
+              <Button to={primaryCallToAction.href}>{primaryCallToAction.label}</Button>
+              <Button to="/services" variant="secondary">Explore Services</Button>
+            </>
+          }
+          headingId="identity-cta-heading"
+        />
+      </Section>
     </PageShell>
   );
 }
