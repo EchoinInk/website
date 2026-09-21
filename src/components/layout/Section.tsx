@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import type { SemanticTheme } from "@/components/layout/PageShell";
 
@@ -13,13 +13,15 @@ const spacingMap = {
 } as const;
 
 type SectionSpacing = keyof typeof spacingMap;
+export type SectionTransitionTarget = "light" | "atmospheric" | "deep";
 
-interface SectionProps {
+interface SectionProps extends Omit<HTMLAttributes<HTMLElement>, "children" | "id" | "className"> {
   children: ReactNode;
   id?: string;
   className?: string;
   spacing?: SectionSpacing;
   theme?: SemanticTheme;
+  transitionTo?: SectionTransitionTarget;
 }
 
 export function Section({
@@ -28,9 +30,17 @@ export function Section({
   className,
   spacing = "standard",
   theme,
+  transitionTo,
+  ...props
 }: SectionProps) {
   return (
-    <section id={id} data-theme={theme} className={cn("ei-section", spacingMap[spacing], className)}>
+    <section
+      id={id}
+      data-theme={theme}
+      data-transition-to={transitionTo}
+      className={cn("ei-section", spacingMap[spacing], className)}
+      {...props}
+    >
       {children}
     </section>
   );

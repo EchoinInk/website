@@ -1,115 +1,82 @@
 import { motion } from "framer-motion";
 
+import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { CtaOrbitalBackground } from "@/components/ui/CTAOrbitalBackground";
+import { primaryCallToAction } from "@/data/siteNavigation";
 import {
-  driftUp,
   blurEmergence,
   dissolveReveal,
-  EASE_LUXURY,
+  driftUp,
   DURATION,
+  EASE_LUXURY,
 } from "@/lib/motion-cinematic";
 
 export function ClosingSection() {
   return (
-    <section className="relative isolate min-h-[250px] overflow-hidden bg-[var(--ei-color-background-body)] pt-8 pb-10 md:pt-10 md:pb-12">
+    <Section
+      theme="deep"
+      spacing="none"
+      className="ei-home-closing"
+      aria-labelledby="home-closing-heading"
+    >
       <CtaOrbitalBackground />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 65% at 50% 52%, rgb(var(--ei-halo-blue-rgb) / 0.06) 0%, rgb(var(--ei-midnight-rgb) / 0.16) 38%, transparent 72%)",
-        }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 z-[1] h-[220px] w-[680px] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgb(var(--ei-void-rgb) / 0.48) 0%, rgb(var(--ei-void-rgb) / 0.22) 45%, transparent 72%)",
-          filter: "blur(10px)",
-        }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-20"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent 0%, var(--ei-color-background-body) 100%)",
-        }}
-      />
+      <div aria-hidden="true" className="ei-home-closing-glow" />
 
       <motion.div
-        className="relative z-10 mx-auto max-w-3xl px-6 text-center"
+        className="ei-home-closing-copy"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
         <motion.span
           variants={dissolveReveal}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           transition={{ duration: DURATION.slow, ease: EASE_LUXURY }}
-          className="ei-type-label mb-3 block md:mb-4"
+          className="ei-type-label"
         >
-          A clear next step
+          Your next move
         </motion.span>
 
         <motion.h2
+          id="home-closing-heading"
           variants={blurEmergence}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           transition={{
             duration: DURATION.slow,
             ease: EASE_LUXURY,
             delay: 0.05,
           }}
-          className="ei-type-section mb-3 md:mb-4"
         >
-          Ready to make the value felt?
+          Let’s make it real.
         </motion.h2>
 
         <motion.p
           variants={driftUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           transition={{
             duration: DURATION.slow,
             ease: EASE_LUXURY,
             delay: 0.1,
           }}
-          className="mx-auto mb-6 max-w-[40ch] font-[var(--ei-font-copy)] text-[15px] leading-[1.8] tracking-[-0.006em] text-[var(--ei-type-color-secondary)] md:mb-8 md:text-[16px]"
         >
-          Bring the challenge, the ambition, or the idea still looking for its
-          shape. We will build the system around it.
+          Bring the challenge, the ambition or the idea still looking for its shape.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          variants={driftUp}
           transition={{
             duration: DURATION.slow,
             ease: EASE_LUXURY,
             delay: 0.15,
           }}
-          className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
+          className="ei-home-closing-actions"
         >
-          <Button to="/contact?inquiry=project" variant="primary">
-            Start a conversation
+          <Button to={primaryCallToAction.href} variant="primary">
+            {primaryCallToAction.label}
           </Button>
-          <Button to="/works" variant="secondary">
-            Explore selected work
+          <Button to="/booking" variant="secondary">
+            Book a Strategy Session
           </Button>
         </motion.div>
       </motion.div>
-    </section>
+    </Section>
   );
 }

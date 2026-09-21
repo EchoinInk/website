@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Section } from "@/components/layout/Section";
+
 import { Container } from "@/components/layout/Container";
+import { Section } from "@/components/layout/Section";
 import {
   OrbitalVisual,
   type OrbitalVariant,
 } from "@/components/ui/OrbitalVisual";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import {
+  primaryCapabilities,
+  type ServiceCapability,
+  type ServiceCapabilityId,
+} from "@/data/servicesContent";
 import {
   driftUp,
   staggerContainer,
@@ -13,120 +20,80 @@ import {
   VIEWPORT,
 } from "@/lib/motion-cinematic";
 
-const capabilities: Array<{
-  variant: OrbitalVariant;
-  title: string;
-  description: string;
-  href: string;
-  tone: "halo" | "violet" | "magenta" | "ice";
-}> = [
-  {
-    variant: "axiomRing",
-    title: "Identity Systems",
-    description:
-      "Identity systems that clarify ambition, shape recognition, and hold together over time.",
-    href: "/identity",
-    tone: "halo",
-  },
-  {
-    variant: "memoryComet",
-    title: "Digital Expressions",
-    description:
-      "Digital spaces shaped to make meaning usable, distinct, and easier to trust.",
-    href: "/worlds",
-    tone: "violet",
-  },
-  {
-    variant: "focusDial",
-    title: "Narrative Frameworks",
-    description:
-      "Story and positioning systems that help complex work become easier to follow.",
-    href: "/sessions",
-    tone: "magenta",
-  },
-  {
-    variant: "quietAxis",
-    title: "Living Design Systems",
-    description:
-      "Reusable structures and direction kits that keep the world coherent as it grows.",
-    href: "/systems",
-    tone: "ice",
-  },
-];
+const capabilityVisuals: Record<
+  ServiceCapabilityId,
+  { variant: OrbitalVariant; tone: "halo" | "violet" | "magenta" | "ice" }
+> = {
+  "brand-identity": { variant: "axiomRing", tone: "halo" },
+  "websites-experiences": { variant: "memoryComet", tone: "violet" },
+  "digital-products": { variant: "focusDial", tone: "magenta" },
+  "systems-automation": { variant: "quietAxis", tone: "ice" },
+};
 
-export function WhatWeCreate() {
+interface WhatWeCreateProps {
+  capabilities?: readonly ServiceCapability[];
+}
+
+export function WhatWeCreate({
+  capabilities = primaryCapabilities,
+}: WhatWeCreateProps) {
   return (
     <Section
+      theme="lightElevated"
+      transitionTo="atmospheric"
       spacing="none"
-      className="relative overflow-hidden pt-10 pb-4 md:pt-8 md:pb-4"
+      className="ei-home-capabilities"
+      aria-labelledby="home-capabilities-heading"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 30%, rgb(var(--ei-violet-rgb) / 0.025) 0%, transparent 60%)",
-          filter: "blur(60px)",
-        }}
-      />
-
-      <Container className="relative z-10">
+      <Container size="xl" className="relative z-10">
         <motion.div
           variants={staggerContainer(STAGGER.loose, 0)}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT.normal}
-          className="mx-auto max-w-6xl"
+          className="ei-home-section-inner"
         >
-          <motion.div
-            variants={driftUp}
-            className="mb-7 flex items-center gap-3 md:mb-10"
-          >
-            <span className="ei-type-label">What We Create</span>
-
-            <div
-              className="h-px w-10 shrink-0 rounded-full shadow-[0_0_12px_rgb(var(--ei-halo-blue-rgb)/0.45)]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgb(var(--ei-midnight-rgb) / 0.15) 0%, rgb(var(--ei-halo-blue-rgb) / 0.95) 100%)",
-              }}
-            />
+          <motion.div variants={driftUp} className="ei-home-section-header">
+            <SectionLabel label="What Echo Does" tone="accent" />
+            <div>
+              <h2 id="home-capabilities-heading" className="ei-type-section-heading">
+                From idea to real-world impact.
+              </h2>
+              <p className="ei-home-section-intro">
+                Strategy, design and development are shaped together, so the idea and the thing
+                people experience stay connected.
+              </p>
+            </div>
           </motion.div>
 
-          <div className="ei-home-create-grid grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-5 xl:grid-cols-4">
-            {capabilities.map((cap) => (
-              <motion.article key={cap.title} variants={driftUp}>
-                <Link
-                  to={cap.href}
-                  className="ei-card ei-card-soft ei-card-interactive ei-card-capability ei-home-create-card group flex h-full flex-col motion-reduce:transform-none"
-                  data-tone={cap.tone}
-                  aria-label={`Explore ${cap.title}`}
-                >
-                  <span className="ei-home-create-card-orbit" aria-hidden="true" />
-                  <span className="ei-home-create-card-signal" aria-hidden="true" />
-                  <div className="ei-card-capability-icon mb-5 md:mb-7">
-                    <OrbitalVisual variant={cap.variant} size={68} />
-                  </div>
+          <div className="ei-home-capability-grid">
+            {capabilities.map((capability, index) => {
+              const visual = capabilityVisuals[capability.id];
 
-                  <h3 className="ei-card-title ei-type-card-title ei-card-title-align mb-3">
-                    {cap.title}
-                  </h3>
-                  <p className="ei-card-description ei-home-create-card-body ei-type-body-small mb-5 md:mb-6">
-                    {cap.description}
-                  </p>
-
-                  <span className="ei-card-action ei-home-create-card-action">
-                    Explore{" "}
-                    <span
-                      aria-hidden="true"
-                      className="ei-cta-arrow ei-cta-arrow-right"
-                    >
-                      →
+              return (
+                <motion.article key={capability.id} variants={driftUp}>
+                  <Link
+                    to={capability.href}
+                    className="ei-home-capability-item"
+                    data-tone={visual.tone}
+                    aria-label={`Explore ${capability.title}`}
+                  >
+                    <div className="ei-home-capability-meta">
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <OrbitalVisual variant={visual.variant} size={62} />
+                    </div>
+                    <h3>{capability.title}</h3>
+                    <p>{capability.description}</p>
+                    <span className="ei-card-action">
+                      Explore
+                      <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
+                        →
+                      </span>
                     </span>
-                  </span>
-                </Link>
-              </motion.article>
-            ))}
+                  </Link>
+                </motion.article>
+              );
+            })}
           </div>
         </motion.div>
       </Container>

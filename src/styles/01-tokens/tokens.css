@@ -366,6 +366,15 @@
     --ei-theme-scrollbar-hover: rgb(var(--ei-moonlight-ink-rgb) / 0.34);
     --ei-theme-heading-shadow: none;
     --ei-theme-image-filter: none;
+    --ei-theme-atmosphere-violet: var(--ei-moonlight-violet);
+    --ei-theme-atmosphere-blue: var(--ei-moonlight-blue);
+    --ei-theme-atmosphere-magenta: var(--ei-moonlight-magenta);
+
+    /* Semantic boundary canvases used by Section transitions. */
+    --ei-transition-canvas-light: var(--ei-moonlight-canvas);
+    --ei-transition-canvas-atmospheric: var(--ei-ink);
+    --ei-transition-canvas-deep: var(--ei-ink);
+    --ei-transition-depth: clamp(5rem, 10vw, 10rem);
 
     --ei-color-background-html: var(--ei-theme-canvas);
     --ei-color-background-body: var(--ei-theme-canvas);
@@ -442,5 +451,58 @@
   html[data-page-theme="atmospheric"], html[data-page-theme="deep"], [data-theme="atmospheric"], [data-theme="deep"] {
     --ei-theme-heading-shadow: 0 2px 28px rgb(0 0 0 / 0.44), 0 0 54px rgb(var(--ei-violet-rgb) / 0.08);
     --ei-theme-image-filter: brightness(0.86) saturate(0.92) contrast(1.04);
+    --ei-theme-atmosphere-violet: var(--ei-violet);
+    --ei-theme-atmosphere-blue: var(--ei-halo-blue);
+    --ei-theme-atmosphere-magenta: var(--ei-echo-magenta);
+
+    /* Rebind semantic aliases inside nested dark scopes. Custom properties
+       that reference other custom properties resolve where they are declared,
+       so inheriting the root aliases would otherwise retain Moonlight values. */
+    --ei-color-background-html: var(--ei-theme-canvas);
+    --ei-color-background-body: var(--ei-theme-canvas);
+    --ei-color-background-canvas: var(--ei-theme-canvas);
+    --ei-color-surface: var(--ei-theme-surface);
+    --ei-color-surface-elevated: var(--ei-theme-surface-elevated);
+    --ei-color-surface-hover: var(--ei-theme-card-hover);
+    --ei-color-surface-scrim: var(--ei-theme-image-scrim);
+    --ei-color-text-primary: var(--ei-theme-text-primary);
+    --ei-color-text-secondary: var(--ei-theme-text-secondary);
+    --ei-color-text-tertiary: var(--ei-theme-text-muted);
+    --ei-color-text-muted: var(--ei-theme-text-muted);
+    --ei-color-text-faint: var(--ei-theme-text-faint);
+    --ei-color-text-accent: var(--ei-theme-link);
+    --ei-type-color-primary: var(--ei-theme-text-primary);
+    --ei-type-color-secondary: var(--ei-theme-text-secondary);
+    --ei-type-color-tertiary: var(--ei-theme-text-muted);
+    --ei-type-color-muted: var(--ei-theme-text-muted);
+    --ei-card-bg: var(--ei-theme-card);
+    --ei-card-bg-hover: var(--ei-theme-card-hover);
+    --ei-card-border: var(--ei-theme-border);
+    --ei-card-shadow: var(--ei-theme-shadow);
+    --ei-card-shadow-hover: var(--ei-theme-shadow-elevated);
+    --ei-button-bg: var(--ei-theme-button);
+    --ei-button-bg-hover: var(--ei-theme-button-hover);
+    --ei-button-text: var(--ei-theme-button-text);
+    --ei-button-text-primary: var(--ei-theme-button-text);
+    --ei-button-text-primary-hover: var(--ei-theme-button-text);
+    --ei-button-text-secondary: var(--ei-theme-text-secondary);
+    --ei-button-text-secondary-hover: var(--ei-theme-text-primary);
+    --ei-button-text-tertiary: var(--ei-theme-text-muted);
+    --ei-button-text-tertiary-hover: var(--ei-theme-text-secondary);
+    --ei-header-text: var(--ei-theme-header-text);
+    --ei-header-text-hover: var(--ei-theme-link);
+    --ei-header-text-active: var(--ei-theme-link);
+    --ei-header-text-muted: var(--ei-theme-text-muted);
+    --ei-form-control-bg: var(--ei-theme-form);
+    --ei-form-control-bg-hover: var(--ei-theme-form-hover);
+    --ei-form-control-bg-focus: var(--ei-theme-form-focus);
+    --ei-form-control-border: var(--ei-theme-border);
+    --ei-form-control-border-focus: var(--ei-theme-focus);
+    --ei-shadow-soft: var(--ei-theme-shadow);
+    --ei-shadow-elevated: var(--ei-theme-shadow-elevated);
+    --ei-shadow-hover: var(--ei-theme-shadow-elevated);
+    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas), 0 0 0 4px var(--ei-theme-focus);
+    --ei-button-focus-ring: var(--ei-ring-focus);
+    --ei-selection-bg: var(--ei-theme-selection);
   }
 }

@@ -24,19 +24,13 @@ import {
   DURATION,
 } from "@/lib/motion-cinematic";
 
-const testimonial = {
-  pull: "They gave us clarity.",
-  quote:
-    "Echo in Ink has changed the way we think about our entire digital presence. They didn’t just give us a new identity — they gave us clarity. The system Aly built feels precise, intelligent, and unmistakably aligned with who we are. Every interaction now carries this quiet confidence and sense of momentum. It’s the first time our brand has truly felt like a reflection of our ambition.",
-  name: "Forrest Reynolds",
-  title: "Managing Director, The Vortex Group",
-} as const;
-
 const disciplines = [
-  "Identity System",
-  "Digital Experience",
-  "Emotional UX",
-  "Interface Direction",
+  "Product Strategy",
+  "UX/UI",
+  "React Native",
+  "Design Systems",
+  "Product Architecture",
+  "Brand / Character System",
 ];
 
 const lumoContext = {
@@ -68,8 +62,11 @@ export function LumoCaseStudyTeaser() {
 
   return (
     <Section
+      theme="atmospheric"
+      transitionTo="light"
       spacing="none"
-      className="relative overflow-hidden pt-8 pb-4 md:pt-8 md:pb-4"
+      className="ei-home-lumo relative overflow-hidden"
+      aria-labelledby="home-lumo-heading"
     >
       <div
         aria-hidden="true"
@@ -91,17 +88,14 @@ export function LumoCaseStudyTeaser() {
         >
           <motion.div
             variants={driftUp}
-            className="mb-8 flex items-center gap-3 md:mb-10"
+            className="ei-home-lumo-header"
           >
-            <span className="ei-type-label">Featured Work</span>
-
-            <div
-              className="h-px w-10 shrink-0 rounded-full shadow-[0_0_12px_rgb(var(--ei-halo-blue-rgb)/0.35)]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgb(var(--ei-midnight-rgb) / 0.12) 0%, rgb(var(--ei-halo-blue-rgb) / 0.85) 100%)",
-              }}
-            />
+            <span className="ei-type-label">Featured product concept</span>
+            <span aria-hidden="true" className="ei-home-lumo-header-rule" />
+            <p>
+              An independent concept demonstrating how product strategy, interface design and
+              technical architecture can become one coherent experience.
+            </p>
           </motion.div>
 
           <motion.div variants={blurEmergence}>
@@ -154,6 +148,7 @@ export function LumoCaseStudyTeaser() {
                 <div className="ei-card-world-copy">
                   <motion.div variants={staggerContainer(STAGGER.normal, 0.15)}>
                     <motion.h2
+                      id="home-lumo-heading"
                       variants={orchestratedReveal(0, 3)}
                       className="
                         ei-card-world-title font-editorial
@@ -193,9 +188,8 @@ export function LumoCaseStudyTeaser() {
                         tracking-[-0.004em]
                       "
                     >
-                      An emotionally supportive companion app concept shaped to
-                      reduce cognitive load through calm planning, emotional
-                      safety, and a coherent digital atmosphere.
+                      An independent companion app concept shaped to reduce cognitive load through
+                      calm planning, emotional safety and a coherent digital atmosphere.
                     </motion.p>
 
                     <motion.div variants={orchestratedReveal(2, 3)}>
@@ -239,18 +233,6 @@ export function LumoCaseStudyTeaser() {
             ))}
           </motion.div>
 
-          <motion.figure variants={driftUp} className="ei-home-lumo-proof">
-            <figcaption className="ei-home-lumo-proof-pull">
-              {testimonial.pull}
-            </figcaption>
-            <blockquote className="ei-home-lumo-proof-quote">
-              “{testimonial.quote}”
-            </blockquote>
-            <div className="ei-home-lumo-proof-attribution">
-              <span>{testimonial.name}</span>
-              <span>{testimonial.title}</span>
-            </div>
-          </motion.figure>
         </motion.div>
       </Container>
     </Section>
