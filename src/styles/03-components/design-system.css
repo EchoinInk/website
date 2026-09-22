@@ -267,6 +267,7 @@
   }
 
   .ei-filter-pill {
+    min-width: 2.75rem;
     flex: 0 0 auto;
     min-height: 2.75rem;
     border: 1px solid transparent;

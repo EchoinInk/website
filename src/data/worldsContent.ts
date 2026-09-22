@@ -171,35 +171,6 @@ export const worldsProof = {
   cta: { label: 'View Lumo', href: '/works/lumo' },
 };
 
-export const worldsPricing = {
-  heading: 'Selective worldbuilding collaborations.',
-  intro: [
-    'World Architecture is reserved for projects that need deeper creative direction and emotional coherence across multiple layers.',
-    'Each collaboration is scoped around the size, complexity, and level of involvement required.',
-    'The investment reflects the depth of the world being shaped — not just the number of pages, assets, or deliverables.',
-  ],
-  tiers: [
-    {
-      name: 'World Direction',
-      price: 'from $800',
-      description:
-        'For compact projects needing narrative, mood, identity, and digital direction.',
-    },
-    {
-      name: 'World System',
-      price: 'from $1,500',
-      description:
-        'For founders or studios needing a more complete visual, verbal, and atmospheric system.',
-    },
-    {
-      name: 'World Architecture',
-      price: 'from $2,500',
-      description:
-        'For high-touch collaborations across identity, website direction, ecosystem, launch, and creative philosophy.',
-    },
-  ],
-};
-
 export const worldsClosing = {
   atmosphere: 'Some projects are not brands. They are worlds.',
   heading: 'If your work needs a deeper atmosphere, a clearer narrative, and a system people can enter, this is where the world begins.',

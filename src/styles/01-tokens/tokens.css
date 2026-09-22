@@ -342,8 +342,8 @@
     --ei-theme-surface-elevated: #ffffff;
     --ei-theme-text-primary: var(--ei-moonlight-ink);
     --ei-theme-text-secondary: var(--ei-moonlight-muted);
-    --ei-theme-text-muted: #756e80;
-    --ei-theme-text-faint: #8e8798;
+    --ei-theme-text-muted: #686172;
+    --ei-theme-text-faint: #6c6576;
     --ei-theme-border: var(--ei-moonlight-border);
     --ei-theme-link: var(--ei-moonlight-violet);
     --ei-theme-focus: var(--ei-moonlight-blue);

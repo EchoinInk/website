@@ -141,38 +141,6 @@ export const identityProcess = {
   ]
 };
 
-export const identityPricing = {
-  eyebrow: "Ways to work together",
-  heading: "A starting point for emotional clarity.",
-  intro:
-    "Atmospheric Identity Kits are focused first-step direction pieces: compact enough to move with care, deep enough to give the project a centre.",
-  anchor: "Choose the depth that matches the moment. Both begin with the same careful reading of the work.",
-  tiers: [
-    {
-      name: "Small Direction Kit",
-      price: "$150",
-      currency: "NZD",
-      summary: "For early ideas, personal projects, or a focused creative shift.",
-      features: ["Atmosphere direction", "Palette and typography", "Moodboard", "Tone guide"],
-      cta: { label: "Start with clarity", href: "/contact" }
-    },
-    {
-      name: "Full Atmospheric Kit",
-      price: "$300–$400",
-      currency: "NZD",
-      summary: "For projects needing a complete emotional and visual foundation.",
-      features: [
-        "Everything in the Small Kit",
-        "Micro-manifesto",
-        "Identity and expression guidance",
-        "Delivery within 10 business days"
-      ],
-      cta: { label: "Build the full world", href: "/contact" },
-      featured: true
-    }
-  ]
-};
-
 export const identityClosing = {
   heading: "Give the work a world to belong to.",
   subline: "Identity begins here — quietly, clearly, and with intention.",

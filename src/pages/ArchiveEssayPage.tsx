@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
 
 import archiveEssayDesktop from '@/assets/imagery/hero/essay-hero-atmosphere-wave-desktop.webp';
@@ -16,11 +15,14 @@ export function ArchiveEssayPage() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <PageShell atmosphere="default" theme="light" withTopSpacing={false} className="ei-editorial-page">
-      <Helmet>
-        <title>Atmosphere is information — Echo in Ink</title>
-        <meta name="description" content={archiveFeatured.excerpt} />
-      </Helmet>
+    <PageShell
+      title="Atmosphere is information — Echo in Ink"
+      description={archiveFeatured.excerpt}
+      atmosphere="default"
+      theme="light"
+      withTopSpacing={false}
+      className="ei-editorial-page"
+    >
 
       <EditorialArticleLayout
         className="ei-essay-page"

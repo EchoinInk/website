@@ -1,5 +1,4 @@
 import {
-  CONTACT_DIRECT_EMAIL,
   CONTACT_ERROR_MESSAGE,
   createEmptyContactFormData,
   normalizeContactFormData,
@@ -8,7 +7,7 @@ import {
   type ContactFormData,
 } from "./contactForm.ts";
 
-type ContactEnv = {
+export type ContactEnv = {
   RESEND_API_KEY?: string;
   CONTACT_FROM_EMAIL?: string;
   CONTACT_TO_EMAIL?: string;
@@ -167,13 +166,9 @@ export async function handleContactRequest(
   }
 
   const env = {
-    RESEND_API_KEY: options.env?.RESEND_API_KEY ?? process.env.RESEND_API_KEY,
-    CONTACT_FROM_EMAIL:
-      options.env?.CONTACT_FROM_EMAIL ?? process.env.CONTACT_FROM_EMAIL,
-    CONTACT_TO_EMAIL:
-      options.env?.CONTACT_TO_EMAIL ??
-      process.env.CONTACT_TO_EMAIL ??
-      CONTACT_DIRECT_EMAIL,
+    RESEND_API_KEY: options.env?.RESEND_API_KEY,
+    CONTACT_FROM_EMAIL: options.env?.CONTACT_FROM_EMAIL,
+    CONTACT_TO_EMAIL: options.env?.CONTACT_TO_EMAIL,
   };
 
   if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) {

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
@@ -84,11 +83,15 @@ export function ArchivePage() {
       : archiveIndex.filter((entry) => entry.category === activeFilter);
 
   return (
-    <PageShell atmosphere="default" theme="light" withTopSpacing={false} className="ei-archive-page">
-      <Helmet>
-        <title>{pathname === '/insights' ? 'Insights & The Archive' : 'The Archive'} — Echo in Ink</title>
-        <meta name="description" content={archiveHero.description} />
-      </Helmet>
+    <PageShell
+      title={`${pathname === '/insights' ? 'Insights & The Archive' : 'The Archive'} — Echo in Ink`}
+      description={archiveHero.description}
+      canonicalPath="/insights"
+      atmosphere="default"
+      theme="light"
+      withTopSpacing={false}
+      className="ei-archive-page"
+    >
 
       <PageSectionHero
         eyebrow={archiveHero.eyebrow}

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import {
   OrbitalVisual,
   type OrbitalVariant,
@@ -42,6 +43,12 @@ export function OrbitalsPage() {
       id="main-content"
       className="min-h-screen bg-[var(--ei-color-bg)] px-6 py-20 md:px-10"
     >
+      <Helmet>
+        <title>Orbitals — Echo in Ink Internal</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <meta name="theme-color" content="#080718" />
+      </Helmet>
+
       <div className="mx-auto max-w-[1200px]">
         <p className="mb-3 text-xs uppercase tracking-[0.28em] text-[var(--ei-color-text-secondary)]">
           Internal visual sheet

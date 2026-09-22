@@ -20,6 +20,27 @@ const env = {
 };
 
 describe("handleContactRequest", () => {
+  it("fails safely when Cloudflare runtime bindings are unavailable", async () => {
+    const resendFetch = vi.fn();
+    const response = await handleContactRequest(
+      new Request("https://echoin.ink/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(validPayload),
+      }),
+      { fetchImpl: resendFetch as typeof fetch },
+    );
+
+    expect(response.status).toBe(500);
+    expect(resendFetch).not.toHaveBeenCalled();
+    expect(await response.json()).toEqual({
+      ok: false,
+      message: CONTACT_ERROR_MESSAGE,
+    });
+  });
+
   it("rejects invalid payloads with field errors", async () => {
     const resendFetch = vi.fn();
     const response = await handleContactRequest(

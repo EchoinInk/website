@@ -79,7 +79,7 @@ export function LumoCaseStudyTeaser() {
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT.loose}
-          className="mx-auto max-w-6xl"
+          className="relative mx-auto max-w-6xl"
         >
           <motion.div
             variants={driftUp}

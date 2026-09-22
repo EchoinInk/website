@@ -6,7 +6,6 @@ import {
   type ChangeEvent,
   type FormEvent,
 } from "react";
-import { Helmet } from "react-helmet-async";
 import { motion, useReducedMotion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 
@@ -211,14 +210,14 @@ export function ContactPage() {
   };
 
   return (
-    <PageShell atmosphere="default" theme="light" withTopSpacing={false} className="ei-contact-page">
-      <Helmet>
-        <title>Start a Project — Echo in Ink</title>
-        <meta
-          name="description"
-          content="Start a project with Echo in Ink by sharing the problem, opportunity or idea you want to make real."
-        />
-      </Helmet>
+    <PageShell
+      title="Start a Project — Echo in Ink"
+      description="Start a project with Echo in Ink by sharing the problem, opportunity or idea you want to make real."
+      atmosphere="default"
+      theme="light"
+      withTopSpacing={false}
+      className="ei-contact-page"
+    >
 
       <PageSectionHero
         eyebrow="START A PROJECT"
@@ -283,7 +282,7 @@ export function ContactPage() {
                     >
                       <SectionLabel label="Enquiry sent" align="center" rule="none" />
                       <h2>Thank you. Your project enquiry is on its way.</h2>
-                      <p>Echo in Ink will reply within two working days.</p>
+                      <p>Echo in Ink will review your enquiry and reply by email.</p>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} noValidate aria-busy={formState === "submitting"}>
@@ -429,7 +428,7 @@ export function ContactPage() {
                               ? "Try again"
                               : "Start a Project"}
                         </Button>
-                        <p>Your information is kept private and never shared.</p>
+                      <p>Your details are sent to Echo in Ink to respond to this enquiry.</p>
                       </div>
                     </form>
                   )}

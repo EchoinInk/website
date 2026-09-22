@@ -1,5 +1,5 @@
 export const CONTACT_SUCCESS_MESSAGE =
-  "Thank you. Your message is on its way. Echo in Ink will reply within two working days.";
+  "Thank you. Your message is on its way. Echo in Ink will review your enquiry and reply by email.";
 
 export const CONTACT_ERROR_MESSAGE =
   "Your message could not be sent just yet. Please try again, or email directly.";

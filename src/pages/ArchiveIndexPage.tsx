@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
 
 import archiveImageDesktop from '@/assets/imagery/hero/archive-index-hero-orbital-map-desktop.webp';
@@ -63,14 +62,14 @@ export function ArchiveIndexPage() {
   }, [activeFilter, query]);
 
   return (
-    <PageShell atmosphere="default" theme="light" withTopSpacing={false} className="ei-editorial-page ei-index-page">
-      <Helmet>
-        <title>Archive Index — Echo in Ink</title>
-        <meta
-          name="description"
-          content="A structured map of the essays and studio notes currently published in Echo in Ink's Archive."
-        />
-      </Helmet>
+    <PageShell
+      title="Archive Index — Echo in Ink"
+      description="A structured map of the essays and studio notes currently published in Echo in Ink's Archive."
+      atmosphere="default"
+      theme="light"
+      withTopSpacing={false}
+      className="ei-editorial-page ei-index-page"
+    >
 
       <PageSectionHero
         eyebrow="The Archive · Index"

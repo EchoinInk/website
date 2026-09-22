@@ -9,6 +9,8 @@ export function NotFoundPage() {
     <PageShell
       title="Page not found — Echo in Ink"
       description="The page you were looking for could not be found."
+      canonicalPath={false}
+      robots="noindex,follow"
       atmosphere="default"
       theme="deep"
     >

@@ -9,17 +9,17 @@
 </p>
 
 <p align="center">
-  Creative Technology Studio • Websites • Applications • AI
+  Founder-led creative technology studio • Strategy • Design • Development
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white" />
 </p>
 
-Echo in Ink is a creative technology studio focused on crafting thoughtful digital experiences through design, storytelling, and modern software development.
+Echo in Ink is a founder-led creative technology studio combining strategy, design and development.
 
 This repository contains the source code for the official **Echo in Ink** website, showcasing the studio's services, portfolio, and philosophy.
 
@@ -53,7 +53,14 @@ Rather than producing generic websites or applications, the studio focuses on bu
 
 Echo in Ink exists at the intersection of creativity and technology.
 
-We partner with founders, creators, and businesses to design and build websites, web applications, mobile experiences, and AI-powered tools that are not only functional but meaningful.
+Echo works with founders, creators and businesses across four connected capabilities:
+
+- Brand & Identity
+- Websites & Digital Experiences
+- Products & Apps
+- Systems & Automation
+
+Engagements take three forms: Strategy Sessions, Digital Reset and Full Projects. Technologies support those capabilities; they are not separate service products.
 
 Every project combines thoughtful design, clean engineering, accessibility, and performance to create products that people genuinely enjoy using.
 
@@ -61,15 +68,10 @@ Every project combines thoughtful design, clean engineering, accessibility, and 
 
 ## 🚀 Services
 
-- 🌐 Custom Website Design & Development
-- 💻 Web Applications
-- 📱 Mobile App Development
-- 🤖 AI Integrations & Automation
-- 🎨 UI/UX Design
-- 🔌 API Development
-- ⚡ Performance Optimization
-- ♿ Accessibility Improvements
-- 🛠️ Ongoing Support & Maintenance
+- Brand & Identity
+- Websites & Digital Experiences
+- Products & Apps
+- Systems & Automation
 
 ---
 
@@ -81,7 +83,7 @@ Every project combines thoughtful design, clean engineering, accessibility, and 
 | Styling | Tailwind CSS, Framer Motion |
 | Routing | React Router |
 | Tooling | npm, ESLint, Prettier |
-| Deployment | Vercel |
+| Deployment | Cloudflare Pages |
 
 ---
 
@@ -99,7 +101,6 @@ Every project combines thoughtful design, clean engineering, accessibility, and 
 
 ## 📂 Project Structure
 
-```
 ```text
 src/
 ├── assets/
@@ -119,7 +120,7 @@ src/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/EchoinInk/echo-in-ink.git
+git clone https://github.com/EchoinInk/website.git
 ```
 
 ### Install dependencies
@@ -163,6 +164,20 @@ The goal isn't simply to build software—it's to create digital experiences tha
 
 **https://echoin.ink**
 
+## Deployment
+
+Echo in Ink is hosted with Cloudflare Pages. The production build command is `npm run build` and the build output directory is `dist`. The repository's default branch is `main`; confirm that the Cloudflare Pages production-branch setting also uses `main`.
+
+`functions/api/contact.ts` owns `/api/contact` through Pages file-based routing and forwards requests to the shared contact handler. Other application routes continue to use Cloudflare Pages' automatic SPA fallback, so no `_redirects`, `_routes.json`, Worker entry point, or Wrangler configuration is required in this repository.
+
+Configure these bindings for every Cloudflare Pages environment that needs working form delivery:
+
+- `RESEND_API_KEY` as an encrypted secret
+- `CONTACT_FROM_EMAIL`
+- `CONTACT_TO_EMAIL`
+
+The `CONTACT_FROM_EMAIL` sender domain must be verified with Resend before live form delivery can succeed. Local Vite preview serves only the built SPA and does not execute Pages Functions.
+
 ---
 
 ## 📫 Connect
@@ -176,7 +191,7 @@ Have a project in mind? We'd love to hear from you.
 
 ## 📄 License
 
-This project is licensed under the MIT License unless otherwise stated.
+No standalone licence file is currently included in this repository.
 
 ---
 
@@ -184,4 +199,3 @@ This project is licensed under the MIT License unless otherwise stated.
 Designed & developed by <strong>Echo in Ink</strong><br>
 https://echoin.ink
 </p>
-

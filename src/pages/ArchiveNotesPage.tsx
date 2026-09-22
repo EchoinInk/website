@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { motion, useReducedMotion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
@@ -65,19 +64,13 @@ export function ArchiveNotesPage() {
 
   return (
     <PageShell
+      title="Notes — Echo in Ink"
+      description="Short studio-thinking fragments on identity, atmosphere, systems, memory, and creative worldbuilding."
       atmosphere="default"
       theme="light"
       withTopSpacing={false}
       className="ei-editorial-page ei-notes-page"
     >
-      <Helmet>
-        <title>Notes — Echo in Ink</title>
-        <meta
-          name="description"
-          content="Short studio-thinking fragments on identity, atmosphere, systems, memory, and creative worldbuilding."
-        />
-      </Helmet>
-
      <PageSectionHero
         eyebrow="The Archive · Notes"
         title="Short observations from the studio."

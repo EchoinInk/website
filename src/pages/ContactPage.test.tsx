@@ -159,7 +159,7 @@ describe("ContactPage", () => {
       ),
     );
     expect(screen.getByRole("status")).toHaveTextContent(
-      "Echo in Ink will reply within two working days.",
+      "Echo in Ink will review your enquiry and reply by email.",
     );
   });
 
@@ -195,7 +195,7 @@ describe("ContactPage", () => {
       ),
     );
     expect(screen.getByRole("status")).toHaveTextContent(
-      "Echo in Ink will reply within two working days.",
+      "Echo in Ink will review your enquiry and reply by email.",
     );
   });
 });

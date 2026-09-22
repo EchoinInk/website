@@ -35,14 +35,155 @@
       "from": "phase:9",
       "to": "baseline:Phase 9 verified working tree",
       "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-22T09:07:27.818140Z",
+      "from": "phase:10",
+      "to": "decision:phase10-launch-contracts",
+      "type": "decided_by"
+    },
+    {
+      "created_at": "2026-09-22T09:07:32.733154Z",
+      "from": "finding:phase10-production-verification",
+      "to": "phase:10",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-22T09:07:47.133750Z",
+      "from": "phase:10",
+      "to": "baseline:Phase 10 verified working tree",
+      "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-22T10:59:53.422759Z",
+      "from": "phase:10",
+      "to": "decision:phase10-cloudflare-runtime",
+      "type": "decided_by"
+    },
+    {
+      "created_at": "2026-09-22T10:59:59.695627Z",
+      "from": "finding:phase10-cloudflare-runtime-unresolved",
+      "to": "phase:10",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-22T11:00:05.950042Z",
+      "from": "finding:phase10-contact-route-unavailable",
+      "to": "phase:10",
+      "type": "blocks"
+    },
+    {
+      "created_at": "2026-09-22T11:00:54.266716Z",
+      "from": "baseline:Phase 10 Cloudflare correction working tree",
+      "to": "baseline:Phase 10 verified working tree",
+      "type": "derived_from"
+    },
+    {
+      "created_at": "2026-09-22T11:01:03.845798Z",
+      "from": "phase:10",
+      "to": "baseline:Phase 10 Cloudflare correction working tree",
+      "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-22T11:02:31.059701Z",
+      "from": "finding:phase10-cloudflare-domain-state",
+      "to": "phase:10",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-22T11:21:31.109999Z",
+      "from": "finding:phase10-cloudflare-pages-production-verification",
+      "to": "phase:10",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-22T11:22:18.101048Z",
+      "from": "baseline:Phase 10 Cloudflare Pages verified working tree",
+      "to": "baseline:Phase 10 Cloudflare correction working tree",
+      "type": "derived_from"
+    },
+    {
+      "created_at": "2026-09-22T11:22:24.718730Z",
+      "from": "phase:10",
+      "to": "baseline:Phase 10 Cloudflare Pages verified working tree",
+      "type": "verified_by"
     }
   ],
   "meta": {
     "created_at": "2026-09-21T20:19:14.069177Z",
     "schema_version": "1.0",
-    "updated_at": "2026-09-22T03:01:56.244894Z"
+    "updated_at": "2026-09-22T11:22:24.718819Z"
   },
   "nodes": {
+    "baseline:Phase 10 Cloudflare Pages verified working tree": {
+      "branch": "main",
+      "captured_at": "2026-09-22T11:22:11.190664Z",
+      "commit": "bec1abb3ec60a214e2c6a2a40c172e71e750f449",
+      "dirty": true,
+      "id": "baseline:Phase 10 Cloudflare Pages verified working tree",
+      "repository_fingerprint": "ba336f4e33dc33bca7ae349ebb9373eb72efd9b992b279b051495f36a4c0fdaf",
+      "status": "proposed",
+      "title": "Phase 10 Cloudflare Pages verified working tree",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "adapter_typecheck": "passed",
+        "architecture": "Cloudflare Pages with functions/api/contact.ts",
+        "build": "passed; 557 modules transformed",
+        "deployment_status": "repository-side ready; external bindings and live delivery unverified",
+        "focused_contact_booking": "19/19 passed",
+        "git_diff_check": "passed",
+        "lint": "passed",
+        "local_preview": "SPA deep links passed; Pages Function not executable in Vite preview",
+        "pages_adapter": "6/6 passed",
+        "tests": "50/50 passed across 11 files",
+        "typecheck": "passed"
+      }
+    },
+    "baseline:Phase 10 Cloudflare correction working tree": {
+      "branch": "main",
+      "captured_at": "2026-09-22T11:00:40.722064Z",
+      "commit": "bec1abb3ec60a214e2c6a2a40c172e71e750f449",
+      "dirty": true,
+      "id": "baseline:Phase 10 Cloudflare correction working tree",
+      "repository_fingerprint": "70c3b2f7722d03e28774f21ee0c91ff046323e66b63bf600ac0e1a7bbb606dbd",
+      "status": "proposed",
+      "title": "Phase 10 Cloudflare correction working tree",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "build": "passed; 557 modules transformed",
+        "deployment_status": "partial; runtime model and contact adapter unresolved",
+        "git_diff_check": "passed",
+        "lint": "passed",
+        "live_cloudflare": "deep links and client 404 return SPA HTML; /api/contact incorrectly returns SPA HTML",
+        "local_preview": "deep links and client 404 return SPA HTML",
+        "tests": "44/44 passed across 10 files",
+        "typecheck": "passed"
+      }
+    },
+    "baseline:Phase 10 verified working tree": {
+      "branch": "main",
+      "captured_at": "2026-09-22T09:07:41.662079Z",
+      "commit": "bec1abb3ec60a214e2c6a2a40c172e71e750f449",
+      "dirty": true,
+      "id": "baseline:Phase 10 verified working tree",
+      "repository_fingerprint": "30e3ef1956204b5635355d88d84738aea485831ef9321f1be10218004b0c1385",
+      "status": "proposed",
+      "title": "Phase 10 verified working tree",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "browser_interactions": "24/24 interaction checks passed",
+        "browser_matrix": "85/85 route and viewport checks passed",
+        "build": "passed; 557 modules transformed",
+        "console": "0 unexpected browser console messages",
+        "git_diff_check": "passed",
+        "lint": "passed",
+        "tests": "43/43 passed across 10 files",
+        "typecheck": "passed"
+      }
+    },
     "baseline:Phase 8 verified working tree": {
       "branch": "main",
       "captured_at": "2026-09-21T20:45:07.359543Z",
@@ -85,6 +226,45 @@
         "typecheck": "passed"
       }
     },
+    "decision:phase10-cloudflare-runtime": {
+      "decision": "Deploy the Vite SPA with Cloudflare Pages and implement /api/contact as functions/api/contact.ts. The Pages adapter forwards request and context.env to the provider-neutral contact handler; unmatched routes retain Pages automatic SPA fallback.",
+      "id": "decision:phase10-cloudflare-runtime",
+      "invariants": [
+        "Do not reintroduce Vercel configuration",
+        "Do not add Worker or Wrangler configuration",
+        "Do not store RESEND_API_KEY in repository configuration",
+        "Pass Pages context.env explicitly into contactServer.ts",
+        "Preserve /api/contact as the browser contract",
+        "Preserve the six-field contact payload, honeypot, Contact behavior and Booking state machine",
+        "Do not add _redirects or _routes.json without demonstrated need"
+      ],
+      "rationale": "The user confirmed Cloudflare Pages. Cloudflare Pages file-based routing maps functions/api/contact.ts to /api/contact while unmatched paths fall through to static asset and SPA behavior.",
+      "status": "accepted",
+      "title": "Use Cloudflare Pages file routing for the contact endpoint",
+      "truth": "declared",
+      "type": "decision",
+      "updated_at": "2026-09-22T11:20:50.844592Z"
+    },
+    "decision:phase10-launch-contracts": {
+      "decision": "Treat the implemented repository as source of truth; centralize application metadata, remove unreachable stale commercial data, and correct proven accessibility, runtime and unsupported-claim defects without redesigning completed routes. Hosting configuration must be based on evidenced provider architecture rather than inferred from a generic API directory.",
+      "id": "decision:phase10-launch-contracts",
+      "invariants": [
+        "Echo in Ink remains a founder-led creative technology studio combining strategy, design and development",
+        "The public capability model remains exactly four items from servicesContent.ts",
+        "The engagement model remains exactly Strategy Sessions, Digital Reset and Full Projects",
+        "Start a Project routes to /contact and Book a Strategy Session routes to /booking",
+        "Strategy Sessions remain standalone, 60-90 minutes and have no public price",
+        "Lumo remains Independent Product and Prototype; Vortex remains excluded",
+        "/systems means Creative Systems & Tools and /worlds remains secondary",
+        "Insights remains primary navigation terminology while The Archive and all editorial URLs remain compatible",
+        "No unsupported clients, testimonials, metrics, outcomes, dates, pricing or launch claims may be introduced"
+      ],
+      "status": "accepted",
+      "title": "Preserve proven launch contracts while hardening only demonstrated defects",
+      "truth": "declared",
+      "type": "decision",
+      "updated_at": "2026-09-22T10:58:54.485639Z"
+    },
     "decision:phase8-conversion-paths": {
       "id": "decision:phase8-conversion-paths",
       "invariants": [
@@ -119,6 +299,113 @@
       "type": "decision",
       "updated_at": "2026-09-22T03:01:26.612395Z"
     },
+    "finding:phase10-cloudflare-domain-state": {
+      "class": "external-dependency",
+      "files": [
+        "src/components/layout/PageShell.tsx",
+        "index.html"
+      ],
+      "id": "finding:phase10-cloudflare-domain-state",
+      "resolution": "Confirm in Cloudflare DNS and Custom Domains whether apex-only hosting is intentional. If www is desired, add and redirect it through the dashboard without changing application routes.",
+      "severity": "low",
+      "sources": [
+        "live read-only HEAD responses on 2026-09-22"
+      ],
+      "status": "open",
+      "summary": "http://echoin.ink redirects permanently to https://echoin.ink and the apex responds through Cloudflare. https://www.echoin.ink did not resolve during the audit.",
+      "title": "Cloudflare apex domain works; www hostname is absent",
+      "truth": "observed",
+      "type": "finding",
+      "updated_at": "2026-09-22T11:02:24.827296Z"
+    },
+    "finding:phase10-cloudflare-pages-production-verification": {
+      "class": "external-dependency",
+      "files": [
+        "functions/api/contact.ts",
+        ".env.example",
+        "README.md"
+      ],
+      "id": "finding:phase10-cloudflare-pages-production-verification",
+      "resolution": "In Cloudflare Pages, confirm production branch main, build command npm run build, output dist, and RESEND_API_KEY, CONTACT_FROM_EMAIL and CONTACT_TO_EMAIL for relevant environments. After deployment, verify /api/contact returns JSON and perform a separately authorized controlled delivery test.",
+      "severity": "medium",
+      "sources": [
+        "repository verification",
+        "user Cloudflare Pages confirmation"
+      ],
+      "status": "open",
+      "summary": "Repository-side Pages routing and handler behavior are verified, but the repository cannot inspect the Cloudflare Pages production-branch setting, environment bindings, deployed function route, or Resend sender verification and delivery.",
+      "title": "Cloudflare Pages bindings and live delivery require external verification",
+      "truth": "observed",
+      "type": "finding",
+      "updated_at": "2026-09-22T11:21:24.592759Z"
+    },
+    "finding:phase10-cloudflare-runtime-unresolved": {
+      "class": "evidence-gap",
+      "files": [
+        "functions/api/contact.ts",
+        "README.md",
+        ".project-continuity/state.json"
+      ],
+      "id": "finding:phase10-cloudflare-runtime-unresolved",
+      "resolution": "The user externally confirmed Cloudflare Pages. The repository now implements the conventional functions/api/contact.ts Pages adapter and documents Pages build and binding requirements.",
+      "severity": "high",
+      "sources": [
+        "user Cloudflare Pages confirmation",
+        "Cloudflare Pages Functions routing documentation"
+      ],
+      "status": "superseded",
+      "summary": "The repository originally did not prove whether Cloudflare Pages or Workers Static Assets hosted the site.",
+      "title": "Cloudflare Pages versus Workers architecture was previously unresolved",
+      "truth": "superseded",
+      "type": "finding",
+      "updated_at": "2026-09-22T11:21:00.748686Z"
+    },
+    "finding:phase10-contact-route-unavailable": {
+      "class": "implementation-drift",
+      "files": [
+        "functions/api/contact.ts",
+        "src/lib/contactPagesAdapter.test.ts",
+        "src/lib/contactServer.ts",
+        "README.md"
+      ],
+      "id": "finding:phase10-contact-route-unavailable",
+      "resolution": "functions/api/contact.ts now exports onRequestPost and onRequest adapters that pass context.request and context.env to handleContactRequest. Six adapter tests cover successful delivery, invalid input, honeypot, missing bindings, Resend failure and unsupported methods. Deployment and live delivery remain external verification steps.",
+      "severity": "high",
+      "sources": [
+        "user Cloudflare Pages confirmation",
+        "Cloudflare Pages Functions routing documentation",
+        "50/50 passing repository tests"
+      ],
+      "status": "superseded",
+      "summary": "Before the Pages fix, live /api/contact fell through to the SPA because no Cloudflare-compatible function owned the route.",
+      "title": "Production /api/contact previously lacked a Cloudflare Pages Function",
+      "truth": "superseded",
+      "type": "finding",
+      "updated_at": "2026-09-22T11:21:12.306374Z"
+    },
+    "finding:phase10-production-verification": {
+      "class": "documentation-drift",
+      "files": [
+        "README.md",
+        "api/contact.ts",
+        "vercel.json",
+        ".project-continuity/state.json"
+      ],
+      "id": "finding:phase10-production-verification",
+      "resolution": "The user removed vercel.json. The correction removed Vercel documentation and the incompatible top-level api/contact.ts adapter, then recorded Cloudflare runtime selection and contact routing as unresolved deployment work.",
+      "severity": "high",
+      "sources": [
+        "user Cloudflare correction",
+        "repository inspection",
+        "live read-only Cloudflare response"
+      ],
+      "status": "superseded",
+      "summary": "The initial Phase 10 pass incorrectly documented Vercel, added vercel.json, and treated api/contact.ts as a deployable serverless route. The user clarified that Echo in Ink is hosted through Cloudflare.",
+      "title": "Incorrect Vercel deployment assumption",
+      "truth": "superseded",
+      "type": "finding",
+      "updated_at": "2026-09-22T10:59:06.628049Z"
+    },
     "finding:phase8-legacy-booking-pricing": {
       "class": "evidence-gap",
       "files": [
@@ -141,6 +428,51 @@
         "src/pages/BookingPage.test.tsx",
         "npm test"
       ]
+    },
+    "phase:10": {
+      "acceptance": [
+        "All public routes pass the 360, 390, 768, 1024 and 1440 production-preview matrix",
+        "All automated application quality gates pass",
+        "Cloudflare Pages architecture is documented and configured in the repository",
+        "functions/api/contact.ts owns the Pages route and forwards context.env to the shared handler",
+        "The Contact and Booking contracts remain intact"
+      ],
+      "id": "phase:10",
+      "objective": "Adversarially audit and safely harden the implemented public site without changing established positioning, information architecture, page composition, provenance, or conversion contracts.",
+      "scope": [
+        "all 16 named public routes and wildcard 404",
+        "cross-site comprehension and commercial claims",
+        "taxonomy and rendered links",
+        "responsive and accessibility QA",
+        "Contact and Booking state machines",
+        "metadata, assets, runtime and Cloudflare Pages deployment integration"
+      ],
+      "sources": [
+        "user Cloudflare Pages confirmation",
+        "functions/api/contact.ts",
+        "src/lib/contactPagesAdapter.test.ts",
+        "README.md",
+        "Cloudflare Pages Functions routing and API documentation"
+      ],
+      "status": "verified",
+      "title": "Final launch readiness, QA and production hardening",
+      "truth": "declared",
+      "type": "phase",
+      "updated_at": "2026-09-22T11:21:50.402137Z",
+      "verification": {
+        "browser_interactions": "24/24 interaction checks passed",
+        "browser_matrix": "85/85 route and viewport checks passed",
+        "build": "passed; 557 modules transformed",
+        "console": "0 unexpected browser console messages",
+        "deployment": "repository-side ready; Cloudflare bindings, deployment and controlled live delivery remain external verification",
+        "focused_contact_booking": "19/19 passed across Pages adapter, shared handler, Contact and Booking tests",
+        "git_diff_check": "passed before final continuity update",
+        "lint": "passed",
+        "local_preview": "SPA deep links and client 404 passed; Vite preview correctly does not execute Pages Functions",
+        "pages_adapter": "6/6 passed; valid, invalid, honeypot, missing bindings, Resend failure and unsupported method behavior",
+        "tests": "50/50 passed across 11 files",
+        "typecheck": "npm run typecheck passed; targeted Pages adapter TypeScript check passed"
+      }
     },
     "phase:8": {
       "acceptance_criteria": [

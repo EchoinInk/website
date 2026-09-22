@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { motion, useReducedMotion } from "framer-motion";
 
 import systemsHeroDesktop from "@/assets/imagery/hero/systems-hero-signal-grid-desktop.webp";
@@ -36,11 +35,14 @@ export function SystemsPage() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <PageShell atmosphere="works" theme="light" withTopSpacing={false} className="ei-systems-page">
-      <Helmet>
-        <title>Creative Systems & Tools — Echo in Ink</title>
-        <meta name="description" content={systemsHero.description} />
-      </Helmet>
+    <PageShell
+      title="Creative Systems & Tools — Echo in Ink"
+      description={systemsHero.description}
+      atmosphere="works"
+      theme="light"
+      withTopSpacing={false}
+      className="ei-systems-page"
+    >
 
       <PageSectionHero
         eyebrow={systemsHero.eyebrow}

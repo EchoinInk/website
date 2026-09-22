@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
-import { Helmet } from "react-helmet-async";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
@@ -425,19 +424,13 @@ export function BookingPage() {
 
   return (
     <PageShell
+      title="Request a Strategy Session — Echo in Ink"
+      description="Send a considered Strategy Session request with your preferred week, timezone, and context. Echo in Ink replies with available times and the clearest next step."
       atmosphere="sessions"
       theme="light"
       withTopSpacing={false}
       className="ei-booking-page"
     >
-      <Helmet>
-        <title>Request a Strategy Session — Echo in Ink</title>
-        <meta
-          name="description"
-          content="Send a considered Strategy Session request with your preferred week, timezone, and context. Echo in Ink replies with available times and the clearest next step."
-        />
-      </Helmet>
-
       <Section theme="light" spacing="none" className="ei-booking-intro">
         <Container size="xl" className="relative z-10">
           <motion.div
