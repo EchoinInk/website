@@ -98,3 +98,9 @@ export const engagementModels = [
 ] as const satisfies readonly EngagementModel[];
 
 export const strategySessionsEngagement = engagementModels[0];
+
+export const projectInquiryTypeOptions = [
+  ...primaryCapabilities.map(({ title }) => title),
+  "Digital Reset",
+  "Something else / Not sure yet",
+] as const;

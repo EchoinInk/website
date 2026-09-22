@@ -1,6 +1,6 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
@@ -17,6 +17,7 @@ import {
   type OrbitalVariant,
 } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { primaryCallToAction } from "@/data/siteNavigation";
 import {
   StudioInquirySubmitError,
   submitStudioInquiry,
@@ -33,8 +34,8 @@ import {
 const steps = ["Session", "Timing", "Details", "Review"] as const;
 
 const sessionFacts = [
-  { label: "Duration", value: "60 minutes" },
-  { label: "Price", value: "$120-$150 NZD" },
+  { label: "Duration", value: "60–90 minutes" },
+  { label: "Focus", value: "One defined question" },
   { label: "Format", value: "Private video session" },
   { label: "Reply", value: "Available times sent after review" },
 ];
@@ -54,9 +55,9 @@ const practicalInformation: Array<{
       "Requests are reviewed before any time is suggested. A reply includes available times and a recommended next step.",
   },
   {
-    title: "Changes to a confirmed room",
+    title: "What to bring",
     description:
-      "Rescheduling is handled once a time is agreed. Twenty-four hours' notice is appreciated when plans need to move.",
+      "Drafts, references, screenshots or short context notes are welcome when they help explain the question.",
   },
   {
     title: "Recording and consent",
@@ -133,10 +134,26 @@ const stepFieldMap: Array<BookingFieldName[]> = [
   [],
 ];
 
-function scrollToBookingFlow() {
+function scrollToBookingFlow(reducedMotion = false) {
   document
     .getElementById("booking-flow")
-    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    ?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+}
+
+const bookingFieldIds: Record<BookingFieldName, string> = {
+  name: "booking-name",
+  email: "booking-email",
+  preferredWeek: "booking-preferred-week",
+  timezone: "booking-timezone",
+  topic: "booking-topic",
+  context: "booking-context",
+  contactMethod: "booking-contact-method",
+};
+
+function firstInvalidField(errors: BookingErrors) {
+  return (Object.keys(bookingFieldIds) as BookingFieldName[]).find(
+    (field) => errors[field],
+  );
 }
 
 function validateEmail(email: string) {
@@ -204,6 +221,7 @@ function getSubmissionErrorMessage(error: unknown) {
 }
 
 export function BookingPage() {
+  const prefersReducedMotion = useReducedMotion();
   const [activeStep, setActiveStep] = useState(0);
   const [status, setStatus] = useState<BookingStatus>("idle");
   const [submitMessage, setSubmitMessage] = useState("");
@@ -217,8 +235,44 @@ export function BookingPage() {
     contactMethod: "",
   });
   const [errors, setErrors] = useState<BookingErrors>({});
+  const stepRegionRef = useRef<HTMLDivElement | null>(null);
+  const statusRef = useRef<HTMLDivElement | null>(null);
+  const successRef = useRef<HTMLDivElement | null>(null);
+  const previousStepRef = useRef(activeStep);
 
   const isLocked = status === "submitting" || status === "request-sent";
+
+  useEffect(() => {
+    if (status === "request-sent") {
+      successRef.current?.focus();
+      return;
+    }
+
+    if (status === "request-failed") {
+      statusRef.current?.focus();
+      return;
+    }
+
+    if (status === "validation-error") {
+      previousStepRef.current = activeStep;
+      return;
+    }
+
+    if (previousStepRef.current !== activeStep) {
+      stepRegionRef.current?.focus({ preventScroll: true });
+      previousStepRef.current = activeStep;
+    }
+  }, [activeStep, status]);
+
+  useEffect(() => {
+    if (status !== "validation-error") return;
+
+    const firstInvalid = firstInvalidField(errors);
+    if (firstInvalid) {
+      document.getElementById(bookingFieldIds[firstInvalid])?.focus();
+      previousStepRef.current = activeStep;
+    }
+  }, [activeStep, errors, status]);
 
   function setFieldValue(name: BookingFieldName, value: string) {
     setFormData((current) => ({
@@ -252,7 +306,7 @@ export function BookingPage() {
     }
 
     setActiveStep(step);
-    scrollToBookingFlow();
+    scrollToBookingFlow(prefersReducedMotion);
   }
 
   function validateFields(fieldNames: BookingFieldName[]) {
@@ -303,7 +357,7 @@ export function BookingPage() {
     setStatus("idle");
     setSubmitMessage("");
     setActiveStep(2);
-    scrollToBookingFlow();
+    scrollToBookingFlow(prefersReducedMotion);
   }
 
   function handleDetailsSubmit(event: FormEvent) {
@@ -320,7 +374,7 @@ export function BookingPage() {
     setStatus("idle");
     setSubmitMessage("");
     setActiveStep(3);
-    scrollToBookingFlow();
+    scrollToBookingFlow(prefersReducedMotion);
   }
 
   async function handleRequestSubmit(event: FormEvent) {
@@ -333,7 +387,7 @@ export function BookingPage() {
       setStatus("validation-error");
       setSubmitMessage("Please correct the highlighted fields before sending your request.");
       setActiveStep(invalidStep);
-      scrollToBookingFlow();
+      scrollToBookingFlow(prefersReducedMotion);
       return;
     }
 
@@ -362,18 +416,18 @@ export function BookingPage() {
       setStatus("request-sent");
       setSubmitMessage("");
       setActiveStep(3);
-      scrollToBookingFlow();
+      scrollToBookingFlow(prefersReducedMotion);
     } catch (error) {
       setStatus("request-failed");
       setSubmitMessage(getSubmissionErrorMessage(error));
-      scrollToBookingFlow();
+      scrollToBookingFlow(prefersReducedMotion);
     }
   }
 
   return (
     <PageShell
       atmosphere="sessions"
-      theme="deep"
+      theme="light"
       withTopSpacing={false}
       className="ei-booking-page"
     >
@@ -385,23 +439,23 @@ export function BookingPage() {
         />
       </Helmet>
 
-      <Section spacing="none" className="ei-booking-intro">
+      <Section theme="light" spacing="none" className="ei-booking-intro">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             animate="visible"
             className="mx-auto max-w-[1180px] ei-booking-intro-grid"
           >
             <motion.div variants={driftUp}>
               <SectionLabel label="Strategy Session request" />
               <motion.h1 variants={blurEmergence}>
-                Request a quieter room for the real question.
+                Book focused time around one defined question.
               </motion.h1>
               <motion.p variants={fadeSoft}>
-                Share the week, timezone, and context that would make the
-                session useful. Echo in Ink replies with available times and a
-                suggested next step.
+                A Strategy Session is a focused 60–90 minute private video
+                engagement for clarity, direction, scoping or a specific
+                digital problem. It can stand alone.
               </motion.p>
             </motion.div>
 
@@ -411,8 +465,8 @@ export function BookingPage() {
                 <dd>Session request, not instant booking</dd>
               </div>
               <div>
-                <dt>Price</dt>
-                <dd>$120-$150 NZD for 60 minutes</dd>
+                <dt>Focus</dt>
+                <dd>One defined question</dd>
               </div>
               <div>
                 <dt>Reply</dt>
@@ -425,13 +479,15 @@ export function BookingPage() {
 
       <Section
         id="booking-flow"
+        theme="mist"
+        transitionTo="light"
         spacing="none"
         className="ei-booking-flow-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px] ei-booking-layout"
@@ -447,13 +503,12 @@ export function BookingPage() {
                 </IconWell>
 
                 <span className="ei-booking-summary-kicker">
-                  One-to-one creative direction
+                  Focused strategic engagement
                 </span>
                 <h2>Strategy Session</h2>
                 <p>
-                  For founders, artists, writers, and makers who need clearer
-                  language, structure, or emotional direction before the next
-                  public move.
+                  For a defined question that needs clearer decisions,
+                  language, direction or practical next steps.
                 </p>
 
                 <dl>
@@ -468,9 +523,8 @@ export function BookingPage() {
                 <div className="ei-booking-summary-note">
                   <span>Best for</span>
                   <p>
-                    A live project, unresolved creative question, naming
-                    decision, or direction that still feels difficult to
-                    articulate.
+                    Clarity, direction, scoping or one specific digital
+                    problem—not a substitute for a broader project enquiry.
                   </p>
                 </div>
 
@@ -519,9 +573,14 @@ export function BookingPage() {
                 </ol>
               </nav>
 
-              <div className="ei-booking-step-region" aria-live="polite">
+              <div
+                ref={stepRegionRef}
+                tabIndex={-1}
+                className="ei-booking-step-region"
+                aria-live="polite"
+              >
                 {status === "request-sent" ? (
-                  <div className="ei-booking-confirmed">
+                  <div ref={successRef} tabIndex={-1} className="ei-booking-confirmed">
                     <IconWell size="lg" tone="blue" orbital glow>
                       <OrbitalVisual variant="haloGate" size={56} />
                     </IconWell>
@@ -556,6 +615,8 @@ export function BookingPage() {
                   <>
                     {submitMessage ? (
                       <div
+                        ref={statusRef}
+                        tabIndex={-1}
                         className="ei-booking-status"
                         data-state={
                           status === "request-failed" ||
@@ -605,7 +666,7 @@ export function BookingPage() {
                           <span>
                             <strong>Strategy Session</strong>
                             <small>
-                              60 minutes · Private video room · $120-$150 NZD
+                              60–90 minutes · Private video room · One defined question
                             </small>
                           </span>
                           <span>Request flow</span>
@@ -616,7 +677,7 @@ export function BookingPage() {
                             type="button"
                             onClick={() => {
                               setActiveStep(1);
-                              scrollToBookingFlow();
+                              scrollToBookingFlow(prefersReducedMotion);
                             }}
                           >
                             Continue with request
@@ -730,6 +791,7 @@ export function BookingPage() {
                               required
                               error={errors.email}
                               autoComplete="email"
+                              inputMode="email"
                               placeholder="your@email.com"
                             />
                           </div>
@@ -790,7 +852,7 @@ export function BookingPage() {
                         <dl className="ei-booking-review">
                           <div>
                             <dt>Session</dt>
-                            <dd>Strategy Session · 60 minutes · $120-$150 NZD</dd>
+                            <dd>Strategy Session · 60–90 minutes · Private video session</dd>
                           </div>
                           <div>
                             <dt>Week</dt>
@@ -854,11 +916,11 @@ export function BookingPage() {
         </Container>
       </Section>
 
-      <Section spacing="none" className="ei-booking-after">
+      <Section theme="light" spacing="none" className="ei-booking-after">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -893,7 +955,12 @@ export function BookingPage() {
         </Container>
       </Section>
 
-      <Section spacing="none" className="ei-booking-preparation">
+      <Section
+        theme="lightElevated"
+        transitionTo="deep"
+        spacing="none"
+        className="ei-booking-preparation"
+      >
         <Container size="xl" className="relative z-10">
           <motion.div className="mx-auto max-w-[1180px]">
             <EchoFormPanel
@@ -919,7 +986,8 @@ export function BookingPage() {
                 <ul>
                   <li>Available times are confirmed in writing before the session exists</li>
                   <li>Recording only happens if everyone agrees in advance</li>
-                  <li>Follow-up notes carry the clearest signals and next steps</li>
+                  <li>Clearer decisions, language and practical next steps are the aim</li>
+                  <li>A reflection note may be available after the session</li>
                 </ul>
               </div>
             </EchoFormPanel>
@@ -927,18 +995,23 @@ export function BookingPage() {
         </Container>
       </Section>
 
-      <CTASection
-        variant="editorialInvitation"
-        eyebrow="Before you send"
-        heading="Need more context on the room?"
-        body="Explore the full Strategy Sessions offer, process, and fit before returning to request a session."
-        actions={
-          <Button to="/sessions" variant="secondary">
-            View Strategy Sessions
-          </Button>
-        }
-        className="ei-booking-closing"
-      />
+      <Section theme="deep" spacing="none" className="ei-booking-closing">
+        <CTASection
+          variant="editorialInvitation"
+          eyebrow="A broader engagement"
+          heading="Have a larger project in mind?"
+          body="Go directly to the project enquiry. A Strategy Session is standalone, not a required gateway to working with Echo."
+          actions={
+            <>
+              <Button to={primaryCallToAction.href}>{primaryCallToAction.label}</Button>
+              <Button to="/sessions" variant="secondary">
+                View Strategy Sessions
+              </Button>
+            </>
+          }
+          headingId="booking-project-path-heading"
+        />
+      </Section>
     </PageShell>
   );
 }

@@ -1,67 +1,169 @@
-/* ────────────────────────────────────────────────────────────────
-   Contact polish pass
-
-   Fixes: stronger invitation, higher form contrast,
-   larger mobile fields, more CTA breathing room.
-   Image verdict: replace.
-   ──────────────────────────────────────────────────────────────── */
-
 @layer components {
-  .ei-contact-page .ei-page-section-hero .ei-page-section-hero-media img,
-  .ei-contact-page .ei-echo-hero-media img {
-    object-position: 70% 48%;
-    filter: saturate(0.92) brightness(0.86) contrast(1.05);
+  .ei-contact-page {
+    overflow: hidden;
   }
 
-  .ei-contact-page .ei-page-section-hero .ei-page-section-hero-scrim,
-  .ei-contact-page .ei-echo-hero-scrim {
+  .ei-contact-page .ei-page-section-hero-title {
+    max-width: 13ch;
+  }
+
+  .ei-contact-page .ei-page-section-hero-image {
+    object-position: 76% 48%;
+    filter: saturate(0.72) brightness(1.05) contrast(0.92);
+  }
+
+  .ei-contact-form-section {
+    position: relative;
+    scroll-margin-top: 6rem;
+    padding-block: clamp(5rem, 9vw, 8rem);
+  }
+
+  .ei-contact-form-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
     background:
-      radial-gradient(
-        ellipse 48% 72% at 18% 48%,
-        rgb(var(--ei-ink-rgb) / 0.84) 0%,
-        rgb(var(--ei-ink-rgb) / 0.58) 46%,
-        transparent 78%
-      ),
-      linear-gradient(
-        90deg,
-        rgb(var(--ei-ink-rgb) / 0.84) 0%,
-        rgb(var(--ei-ink-rgb) / 0.56) 42%,
-        rgb(var(--ei-ink-rgb) / 0.12) 74%,
-        transparent 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgb(var(--ei-ink-rgb) / 0.1) 0%,
-        transparent 50%,
-        var(--ei-ink) 100%
-      );
+      radial-gradient(circle at 12% 8%, rgb(var(--ei-violet-rgb) / 0.07), transparent 28%),
+      radial-gradient(circle at 88% 34%, rgb(var(--ei-halo-blue-rgb) / 0.06), transparent 30%);
   }
 
-  .ei-contact-page .ei-page-section-hero h1,
-  .ei-contact-page .ei-echo-hero-title {
-    text-shadow:
-      0 2px 34px rgb(0 0 0 / 0.58),
-      0 0 54px rgb(var(--ei-violet-rgb) / 0.16),
-      0 0 92px rgb(var(--ei-halo-blue-rgb) / 0.08);
+  .ei-contact-form-wrap {
+    position: relative;
+    max-width: 74rem;
+    margin-inline: auto;
   }
 
-  .ei-contact-page form {
+  .ei-contact-form-aside {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .ei-contact-form-aside > .ei-section-label-system {
+    margin-top: var(--ei-space-7);
+  }
+
+  .ei-contact-form-aside h2,
+  .ei-contact-success h2,
+  .ei-contact-session-path h2 {
+    color: var(--ei-color-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .ei-contact-form-aside h2 {
+    max-width: 11ch;
+    margin-top: var(--ei-space-5);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+  }
+
+  .ei-contact-form-aside > p,
+  .ei-contact-form-intro,
+  .ei-contact-success p,
+  .ei-contact-session-path p {
+    color: var(--ei-color-text-secondary);
+    font-family: var(--ei-font-copy);
+    line-height: 1.75;
+  }
+
+  .ei-contact-form-aside > p {
+    max-width: 34rem;
+    margin-top: var(--ei-space-5);
+  }
+
+  .ei-contact-form-aside ul {
+    display: grid;
+    margin: var(--ei-space-8) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ei-contact-form-aside li {
+    border-top: 1px solid var(--ei-color-border-hairline);
+    padding-block: var(--ei-space-3);
+    color: var(--ei-color-text-tertiary);
+    font-family: var(--ei-font-structural);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ei-contact-form-content form {
+    display: grid;
     gap: var(--ei-space-7);
   }
 
+  .ei-contact-form-intro {
+    max-width: 42rem;
+  }
+
   .ei-contact-form-status {
-    border: 1px solid rgb(var(--ei-moonlit-rgb) / 0.1);
-    border-radius: var(--ei-card-radius-md);
-    background: rgb(var(--ei-void-rgb) / 0.42);
-    padding: 1rem 1.05rem;
+    border: 1px solid var(--ei-color-border-soft);
+    border-radius: var(--ei-form-control-radius);
+    background: var(--ei-form-control-bg);
+    padding: var(--ei-space-4) var(--ei-space-5);
+    color: var(--ei-color-text-muted);
+    font-family: var(--ei-font-copy);
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .ei-contact-form-status[data-state="submitting"] {
-    border-color: rgb(var(--ei-halo-blue-rgb) / 0.24);
+    border-color: var(--ei-color-border-blue);
   }
 
   .ei-contact-form-status[data-state="error"] {
-    border-color: rgb(var(--ei-echo-magenta-rgb) / 0.28);
+    border-color: var(--ei-color-border-magenta);
+  }
+
+  .ei-contact-form-status a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    margin-top: var(--ei-space-2);
+    color: var(--ei-color-text-primary);
+    font-family: var(--ei-font-structural);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .ei-contact-form-row {
+    display: grid;
+    gap: var(--ei-space-6);
+  }
+
+  .ei-contact-page .ei-form-input,
+  .ei-contact-page .ei-form-textarea,
+  .ei-contact-page .ei-select-trigger {
+    min-height: 3.5rem;
+  }
+
+  .ei-contact-page .ei-form-textarea {
+    min-height: 10rem;
+  }
+
+  .ei-contact-submit-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ei-space-5);
+    border-top: 1px solid var(--ei-color-border-hairline);
+    padding-top: var(--ei-space-6);
+  }
+
+  .ei-contact-submit-row > p {
+    max-width: 18rem;
+    color: var(--ei-color-text-muted);
+    font-family: var(--ei-font-copy);
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
 
   .ei-contact-honeypot {
@@ -72,92 +174,139 @@
     overflow: hidden;
   }
 
-  .ei-contact-page input,
-  .ei-contact-page select,
-  .ei-contact-page textarea {
-    min-height: 3.45rem;
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.16);
-    background: rgb(var(--ei-void-rgb) / 0.58);
+  .ei-contact-success {
+    display: flex;
+    min-height: 38rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ei-contact-success h2 {
+    max-width: 14ch;
+    margin-top: var(--ei-space-5);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+  }
+
+  .ei-contact-success p {
+    margin-top: var(--ei-space-5);
+  }
+
+  .ei-contact-reassurance {
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  .ei-contact-reassurance-inner {
+    max-width: 74rem;
+    margin-inline: auto;
+  }
+
+  .ei-contact-trust-grid {
+    display: grid;
+    border-block: 1px solid var(--ei-color-border-hairline);
+  }
+
+  .ei-contact-trust-grid article {
+    padding: var(--ei-space-6) 0;
+  }
+
+  .ei-contact-trust-grid h3 {
+    margin-top: var(--ei-space-4);
     color: var(--ei-color-text-primary);
+    font-family: var(--ei-font-structural);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
-  .ei-contact-page textarea {
-    min-height: 11rem;
+  .ei-contact-trust-grid p {
+    max-width: 27rem;
+    margin-top: var(--ei-space-2);
+    color: var(--ei-color-text-tertiary);
+    font-family: var(--ei-font-copy);
+    font-size: 0.9rem;
+    line-height: 1.65;
   }
 
-  .ei-contact-page input:focus-visible,
-  .ei-contact-page select:focus-visible,
-  .ei-contact-page textarea:focus-visible {
-    border-color: rgb(var(--ei-halo-blue-rgb) / 0.42);
-    box-shadow:
-      0 0 0 1px rgb(var(--ei-halo-blue-rgb) / 0.2),
-      0 0 32px rgb(var(--ei-halo-blue-rgb) / 0.08);
+  .ei-contact-session-path {
+    display: grid;
+    align-items: end;
+    gap: var(--ei-space-7);
+    margin-top: clamp(4rem, 8vw, 7rem);
+    border: 1px solid var(--ei-color-border-soft);
+    border-radius: var(--ei-card-radius-xl);
+    background: var(--ei-theme-card);
+    padding: clamp(1.75rem, 5vw, 3.5rem);
+    box-shadow: var(--ei-card-inner-highlight);
+  }
+
+  .ei-contact-session-path h2 {
+    max-width: 16ch;
+    margin-top: var(--ei-space-5);
+    font-size: clamp(2.25rem, 4.8vw, 4rem);
+  }
+
+  .ei-contact-session-path p {
+    max-width: 42rem;
+    margin-top: var(--ei-space-4);
+  }
+
+  @media (min-width: 640px) {
+    .ei-contact-form-row,
+    .ei-contact-trust-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ei-contact-trust-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .ei-contact-trust-grid article {
+      padding-inline: var(--ei-space-6);
+      border-right: 1px solid var(--ei-color-border-hairline);
+    }
+
+    .ei-contact-trust-grid article:first-child {
+      padding-left: 0;
+    }
+
+    .ei-contact-trust-grid article:last-child {
+      border-right: 0;
+    }
+
+    .ei-contact-session-path {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
   }
 
   @media (max-width: 767px) {
-    .ei-contact-page .ei-page-section-hero .ei-page-section-hero-media img,
-    .ei-contact-page .ei-echo-hero-media img {
-      object-position: 66% 38%;
-      filter: saturate(0.9) brightness(0.78) contrast(1.04);
-    }
-
-    .ei-contact-page input,
-    .ei-contact-page select {
-      min-height: 3.8rem;
-    }
-
-    .ei-contact-page textarea {
-      min-height: 12rem;
-    }
-
-    .ei-contact-page form {
-      gap: var(--ei-space-8);
-    }
-
-    .ei-contact-page form > div:last-child {
-      padding-top: var(--ei-space-5);
-    }
-
-    .ei-contact-form-status {
-      padding: 1rem;
-    }
-  }
-}
-/* ────────────────────────────────────────────────────────────────
-   PageSectionHero pass — Contact
-
-   Shared hero structure; page-specific polish only.
-   ──────────────────────────────────────────────────────────────── */
-
-@layer components {
-  .ei-contact-page {
-    overflow: hidden;
-    background: transparent;
-  }
-
-  .ei-contact-page .ei-page-section-hero-title {
-    max-width: 15ch;
-  }
-
-  .ei-contact-page .ei-page-section-hero-image {
-    object-position: 70% 48%;
-    filter: saturate(0.92) brightness(0.86) contrast(1.05);
-  }
-
-  .ei-contact-page .ei-page-section-hero-copy-scrim {
-    background:
-      radial-gradient(
-        ellipse 52% 64% at 16% 46%,
-        rgb(var(--ei-ink-rgb) / 0.82) 0%,
-        rgb(var(--ei-ink-rgb) / 0.54) 42%,
-        transparent 74%
-      ),
-      linear-gradient(90deg, rgb(var(--ei-ink-rgb) / 0.58) 0%, transparent 58%) !important;
-  }
-
-  @media (max-width: 768px) {
     .ei-contact-page .ei-page-section-hero-image {
-      object-position: 72% 40%;
+      object-position: 74% 42%;
+      opacity: 0.62;
+    }
+
+    .ei-contact-page .ei-page-section-hero-copy-scrim {
+      background: linear-gradient(
+        90deg,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.98) 0%,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.94) 62%,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.72) 100%
+      ) !important;
+    }
+
+    .ei-contact-page .ei-form-input,
+    .ei-contact-page .ei-form-textarea,
+    .ei-contact-page .ei-select-trigger {
+      min-height: 3.75rem;
+      font-size: 1rem;
+    }
+
+    .ei-contact-submit-row .ei-btn-primary-cinematic,
+    .ei-contact-session-path .group {
+      width: 100%;
     }
   }
 }

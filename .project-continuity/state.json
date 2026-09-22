@@ -1,0 +1,126 @@
+{
+  "edges": [
+    {
+      "created_at": "2026-09-21T20:22:26.209295Z",
+      "from": "phase:8",
+      "to": "decision:phase8-conversion-paths",
+      "type": "decided_by"
+    },
+    {
+      "created_at": "2026-09-21T20:45:07.276650Z",
+      "from": "finding:phase8-legacy-booking-pricing",
+      "to": "phase:8",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-21T20:45:20.506722Z",
+      "from": "phase:8",
+      "to": "baseline:Phase 8 verified working tree",
+      "type": "verified_by"
+    }
+  ],
+  "meta": {
+    "created_at": "2026-09-21T20:19:14.069177Z",
+    "schema_version": "1.0",
+    "updated_at": "2026-09-21T20:45:20.506820Z"
+  },
+  "nodes": {
+    "baseline:Phase 8 verified working tree": {
+      "branch": "main",
+      "captured_at": "2026-09-21T20:45:07.359543Z",
+      "commit": "dc39bcda301e79f34d4496676dceb5e088f0d724",
+      "dirty": true,
+      "id": "baseline:Phase 8 verified working tree",
+      "repository_fingerprint": "4cdab7da46232fa4853bbef8adac87901bf0584190b6719baf0ba4fcb69e1b2d",
+      "status": "proposed",
+      "title": "Phase 8 verified working tree",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "build": "passed",
+        "git_diff_check": "passed",
+        "lint": "passed",
+        "tests": "30/30 passed",
+        "typecheck": "passed"
+      }
+    },
+    "decision:phase8-conversion-paths": {
+      "id": "decision:phase8-conversion-paths",
+      "invariants": [
+        "Larger projects route to /contact",
+        "One focused question routes to /booking",
+        "Strategy Sessions remain standalone",
+        "servicesContent.ts remains the commercial source of truth",
+        "No new pricing",
+        "Backend-facing Echo Session Request remains unchanged"
+      ],
+      "status": "accepted",
+      "title": "Two distinct conversion paths",
+      "truth": "declared",
+      "type": "decision",
+      "updated_at": "2026-09-21T20:22:26.165005Z"
+    },
+    "finding:phase8-legacy-booking-pricing": {
+      "class": "evidence-gap",
+      "files": [
+        "src/pages/BookingPage.tsx",
+        "src/lib/studioInquiry.ts"
+      ],
+      "id": "finding:phase8-legacy-booking-pricing",
+      "resolution": "Confirm the receiving workflow before migrating or removing these legacy payload values.",
+      "severity": "medium",
+      "status": "active",
+      "summary": "Public pricing was removed, but the existing booking payload still serializes price $120-$150 NZD and duration 60 minutes. The backend-facing fields were preserved because Phase 8 forbids changing the submission contract without evidence.",
+      "title": "Historic booking price remains in backend payload",
+      "truth": "observed",
+      "type": "finding",
+      "updated_at": "2026-09-21T20:45:07.225899Z"
+    },
+    "phase:8": {
+      "acceptance_criteria": [
+        "Project and session paths are immediately distinct",
+        "Contact consumes the commercial taxonomy",
+        "Booking keeps its state machine and backend identifier",
+        "Both forms retain accessible validation and submission behavior",
+        "Required quality gates pass"
+      ],
+      "id": "phase:8",
+      "objective": "Differentiate Start a Project at /contact from standalone Strategy Sessions at /booking while preserving form and backend contracts.",
+      "scope": [
+        "src/pages/ContactPage.tsx",
+        "src/pages/BookingPage.tsx",
+        "smallest shared form and CTA changes"
+      ],
+      "sources": [
+        "user request",
+        "supplied Phase 1-7 handoffs",
+        "working tree",
+        "automated tests",
+        "responsive browser QA"
+      ],
+      "status": "verified",
+      "title": "Contact and Booking Conversion Paths",
+      "truth": "declared",
+      "type": "phase",
+      "updated_at": "2026-09-21T20:45:07.180392Z",
+      "verification": {
+        "build": "passed; 557 modules transformed",
+        "git_diff_check": "passed",
+        "lint": "passed",
+        "responsive": "passed at 360, 390, 768, 1024 and 1440",
+        "tests": "30 passed across 8 files",
+        "typecheck": "passed"
+      }
+    },
+    "project:website": {
+      "id": "project:website",
+      "repository_roots": [
+        "."
+      ],
+      "title": "website",
+      "truth": "observed",
+      "type": "project"
+    }
+  },
+  "project": "project:website"
+}

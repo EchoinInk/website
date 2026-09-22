@@ -292,7 +292,7 @@
     height: 1.85rem;
     border: 1px solid var(--ei-color-border-soft);
     border-radius: 50%;
-    background: var(--ei-void);
+    background: var(--ei-theme-surface-elevated);
     color: var(--ei-color-text-faint);
   }
 
@@ -487,6 +487,10 @@
     margin-top: var(--ei-space-7);
     padding-top: var(--ei-space-5);
     border-top: 1px solid var(--ei-color-border-hairline);
+  }
+
+  .ei-booking-step-actions button {
+    min-height: 2.75rem;
   }
 
   .ei-booking-details-form .ei-booking-step-actions {
@@ -731,10 +735,6 @@
   }
 
   @media (min-width: 768px) {
-    .ei-booking-intro-grid {
-      grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
-    }
-
     .ei-booking-time-layout {
       grid-template-columns: minmax(0, 1.1fr) minmax(15rem, 0.9fr);
     }
@@ -745,6 +745,10 @@
   }
 
   @media (min-width: 1024px) {
+    .ei-booking-intro-grid {
+      grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
+    }
+
     .ei-booking-layout {
       grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
     }
@@ -815,7 +819,7 @@
       z-index: 5;
       margin-inline: calc(var(--ei-space-5) * -1);
       padding: var(--ei-space-4) var(--ei-space-5);
-      background: linear-gradient(180deg, transparent, var(--ei-void) 28%);
+      background: linear-gradient(180deg, transparent, var(--ei-theme-surface-elevated) 28%);
     }
 
     .ei-booking-step-actions .ei-btn-primary-cinematic {

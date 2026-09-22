@@ -4,8 +4,18 @@ import { MemoryRouter } from "react-router-dom";
 
 import { BookingPage } from "@/pages/BookingPage";
 
+const motionPreference = vi.hoisted(() => ({ reduced: false }));
+
 vi.mock("framer-motion", async () => {
   const React = await import("react");
+
+  type MotionProps = React.HTMLAttributes<HTMLElement> & {
+    initial?: unknown;
+    animate?: unknown;
+    whileInView?: unknown;
+    viewport?: unknown;
+    variants?: unknown;
+  };
 
   const motion = new Proxy(
     {},
@@ -13,14 +23,26 @@ vi.mock("framer-motion", async () => {
       get: (_, tag: string) =>
         function MotionElement({
           children,
+          initial,
+          animate: _animate,
+          whileInView: _whileInView,
+          viewport: _viewport,
+          variants: _variants,
           ...props
-        }: React.HTMLAttributes<HTMLElement>) {
-          return React.createElement(tag, props, children);
+        }: MotionProps) {
+          return React.createElement(
+            tag,
+            {
+              ...props,
+              "data-motion-initial": initial === false ? "false" : undefined,
+            },
+            children,
+          );
         },
     },
   );
 
-  return { motion };
+  return { motion, useReducedMotion: () => motionPreference.reduced };
 });
 
 function renderBookingPage() {
@@ -70,6 +92,7 @@ async function moveToReviewStep() {
 
 describe("BookingPage", () => {
   beforeEach(() => {
+    motionPreference.reduced = false;
     vi.stubGlobal("fetch", vi.fn());
   });
 
@@ -96,6 +119,34 @@ describe("BookingPage", () => {
     expect(
       screen.getByText("Add the timezone you want the reply to use."),
     ).toBeInTheDocument();
+    expect(screen.getByLabelText(/preferred week/i)).toHaveFocus();
+  });
+
+  it("presents the standalone Strategy Session contract without public pricing", () => {
+    renderBookingPage();
+
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Book focused time around one defined question.",
+    );
+    expect(screen.getAllByText(/60–90 minutes/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/it can stand alone/i)).toBeInTheDocument();
+    expect(screen.queryByText(/\$120|\$150/i)).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Start a Project" })).toHaveAttribute(
+      "href",
+      "/contact",
+    );
+  });
+
+  it("renders every conversion section immediately when reduced motion is preferred", () => {
+    motionPreference.reduced = true;
+    const { container } = renderBookingPage();
+
+    expect(container.querySelectorAll('[data-motion-initial="false"].ei-booking-intro-grid'))
+      .toHaveLength(1);
+    expect(container.querySelectorAll('[data-motion-initial="false"].ei-booking-layout'))
+      .toHaveLength(1);
+    expect(screen.getByRole("heading", { name: /have a larger project in mind/i }))
+      .toBeInTheDocument();
   });
 
   it("supports failure and retry before showing the request-sent state", async () => {
@@ -152,6 +203,9 @@ describe("BookingPage", () => {
 
     const body = JSON.parse(init?.body as string);
     expect(body.exploration).toBe("Echo Session Request");
+    expect(body.message).toContain("Echo Session request");
+    expect(body.message).toContain("duration: 60 minutes");
+    expect(body.message).toContain("price: $120-$150 NZD");
     expect(body.message).toContain("preferredWeek: Week of 6 July");
     expect(body.message).toContain("timezone: America/Los_Angeles");
     expect(body.message).toContain("sessionTopic: Naming direction");

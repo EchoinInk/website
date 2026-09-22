@@ -482,11 +482,7 @@
     overflow: auto;
     border: 1px solid var(--ei-color-border-soft);
     border-radius: 1rem;
-    background: linear-gradient(
-      to bottom,
-      rgb(var(--ei-midnight-rgb) / 0.96),
-      rgb(var(--ei-void-rgb) / 0.98)
-    );
+    background: var(--ei-theme-surface-elevated);
     padding: var(--ei-space-2);
     box-shadow: var(--ei-shadow-elevated), var(--ei-card-inner-highlight);
     backdrop-filter: blur(24px);
