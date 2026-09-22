@@ -34,8 +34,7 @@ export function ArchiveIndexList({
               <span className="ei-archive-index-descriptor ei-type-body-small">{entry.descriptor}</span>
             </span>
             <span className="ei-archive-index-category ei-type-meta">{entry.category}</span>
-            <span className="ei-archive-index-read ei-type-meta">{entry.readTime}</span>
-            <span className="ei-archive-index-date ei-type-meta">{entry.date}</span>
+            <span className="ei-archive-index-read ei-type-meta">{entry.format}</span>
             <span className="ei-archive-index-arrow ei-cta-arrow ei-cta-arrow-right" aria-hidden="true">→</span>
           </Link>
         ))

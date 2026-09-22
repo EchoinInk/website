@@ -84,6 +84,7 @@ export function Button({
 
     tertiary: `
       group
+      min-h-[44px]
       rounded-none
       bg-transparent
       px-0 py-1

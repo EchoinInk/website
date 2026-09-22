@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
+import type { SemanticTheme } from "@/components/layout/PageShell";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { cn } from "@/lib/utils";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
@@ -19,6 +20,7 @@ interface CTASectionProps {
   imageAlt?: string;
   className?: string;
   headingId?: string;
+  theme?: SemanticTheme;
 }
 
 export function CTASection({
@@ -31,16 +33,20 @@ export function CTASection({
   image,
   imageAlt = "",
   className,
-  headingId = "echo-cta-heading"
+  headingId = "echo-cta-heading",
+  theme,
 }: CTASectionProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.section
       variants={staggerContainer(STAGGER.loose, 0)}
-      initial="hidden"
+      initial={prefersReducedMotion ? false : "hidden"}
       whileInView="visible"
       viewport={VIEWPORT.loose}
       className={cn("ei-cta-section", className)}
       data-variant={variant}
+      data-theme={theme}
       aria-labelledby={headingId}
     >
       <Container size="xl" className="relative z-10">

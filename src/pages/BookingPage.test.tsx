@@ -204,8 +204,8 @@ describe("BookingPage", () => {
     const body = JSON.parse(init?.body as string);
     expect(body.exploration).toBe("Echo Session Request");
     expect(body.message).toContain("Echo Session request");
-    expect(body.message).toContain("duration: 60 minutes");
-    expect(body.message).toContain("price: $120-$150 NZD");
+    expect(body.message).toContain("duration: 60–90 minutes");
+    expect(body.message).not.toContain("price:");
     expect(body.message).toContain("preferredWeek: Week of 6 July");
     expect(body.message).toContain("timezone: America/Los_Angeles");
     expect(body.message).toContain("sessionTopic: Naming direction");

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 import archiveImageDesktop from '@/assets/imagery/hero/archive-index-hero-orbital-map-desktop.webp';
 import archiveImageMobile from '@/assets/imagery/hero/archive-index-hero-orbital-map-mobile.webp';
@@ -13,7 +13,6 @@ import { CTASection } from '@/components/sections/CTASection';
 import { PageSectionHero } from '@/components/sections/PageSectionHero';
 import { Button } from '@/components/ui/Button';
 import { EchoCard } from '@/components/ui/EchoCard';
-import { EchoSelect } from '@/components/ui/EchoSelect';
 import { FilterBar } from '@/components/ui/FilterBar';
 import { IconWell } from '@/components/ui/IconWell';
 import { OrbitalVisual } from '@/components/ui/OrbitalVisual';
@@ -21,10 +20,8 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import {
   archiveFilters,
   archiveIndex,
-  archiveIndexSortOptions,
   archivePhilosophy,
   type ArchiveFilter,
-  type ArchiveIndexSort,
 } from '@/data/archiveContent';
 import {
   blurEmergence,
@@ -46,8 +43,8 @@ function scrollToIndex() {
 }
 
 export function ArchiveIndexPage() {
+  const prefersReducedMotion = useReducedMotion();
   const [activeFilter, setActiveFilter] = useState<ArchiveFilter>('All');
-  const [sortBy, setSortBy] = useState<ArchiveIndexSort>('Latest');
   const [query, setQuery] = useState('');
 
   const visibleEntries = useMemo(() => {
@@ -62,45 +59,40 @@ export function ArchiveIndexPage() {
       return matchesFilter && matchesQuery;
     });
 
-    return [...filtered].sort((left, right) => {
-      if (sortBy === 'Title') {
-        return left.title.localeCompare(right.title);
-      }
-
-      const direction = sortBy === 'Oldest' ? 1 : -1;
-      return (Date.parse(left.date) - Date.parse(right.date)) * direction;
-    });
-  }, [activeFilter, query, sortBy]);
+    return filtered;
+  }, [activeFilter, query]);
 
   return (
-    <PageShell atmosphere="default" theme="deep" withTopSpacing={false} className="ei-editorial-page ei-index-page">
+    <PageShell atmosphere="default" theme="light" withTopSpacing={false} className="ei-editorial-page ei-index-page">
       <Helmet>
         <title>Archive Index — Echo in Ink</title>
         <meta
           name="description"
-          content="A structured map of essays, notes, case fragments, systems, experiments, and worldbuilding from Echo in Ink."
+          content="A structured map of the essays and studio notes currently published in Echo in Ink's Archive."
         />
       </Helmet>
 
       <PageSectionHero
-  eyebrow="Archive · Index"
-  title="A map of the signal."
-  italicWord="signal."
-  description="A structured companion to the Archive: entries arranged for discovery across ideas, disciplines, and recurring themes."
-  image={archiveImageDesktop}
-  mobileImage={archiveImageMobile}
-  imageAlt="Dark cinematic archive map with floating catalogue panels and constellation index lines"
-  align="left"
-  
-  ctaLabel="Enter the index"
-  ctaHref="#archive-index"
-/>
+        eyebrow="The Archive · Index"
+        title="A map of what is here."
+        italicWord="here."
+        description="A simple index of Echo in Ink's current essay and studio notes, arranged by format and recurring concern."
+        image={archiveImageDesktop}
+        mobileImage={archiveImageMobile}
+        imageAlt="Editorial index cards connected by constellation lines"
+        align="left"
+        theme="light"
+        tone="editorial"
+        ctaLabel="Enter the index"
+        ctaHref="#full-index"
+        headingId="archive-index-heading"
+      />
 
-      <Section spacing="none" className="ei-editorial-page-section ei-index-featured-section">
+      <Section theme="light" spacing="none" className="ei-editorial-page-section ei-index-featured-section">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -117,7 +109,7 @@ export function ArchiveIndexPage() {
                       <IconWell size="sm" tone={index === 2 ? 'magenta' : 'violet'} orbital>
                         <OrbitalVisual variant={entry.icon} size={24} />
                       </IconWell>
-                      <span className="ei-type-meta">{entry.category} · {entry.readTime}</span>
+                      <span className="ei-type-meta">{entry.category} · {entry.format}</span>
                     </div>
                     <h3>{entry.title}</h3>
                     <p className="ei-type-body-editorial">{entry.descriptor}</p>
@@ -132,11 +124,11 @@ export function ArchiveIndexPage() {
         </Container>
       </Section>
 
-      <Section spacing="none" className="ei-editorial-page-section ei-index-map-section">
+      <Section theme="lightElevated" spacing="none" className="ei-editorial-page-section ei-index-map-section">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -164,11 +156,11 @@ export function ArchiveIndexPage() {
         </Container>
       </Section>
 
-      <Section id="full-index" spacing="none" className="ei-editorial-page-section">
+      <Section id="full-index" theme="mist" spacing="none" className="ei-editorial-page-section">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -193,25 +185,14 @@ export function ArchiveIndexPage() {
                   placeholder="Search titles, descriptions, or categories"
                 />
               </label>
-             <FilterBar<ArchiveFilter>
-  filters={archiveFilters}
-  activeFilter={activeFilter}
-  onFilterChange={setActiveFilter}
-  ariaLabel="Filter archive index by category"
-  tone="editorial"
-  className="ei-archive-filter-bar"
-  sort={
-    <EchoSelect
-      id="archive-index-sort"
-      name="archive-index-sort"
-      label="Order"
-      variant="editorial"
-      value={sortBy}
-      options={[...archiveIndexSortOptions]}
-      onChange={(event) => setSortBy(event.target.value as ArchiveIndexSort)}
-    />
-  }
-/>
+              <FilterBar<ArchiveFilter>
+                filters={archiveFilters}
+                activeFilter={activeFilter}
+                onFilterChange={setActiveFilter}
+                ariaLabel="Filter archive index by category"
+                tone="editorial"
+                className="ei-archive-filter-bar"
+              />
             </motion.div>
 
             <motion.div variants={fadeSoft}>
@@ -224,7 +205,7 @@ export function ArchiveIndexPage() {
         </Container>
       </Section>
 
-      <Section spacing="none" className="ei-editorial-page-section ei-index-constellation-section">
+      <Section theme="atmospheric" transitionTo="deep" spacing="none" className="ei-editorial-page-section ei-index-constellation-section">
         <Container size="xl" className="relative z-10">
           <motion.div className="mx-auto max-w-[1180px]">
             <EchoCard variant="offer" padding="none" className="ei-archive-philosophy">
@@ -241,12 +222,13 @@ export function ArchiveIndexPage() {
 
       <CTASection
         variant="editorialInvitation"
+        theme="deep"
         eyebrow="Return to the living archive"
         heading="The index is a map. The Archive is the field."
         body="Move back into featured essays, recent notes, and ideas still taking shape."
         actions={
           <>
-            <Button to="/archive" variant="primary">Explore the Archive</Button>
+            <Button to="/insights" variant="primary">Return to Insights</Button>
             <Button to="/archive/notes" variant="secondary">Read studio notes</Button>
           </>
         }

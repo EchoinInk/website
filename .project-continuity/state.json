@@ -17,12 +17,30 @@
       "from": "phase:8",
       "to": "baseline:Phase 8 verified working tree",
       "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-22T03:01:45.965760Z",
+      "from": "phase:9",
+      "to": "decision:phase9-editorial-systems",
+      "type": "decided_by"
+    },
+    {
+      "created_at": "2026-09-22T03:01:46.056670Z",
+      "from": "finding:phase8-legacy-booking-pricing",
+      "to": "phase:9",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-22T03:01:56.244804Z",
+      "from": "phase:9",
+      "to": "baseline:Phase 9 verified working tree",
+      "type": "verified_by"
     }
   ],
   "meta": {
     "created_at": "2026-09-21T20:19:14.069177Z",
     "schema_version": "1.0",
-    "updated_at": "2026-09-21T20:45:20.506820Z"
+    "updated_at": "2026-09-22T03:01:56.244894Z"
   },
   "nodes": {
     "baseline:Phase 8 verified working tree": {
@@ -44,6 +62,29 @@
         "typecheck": "passed"
       }
     },
+    "baseline:Phase 9 verified working tree": {
+      "branch": "main",
+      "captured_at": "2026-09-22T03:01:46.178875Z",
+      "commit": "c02a1c3cd120c3505061f9ad59e46b41a643abe7",
+      "dirty": true,
+      "id": "baseline:Phase 9 verified working tree",
+      "repository_fingerprint": "c9de569d657eb80a22b638d4cf8b2a53ea415c051736efae81f28fb3863dc0e3",
+      "status": "proposed",
+      "title": "Phase 9 verified working tree",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "accessibility": "44px targets, focus visibility, reduced motion, semantic headings, image alt attributes, and horizontal overflow checks passed",
+        "browser_matrix": "70/70 checks passed",
+        "build": "passed; 557 modules transformed",
+        "diff_check": "passed",
+        "link_audit": "341 rendered links and fragments checked; 0 broken",
+        "lint": "passed",
+        "responsive": "changed routes at 360, 390, 768, 1024, 1440; all public routes at 390 and 1440",
+        "tests": "40/40 passed across 9 files",
+        "typecheck": "passed"
+      }
+    },
     "decision:phase8-conversion-paths": {
       "id": "decision:phase8-conversion-paths",
       "invariants": [
@@ -60,21 +101,46 @@
       "type": "decision",
       "updated_at": "2026-09-21T20:22:26.165005Z"
     },
+    "decision:phase9-editorial-systems": {
+      "decision": "Use one shared ArchivePage for /insights and /archive; keep The Archive as editorial identity; index only real essays and notes without invented dates or cadence; position /systems as Creative Systems & Tools and route commercial Systems & Automation context to /services.",
+      "id": "decision:phase9-editorial-systems",
+      "invariants": [
+        "/insights and /archive render the same editorial entry without redirecting",
+        "Existing editorial child URLs remain stable",
+        "/systems is not the Systems & Automation capability page",
+        "primaryCapabilities remains exactly four",
+        "engagementModels remains exactly three",
+        "Lumo remains Independent Product / Prototype"
+      ],
+      "rationale": "This preserves established URLs and editorial character while making the public information architecture and commercial model legible.",
+      "status": "accepted",
+      "title": "Preserve editorial identity and separate creative resources from commercial automation",
+      "truth": "declared",
+      "type": "decision",
+      "updated_at": "2026-09-22T03:01:26.612395Z"
+    },
     "finding:phase8-legacy-booking-pricing": {
       "class": "evidence-gap",
       "files": [
         "src/pages/BookingPage.tsx",
-        "src/lib/studioInquiry.ts"
+        "src/pages/BookingPage.test.tsx",
+        "src/lib/studioInquiry.ts",
+        "src/lib/contactServer.ts",
+        "api/contact.ts"
       ],
       "id": "finding:phase8-legacy-booking-pricing",
-      "resolution": "Confirm the receiving workflow before migrating or removing these legacy payload values.",
+      "resolution": "Repository inspection proved the receiver treats details as free-form message text and does not parse exact duration or price values. Phase 9 migrated the serialized duration to 60-90 minutes and removed the price field without changing the API schema or state machine.",
       "severity": "medium",
-      "status": "active",
-      "summary": "Public pricing was removed, but the existing booking payload still serializes price $120-$150 NZD and duration 60 minutes. The backend-facing fields were preserved because Phase 8 forbids changing the submission contract without evidence.",
-      "title": "Historic booking price remains in backend payload",
-      "truth": "observed",
+      "status": "superseded",
+      "summary": "The booking submission previously serialized duration 60 minutes and price $120-$150 NZD while the public Strategy Sessions contract is 60-90 minutes with no published price.",
+      "title": "Booking payload carried legacy duration and price",
+      "truth": "superseded",
       "type": "finding",
-      "updated_at": "2026-09-21T20:45:07.225899Z"
+      "updated_at": "2026-09-22T03:01:26.703441Z",
+      "verified_by": [
+        "src/pages/BookingPage.test.tsx",
+        "npm test"
+      ]
     },
     "phase:8": {
       "acceptance_criteria": [
@@ -110,6 +176,58 @@
         "responsive": "passed at 360, 390, 768, 1024 and 1440",
         "tests": "30 passed across 8 files",
         "typecheck": "passed"
+      }
+    },
+    "phase:9": {
+      "acceptance": [
+        "Insights is the primary navigation entry while The Archive remains the editorial identity",
+        "Archive compatibility and existing article URLs are preserved",
+        "Long-form reading uses high-readability semantic surfaces",
+        "Creative Systems & Tools remains distinct from Systems & Automation",
+        "Lumo remains Independent Product / Prototype",
+        "All public routes pass representative responsive smoke tests",
+        "Typecheck, lint, tests, diff check, and build pass"
+      ],
+      "id": "phase:9",
+      "objective": "Migrate editorial and creative systems routes into the semantic theme system without redesigning completed routes or the protected Lumo case study.",
+      "scope": [
+        "/insights",
+        "/archive",
+        "/archive/atmosphere-is-information",
+        "/archive/notes",
+        "/archive/map",
+        "/systems",
+        "minimal shared-shell corrections",
+        "Booking payload contract migration proven safe in repository"
+      ],
+      "sources": [
+        "src/App.tsx",
+        "src/pages/ArchivePage.tsx",
+        "src/pages/ArchiveEssayPage.tsx",
+        "src/pages/ArchiveNotesPage.tsx",
+        "src/pages/ArchiveIndexPage.tsx",
+        "src/pages/SystemsPage.tsx",
+        "src/pages/Phase9Routes.test.tsx"
+      ],
+      "status": "verified",
+      "title": "Insights, Archive, and Creative Systems migration",
+      "truth": "declared",
+      "type": "phase",
+      "updated_at": "2026-09-22T03:01:26.524240Z",
+      "verification": {
+        "broken_links": 0,
+        "browser_checks": 70,
+        "build_modules": 557,
+        "rendered_links_checked": 341,
+        "test_files": 9,
+        "tests": 40,
+        "viewports": [
+          360,
+          390,
+          768,
+          1024,
+          1440
+        ]
       }
     },
     "project:website": {

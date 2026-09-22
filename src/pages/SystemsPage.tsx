@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
 
 import systemsHeroDesktop from "@/assets/imagery/hero/systems-hero-signal-grid-desktop.webp";
 import systemsHeroMobile from "@/assets/imagery/hero/systems-hero-signal-grid-mobile.webp";
@@ -17,7 +16,7 @@ import { OrbitalVisual } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import {
   featuredSystem,
-  latestSystems,
+  creativeResources,
   systemPathway,
   systemsCategories,
   systemsClosing,
@@ -34,50 +33,56 @@ import {
 } from "@/lib/motion-cinematic";
 
 export function SystemsPage() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <PageShell atmosphere="works" theme="deep" withTopSpacing={false} className="ei-systems-page">
+    <PageShell atmosphere="works" theme="light" withTopSpacing={false} className="ei-systems-page">
       <Helmet>
-        <title>Systems — Echo in Ink</title>
+        <title>Creative Systems & Tools — Echo in Ink</title>
         <meta name="description" content={systemsHero.description} />
       </Helmet>
 
-     <PageSectionHero
-  eyebrow={systemsHero.eyebrow}
-  title="Atmosphere, made usable."
-  italicWord="usable."
-  description={systemsHero.description}
-  offerAnchor="Reusable design frameworks and decision tools for teams building products, platforms, and brands with more clarity."
-  image={systemsHeroDesktop}
-  mobileImage={systemsHeroMobile}
-  imageAlt="Dark cinematic systems blueprint with luminous signal grids and modular framework lines"
-  align="left"
-
-  ctaLabel="Explore a system"
-  ctaHref="#featured-system"
-  secondaryCtaLabel="Start a conversation"
-  secondaryCtaHref="/contact?inquiry=project"
-/>
+      <PageSectionHero
+        eyebrow={systemsHero.eyebrow}
+        title={systemsHero.title}
+        italicWord="clearer."
+        description={systemsHero.description}
+        offerAnchor={systemsHero.clarification}
+        image={systemsHeroDesktop}
+        mobileImage={systemsHeroMobile}
+        imageAlt="Creative framework cards connected by a restrained signal grid"
+        align="left"
+        theme="light"
+        tone="editorial"
+        ctaLabel="Explore the collection"
+        ctaHref="#systems-categories"
+        secondaryCtaLabel="View Systems & Automation"
+        secondaryCtaHref="/services"
+        headingId="creative-systems-heading"
+      />
 
       <Section
         id="systems-categories"
         spacing="none"
+        theme="lightElevated"
+        transitionTo="atmospheric"
         className="ei-systems-section ei-systems-section-anchor ei-systems-categories"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
           >
             <motion.div variants={driftUp} className="ei-systems-section-heading">
-              <SectionLabel label="System architecture" index="02" />
+              <SectionLabel label="Collection structure" index="02" tone="accent" />
               <div>
-                <h2 className="ei-type-editorial-heading">Four layers. One coherent creative ecosystem.</h2>
+                <h2 className="ei-type-editorial-heading">Four ways to make an unclear direction more usable.</h2>
                 <p className="ei-type-body-editorial">
-                  Start with the layer you need now, or combine them into a complete path from
-                  early signal to finished world.
+                  These are working structures rather than a product catalogue. Start with the
+                  form that matches the decision in front of you.
                 </p>
               </div>
             </motion.div>
@@ -108,12 +113,12 @@ export function SystemsPage() {
 
                     <dl className="ei-systems-category-facts">
                       <div>
-                        <dt>Best for</dt>
-                        <dd className="ei-type-body-small">{category.bestFor}</dd>
+                        <dt>Useful for</dt>
+                        <dd className="ei-type-body-small">{category.usefulFor}</dd>
                       </div>
                       <div>
-                        <dt>Output</dt>
-                        <dd className="ei-type-body-small">{category.output}</dd>
+                        <dt>Form</dt>
+                        <dd className="ei-type-body-small">{category.form}</dd>
                       </div>
                     </dl>
 
@@ -133,12 +138,14 @@ export function SystemsPage() {
       <Section
         id="featured-system"
         spacing="none"
+        theme="atmospheric"
+        transitionTo="light"
         className="ei-systems-section ei-systems-section-anchor ei-systems-featured-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -165,12 +172,12 @@ export function SystemsPage() {
 
                   <dl className="ei-systems-featured-facts">
                     <div>
-                      <dt>Best for</dt>
-                      <dd className="ei-type-body-small">{featuredSystem.bestFor}</dd>
+                      <dt>Useful for</dt>
+                      <dd className="ei-type-body-small">{featuredSystem.usefulFor}</dd>
                     </div>
                     <div>
-                      <dt>Output</dt>
-                      <dd className="ei-type-body-small">{featuredSystem.output}</dd>
+                      <dt>Current form</dt>
+                      <dd className="ei-type-body-small">{featuredSystem.form}</dd>
                     </div>
                   </dl>
 
@@ -190,7 +197,7 @@ export function SystemsPage() {
                     <Button to={featuredSystem.cta.href} variant="secondary">
                       {featuredSystem.cta.label} <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
                     </Button>
-                    <span>{featuredSystem.format}</span>
+                    <span>Experimental resource</span>
                   </div>
                 </div>
 
@@ -224,40 +231,37 @@ export function SystemsPage() {
 
       <Section
         spacing="none"
+        theme="mist"
         className="ei-systems-section ei-systems-section-anchor ei-systems-modules"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
           >
             <motion.div variants={driftUp} className="ei-systems-section-heading">
-              <SectionLabel label="Tools and modules" index="04" />
+              <SectionLabel label="Tools and experiments" index="04" tone="accent" />
               <div>
-                <h2 className="ei-type-editorial-heading">Use one module. Build a larger system.</h2>
+                <h2 className="ei-type-editorial-heading">Ideas in different stages of becoming useful.</h2>
                 <p className="ei-type-body-editorial">
-                  Focused tools for a specific creative decision, designed to remain useful when
-                  the work grows.
+                  Each item below is a concept or working framework. None is presented as a
+                  finished, available, or downloadable product.
                 </p>
               </div>
             </motion.div>
 
             <div className="ei-systems-module-grid">
-              {latestSystems.map((system, index) => (
+              {creativeResources.map((system, index) => (
                 <motion.div
                   key={system.title}
                   variants={driftUp}
                   className={index === 0 ? "ei-systems-module-featured" : undefined}
                 >
-                  <EchoCard
-                    variant="interactive"
-                    padding="none"
-                    className="ei-systems-module-card"
-                  >
-                    <Link to="/contact" aria-label={`Enquire about ${system.title}`}>
+                  <EchoCard as="div" variant="static" padding="none" className="ei-systems-module-card">
+                    <article>
                       <div className="ei-systems-module-media">
                         <img
                           src={system.image}
@@ -278,23 +282,21 @@ export function SystemsPage() {
 
                         <dl>
                           <div>
-                            <dt>Best for</dt>
-                            <dd className="ei-type-body-small">{system.useCase}</dd>
+                            <dt>Useful for</dt>
+                            <dd className="ei-type-body-small">{system.usefulFor}</dd>
                           </div>
                           <div>
-                            <dt>Output</dt>
-                            <dd className="ei-type-body-small">{system.output}</dd>
+                            <dt>Form</dt>
+                            <dd className="ei-type-body-small">{system.form}</dd>
                           </div>
                         </dl>
 
                         <div className="ei-systems-module-action">
-                          <span>{system.price}</span>
-                          <span>
-                            Explore <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
-                          </span>
+                          <span>{system.status}</span>
+                          <span>{system.type}</span>
                         </div>
                       </div>
-                    </Link>
+                    </article>
                   </EchoCard>
                 </motion.div>
               ))}
@@ -305,23 +307,24 @@ export function SystemsPage() {
 
       <Section
         spacing="none"
+        theme="light"
         className="ei-systems-section ei-systems-section-anchor ei-systems-use-cases"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
           >
             <motion.div variants={driftUp} className="ei-systems-section-heading">
-              <SectionLabel label="Built for" index="05" />
+              <SectionLabel label="Potential uses" index="05" tone="accent" />
               <div>
-                <h2 className="ei-type-editorial-heading">Practical support for work with depth.</h2>
+                <h2 className="ei-type-editorial-heading">Creative questions these structures can support.</h2>
                 <p className="ei-type-body-editorial">
-                  Each system helps turn an intuitive creative challenge into a clearer decision,
-                  direction, or deliverable.
+                  The collection is most useful when there is a specific decision to make, not
+                  when a tool is being sought for its own sake.
                 </p>
               </div>
             </motion.div>
@@ -347,23 +350,25 @@ export function SystemsPage() {
 
       <Section
         spacing="none"
+        theme="lightElevated"
+        transitionTo="deep"
         className="ei-systems-section ei-systems-section-anchor ei-systems-pathway"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
           >
             <motion.div variants={driftUp} className="ei-systems-section-heading">
-              <SectionLabel label="A larger pathway" index="06" />
+              <SectionLabel label="A practical pathway" index="06" tone="accent" />
               <div>
-                <h2 className="ei-type-editorial-heading">From first signal to a world people can enter.</h2>
+                <h2 className="ei-type-editorial-heading">From an unclear signal to a decision you can use.</h2>
                 <p className="ei-type-body-editorial">
-                  Systems can stand alone, or connect with Echo Sessions and studio work as the
-                  project becomes more defined.
+                  A prompt or framework can stand alone. When the need becomes a custom brand,
+                  digital experience, product, or operational system, it becomes project work.
                 </p>
               </div>
             </motion.div>
@@ -388,10 +393,11 @@ export function SystemsPage() {
 
       <CTASection
         variant="imagePanel"
-        eyebrow="Choose your next layer"
+        theme="deep"
+        eyebrow="Keep the distinction clear"
         heading={
           <>
-            Build the structure that lets the <em>atmosphere hold.</em>
+            Creative tools here. Custom systems through <em>Services.</em>
           </>
         }
         body={`${systemsClosing.title} ${systemsClosing.description}`}
@@ -403,17 +409,12 @@ export function SystemsPage() {
             <Button to={systemsClosing.cta.href} variant="primary">
               {systemsClosing.cta.label}
             </Button>
-            <Button to="/sessions" variant="tertiary">
-              Start with a session <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
+            <Button to="/contact?inquiry=project" variant="tertiary">
+              Start a Project <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
             </Button>
           </>
         }
-        secondary={
-          <Link to="/contact">
-            Not sure where to begin? Tell us what you are shaping{" "}
-            <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
-          </Link>
-        }
+        secondary="Systems & Automation remains one of Echo's four commercial capabilities; this page remains an editorial and experimental resource collection."
       />
     </PageShell>
   );

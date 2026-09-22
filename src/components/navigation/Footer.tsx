@@ -13,12 +13,6 @@ import {
   VIEWPORT,
 } from "@/system/motion/cinematic";
 
-const socialLinks = [
-  { label: "IG", href: "https://instagram.com" },
-  { label: "LN", href: "https://linkedin.com" },
-  { label: "X", href: "https://x.com" },
-];
-
 export default function Footer() {
   return (
     <footer
@@ -65,8 +59,8 @@ export default function Footer() {
               </span>
 
               <p className="ei-type-footer-copy max-w-[31ch] font-structural text-[12px] leading-[1.7]">
-                Building the kind of worlds brands grow into, not out of —
-                intentional, enduring, and unmistakably theirs.
+                Strategy, design, and development brought together for brands,
+                digital experiences, products, and systems.
               </p>
             </div>
 
@@ -81,7 +75,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="ei-type-footer-link inline-flex min-h-9 items-center font-structural text-[13px] transition-colors duration-400"
+                      className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[13px] transition-colors duration-400"
                     >
                       {link.label}
                     </Link>
@@ -98,7 +92,7 @@ export default function Footer() {
 
               <a
                 href="mailto:hello@echoin.ink"
-                className="ei-type-footer-link mb-1.5 inline-flex min-h-9 items-center font-structural text-[13px] transition-colors duration-400"
+                className="ei-type-footer-link mb-1.5 inline-flex min-h-11 items-center font-structural text-[13px] transition-colors duration-400"
               >
                 hello@echoin.ink
               </a>
@@ -107,32 +101,21 @@ export default function Footer() {
                 Auckland, New Zealand
               </span>
 
-              <div className="flex items-center gap-4">
-                {socialLinks.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ei-type-footer-link inline-flex min-h-9 items-center font-mono text-[11px] tracking-[0.14em] transition-colors duration-400"
-                  >
-                    {s.label}
-                  </a>
-                ))}
-              </div>
+              <span className="ei-type-footer-copy block max-w-[28ch] font-structural text-[12px] leading-[1.7]">
+                Project enquiries and Strategy Session requests begin on their dedicated pages.
+              </span>
             </div>
 
-            {/* Col 4 — Atmospheric Intelligence */}
+            {/* Col 4 — Creative resources */}
             <div className="relative">
               <span className="ei-type-footer-label mb-4 block font-mono text-[9px] uppercase tracking-[0.22em]">
-                Atmospheric Intelligence
+                Creative Systems &amp; Tools
               </span>
 
               <div className="flex items-start justify-between gap-5">
                 <p className="ei-type-footer-copy mb-4 max-w-[32ch] font-structural text-[12px] leading-[1.7]">
-                  Exploring how identity, emotion, and reflective technology
-                  shape the next generation of creative systems — and the
-                  brands bold enough to build with them.
+                  Prompt systems, reference frameworks, direction kits, and
+                  practical experiments for clearer creative decisions.
                 </p>
 
                 <div className="shrink-0 pt-0.5 opacity-70">
@@ -142,9 +125,9 @@ export default function Footer() {
 
               <Link
                 to="/systems"
-                className="ei-type-footer-link group inline-flex min-h-9 max-w-[34ch] items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-400"
+                className="ei-type-footer-link group inline-flex min-h-11 max-w-[34ch] items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-400"
               >
-                <span>Learn more about our future systems</span>
+                <span>Explore frameworks and experiments</span>
                 <span className="shrink-0 transition-transform duration-400 group-hover:translate-x-0.5">
                   →
                 </span>
@@ -175,7 +158,7 @@ export default function Footer() {
               <li key={link.label}>
                 <Link
                   to={link.href}
-                  className="ei-type-footer-meta inline-flex min-h-9 items-center font-structural text-[10px] tracking-[0.06em] opacity-75 transition-[color,opacity] duration-400 hover:opacity-100 focus-visible:opacity-100"
+                  className="ei-type-footer-meta inline-flex min-h-11 items-center font-structural text-[10px] tracking-[0.06em] opacity-75 transition-[color,opacity] duration-400 hover:opacity-100 focus-visible:opacity-100"
                 >
                   {link.label}
                 </Link>
@@ -208,11 +191,11 @@ export default function Footer() {
 
           <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
             <span className="ei-type-footer-meta font-structural text-[10px] tracking-[0.1em]">
-              © 2025 Echo in Ink
+              © {new Date().getFullYear()} Echo in Ink
             </span>
 
             <span className="ei-type-footer-meta font-structural text-[10px] uppercase tracking-[0.12em]">
-              Founded 2025
+              Strategy · Design · Development
             </span>
           </div>
         </motion.div>

@@ -1,83 +1,50 @@
-/* Archive page - a curated editorial index built on shared system primitives. */
-
 @layer components {
   .ei-archive-page {
-    overflow: hidden;
+    overflow: clip;
+    background: var(--ei-moonlight-canvas);
   }
 
-  .ei-echo-hero.ei-archive-hero {
-    min-height: min(880px, 90vh);
-    align-items: center;
+  .ei-archive-page > div > :is([data-theme="light"], [data-theme="lightElevated"], [data-theme="mist"]) .ei-echo-card {
+    border-color: var(--ei-theme-border);
+    background: var(--ei-theme-card);
+    color: var(--ei-color-text-secondary);
+    box-shadow: var(--ei-theme-shadow);
   }
 
-  .ei-archive-hero .ei-echo-hero-media img {
-    object-position: 62% 50%;
-    filter: saturate(0.8) brightness(0.72);
+  .ei-archive-page > div > :is([data-theme="light"], [data-theme="lightElevated"], [data-theme="mist"]) .ei-echo-card[data-interactive="true"]:is(:hover, :focus-within) {
+    border-color: var(--ei-card-border-hover);
+    background: var(--ei-theme-card-hover);
+    box-shadow: var(--ei-ring-focus), var(--ei-theme-shadow-elevated);
   }
 
-  .ei-archive-hero .ei-echo-hero-scrim {
-    background:
-      radial-gradient(
-        ellipse 48% 66% at 68% 49%,
-        transparent 14%,
-        rgb(var(--ei-ink-rgb) / 0.18) 64%,
-        rgb(var(--ei-ink-rgb) / 0.62) 100%
-      ),
-      linear-gradient(
-        90deg,
-        rgb(var(--ei-ink-rgb) / 0.98) 0%,
-        rgb(var(--ei-ink-rgb) / 0.84) 34%,
-        rgb(var(--ei-ink-rgb) / 0.22) 72%,
-        rgb(var(--ei-ink-rgb) / 0.5) 100%
-      ),
-      linear-gradient(180deg, rgb(var(--ei-ink-rgb) / 0.18), transparent 54%, var(--ei-ink) 100%);
+  .ei-archive-page .ei-page-section-hero-image {
+    object-position: 64% center;
+    opacity: 0.56;
   }
 
-  .ei-archive-hero-content {
-    max-width: 44rem;
-  }
-
-  .ei-archive-hero .ei-echo-hero-title {
-    max-width: 8.5ch;
-    font-size: clamp(4rem, 8vw, 8rem);
-    line-height: 0.88;
-  }
-
-  .ei-archive-hero .ei-echo-hero-title em,
-  .ei-archive-featured-copy h2 em,
-  .ei-archive-note-card h3 em {
-    color: var(--ei-soft-neon);
-    font-weight: 400;
-  }
-
-  .ei-archive-hero .ei-echo-hero-kicker {
-    color: rgb(var(--ei-moonlit-rgb) / 0.76);
-  }
-
-  .ei-archive-hero .ei-echo-hero-description {
-    max-width: 34rem;
+  .ei-archive-page .ei-page-section-hero-copy-wrap {
+    max-width: 760px;
   }
 
   .ei-archive-section {
-    position: relative;
-    padding-block: var(--ei-section-standard-top) var(--ei-section-standard-bottom);
+    background: var(--ei-color-background-canvas);
+    padding-block: clamp(4.5rem, 9vw, 8rem);
   }
 
   .ei-archive-featured-section {
-    z-index: 3;
-    margin-top: clamp(-5rem, -6vw, -3rem);
-    padding-top: 0;
+    padding-top: clamp(3.5rem, 7vw, 6rem);
   }
 
   .ei-archive-featured {
     display: grid;
-    min-height: 36rem;
-    isolation: isolate;
+    min-height: 34rem;
+    border-color: var(--ei-theme-border);
+    background: var(--ei-theme-card);
   }
 
   .ei-archive-featured-media {
     position: relative;
-    min-height: 23rem;
+    min-height: 20rem;
     overflow: hidden;
   }
 
@@ -86,16 +53,13 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: saturate(0.78) brightness(0.68);
   }
 
   .ei-archive-featured-media::after {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(circle at 52% 50%, transparent 12%, rgb(var(--ei-void-rgb) / 0.16) 58%),
-      linear-gradient(180deg, transparent 38%, rgb(var(--ei-void-rgb) / 0.84));
+    background: linear-gradient(180deg, transparent 48%, var(--ei-theme-card) 100%);
   }
 
   .ei-archive-featured-copy {
@@ -103,173 +67,186 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: clamp(2rem, 6vw, 5rem);
-    background:
-      radial-gradient(circle at 12% 12%, rgb(var(--ei-violet-rgb) / 0.09), transparent 38%),
-      rgb(var(--ei-void-rgb) / 0.92);
+    padding: clamp(2rem, 5vw, 4rem);
+  }
+
+  .ei-archive-card-meta,
+  .ei-archive-note-topline,
+  .ei-archive-pathway-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+    color: var(--ei-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
   }
 
   .ei-archive-card-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--ei-space-3) var(--ei-space-5);
-    margin-top: var(--ei-space-7);
+    justify-content: flex-start;
+    margin-top: 1.8rem;
   }
 
   .ei-archive-card-meta span + span::before {
     content: "·";
-    margin-right: var(--ei-space-3);
-    color: var(--ei-color-text-faint);
+    margin-inline: 0.7rem;
   }
 
   .ei-archive-featured-copy h2 {
-    max-width: 13ch;
-    margin-top: var(--ei-space-5);
+    max-width: 15ch;
+    margin-top: 1.1rem;
     color: var(--ei-color-text-primary);
     font-family: var(--ei-font-editorial);
-    font-size: clamp(3rem, 6vw, 5.75rem);
+    font-size: clamp(2.4rem, 5vw, 4.8rem);
     font-weight: 400;
+    line-height: 0.98;
     letter-spacing: -0.045em;
-    line-height: 0.96;
-    text-wrap: balance;
+  }
+
+  .ei-archive-featured-copy h2 em,
+  .ei-archive-note-card h3 em {
+    color: var(--ei-color-text-accent);
+    font-weight: 400;
   }
 
   .ei-archive-featured-copy > p {
-    max-width: 42ch;
-    margin-top: var(--ei-space-5);
-  }
-
-  .ei-archive-featured-copy .ei-btn-primary-cinematic,
-  .ei-archive-featured-copy > a {
-    margin-top: var(--ei-space-6);
+    max-width: 48ch;
+    margin-block: 1.4rem 2rem;
   }
 
   .ei-archive-section-heading {
     display: grid;
-    gap: var(--ei-space-6);
+    gap: 1.75rem;
+    margin-bottom: clamp(2.4rem, 5vw, 4rem);
   }
 
   .ei-archive-section-heading > div:last-child {
-    max-width: 50rem;
+    max-width: 760px;
   }
 
   .ei-archive-section-heading h2,
   .ei-archive-philosophy-copy h2 {
-    text-wrap: balance;
+    color: var(--ei-color-text-primary);
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
   }
 
   .ei-archive-section-heading p,
   .ei-archive-philosophy-copy > p {
-    max-width: 54ch;
-    margin-top: var(--ei-space-4);
+    max-width: 58ch;
+    margin-top: 1rem;
   }
 
-  .ei-archive-categories {
-    padding-top: var(--ei-section-pause-top);
-    padding-bottom: var(--ei-section-pause-bottom);
+  .ei-archive-pathway-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .ei-archive-pathway-card {
+    min-height: 15rem;
+    border-color: var(--ei-theme-border);
+    background: var(--ei-theme-card);
+  }
+
+  .ei-archive-pathway-card strong {
+    display: block;
+    margin-top: 2.5rem;
+    color: var(--ei-color-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+
+  .ei-archive-pathway-card p {
+    max-width: 46ch;
+    margin-top: 1rem;
   }
 
   .ei-archive-filter-wrap {
-    margin-top: clamp(2.5rem, 6vw, 4.5rem);
-    border-block: 1px solid var(--ei-color-border-hairline);
-    padding-block: var(--ei-space-5);
+    margin-top: 2rem;
+    border-top: 1px solid var(--ei-theme-border);
+    padding-top: 1.5rem;
   }
 
   .ei-archive-filter-bar[data-tone="editorial"] .ei-filter-pill {
+    min-height: 44px;
     color: var(--ei-color-text-muted);
   }
 
   .ei-archive-filter-bar[data-tone="editorial"] .ei-filter-pill[data-active="true"] {
-    border-color: var(--ei-color-text-accent);
-    background: transparent;
+    border-color: var(--ei-theme-link);
     color: var(--ei-color-text-primary);
-    box-shadow: none;
   }
 
   .ei-archive-notes {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--ei-space-4);
-    margin-top: clamp(2.5rem, 6vw, 4.5rem);
-  }
-
-  .ei-archive-notes > div {
-    height: 100%;
+    gap: 1rem;
   }
 
   .ei-archive-note-card {
-    position: relative;
-    display: flex;
-    min-height: 23rem;
     height: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .ei-archive-note-topline {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--ei-space-4);
-    color: var(--ei-color-text-muted);
+    border-color: var(--ei-theme-border);
+    background: var(--ei-theme-card);
   }
 
   .ei-archive-note-icon {
-    margin-top: var(--ei-space-7);
+    margin-top: 2.5rem;
   }
 
   .ei-archive-note-card h3 {
-    max-width: 12ch;
-    margin-top: var(--ei-space-5);
+    margin-top: 1.5rem;
     color: var(--ei-color-text-primary);
     font-family: var(--ei-font-editorial);
-    font-size: clamp(1.8rem, 3vw, 2.65rem);
+    font-size: clamp(1.65rem, 2.7vw, 2.4rem);
     font-weight: 400;
+    line-height: 1.05;
     letter-spacing: -0.035em;
-    line-height: 1.02;
   }
 
   .ei-archive-note-card > p {
-    max-width: 34ch;
-    margin-top: var(--ei-space-4);
-  }
-
-  .ei-archive-note-card > a {
-    margin-top: auto;
-    padding-top: var(--ei-space-6);
+    margin-block: 1rem 1.75rem;
   }
 
   .ei-archive-index-heading {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: var(--ei-space-7);
-    margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    gap: 2rem;
+    margin-bottom: clamp(2.25rem, 5vw, 4rem);
+  }
+
+  .ei-archive-index-heading .ei-archive-section-heading,
+  .ei-archive-index-heading .ei-editorial-section-heading {
+    margin-bottom: 0;
   }
 
   .ei-archive-index-count {
     flex: 0 0 auto;
-    padding-bottom: var(--ei-space-2);
+    color: var(--ei-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
   }
 
   .ei-archive-index-table {
     overflow: hidden;
+    border-color: var(--ei-theme-border);
+    background: var(--ei-theme-card);
   }
 
   .ei-archive-index-row {
     display: grid;
-    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: var(--ei-space-4);
-    min-height: 6rem;
-    border-bottom: 1px solid var(--ei-color-border-hairline);
-    padding: var(--ei-space-4) var(--ei-space-5);
-    color: inherit;
-    text-decoration: none;
-    transition:
-      background var(--ei-duration-normal) var(--ei-ease-soft),
-      color var(--ei-duration-normal) var(--ei-ease-soft);
+    gap: 1rem;
+    min-height: 6.75rem;
+    border-bottom: 1px solid var(--ei-theme-border);
+    padding: 1.25rem;
+    color: var(--ei-color-text-primary);
+    transition: background var(--ei-duration-normal) var(--ei-ease-soft);
   }
 
   .ei-archive-index-row:last-child {
@@ -278,36 +255,33 @@
 
   .ei-archive-index-row:hover,
   .ei-archive-index-row:focus-visible {
-    background: rgb(var(--ei-ice-white-rgb) / 0.035);
+    background: var(--ei-theme-surface-elevated);
   }
 
   .ei-archive-index-copy {
+    display: grid;
     min-width: 0;
+    gap: 0.35rem;
   }
 
   .ei-archive-index-title {
-    display: block;
     color: var(--ei-color-text-primary);
     font-family: var(--ei-font-editorial);
-    font-size: clamp(1.15rem, 1.5vw, 1.45rem);
-    letter-spacing: -0.02em;
-    line-height: 1.25;
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    line-height: 1.12;
   }
 
   .ei-archive-index-descriptor {
-    display: block;
-    overflow: hidden;
-    margin-top: var(--ei-space-2);
-    color: var(--ei-color-text-tertiary);
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    max-width: 62ch;
+    color: var(--ei-color-text-secondary);
   }
 
   .ei-archive-index-category,
-  .ei-archive-index-read,
-  .ei-archive-index-date {
+  .ei-archive-index-read {
     display: none;
     color: var(--ei-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
 
   .ei-archive-index-arrow {
@@ -317,82 +291,78 @@
 
   .ei-archive-index-row:hover .ei-archive-index-arrow,
   .ei-archive-index-row:focus-visible .ei-archive-index-arrow {
-    transform: translateX(0.2rem);
+    transform: translateX(0.3rem);
   }
 
   .ei-archive-index-empty {
-    padding: var(--ei-space-7);
-    text-align: center;
+    padding: 2rem;
+  }
+
+  .ei-archive-index-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
   }
 
   .ei-archive-philosophy-section {
-    padding-top: var(--ei-section-pause-top);
+    padding-top: clamp(5rem, 10vw, 9rem);
   }
 
   .ei-archive-philosophy {
     display: grid;
-    min-height: 35rem;
+    min-height: 28rem;
     overflow: hidden;
+    border-color: var(--ei-theme-border);
     background:
-      radial-gradient(circle at 76% 52%, rgb(var(--ei-violet-rgb) / 0.1), transparent 34%),
-      linear-gradient(120deg, rgb(var(--ei-midnight-rgb) / 0.48), rgb(var(--ei-void-rgb) / 0.9));
+      radial-gradient(circle at 82% 20%, rgb(var(--ei-violet-rgb) / 0.18), transparent 42%),
+      var(--ei-theme-card);
   }
 
   .ei-archive-philosophy-copy {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(2rem, 6vw, 5rem);
-  }
-
-  .ei-archive-philosophy-copy h2 {
-    max-width: 12ch;
-    margin-top: var(--ei-space-7);
+    padding: clamp(2rem, 5vw, 4rem);
   }
 
   .ei-archive-constellation {
     position: relative;
-    min-height: 30rem;
-    overflow: hidden;
+    min-height: 24rem;
+    color: var(--ei-color-text-secondary);
+  }
+
+  .ei-archive-constellation::before,
+  .ei-archive-constellation-orbit,
+  .ei-archive-constellation-axis {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: min(72%, 20rem);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgb(var(--ei-halo-blue-rgb) / 0.24);
+    border-radius: 50%;
   }
 
   .ei-archive-constellation::before {
-    content: "";
-    position: absolute;
-    inset: 12%;
-    background-image: radial-gradient(rgb(var(--ei-moonlit-rgb) / 0.28) 0.8px, transparent 0.8px);
-    background-size: 26px 26px;
-    mask-image: radial-gradient(circle, black, transparent 72%);
-    opacity: 0.32;
-  }
-
-  .ei-archive-constellation-orbit,
-  .ei-archive-constellation-axis {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    border: 1px solid rgb(var(--ei-soft-neon-rgb) / 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .ei-archive-constellation-orbit {
-    width: min(74%, 26rem);
-    aspect-ratio: 1;
+    width: min(48%, 13rem);
+    border-color: rgb(var(--ei-echo-magenta-rgb) / 0.2);
   }
 
   .ei-archive-constellation-axis {
-    width: min(92%, 34rem);
-    height: 42%;
-    transform: translate(-50%, -50%) rotate(-14deg);
+    width: 70%;
+    height: 1px;
+    aspect-ratio: auto;
+    border: 0;
+    border-top: 1px solid rgb(var(--ei-halo-blue-rgb) / 0.2);
+    border-radius: 0;
+    transform: translate(-50%, -50%) rotate(-24deg);
   }
 
   .ei-archive-constellation-center {
     position: absolute;
-    left: 50%;
     top: 50%;
-    color: rgb(var(--ei-soft-neon-rgb) / 0.9);
-    filter: drop-shadow(0 0 24px rgb(var(--ei-violet-rgb) / 0.32));
+    left: 50%;
     transform: translate(-50%, -50%);
   }
 
@@ -400,649 +370,106 @@
     position: absolute;
     display: flex;
     align-items: center;
-    gap: var(--ei-space-2);
-    color: var(--ei-color-text-tertiary);
+    gap: 0.45rem;
+    color: var(--ei-color-text-secondary);
     font-family: var(--ei-font-structural);
-    font-size: 0.625rem;
-    letter-spacing: 0.14em;
+    font-size: 0.64rem;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
   }
 
   .ei-archive-constellation-node > span {
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 0.42rem;
+    height: 0.42rem;
     border-radius: 50%;
-    background: var(--ei-soft-neon);
-    box-shadow: 0 0 16px rgb(var(--ei-soft-neon-rgb) / 0.7);
+    background: var(--ei-halo-blue);
+    box-shadow: 0 0 16px rgb(var(--ei-halo-blue-rgb) / 0.55);
   }
 
-  .ei-archive-constellation-node[data-node="1"] {
-    left: 15%;
-    top: 28%;
-  }
-
-  .ei-archive-constellation-node[data-node="2"] {
-    right: 12%;
-    top: 22%;
-  }
-
-  .ei-archive-constellation-node[data-node="3"] {
-    left: 8%;
-    top: 57%;
-  }
-
-  .ei-archive-constellation-node[data-node="4"] {
-    right: 7%;
-    top: 53%;
-  }
-
-  .ei-archive-constellation-node[data-node="5"] {
-    left: 24%;
-    bottom: 18%;
-  }
-
-  .ei-archive-constellation-node[data-node="6"] {
-    right: 14%;
-    bottom: 16%;
-  }
+  .ei-archive-constellation-node[data-node="1"] { top: 18%; left: 18%; }
+  .ei-archive-constellation-node[data-node="2"] { top: 24%; right: 12%; }
+  .ei-archive-constellation-node[data-node="3"] { bottom: 22%; right: 14%; }
+  .ei-archive-constellation-node[data-node="4"] { bottom: 17%; left: 17%; }
 
   .ei-archive-closing {
-    padding-top: var(--ei-section-closing-top);
+    background: var(--ei-color-background-canvas);
+    padding-block: clamp(4.5rem, 9vw, 8rem);
   }
 
   .ei-archive-closing .ei-cta-section-panel {
-    border-block: 1px solid var(--ei-color-border-hairline);
-    padding-block: clamp(4rem, 9vw, 7rem);
-    background:
-      radial-gradient(circle at 50% 42%, rgb(var(--ei-violet-rgb) / 0.08), transparent 42%);
-  }
-
-  .ei-archive-closing .ei-cta-section-heading {
-    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    border-color: var(--ei-theme-border);
+    background: var(--ei-theme-card);
   }
 
   @media (min-width: 768px) {
+    .ei-archive-featured {
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    }
+
+    .ei-archive-featured-media::after {
+      background: linear-gradient(90deg, transparent 58%, var(--ei-theme-card) 100%);
+    }
+
     .ei-archive-notes {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .ei-archive-index-row {
-      grid-template-columns:
-        2.75rem
-        minmax(17rem, 1.5fr)
-        minmax(7.5rem, 0.62fr)
-        minmax(6.5rem, 0.48fr)
-        minmax(7rem, 0.52fr)
-        auto;
-      gap: var(--ei-space-5);
-      padding-inline: var(--ei-space-6);
+      grid-template-columns: auto minmax(0, 1fr) 8rem 8rem auto;
+      gap: 1.25rem;
+      padding: 1.4rem 1.6rem;
     }
 
     .ei-archive-index-category,
-    .ei-archive-index-read,
-    .ei-archive-index-date {
+    .ei-archive-index-read {
       display: block;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .ei-archive-featured {
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    }
-
-    .ei-archive-featured-media {
-      min-height: 36rem;
-      border-right: 1px solid var(--ei-color-border-hairline);
     }
 
     .ei-archive-philosophy {
-      grid-template-columns: minmax(0, 0.82fr) minmax(30rem, 1.18fr);
+      grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.8fr);
     }
   }
 
   @media (max-width: 767px) {
-    .ei-echo-hero.ei-archive-hero {
-      min-height: 42rem;
-      align-items: flex-end;
+    .ei-archive-page .ei-page-section-hero-image {
+      object-position: 58% center;
+      opacity: 0.42;
     }
 
-    .ei-archive-hero .ei-echo-hero-media img {
-      object-position: 56% 50%;
+    .ei-archive-pathway-grid {
+      grid-template-columns: 1fr;
     }
 
-    .ei-archive-hero .ei-echo-hero-scrim {
-      background:
-        linear-gradient(180deg, rgb(var(--ei-void-rgb) / 0.28), transparent 28%, var(--ei-ink) 94%),
-        linear-gradient(90deg, rgb(var(--ei-void-rgb) / 0.9), rgb(var(--ei-void-rgb) / 0.22));
+    .ei-archive-featured {
+      min-height: 0;
     }
 
-    .ei-archive-hero .ei-echo-hero-title {
-      font-size: clamp(3.5rem, 18vw, 5.4rem);
-    }
-
-    .ei-archive-section {
-      padding-block: clamp(4.5rem, 18vw, 6.5rem);
-    }
-
-    .ei-archive-featured-section {
-      margin-top: -2.5rem;
-      padding-top: 0;
-    }
-
-    .ei-archive-featured-copy h2 {
-      font-size: clamp(2.7rem, 13vw, 4rem);
+    .ei-archive-featured-copy,
+    .ei-archive-philosophy-copy {
+      padding: 1.6rem;
     }
 
     .ei-archive-index-heading {
       align-items: flex-start;
       flex-direction: column;
-      gap: var(--ei-space-4);
     }
 
-    .ei-archive-index-row {
-      padding-inline: var(--ei-space-4);
-    }
-
-    .ei-archive-index-descriptor {
-      white-space: normal;
-    }
-
-    .ei-archive-philosophy-copy {
-      padding-bottom: var(--ei-space-4);
-    }
-
-    .ei-archive-constellation {
-      min-height: 24rem;
+    .ei-archive-index-action,
+    .ei-archive-index-action .ei-button {
+      width: 100%;
     }
 
     .ei-archive-constellation-node {
-      font-size: 0.55rem;
-      letter-spacing: 0.1em;
+      font-size: 0.56rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ei-archive-index-arrow {
-      transition-duration: 0.01ms;
-    }
-
+    .ei-archive-index-arrow,
     .ei-archive-index-row:hover .ei-archive-index-arrow,
     .ei-archive-index-row:focus-visible .ei-archive-index-arrow {
       transform: none;
-    }
-  }
-}
-/* ────────────────────────────────────────────────────────────────
-   Archive polish pass
-
-   Fixes: low energy, weak visual differentiation,
-   stronger featured treatment, stronger navigation,
-   improved mobile anchors.
-   Image verdict: replace.
-   ──────────────────────────────────────────────────────────────── */
-
-@layer components {
-
-  .ei-archive-hero .ei-echo-hero-media img {
-    object-position: 70% 48%;
-    filter: saturate(0.9) brightness(0.84) contrast(1.05);
-  }
-
-  .ei-archive-hero .ei-echo-hero-scrim {
-    background:
-      radial-gradient(
-        ellipse 48% 72% at 18% 48%,
-        rgb(var(--ei-ink-rgb) / 0.84) 0%,
-        rgb(var(--ei-ink-rgb) / 0.58) 46%,
-        transparent 78%
-      ),
-      linear-gradient(
-        90deg,
-        rgb(var(--ei-ink-rgb) / 0.82) 0%,
-        rgb(var(--ei-ink-rgb) / 0.52) 40%,
-        rgb(var(--ei-ink-rgb) / 0.12) 72%,
-        transparent 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgb(var(--ei-ink-rgb) / 0.1) 0%,
-        transparent 50%,
-        var(--ei-ink) 100%
-      );
-  }
-
-  .ei-archive-hero .ei-echo-hero-title {
-    max-width: 9ch;
-    text-shadow:
-      0 2px 34px rgb(0 0 0 / 0.56),
-      0 0 54px rgb(var(--ei-violet-rgb) / 0.14),
-      0 0 92px rgb(var(--ei-halo-blue-rgb) / 0.08);
-  }
-
-  .ei-archive-hero .ei-echo-hero-title em {
-    color: rgb(var(--ei-soft-neon-rgb) / 0.96);
-    text-shadow:
-      0 0 28px rgb(var(--ei-echo-magenta-rgb) / 0.18),
-      0 0 58px rgb(var(--ei-violet-rgb) / 0.16);
-  }
-
-  .ei-archive-hero .ei-echo-hero-description {
-    max-width: 42ch;
-    color: rgb(var(--ei-moonlit-rgb) / 0.84);
-    line-height: 1.74;
-  }
-
-  .ei-archive-hero .ei-echo-hero-kicker {
-    color: rgb(var(--ei-moonlit-rgb) / 0.8);
-  }
-
-  .ei-archive-hero .ei-echo-hero-actions {
-    gap: var(--ei-space-5);
-  }
-
-  .ei-archive-featured {
-    overflow: hidden;
-    min-height: 39rem;
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.16);
-    background:
-      radial-gradient(circle at 18% 16%, rgb(var(--ei-halo-blue-rgb) / 0.08), transparent 36%),
-      radial-gradient(circle at 78% 26%, rgb(var(--ei-violet-rgb) / 0.09), transparent 42%),
-      linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.54), rgb(var(--ei-void-rgb) / 0.86));
-    box-shadow:
-      inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.055),
-      0 32px 120px rgb(0 0 0 / 0.42),
-      0 0 72px rgb(var(--ei-violet-rgb) / 0.08);
-  }
-
-  .ei-archive-featured-media img {
-    filter: saturate(0.9) brightness(0.78) contrast(1.05);
-  }
-
-  .ei-archive-featured-media::after {
-    background:
-      radial-gradient(circle at 52% 50%, transparent 10%, rgb(var(--ei-void-rgb) / 0.08) 58%),
-      linear-gradient(180deg, transparent 36%, rgb(var(--ei-void-rgb) / 0.7));
-  }
-
-  .ei-archive-featured-copy {
-    background:
-      radial-gradient(circle at 12% 12%, rgb(var(--ei-halo-blue-rgb) / 0.08), transparent 36%),
-      radial-gradient(circle at 88% 14%, rgb(var(--ei-violet-rgb) / 0.08), transparent 38%),
-      rgb(var(--ei-void-rgb) / 0.92);
-  }
-
-  .ei-archive-card-meta {
-    color: rgb(var(--ei-halo-blue-rgb) / 0.72);
-  }
-
-  .ei-archive-featured-copy h2 {
-    max-width: 12ch;
-    text-shadow: 0 0 34px rgb(var(--ei-violet-rgb) / 0.1);
-  }
-
-  .ei-archive-featured-copy > p {
-    color: rgb(var(--ei-moonlit-rgb) / 0.8);
-  }
-
-  .ei-archive-section {
-    position: relative;
-  }
-
-  .ei-archive-categories::before,
-  .ei-archive-notes-section::before,
-  .ei-archive-index-section::before,
-  .ei-archive-philosophy-section::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: max(1.5rem, calc((100vw - 1180px) / 2));
-    right: max(1.5rem, calc((100vw - 1180px) / 2));
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgb(var(--ei-halo-blue-rgb) / 0.22),
-        rgb(var(--ei-violet-rgb) / 0.18),
-        rgb(var(--ei-soft-neon-rgb) / 0.1),
-        transparent
-      );
-  }
-
-  .ei-archive-section-heading p {
-    max-width: 48ch;
-    color: rgb(var(--ei-moonlit-rgb) / 0.74);
-  }
-
-  .ei-archive-pathway-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--ei-space-4);
-    margin-top: clamp(2.5rem, 6vw, 4.5rem);
-  }
-
-  .ei-archive-pathway-card {
-    position: relative;
-    overflow: hidden;
-    min-height: 15rem;
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.12);
-    background:
-      radial-gradient(circle at 86% 16%, rgb(var(--ei-halo-blue-rgb) / 0.075), transparent 34%),
-      linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.44), rgb(var(--ei-void-rgb) / 0.76));
-    box-shadow:
-      inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04),
-      0 20px 76px rgb(0 0 0 / 0.24),
-      0 0 48px rgb(var(--ei-violet-rgb) / 0.035);
-  }
-
-  .ei-archive-pathway-card::after {
-    content: "";
-    position: absolute;
-    right: -22%;
-    bottom: -30%;
-    width: 13rem;
-    aspect-ratio: 1;
-    border: 1px solid rgb(var(--ei-moonlit-rgb) / 0.055);
-    border-radius: 50%;
-    box-shadow:
-      0 0 0 2.6rem rgb(var(--ei-violet-rgb) / 0.018),
-      0 0 0 5.2rem rgb(var(--ei-soft-neon-rgb) / 0.012);
-    pointer-events: none;
-  }
-
-  .ei-archive-pathway-topline {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--ei-space-4);
-    color: rgb(var(--ei-halo-blue-rgb) / 0.72);
-  }
-
-  .ei-archive-pathway-card strong {
-    position: relative;
-    z-index: 2;
-    display: block;
-    max-width: 10ch;
-    margin-top: var(--ei-space-6);
-    color: var(--ei-color-text-primary);
-    font-family: var(--ei-font-editorial);
-    font-size: clamp(1.55rem, 2.6vw, 2.2rem);
-    font-weight: 400;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-  }
-
-  .ei-archive-pathway-card p {
-    position: relative;
-    z-index: 2;
-    max-width: 28ch;
-    margin-top: var(--ei-space-4);
-    color: rgb(var(--ei-moonlit-rgb) / 0.7);
-  }
-
-  .ei-archive-filter-wrap {
-    border: 1px solid rgb(var(--ei-moonlit-rgb) / 0.12);
-    border-radius: 28px;
-    background:
-      radial-gradient(circle at 88% 16%, rgb(var(--ei-violet-rgb) / 0.06), transparent 32%),
-      rgb(var(--ei-void-rgb) / 0.54);
-    padding: clamp(1rem, 2vw, 1.35rem);
-    box-shadow:
-      inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.035),
-      0 22px 78px rgb(0 0 0 / 0.24);
-  }
-
-  .ei-archive-filter-bar[data-tone="editorial"] .ei-filter-pill {
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.1);
-    color: rgb(var(--ei-moonlit-rgb) / 0.56);
-  }
-
-  .ei-archive-filter-bar[data-tone="editorial"] .ei-filter-pill[data-active="true"] {
-    border-color: rgb(var(--ei-halo-blue-rgb) / 0.34);
-    background:
-      radial-gradient(circle at 50% 0%, rgb(var(--ei-halo-blue-rgb) / 0.12), transparent 58%),
-      rgb(var(--ei-void-rgb) / 0.56);
-    color: var(--ei-color-text-primary);
-    box-shadow:
-      inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.055),
-      0 0 24px rgb(var(--ei-halo-blue-rgb) / 0.08);
-  }
-
-  .ei-archive-note-card {
-    min-height: 25rem;
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.13);
-    background:
-      radial-gradient(circle at 84% 12%, rgb(var(--ei-violet-rgb) / 0.085), transparent 34%),
-      radial-gradient(circle at 16% 14%, rgb(var(--ei-halo-blue-rgb) / 0.055), transparent 34%),
-      linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.48), rgb(var(--ei-void-rgb) / 0.8));
-    box-shadow:
-      inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.045),
-      0 24px 90px rgb(0 0 0 / 0.3),
-      0 0 58px rgb(var(--ei-violet-rgb) / 0.045);
-  }
-
-  .ei-archive-note-topline {
-    color: rgb(var(--ei-moonlit-rgb) / 0.58);
-  }
-
-  .ei-archive-note-card h3 {
-    max-width: 11.5ch;
-    text-shadow: 0 0 28px rgb(var(--ei-violet-rgb) / 0.08);
-  }
-
-  .ei-archive-note-card > p {
-    color: rgb(var(--ei-moonlit-rgb) / 0.76);
-  }
-
-  .ei-archive-index-table {
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.13);
-    background:
-      radial-gradient(circle at 86% 10%, rgb(var(--ei-violet-rgb) / 0.055), transparent 34%),
-      rgb(var(--ei-void-rgb) / 0.5);
-    box-shadow:
-      inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04),
-      0 24px 90px rgb(0 0 0 / 0.28),
-      0 0 58px rgb(var(--ei-violet-rgb) / 0.04);
-  }
-
-  .ei-archive-index-row {
-    min-height: 6.75rem;
-    border-bottom-color: rgb(var(--ei-moonlit-rgb) / 0.09);
-  }
-
-  .ei-archive-index-row:hover,
-  .ei-archive-index-row:focus-visible {
-    background:
-      linear-gradient(
-        90deg,
-        rgb(var(--ei-halo-blue-rgb) / 0.045),
-        rgb(var(--ei-violet-rgb) / 0.02),
-        transparent 78%
-      );
-  }
-
-  .ei-archive-index-title {
-    font-size: clamp(1.25rem, 1.8vw, 1.65rem);
-    line-height: 1.15;
-  }
-
-  .ei-archive-index-descriptor {
-    max-width: 54ch;
-    color: rgb(var(--ei-moonlit-rgb) / 0.64);
-  }
-
-  .ei-archive-philosophy {
-    border-color: rgb(var(--ei-moonlit-rgb) / 0.14);
-    box-shadow:
-      inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.045),
-      0 28px 100px rgb(0 0 0 / 0.34),
-      0 0 68px rgb(var(--ei-violet-rgb) / 0.06);
-  }
-
-  @media (max-width: 1023px) {
-    .ei-archive-pathway-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 767px) {
-    .ei-archive-hero .ei-echo-hero-media img {
-      object-position: 62% 38%;
-      filter: saturate(0.86) brightness(0.74) contrast(1.04);
-    }
-
-    .ei-archive-hero .ei-echo-hero-scrim {
-      background:
-        radial-gradient(
-          ellipse 92% 56% at 24% 24%,
-          rgb(var(--ei-ink-rgb) / 0.78) 0%,
-          rgb(var(--ei-ink-rgb) / 0.52) 48%,
-          transparent 76%
-        ),
-        linear-gradient(
-          180deg,
-          rgb(var(--ei-ink-rgb) / 0.6) 0%,
-          rgb(var(--ei-ink-rgb) / 0.34) 42%,
-          rgb(var(--ei-ink-rgb) / 0.78) 100%
-        );
-    }
-
-    .ei-archive-hero .ei-echo-hero-title {
-      max-width: 9.5ch;
-      font-size: clamp(3.2rem, 15vw, 4.85rem);
-      line-height: 0.94;
-    }
-
-    .ei-archive-hero .ei-echo-hero-description {
-      max-width: 34ch;
-      font-size: 0.98rem;
-      line-height: 1.68;
-    }
-
-    .ei-archive-featured {
-      min-height: 0;
-    }
-
-    .ei-archive-featured-media {
-      min-height: 20rem;
-    }
-
-    .ei-archive-featured-copy {
-      padding: 1.65rem;
-    }
-
-    .ei-archive-featured-copy h2 {
-      max-width: 10.5ch;
-      font-size: clamp(2.85rem, 13vw, 4.25rem);
-    }
-
-    .ei-archive-featured-copy > p {
-      max-width: 33ch;
-      line-height: 1.66;
-    }
-
-    .ei-archive-pathway-grid {
-      grid-template-columns: 1fr;
-      gap: var(--ei-space-5);
-    }
-
-    .ei-archive-pathway-card {
-      min-height: 11rem;
-      padding: 1.45rem;
-    }
-
-    .ei-archive-pathway-card strong {
-      margin-top: var(--ei-space-5);
-      font-size: clamp(1.9rem, 8vw, 2.6rem);
-    }
-
-    .ei-archive-pathway-card p {
-      max-width: 31ch;
-      line-height: 1.62;
-    }
-
-    .ei-archive-filter-wrap {
-      border-radius: 22px;
-      padding: 1rem;
-    }
-
-    .ei-archive-notes {
-      gap: var(--ei-space-6);
-    }
-
-    .ei-archive-note-card {
-      min-height: 0;
-      padding: 1.6rem;
-    }
-
-    .ei-archive-note-card h3 {
-      font-size: clamp(2rem, 9vw, 3rem);
-    }
-
-    .ei-archive-note-card > p {
-      max-width: 32ch;
-      line-height: 1.62;
-    }
-
-    .ei-archive-index-row {
-      min-height: 7.5rem;
-    }
-
-    .ei-archive-index-title {
-      font-size: clamp(1.35rem, 6vw, 1.85rem);
-    }
-  }
-
-  @media (max-width: 520px) {
-    .ei-archive-hero .ei-echo-hero-title {
-      font-size: clamp(2.95rem, 13.5vw, 4.1rem);
-    }
-
-    .ei-archive-featured-copy,
-    .ei-archive-pathway-card,
-    .ei-archive-note-card {
-      padding: 1.35rem;
-    }
-  }
-}
-/* ────────────────────────────────────────────────────────────────
-   PageSectionHero pass — Archive / Archive Index
-
-   Shared hero structure; page-specific polish only.
-   ──────────────────────────────────────────────────────────────── */
-
-@layer components {
-  .ei-archive-page,
-  .ei-index-page {
-    overflow: hidden;
-    background: transparent;
-  }
-
-  .ei-archive-page .ei-page-section-hero-title,
-  .ei-index-page .ei-page-section-hero-title {
-    max-width: 14ch;
-  }
-
-  .ei-archive-page .ei-page-section-hero-image,
-  .ei-index-page .ei-page-section-hero-image {
-    object-position: 68% 50%;
-    filter: saturate(0.88) brightness(0.82) contrast(1.04);
-  }
-
-  .ei-archive-page .ei-page-section-hero-copy-scrim,
-  .ei-index-page .ei-page-section-hero-copy-scrim {
-    background:
-      radial-gradient(
-        ellipse 52% 64% at 16% 46%,
-        rgb(var(--ei-ink-rgb) / 0.86) 0%,
-        rgb(var(--ei-ink-rgb) / 0.56) 42%,
-        transparent 74%
-      ),
-      linear-gradient(90deg, rgb(var(--ei-ink-rgb) / 0.66) 0%, transparent 58%) !important;
-  }
-
-  @media (max-width: 768px) {
-    .ei-archive-page .ei-page-section-hero-image,
-    .ei-index-page .ei-page-section-hero-image {
-      object-position: 70% 40%;
+      transition: none;
     }
   }
 }

@@ -402,8 +402,7 @@ export function BookingPage() {
         email: formData.email.trim(),
         details: {
           session: "Echo Session",
-          duration: "60 minutes",
-          price: "$120-$150 NZD",
+          duration: "60–90 minutes",
           preferredWeek: formData.preferredWeek.trim(),
           timezone: formData.timezone.trim(),
           sessionTopic: formData.topic.trim(),

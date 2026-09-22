@@ -6,177 +6,164 @@ import worldLoreImage from "@/assets/imagery/backgrounds/planet-rings-desktop.we
 import clientOnboardingImage from "@/assets/imagery/sections/nexus-work-card.png";
 
 export const systemsHero = {
-  eyebrow: "Systems",
-  title: "Atmosphere, made usable.",
+  eyebrow: "Creative Systems & Tools",
+  title: "Frameworks for making creative decisions clearer.",
   description:
-    "Modular creative infrastructure for shaping identity, atmosphere, direction, and coherent worlds — from focused prompts to connected systems.",
-  primaryCta: {
-    label: "Explore Systems",
-    href: "#systems-categories"
-  },
-  secondaryCta: {
-    label: "Start with a tool",
-    href: "#featured-system"
-  }
+    "A working collection of prompt systems, reference frameworks, direction kits, and practical experiments from Echo in Ink.",
+  clarification:
+    "These are creative resources and experiments. Custom software, integrations, workflow automation, and selective AI implementation sit within Systems & Automation on Services.",
 } as const;
 
 export interface SystemsCategory {
   layer: string;
   title: string;
   description: string;
-  bestFor: string;
-  output: string;
+  usefulFor: string;
+  form: string;
   includes: string[];
   icon: OrbitalVariant;
 }
 
 export const systemsCategories: SystemsCategory[] = [
   {
-    layer: "Orient",
-    title: "Foundation systems",
+    layer: "Question",
+    title: "Prompt systems",
     description:
-      "Find the central signal before building the expression around it.",
-    bestFor: "Early ideas, new offers, and unclear positioning",
-    output: "A defined identity centre and next-step brief",
-    includes: ["Identity prompts", "Clarity frameworks"],
-    icon: "chorusCore"
+      "Sequences of questions for finding the centre of an identity, idea, or creative problem.",
+    usefulFor: "Early ideas and unclear direction",
+    form: "Guided questions and reflection structure",
+    includes: ["Identity prompts", "Clarity prompts"],
+    icon: "chorusCore",
   },
   {
-    layer: "Shape",
-    title: "Creative tools",
+    layer: "Reference",
+    title: "Reference frameworks",
     description:
-      "Resolve a focused question around tone, language, reference, or process.",
-    bestFor: "Creators resolving one specific direction",
-    output: "A usable voice, atmosphere, or decision framework",
-    includes: ["Atmosphere mapping", "Voice building"],
-    icon: "focusDial"
+      "Ways to collect and compare tone, texture, language, and visual signals without losing the reason behind them.",
+    usefulFor: "Aligning a shared creative language",
+    form: "Reference maps and comparison tools",
+    includes: ["Atmosphere mapping", "Voice references"],
+    icon: "focusDial",
   },
   {
-    layer: "Direct",
+    layer: "Direction",
     title: "Direction kits",
     description:
-      "Turn instinct and references into a coherent visual and narrative direction.",
-    bestFor: "Projects ready to align story and expression",
-    output: "A connected visual and narrative direction",
-    includes: ["Creative workbooks", "Worldbuilding systems"],
-    icon: "synthesisStar"
+      "Working structures for turning instinct and references into a connected creative direction.",
+    usefulFor: "Projects ready to move from exploration to direction",
+    form: "Working documents and direction prompts",
+    includes: ["Creative workbooks", "Worldbuilding frameworks"],
+    icon: "synthesisStar",
   },
   {
-    layer: "Express",
-    title: "Output systems",
+    layer: "Practice",
+    title: "Practice tools",
     description:
-      "Carry the direction into usable touchpoints without losing its atmosphere.",
-    bestFor: "Teams translating direction into delivery",
-    output: "Reusable tools for digital and client touchpoints",
-    includes: ["Digital UI kits", "Client toolkits"],
-    icon: "vectorLattice"
-  }
+      "Repeatable templates for carrying a clear direction into day-to-day creative work.",
+    usefulFor: "Keeping decisions coherent as work develops",
+    form: "Reusable working templates",
+    includes: ["Decision records", "Project templates"],
+    icon: "vectorLattice",
+  },
 ];
 
 export const featuredSystem = {
-  category: "Foundation system",
+  category: "Experimental prompt framework",
   title: "The Identity Clarity Prompt Kit",
   description:
-    "A guided set of prompts to help you uncover your essence, shape your identity, and align every element of your brand or project.",
-  bestFor: "Founders and creators clarifying an early identity",
-  output: "A completed clarity framework and creative brief",
+    "A working prompt structure for examining the purpose, audience, values, tone, and central idea behind an emerging identity.",
+  usefulFor: "Founders and makers clarifying an early brand or product idea",
+  form: "Working framework — not a downloadable product",
   features: [
-    "50+ deep prompts",
-    "Identity clarity framework",
-    "Reflection + discovery exercises",
-    "PDF + Notion compatible"
+    "Questions for purpose and audience",
+    "Prompts for tone, values, and distinction",
+    "A short structure for turning reflection into a creative brief",
   ],
-  format: "Guided digital kit",
   cta: {
-    label: "View Product",
-    href: "/contact"
-  }
+    label: "Discuss a related project",
+    href: "/contact?inquiry=project",
+  },
 } as const;
 
-export interface LatestSystem {
+export interface CreativeResource {
   title: string;
   description: string;
-  price: string;
   type: string;
-  status: string;
-  useCase: string;
-  output: string;
+  status: "Concept" | "Working framework";
+  usefulFor: string;
+  form: string;
   image: string;
   imagePosition?: string;
 }
 
-export const latestSystems: LatestSystem[] = [
+export const creativeResources: CreativeResource[] = [
   {
     title: "Atmosphere Reference Atlas",
     description:
-      "A library of atmosphere references to inspire tone, texture, and mood.",
-    price: "$29 NZD",
-    type: "Reference tool",
-    status: "Available",
-    useCase: "Finding a shared emotional language",
-    output: "A focused atmosphere reference set",
+      "A concept for gathering atmosphere references around tone, texture, pace, and mood.",
+    type: "Reference framework",
+    status: "Concept",
+    usefulFor: "Finding a shared emotional language",
+    form: "Curated reference structure",
     image: atmosphereReferenceImage,
-    imagePosition: "center"
+    imagePosition: "center",
   },
   {
     title: "Tone of Voice Builder",
     description:
-      "Build a brand voice that feels consistent, natural, and unmistakably yours.",
-    price: "$24 NZD",
-    type: "Creative tool",
-    status: "Available",
-    useCase: "Clarifying how the work should sound",
-    output: "Voice principles and usable language",
+      "A working framework for comparing voice principles and testing how an idea should sound.",
+    type: "Prompt system",
+    status: "Working framework",
+    usefulFor: "Clarifying a consistent verbal direction",
+    form: "Voice prompts and comparison notes",
     image: toneOfVoiceImage,
-    imagePosition: "62% center"
+    imagePosition: "62% center",
   },
   {
     title: "World Lore Blueprint",
     description:
-      "A structured system for building rich, believable, and interconnected worlds.",
-    price: "$34 NZD",
+      "An experimental structure for connecting story, symbols, atmosphere, and internal logic.",
     type: "Direction kit",
-    status: "Available",
-    useCase: "Connecting story, symbols, and meaning",
-    output: "A coherent world lore framework",
+    status: "Concept",
+    usefulFor: "Giving an emerging creative world more coherence",
+    form: "Worldbuilding framework",
     image: worldLoreImage,
-    imagePosition: "center"
+    imagePosition: "center",
   },
   {
     title: "Client Onboarding Toolkit",
     description:
-      "A refined onboarding experience for creative studios and solo creators.",
-    price: "$19 NZD",
-    type: "Output system",
-    status: "Available",
-    useCase: "Making the first client touchpoint clear",
-    output: "A reusable onboarding experience",
+      "A concept for making the first stage of a creative engagement clearer and more considered.",
+    type: "Practice tool",
+    status: "Concept",
+    usefulFor: "Structuring early project information",
+    form: "Onboarding template concept",
     image: clientOnboardingImage,
-    imagePosition: "center"
-  }
+    imagePosition: "center",
+  },
 ];
 
 export const systemsUseCases = [
   {
     audience: "Founders",
     need: "Clarify the identity before investing in expression.",
-    fit: "Foundation systems + direction kits"
+    fit: "Prompt systems + direction kits",
   },
   {
     audience: "Artists & writers",
     need: "Give an emerging world a stronger internal logic.",
-    fit: "Creative tools + worldbuilding systems"
+    fit: "Reference frameworks + direction kits",
   },
   {
-    audience: "Creative studios",
+    audience: "Creative teams",
     need: "Create repeatable structure without making the work generic.",
-    fit: "Direction kits + output systems"
+    fit: "Direction kits + practice tools",
   },
   {
     audience: "Independent makers",
     need: "Move from scattered references to a coherent next step.",
-    fit: "Prompts + focused modules"
-  }
+    fit: "Prompt systems + reference frameworks",
+  },
 ] as const;
 
 export const systemPathway: Array<{
@@ -185,33 +172,33 @@ export const systemPathway: Array<{
   icon: OrbitalVariant;
 }> = [
   {
-    title: "Session",
-    description: "Find the signal and name what needs to become clear.",
-    icon: "signalBridge"
+    title: "Notice",
+    description: "Name the question, tension, or inconsistency that needs attention.",
+    icon: "signalBridge",
   },
   {
-    title: "System",
-    description: "Use prompts, tools, and frameworks to make the signal usable.",
-    icon: "focusDial"
+    title: "Explore",
+    description: "Use a prompt or reference framework to make the underlying signals visible.",
+    icon: "focusDial",
   },
   {
-    title: "Identity Kit",
-    description: "Translate the direction into a coherent visual and verbal language.",
-    icon: "prismMirror"
+    title: "Shape",
+    description: "Turn the useful findings into a clearer direction or decision.",
+    icon: "prismMirror",
   },
   {
-    title: "World",
-    description: "Carry the identity into an atmosphere people can recognise and enter.",
-    icon: "haloGate"
-  }
+    title: "Apply",
+    description: "Carry the direction into the brand, product, experience, or project itself.",
+    icon: "haloGate",
+  },
 ];
 
 export const systemsClosing = {
-  title: "Built for creators who care about depth, clarity, and coherence.",
+  title: "Use the right level of system for the work.",
   description:
-    "Choose a focused tool, begin with a session, or shape a larger system around the work.",
+    "Explore experimental creative tools here. For custom software, integrations, workflow automation, or selective AI implementation, see Systems & Automation under Services.",
   cta: {
-    label: "Explore the right system",
-    href: "/contact"
-  }
+    label: "Explore Systems & Automation",
+    href: "/services",
+  },
 } as const;

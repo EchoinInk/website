@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 import { ArchiveConstellation } from '@/components/archive/ArchiveConstellation';
 import { ArchiveIndexList } from '@/components/archive/ArchiveIndexList';
@@ -11,7 +12,6 @@ import { CTASection } from '@/components/sections/CTASection';
 import { PageSectionHero } from '@/components/sections/PageSectionHero';
 import { Button } from '@/components/ui/Button';
 import { EchoCard } from '@/components/ui/EchoCard';
-import { EchoSelect } from '@/components/ui/EchoSelect';
 import { FilterBar } from '@/components/ui/FilterBar';
 import { IconWell } from '@/components/ui/IconWell';
 import { OrbitalVisual } from '@/components/ui/OrbitalVisual';
@@ -24,9 +24,7 @@ import {
   archiveIndex,
   archiveNotes,
   archivePhilosophy,
-  archiveSortOptions,
   type ArchiveFilter,
-  type ArchiveSort,
 } from '@/data/archiveContent';
 import archiveImageDesktop from '@/assets/imagery/hero/archive-hero-nebula-spiral-desktop.webp';
 import archiveImageMobile from '@/assets/imagery/hero/archive-hero-nebula-spiral-mobile.webp';
@@ -77,45 +75,49 @@ function scrollToArchiveIndex() {
 const archivePathways = archiveFilters.filter((filter) => filter !== 'All');
 
 export function ArchivePage() {
+  const { pathname } = useLocation();
+  const prefersReducedMotion = useReducedMotion();
   const [activeFilter, setActiveFilter] = useState<ArchiveFilter>('All');
-  const [sortBy, setSortBy] = useState<ArchiveSort>('Latest');
   const visibleEntries =
     activeFilter === 'All'
       ? archiveIndex
       : archiveIndex.filter((entry) => entry.category === activeFilter);
 
   return (
-    <PageShell atmosphere="default" theme="deep" withTopSpacing={false} className="ei-archive-page">
+    <PageShell atmosphere="default" theme="light" withTopSpacing={false} className="ei-archive-page">
       <Helmet>
-        <title>Archive — Echo in Ink</title>
+        <title>{pathname === '/insights' ? 'Insights & The Archive' : 'The Archive'} — Echo in Ink</title>
         <meta name="description" content={archiveHero.description} />
       </Helmet>
 
       <PageSectionHero
-  eyebrow={archiveHero.eyebrow}
-  title="Thoughts. Notes. Worlds."
-  italicWord="Worlds."
-  description={archiveHero.description}
-  image={archiveImageDesktop}
-  mobileImage={archiveImageMobile}
-  imageAlt="Dark cinematic living archive with luminous fragments, constellation threads, and nebula-like ink clouds"
-  align="left"
-  
-  ctaLabel="Browse the Archive"
-  ctaHref="#archive-index"
-  secondaryCtaLabel="Open the index"
-  secondaryCtaHref="/archive/map"
-/>
+        eyebrow={archiveHero.eyebrow}
+        title={archiveHero.title}
+        italicWord="observations."
+        description={archiveHero.description}
+        image={archiveImageDesktop}
+        mobileImage={archiveImageMobile}
+        imageAlt="Luminous fragments and constellation threads marking Echo in Ink's editorial collection"
+        align="left"
+        theme="light"
+        tone="editorial"
+        ctaLabel="Explore The Archive"
+        ctaHref="#archive-index"
+        secondaryCtaLabel="Open the index"
+        secondaryCtaHref="/archive/map"
+        headingId="insights-heading"
+      />
 
       <Section
         id="archive-featured"
         spacing="none"
+        theme="light"
         className="ei-archive-section ei-archive-featured-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -132,7 +134,7 @@ export function ArchivePage() {
 
                   <div className="ei-archive-card-meta ei-type-meta">
                     <span>{archiveFeatured.category}</span>
-                    <span>{archiveFeatured.readTime}</span>
+                    <span>{archiveFeatured.format}</span>
                   </div>
 
                   <motion.h2 variants={blurEmergence}>
@@ -154,11 +156,11 @@ export function ArchivePage() {
         </Container>
       </Section>
 
-      <Section spacing="none" className="ei-archive-section ei-archive-categories">
+      <Section theme="lightElevated" spacing="none" className="ei-archive-section ei-archive-categories">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -168,8 +170,8 @@ export function ArchivePage() {
               <div>
                 <h2 className="ei-type-editorial-heading">Follow a subject, or follow the signal.</h2>
                 <p className="ei-type-body-editorial">
-                  Essays hold the longer argument. Notes and fragments keep the unfinished edges
-                  visible. Case signals show where ideas became form.
+                  Essays hold the longer argument. Studio notes keep shorter observations and
+                  unfinished edges visible.
                 </p>
               </div>
             </motion.div>
@@ -195,17 +197,9 @@ export function ArchivePage() {
                     </div>
                     <strong>{pathway}</strong>
                     <p className="ei-type-body-editorial">
-                      {pathway === 'Philosophy'
-  ? 'Long-form arguments, atmospheric theory, and the deeper logic beneath the work.'
-  : pathway === 'Notes'
-    ? 'Studio fragments, observations, and unfinished edges.'
-    : pathway === 'Worldbuilding'
-      ? 'Creative worlds, narrative systems, and the environments ideas belong inside.'
-      : pathway === 'Case Fragments'
-        ? 'Where ideas became visual, strategic, or emotional form.'
-        : pathway === 'Experiments'
-          ? 'Tests, prototypes, prompts, and partial forms still becoming useful.'
-          : 'Reusable tools, structures, and frameworks for building with more clarity.'}
+                      {pathway === 'Essays'
+                        ? 'Long-form arguments about atmosphere, meaning, and the deeper logic beneath the work.'
+                        : 'Short studio observations on identity, atmosphere, and memory.'}
                     </p>
                   </EchoCard>
                 );
@@ -220,31 +214,17 @@ export function ArchivePage() {
                 ariaLabel="Filter archive entries by category"
                 tone="editorial"
                 className="ei-archive-filter-bar"
-                sort={
-                  <EchoSelect
-                    id="archive-sort"
-                    name="archive-sort"
-                    label="Order"
-                    variant="editorial"
-                    value={sortBy}
-                    options={[...archiveSortOptions]}
-                    onChange={(event) =>
-                      setSortBy((event.target.value || 'Latest') as ArchiveSort)
-                    }
-                    className="ei-archive-sort"
-                  />
-                }
               />
             </motion.div>
           </motion.div>
         </Container>
       </Section>
 
-      <Section spacing="none" className="ei-archive-section ei-archive-notes-section">
+      <Section theme="lightElevated" spacing="none" className="ei-archive-section ei-archive-notes-section">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -267,7 +247,7 @@ export function ArchivePage() {
                     <div className="ei-archive-note-topline ei-type-meta">
                       <span>{String(index + 1).padStart(2, '0')}</span>
                       <span>
-                        {note.category} · {note.readTime}
+                        {note.thread} · {note.format}
                       </span>
                     </div>
 
@@ -288,7 +268,7 @@ export function ArchivePage() {
                     </h3>
                     <p className="ei-type-body-editorial">{note.excerpt}</p>
 
-                    <Button to="/archive/notes" variant="tertiary">
+                    <Button to={`/archive/notes#${note.id}`} variant="tertiary">
                       {note.action} <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
                     </Button>
                   </EchoCard>
@@ -302,12 +282,14 @@ export function ArchivePage() {
       <Section
         id="archive-index"
         spacing="none"
+        theme="mist"
+        transitionTo="atmospheric"
         className="ei-archive-section ei-archive-index-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -339,11 +321,11 @@ export function ArchivePage() {
         </Container>
       </Section>
 
-      <Section spacing="none" className="ei-archive-section ei-archive-philosophy-section">
+      <Section theme="atmospheric" spacing="none" className="ei-archive-section ei-archive-philosophy-section">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -365,6 +347,7 @@ export function ArchivePage() {
 
       <CTASection
         variant="editorialInvitation"
+        theme="deep"
         eyebrow="Follow the signal"
         heading={archiveCta.title}
         body={archiveCta.description}

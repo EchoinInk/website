@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 import archiveEssayDesktop from '@/assets/imagery/hero/essay-hero-atmosphere-wave-desktop.webp';
 import archiveEssayMobile from '@/assets/imagery/hero/essay-hero-atmosphere-wave-mobile.webp';
@@ -13,8 +13,10 @@ import { archiveFeatured, archiveNotes } from '@/data/archiveContent';
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from '@/lib/motion-cinematic';
 
 export function ArchiveEssayPage() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <PageShell atmosphere="default" theme="deep" withTopSpacing={false} className="ei-editorial-page">
+    <PageShell atmosphere="default" theme="light" withTopSpacing={false} className="ei-editorial-page">
       <Helmet>
         <title>Atmosphere is information — Echo in Ink</title>
         <meta name="description" content={archiveFeatured.excerpt} />
@@ -22,13 +24,13 @@ export function ArchiveEssayPage() {
 
       <EditorialArticleLayout
         className="ei-essay-page"
-        eyebrow="Archive · Essay"
+        eyebrow="The Archive · Essay"
         title="Atmosphere is information."
         subtitle="Before an audience understands what something means, they have already felt what kind of world they have entered."
         metadata={
           <div className="ei-editorial-meta-row ei-type-meta">
             <span>{archiveFeatured.category}</span>
-            <span>{archiveFeatured.readTime}</span>
+            <span>{archiveFeatured.format}</span>
             <span>Echo in Ink</span>
           </div>
         }
@@ -49,11 +51,11 @@ export function ArchiveEssayPage() {
         }
         footer={
           <>
-            <section className="ei-essay-related" aria-labelledby="essay-related-heading">
+            <section data-theme="lightElevated" className="ei-essay-related" aria-labelledby="essay-related-heading">
               <div className="ei-content-frame ei-content-frame-standard ei-content-frame-gutters">
                 <motion.div
                   variants={staggerContainer(STAGGER.normal, 0)}
-                  initial="hidden"
+                  initial={prefersReducedMotion ? false : "hidden"}
                   whileInView="visible"
                   viewport={VIEWPORT.normal}
                 >
@@ -65,7 +67,7 @@ export function ArchiveEssayPage() {
                     {archiveNotes.map((note) => (
                       <motion.div key={note.id} variants={fadeSoft}>
                         <EchoCard variant="interactive" padding="lg" className="ei-editorial-related-card">
-                          <span className="ei-type-meta">{note.thread} · {note.readTime}</span>
+                          <span className="ei-type-meta">{note.thread} · {note.format}</span>
                           <h3>{note.title}</h3>
                           <p className="ei-type-body-editorial">{note.excerpt}</p>
                           <Button to="/archive/notes" variant="tertiary">
@@ -80,12 +82,13 @@ export function ArchiveEssayPage() {
             </section>
             <CTASection
               variant="editorialInvitation"
+              theme="deep"
               eyebrow="Return to the field"
               heading="Follow the thought back into the Archive."
               body="Continue through essays, notes, fragments, and recurring themes."
               actions={
                 <>
-                  <Button to="/archive" variant="primary">Back to Archive</Button>
+                  <Button to="/insights" variant="primary">Back to Insights</Button>
                   <Button to="/archive/map" variant="secondary">Open the index</Button>
                 </>
               }

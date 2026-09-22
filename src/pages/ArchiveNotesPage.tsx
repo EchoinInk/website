@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 import archiveImageDesktop from "@/assets/imagery/hero/notes-hero-light-ribbon-desktop.webp";
 import archiveImageMobile from "@/assets/imagery/hero/notes-hero-light-ribbon-mobile.webp";
@@ -46,10 +48,25 @@ function scrollToSection(id: string) {
 }
 
 export function ArchiveNotesPage() {
+  const { hash } = useLocation();
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!hash) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      const target = document.getElementById(hash.slice(1));
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [hash]);
+
   return (
     <PageShell
       atmosphere="default"
-      theme="deep"
+      theme="light"
       withTopSpacing={false}
       className="ei-editorial-page ei-notes-page"
     >
@@ -62,30 +79,33 @@ export function ArchiveNotesPage() {
       </Helmet>
 
      <PageSectionHero
-  eyebrow="Notes"
-  title="Fragments from the studio."
-  italicWord="studio."
-  description="Short essays, observations, and working fragments on identity, atmosphere, systems, and emotional design."
-  image={archiveImageDesktop}
-  mobileImage={archiveImageMobile}
-  imageAlt="Dark cinematic editorial notebook scene with annotated fragments and a soft luminous ribbon"
-  align="left"
-  
-  ctaLabel="Read the latest note"
-  ctaHref="#latest-note"
-  secondaryCtaLabel="Work with the studio"
-  secondaryCtaHref="/contact"
-/>
+        eyebrow="The Archive · Notes"
+        title="Short observations from the studio."
+        italicWord="studio."
+        description="Three concise notes on identity, atmosphere, and memory—presented as working observations rather than dated publications."
+        image={archiveImageDesktop}
+        mobileImage={archiveImageMobile}
+        imageAlt="Editorial notebook fragments connected by a soft luminous ribbon"
+        align="left"
+        theme="light"
+        tone="editorial"
+        ctaLabel="Read the first note"
+        ctaHref="#identity-is-not-decoration"
+        secondaryCtaLabel="Open the index"
+        secondaryCtaHref="/archive/map"
+        headingId="archive-notes-heading"
+      />
 
       <Section
         id="featured-note"
         spacing="none"
+        theme="light"
         className="ei-editorial-page-section ei-notes-featured-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={blurEmergence}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -109,7 +129,7 @@ export function ArchiveNotesPage() {
                 <SectionLabel label="Featured note" index="02" tone="accent" />
 
                 <span className="ei-type-meta">
-                  {archiveNotes[0].thread} · {archiveNotes[0].readTime}
+                  {archiveNotes[0].thread} · {archiveNotes[0].format}
                 </span>
 
                 <h2>{archiveNotes[0].title}</h2>
@@ -129,12 +149,13 @@ export function ArchiveNotesPage() {
 
       <Section
         spacing="none"
+        theme="lightElevated"
         className="ei-editorial-page-section ei-notes-preview-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -158,7 +179,7 @@ export function ArchiveNotesPage() {
                     <div className="ei-notes-preview-topline ei-type-meta">
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <span>
-                        {note.thread} · {note.readTime}
+                        {note.thread} · {note.format}
                       </span>
                     </div>
 
@@ -182,12 +203,13 @@ export function ArchiveNotesPage() {
       <Section
         id="recent-notes"
         spacing="none"
+        theme="lightElevated"
         className="ei-editorial-page-section ei-notes-recent-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -225,7 +247,7 @@ export function ArchiveNotesPage() {
 
                   <div className="ei-notes-row-copy">
                     <span className="ei-type-meta">
-                      {note.thread} · {note.readTime}
+                      {note.thread} · {note.format}
                     </span>
                     <h3>{note.title}</h3>
                     <p className="ei-type-body-editorial">{note.excerpt}</p>
@@ -239,12 +261,13 @@ export function ArchiveNotesPage() {
 
       <Section
         spacing="none"
+        theme="mist"
         className="ei-editorial-page-section ei-notes-threads-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -276,12 +299,14 @@ export function ArchiveNotesPage() {
 
       <Section
         spacing="none"
+        theme="mist"
+        transitionTo="deep"
         className="ei-editorial-page-section ei-notes-index-section"
       >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.normal, 0)}
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
@@ -306,13 +331,14 @@ export function ArchiveNotesPage() {
 
       <CTASection
         variant="editorialInvitation"
+        theme="deep"
         eyebrow="Keep following"
         heading="Notes are one path through the Archive."
         body="Move into longer essays, case fragments, systems thinking, and worldbuilding."
         actions={
           <>
-            <Button to="/archive" variant="primary">
-              Enter the Archive
+            <Button to="/insights" variant="primary">
+              Return to Insights
             </Button>
             <Button to="/archive/map" variant="secondary">
               Open the index

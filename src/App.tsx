@@ -27,7 +27,7 @@ const OrbitalsPage = lazy(() =>
 );
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })));
 
-function AppRoutes() {
+export function AppRoutes() {
   const location = useLocation();
 
   return (
