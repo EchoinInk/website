@@ -16,7 +16,7 @@ export function HomeStartHere() {
   return (
     <Section
       theme="light"
-      transitionTo="atmospheric"
+      transitionTo="light"
       spacing="none"
       className="ei-home-engagements"
       aria-labelledby="home-engagements-heading"
@@ -33,7 +33,7 @@ export function HomeStartHere() {
             <SectionLabel label="Ways to Work Together" tone="accent" />
             <div>
               <h2 id="home-engagements-heading" className="ei-type-section-heading">
-                Choose the shape that fits the work.
+                Choose the shape that fits the problem.
               </h2>
               <p className="ei-home-section-intro">
                 Each engagement can stand on its own. Start with the level of focus and momentum

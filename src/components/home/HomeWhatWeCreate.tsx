@@ -40,7 +40,7 @@ export function WhatWeCreate({
   return (
     <Section
       theme="lightElevated"
-      transitionTo="atmospheric"
+      transitionTo="light"
       spacing="none"
       className="ei-home-capabilities"
       aria-labelledby="home-capabilities-heading"
@@ -57,7 +57,7 @@ export function WhatWeCreate({
             <SectionLabel label="What Echo Does" tone="accent" />
             <div>
               <h2 id="home-capabilities-heading" className="ei-type-section-heading">
-                From idea to real-world impact.
+                Four connected areas of practice.
               </h2>
               <p className="ei-home-section-intro">
                 Strategy, design and development are shaped together, so the idea and the thing

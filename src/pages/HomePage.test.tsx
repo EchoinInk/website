@@ -49,7 +49,7 @@ describe("homepage reference implementation", () => {
     });
   });
 
-  it("publishes the semantic section rhythm and keeps project provenance explicit", () => {
+  it("publishes the semantic section rhythm and current flagship selection", () => {
     const { container } = renderHomePage();
     const sections = Array.from(
       container.querySelectorAll<HTMLElement>(".ei-home-page > div > .ei-section"),
@@ -58,31 +58,29 @@ describe("homepage reference implementation", () => {
     expect(sections.map((section) => section.dataset.theme)).toEqual([
       "light",
       "lightElevated",
-      "atmospheric",
+      "mist",
       "light",
-      "atmospheric",
+      "mist",
       "light",
-      "deep",
+      "mist",
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
-      "atmospheric",
       "light",
-      "atmospheric",
       "light",
-      "deep",
+      "light",
+      "light",
+      "light",
       undefined,
     ]);
 
     const selectedWork = container.querySelector<HTMLElement>(".ei-home-selected-work")!;
-    expect(selectedWork.querySelectorAll(".ei-works-project-card")).toHaveLength(3);
-    selectedWork.querySelectorAll("img").forEach((image) => {
-      expect(image).toHaveAttribute("alt", "");
-      expect(image).toHaveAttribute("aria-hidden", "true");
-    });
-    expect(within(selectedWork).getAllByText("Concept Project").length).toBeGreaterThan(0);
-    expect(within(selectedWork).getAllByText("Prototype").length).toBeGreaterThan(0);
-    expect(within(selectedWork).getAllByText("Exploratory Study").length).toBeGreaterThan(0);
+    expect(selectedWork.querySelectorAll(".ei-home-flagship-card")).toHaveLength(2);
+    expect(within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" })).toBeInTheDocument();
+    expect(within(selectedWork).getByRole("heading", { level: 3, name: "Codexia" })).toBeInTheDocument();
+    expect(within(selectedWork).queryByText("Aurora Payments")).not.toBeInTheDocument();
+    expect(within(selectedWork).queryByText("Obsidian")).not.toBeInTheDocument();
+    expect(within(selectedWork).queryByText("Verde")).not.toBeInTheDocument();
 
     const lumo = container.querySelector<HTMLElement>(".ei-home-lumo")!;
     expect(within(lumo).getByText("Independent Product")).toBeInTheDocument();

@@ -146,7 +146,7 @@ export function Header() {
             <img
               src={wordmark}
               alt=""
-              className="h-3.5 w-auto opacity-75 transition-[filter,opacity] duration-500 group-hover:opacity-95 md:h-4"
+              className="h-[1.05rem] w-auto opacity-85 transition-[filter,opacity] duration-500 group-hover:opacity-100 md:h-[1.2rem]"
               style={{ filter: "var(--ei-header-logo-filter)" }}
             />
           </Link>
@@ -249,7 +249,7 @@ export function Header() {
             role="dialog"
             aria-modal="true"
             aria-labelledby={mobileMenuTitleId}
-            data-theme="deep"
+            data-theme="light"
             data-reduced-motion={prefersReducedMotion ? "true" : undefined}
             initial={prefersReducedMotion ? false : { opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -259,9 +259,9 @@ export function Header() {
               fixed left-0 right-0 top-0 z-[60]
               max-h-[82dvh] overflow-y-auto
               rounded-b-[28px]
-              border-b border-[rgb(var(--ei-ice-white-rgb)/0.1)]
-              bg-[rgb(var(--ei-void-rgb)/0.96)]
-              shadow-[0_32px_120px_rgb(0_0_0/0.58)]
+              border-b border-[var(--ei-theme-border)]
+              bg-[color-mix(in_srgb,var(--ei-surface-base)_96%,transparent)]
+              shadow-[0_24px_70px_rgb(var(--ei-moonlight-ink-rgb)/0.14)]
               backdrop-blur-xl
               md:hidden
             "
@@ -271,7 +271,7 @@ export function Header() {
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 80% 50% at 72% 18%, rgb(var(--ei-violet-rgb) / 0.16) 0%, transparent 62%), radial-gradient(ellipse 60% 42% at 22% 82%, rgb(var(--ei-halo-blue-rgb) / 0.1) 0%, transparent 64%)"
+                  "radial-gradient(ellipse 80% 50% at 72% 18%, color-mix(in srgb, var(--ei-theme-link) 9%, transparent) 0%, transparent 62%), radial-gradient(ellipse 60% 42% at 22% 82%, color-mix(in srgb, var(--ei-theme-focus) 7%, transparent) 0%, transparent 64%)"
               }}
             />
 
@@ -280,7 +280,7 @@ export function Header() {
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgb(var(--ei-void-rgb) / 0.74) 0%, rgb(var(--ei-void-rgb) / 0.96) 100%)"
+                  "linear-gradient(180deg, color-mix(in srgb, var(--ei-surface-base) 86%, transparent) 0%, var(--ei-surface-soft) 100%)"
               }}
             />
 
@@ -291,7 +291,7 @@ export function Header() {
                 onClick={closeMenu}
                 className="ei-focus-rounded inline-flex min-h-[44px] items-center rounded-sm"
               >
-                <img src={wordmark} alt="" className="h-3.5 w-auto opacity-80" />
+                <img src={wordmark} alt="" className="h-[1.05rem] w-auto opacity-90 [filter:var(--ei-header-logo-filter)]" />
               </Link>
 
               <button

@@ -15,7 +15,7 @@ import {
 export function ClosingSection() {
   return (
     <Section
-      theme="deep"
+      theme="mist"
       spacing="none"
       className="ei-home-closing"
       aria-labelledby="home-closing-heading"

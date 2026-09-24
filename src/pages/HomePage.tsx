@@ -15,6 +15,7 @@ export function HomePage() {
       description="Echo in Ink brings strategy, design and development together to create thoughtful brands, websites, digital products and systems."
       atmosphere="default"
       theme="light"
+      footerTheme="light"
       withTopSpacing={false}
       className="ei-home-page"
     >

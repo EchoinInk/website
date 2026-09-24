@@ -13,10 +13,14 @@ import {
   VIEWPORT,
 } from "@/system/motion/cinematic";
 
-export default function Footer() {
+interface FooterProps {
+  theme?: "light" | "deep";
+}
+
+export default function Footer({ theme = "deep" }: FooterProps) {
   return (
     <footer
-      data-theme="deep"
+      data-theme={theme}
       className="ei-footer relative overflow-hidden bg-[var(--ei-color-background-canvas)] pb-0 text-[var(--ei-color-text-primary)]"
     >
       {/* Top boundary */}
@@ -25,7 +29,7 @@ export default function Footer() {
         className="pointer-events-none absolute left-0 right-0 top-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent 0%, rgb(var(--ei-ice-white-rgb) / 0.06) 30%, rgb(var(--ei-ice-white-rgb) / 0.08) 50%, rgb(var(--ei-ice-white-rgb) / 0.06) 70%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, var(--ei-theme-border) 30%, var(--ei-theme-border) 70%, transparent 100%)",
         }}
       />
 
@@ -35,7 +39,7 @@ export default function Footer() {
         className="pointer-events-none absolute left-1/2 top-0 h-[50%] w-[50%] -translate-x-1/2"
         style={{
           background:
-            "radial-gradient(ellipse 50% 50% at 50% 0%, rgb(113 7 234 / 0.035) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 50% at 50% 0%, color-mix(in srgb, var(--ei-theme-link) 7%, transparent) 0%, transparent 70%)",
           filter: "blur(80px)",
         }}
       />
@@ -147,7 +151,7 @@ export default function Footer() {
             ease: EASE_LUXURY,
             delay: 0.16,
           }}
-          className="border-t border-[rgb(var(--ei-ice-white-rgb)/0.055)] py-5"
+          className="border-t border-[var(--ei-theme-border)] py-5"
         >
           <span className="ei-type-footer-label mb-3 block font-mono text-[9px] uppercase tracking-[0.22em]">
             Explore deeper
@@ -185,7 +189,7 @@ export default function Footer() {
             className="mb-5 h-px w-full"
             style={{
               background:
-                "linear-gradient(90deg, transparent 0%, rgb(var(--ei-ice-white-rgb) / 0.04) 25%, rgb(var(--ei-ice-white-rgb) / 0.05) 50%, rgb(var(--ei-ice-white-rgb) / 0.04) 75%, transparent 100%)",
+                "linear-gradient(90deg, transparent 0%, var(--ei-theme-border) 25%, var(--ei-theme-border) 75%, transparent 100%)",
             }}
           />
 

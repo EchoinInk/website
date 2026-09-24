@@ -16,7 +16,7 @@ export function Philosophy() {
   return (
     <Section
       theme="light"
-      transitionTo="deep"
+      transitionTo="light"
       spacing="none"
       className="ei-home-studio"
       aria-labelledby="home-studio-heading"

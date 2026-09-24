@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
 
-import { ProjectCard } from "@/components/cards/ProjectCard";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { worksProjects } from "@/data/worksProjects";
+import codexiaHome from "@/assets/projects/codexia-home.png";
+import keystoneHome from "@/assets/projects/keystone-home.png";
 import {
   driftUp,
-  fadeSoft,
   staggerContainer,
   STAGGER,
   VIEWPORT,
 } from "@/lib/motion-cinematic";
 
-const selectedProjects = worksProjects
-  .filter((project) => !project.featured)
-  .slice(0, 3);
+const selectedProjects = [
+  { name: "Keystone", image: keystoneHome },
+  { name: "Codexia", image: codexiaHome },
+] as const;
 
 export function HomeSelectedWork() {
   return (
     <Section
-      theme="atmospheric"
+      theme="mist"
       transitionTo="light"
       spacing="none"
       className="ei-home-selected-work"
@@ -42,17 +42,34 @@ export function HomeSelectedWork() {
                 Selected Work
               </h2>
               <p className="ei-home-section-intro">
-                A selection of independent concepts and prototype studies showing how strategy,
-                identity and digital experience come together.
+                Current flagship work from Echo in Ink.
               </p>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeSoft} className="ei-home-selected-grid">
+          <div className="ei-home-selected-grid">
             {selectedProjects.map((project, index) => (
-              <ProjectCard key={project.title} {...project} index={index} />
+              <motion.article
+                key={project.name}
+                variants={driftUp}
+                className="ei-home-flagship-card"
+                data-project={project.name.toLowerCase()}
+              >
+                <div className="ei-home-flagship-visual">
+                  <img
+                    src={project.image}
+                    alt={`${project.name} project interface`}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="ei-home-flagship-meta">
+                  <span>Selected work</span>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <h3>{project.name}</h3>
+              </motion.article>
             ))}
-          </motion.div>
+          </div>
 
           <motion.div variants={driftUp} className="ei-home-section-action">
             <Button to="/works" variant="secondary">

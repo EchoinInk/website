@@ -57,7 +57,7 @@ export function LumoCaseStudyTeaser() {
 
   return (
     <Section
-      theme="atmospheric"
+      theme="mist"
       transitionTo="light"
       spacing="none"
       className="ei-home-lumo relative overflow-hidden"
@@ -213,17 +213,15 @@ export function LumoCaseStudyTeaser() {
 
           <motion.div
             variants={driftUp}
-            className="mt-5 flex flex-wrap items-center gap-y-2 md:justify-end"
+            className="ei-home-lumo-disciplines flex flex-wrap items-center md:justify-end"
           >
             {disciplines.map((tag, i) => (
               <span key={tag} className="flex items-center">
-                <span className="ei-type-studio-label tracking-[0.18em]">
-                  {tag}
-                </span>
+                <span className="ei-home-lumo-discipline">{tag}</span>
 
                 {i < disciplines.length - 1 && (
-                  <span className="mx-4 font-mono text-[10px] text-[var(--ei-color-text-faint)]">
-                    +
+                  <span aria-hidden="true" className="ei-home-lumo-discipline-separator">
+                    ·
                   </span>
                 )}
               </span>

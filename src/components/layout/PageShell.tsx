@@ -24,6 +24,7 @@ interface PageShellProps {
   className?: string;
   id?: string;
   withFooter?: boolean;
+  footerTheme?: 'light' | 'deep';
   withTopSpacing?: boolean;
 }
 
@@ -58,6 +59,7 @@ export function PageShell({
   className = '',
   id = 'main-content',
   withFooter = true,
+  footerTheme = 'deep',
   withTopSpacing = true,
 }: PageShellProps) {
   const { pathname } = useLocation();
@@ -117,7 +119,7 @@ export function PageShell({
       <div className="relative z-10">{children}</div>
 
       {/* Footer */}
-      {withFooter && <Footer />}
+      {withFooter && <Footer theme={footerTheme} />}
     </main>
   );
 }
