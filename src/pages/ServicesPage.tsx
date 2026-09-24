@@ -159,7 +159,7 @@ export function ServicesPage() {
       <Section
         id="ways-to-work"
         theme="mist"
-        transitionTo="deep"
+        transitionTo="lightElevated"
         spacing="none"
         className="ei-services-engagements"
         aria-labelledby="services-engagements-heading"
@@ -219,7 +219,7 @@ export function ServicesPage() {
         </Container>
       </Section>
 
-      <Section theme="deep" spacing="none" className="ei-services-closing">
+      <Section theme="lightElevated" spacing="none" className="ei-services-closing">
         <CTASection
           variant="editorialInvitation"
           eyebrow="Begin with the work"

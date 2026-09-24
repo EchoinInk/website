@@ -13,7 +13,12 @@ const spacingMap = {
 } as const;
 
 type SectionSpacing = keyof typeof spacingMap;
-export type SectionTransitionTarget = "light" | "atmospheric" | "deep";
+export type SectionTransitionTarget =
+  | "light"
+  | "lightElevated"
+  | "mist"
+  | "atmospheric"
+  | "deep";
 
 interface SectionProps extends Omit<HTMLAttributes<HTMLElement>, "children" | "id" | "className"> {
   children: ReactNode;

@@ -223,7 +223,7 @@ export function ContactPage() {
       <Section
         id="contact-form"
         theme="mist"
-        transitionTo="deep"
+        transitionTo="lightElevated"
         spacing="none"
         className="ei-contact-form-section"
         aria-labelledby="contact-form-heading"
@@ -430,7 +430,7 @@ export function ContactPage() {
       </Section>
 
       <Section
-        theme="deep"
+        theme="lightElevated"
         spacing="none"
         className="ei-contact-reassurance"
         aria-labelledby="contact-alternative-heading"

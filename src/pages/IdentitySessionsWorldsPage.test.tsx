@@ -111,10 +111,10 @@ describe("Phase 7 capability and engagement contracts", () => {
     const identity = renderPage(<IdentityPage />);
     expect(directThemes(identity.container, "ei-identity-page")).toEqual([
       { theme: "light", transitionTo: undefined },
-      { theme: "lightElevated", transitionTo: "atmospheric" },
-      { theme: "atmospheric", transitionTo: "light" },
-      { theme: "mist", transitionTo: "deep" },
-      { theme: "deep", transitionTo: undefined },
+      { theme: "lightElevated", transitionTo: "mist" },
+      { theme: "mist", transitionTo: "light" },
+      { theme: "light", transitionTo: "lightElevated" },
+      { theme: "lightElevated", transitionTo: undefined },
     ]);
     identity.unmount();
 
@@ -122,20 +122,20 @@ describe("Phase 7 capability and engagement contracts", () => {
     expect(directThemes(sessions.container, "ei-sessions-page")).toEqual([
       { theme: "light", transitionTo: undefined },
       { theme: "lightElevated", transitionTo: undefined },
-      { theme: "mist", transitionTo: "atmospheric" },
-      { theme: "atmospheric", transitionTo: "light" },
-      { theme: "light", transitionTo: "deep" },
-      { theme: "deep", transitionTo: undefined },
+      { theme: "mist", transitionTo: "light" },
+      { theme: "light", transitionTo: "lightElevated" },
+      { theme: "lightElevated", transitionTo: "mist" },
+      { theme: "mist", transitionTo: undefined },
     ]);
     sessions.unmount();
 
     const worlds = renderPage(<WorldsPage />);
     expect(directThemes(worlds.container, "ei-worlds-page")).toEqual([
       { theme: "light", transitionTo: undefined },
-      { theme: "lightElevated", transitionTo: "atmospheric" },
-      { theme: "atmospheric", transitionTo: "light" },
-      { theme: "mist", transitionTo: "deep" },
-      { theme: "deep", transitionTo: undefined },
+      { theme: "lightElevated", transitionTo: "mist" },
+      { theme: "mist", transitionTo: "light" },
+      { theme: "light", transitionTo: "lightElevated" },
+      { theme: "lightElevated", transitionTo: undefined },
     ]);
   });
 });

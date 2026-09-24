@@ -86,16 +86,16 @@ describe("Phase 9 editorial, systems, and public-route contracts", () => {
       "lightElevated",
       "lightElevated",
       "mist",
-      "atmospheric",
-      "deep",
+      "lightElevated",
+      "mist",
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
       undefined,
       undefined,
       undefined,
-      "atmospheric",
-      undefined,
+      "lightElevated",
+      "mist",
       undefined,
     ]);
   });
@@ -133,11 +133,11 @@ describe("Phase 9 editorial, systems, and public-route contracts", () => {
     expect(sections.map((section) => section.dataset.theme)).toEqual([
       "light",
       "lightElevated",
-      "atmospheric",
       "mist",
-      "light",
       "lightElevated",
-      "deep",
+      "light",
+      "mist",
+      "lightElevated",
     ]);
   });
 

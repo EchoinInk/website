@@ -71,7 +71,7 @@ export function WorksPage() {
 
       <Section
         theme="lightElevated"
-        transitionTo="atmospheric"
+        transitionTo="mist"
         spacing="none"
         className="ei-works-reading-guide"
         aria-labelledby="works-reading-guide-heading"
@@ -117,7 +117,8 @@ export function WorksPage() {
       </Section>
 
       <Section
-        theme="atmospheric"
+        theme="mist"
+        transitionTo="light"
         spacing="none"
         className="ei-works-featured"
         aria-labelledby="works-featured-heading"
@@ -135,7 +136,7 @@ export function WorksPage() {
             </motion.div>
 
             <motion.div variants={fadeSoft}>
-              <EchoCard variant="proof" padding="none" className="ei-works-featured-panel">
+              <EchoCard variant="proof" padding="none" className="ei-works-featured-panel" data-theme="deep">
                 <div className="ei-works-featured-media">
                   <img src={lumoProject.image} alt="" aria-hidden="true" />
                   <div className="ei-works-featured-scrim" aria-hidden="true" />
@@ -167,7 +168,8 @@ export function WorksPage() {
 
       <Section
         id="selected-work"
-        theme="deep"
+        theme="light"
+        transitionTo="lightElevated"
         spacing="none"
         className="ei-works-collection-section"
         aria-labelledby="works-collection-heading"
@@ -202,9 +204,10 @@ export function WorksPage() {
         </Container>
       </Section>
 
-      <Section theme="deep" spacing="none" className="ei-works-closing">
+      <Section theme="lightElevated" spacing="none" className="ei-works-closing">
         <CTASection
           variant="editorialInvitation"
+          panelTheme="deep"
           eyebrow="Start something real"
           heading="Bring the challenge. Build the evidence."
           body="If the work needs strategy, design and technology to move together, tell Echo what you are trying to make."

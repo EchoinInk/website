@@ -886,7 +886,7 @@ export function BookingPage() {
 
       <Section
         theme="lightElevated"
-        transitionTo="deep"
+        transitionTo="mist"
         spacing="none"
         className="ei-booking-preparation"
       >
@@ -924,7 +924,7 @@ export function BookingPage() {
         </Container>
       </Section>
 
-      <Section theme="deep" spacing="none" className="ei-booking-closing">
+      <Section theme="mist" spacing="none" className="ei-booking-closing">
         <CTASection
           variant="editorialInvitation"
           eyebrow="A broader engagement"

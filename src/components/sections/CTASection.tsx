@@ -21,6 +21,7 @@ interface CTASectionProps {
   className?: string;
   headingId?: string;
   theme?: SemanticTheme;
+  panelTheme?: SemanticTheme;
 }
 
 export function CTASection({
@@ -35,6 +36,7 @@ export function CTASection({
   className,
   headingId = "echo-cta-heading",
   theme,
+  panelTheme,
 }: CTASectionProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -51,7 +53,7 @@ export function CTASection({
     >
       <Container size="xl" className="relative z-10">
         <div className="ei-layout-page-rail">
-          <div className="ei-cta-section-panel">
+          <div className="ei-cta-section-panel" data-theme={panelTheme}>
             {image ? <img className="ei-cta-section-image" src={image} alt={imageAlt} /> : null}
             {image ? <div className="ei-cta-section-scrim" aria-hidden="true" /> : null}
             <motion.div variants={driftUp} className="ei-cta-section-copy">

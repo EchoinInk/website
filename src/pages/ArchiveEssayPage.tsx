@@ -100,7 +100,8 @@ export function ArchiveEssayPage() {
             </section>
             <CTASection
               variant="editorialInvitation"
-              theme="deep"
+              theme="lightElevated"
+              panelTheme="deep"
               eyebrow="Return to the field"
               heading="Follow the thought back into the Archive."
               body="Continue through essays, notes, fragments, and recurring themes."

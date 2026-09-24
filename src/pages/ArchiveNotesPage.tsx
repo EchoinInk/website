@@ -293,7 +293,7 @@ export function ArchiveNotesPage() {
       <Section
         spacing="none"
         theme="mist"
-        transitionTo="deep"
+        transitionTo="lightElevated"
         className="ei-editorial-page-section ei-notes-index-section"
       >
         <Container size="xl" className="relative z-10">
@@ -324,7 +324,8 @@ export function ArchiveNotesPage() {
 
       <CTASection
         variant="editorialInvitation"
-        theme="deep"
+        theme="lightElevated"
+        panelTheme="deep"
         eyebrow="Keep following"
         heading="Notes are one path through the Archive."
         body="Move into longer essays, case fragments, systems thinking, and worldbuilding."

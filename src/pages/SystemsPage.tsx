@@ -67,7 +67,7 @@ export function SystemsPage() {
         id="systems-categories"
         spacing="none"
         theme="lightElevated"
-        transitionTo="atmospheric"
+        transitionTo="mist"
         className="ei-systems-section ei-systems-section-anchor ei-systems-categories"
       >
         <Container size="xl" className="relative z-10">
@@ -140,8 +140,8 @@ export function SystemsPage() {
       <Section
         id="featured-system"
         spacing="none"
-        theme="atmospheric"
-        transitionTo="light"
+        theme="mist"
+        transitionTo="lightElevated"
         className="ei-systems-section ei-systems-section-anchor ei-systems-featured-section"
       >
         <Container size="xl" className="relative z-10">
@@ -157,6 +157,7 @@ export function SystemsPage() {
                 variant="offer"
                 padding="none"
                 className="ei-systems-featured"
+                data-theme="deep"
               >
                 <div className="ei-systems-featured-copy">
                   <SectionLabel label="Featured system" index="03" />
@@ -233,7 +234,7 @@ export function SystemsPage() {
 
       <Section
         spacing="none"
-        theme="mist"
+        theme="lightElevated"
         className="ei-systems-section ei-systems-section-anchor ei-systems-modules"
       >
         <Container size="xl" className="relative z-10">
@@ -352,8 +353,8 @@ export function SystemsPage() {
 
       <Section
         spacing="none"
-        theme="lightElevated"
-        transitionTo="deep"
+        theme="mist"
+        transitionTo="lightElevated"
         className="ei-systems-section ei-systems-section-anchor ei-systems-pathway"
       >
         <Container size="xl" className="relative z-10">
@@ -395,7 +396,8 @@ export function SystemsPage() {
 
       <CTASection
         variant="imagePanel"
-        theme="deep"
+        theme="lightElevated"
+        panelTheme="deep"
         eyebrow="Keep the distinction clear"
         heading={
           <>
