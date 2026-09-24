@@ -189,7 +189,7 @@ function Reveal({ children, className }: { children: ReactNode; className?: stri
 
 function LumoRail({ activeId }: { activeId: string }) {
   return (
-    <aside className="ei-lumo-rail" data-theme="deep" aria-label="Lumo case study navigation">
+    <aside className="ei-lumo-rail" aria-label="Lumo case study navigation">
       <Link to="/" className="ei-lumo-rail-brand" aria-label="Echo in Ink home">
         <img src={monogram} alt="" aria-hidden="true" />
         <span>echo in ink</span>
@@ -227,7 +227,7 @@ function LumoMobileNav({ activeId }: { activeId: string }) {
   const current = railItems.find((item) => item.id === activeId) ?? railItems[0];
 
   return (
-    <div className="ei-lumo-mobile-nav" data-theme="deep">
+    <div className="ei-lumo-mobile-nav">
       <Link to="/" className="ei-lumo-mobile-brand" aria-label="Echo in Ink home">
         <img src={monogram} alt="" aria-hidden="true" />
         <span>Lumo selected work</span>
@@ -284,7 +284,7 @@ function LumoPanel({
 
 function LumoHeroPanel() {
   return (
-    <section id="hero" className="ei-lumo-dashboard-hero" data-theme="deep" aria-labelledby="lumo-hero-heading">
+    <section id="hero" className="ei-lumo-dashboard-hero" aria-labelledby="lumo-hero-heading">
       <div className="ei-lumo-stars" aria-hidden="true">
         <span />
         <span />
@@ -351,7 +351,7 @@ function LumoEvidencePanel() {
 
 function StudioBridgePanel() {
   return (
-    <section className="ei-lumo-studio-bridge" data-theme="deep" aria-labelledby="lumo-studio-bridge-heading">
+    <section className="ei-lumo-studio-bridge" aria-labelledby="lumo-studio-bridge-heading">
       <Reveal className="ei-lumo-studio-bridge-shell">
         <motion.div variants={driftUp} className="ei-lumo-studio-bridge-copy">
           <SectionKicker index="" label="Selected Work" />
@@ -597,7 +597,6 @@ function LumoStudioCTA() {
   return (
     <CTASection
       variant="editorialInvitation"
-      panelTheme="deep"
       eyebrow="Continue with Echo in Ink"
       heading={
         <>

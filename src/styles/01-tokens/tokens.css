@@ -379,8 +379,6 @@
 
     /* Semantic boundary canvases used by Section transitions. */
     --ei-transition-canvas-light: var(--ei-moonlight-canvas);
-    --ei-transition-canvas-light-elevated: var(--ei-surface-soft);
-    --ei-transition-canvas-mist: var(--ei-surface-lavender);
     --ei-transition-canvas-atmospheric: var(--ei-ink);
     --ei-transition-canvas-deep: var(--ei-ink);
     --ei-transition-depth: clamp(5rem, 10vw, 10rem);

@@ -159,9 +159,7 @@
     background-blend-mode: soft-light, normal, normal, normal;
   }
 
-  /* Preserve the homepage reference treatment; secondary pages rely on
-     tonal canvas changes without a boundary rule. */
-  .ei-home-page .ei-section[data-transition-to] + .ei-section[data-theme] {
+  .ei-section[data-transition-to] + .ei-section[data-theme] {
     box-shadow: inset 0 1px 0 var(--ei-color-background-canvas);
   }
 
@@ -169,18 +167,6 @@
     --ei-transition-canvas: var(--ei-transition-canvas-light);
     --ei-transition-accent: var(--ei-moonlight-violet);
     --ei-transition-focus-x: 30%;
-  }
-
-  .ei-section[data-transition-to="lightElevated"] {
-    --ei-transition-canvas: var(--ei-transition-canvas-light-elevated);
-    --ei-transition-accent: var(--ei-moonlight-violet);
-    --ei-transition-focus-x: 70%;
-  }
-
-  .ei-section[data-transition-to="mist"] {
-    --ei-transition-canvas: var(--ei-transition-canvas-mist);
-    --ei-transition-accent: var(--ei-moonlight-violet);
-    --ei-transition-focus-x: 42%;
   }
 
   .ei-section[data-transition-to="atmospheric"] {

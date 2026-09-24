@@ -1121,11 +1121,7 @@
   }
 
   /* Lumo dashboard case study redesign */
-  .ei-lumo-page {
-    background: var(--ei-surface-base);
-    overflow-x: clip;
-  }
-
+  .ei-lumo-page,
   .ei-lumo-case-study {
     background: var(--ei-ink);
     overflow-x: clip;

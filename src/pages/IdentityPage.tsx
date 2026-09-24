@@ -77,7 +77,7 @@ export function IdentityPage() {
 
       <Section
         theme="lightElevated"
-        transitionTo="mist"
+        transitionTo="atmospheric"
         spacing="none"
         className="ei-phase7-section ei-identity-capability"
         aria-labelledby="identity-capability-heading"
@@ -115,7 +115,7 @@ export function IdentityPage() {
       </Section>
 
       <Section
-        theme="mist"
+        theme="atmospheric"
         transitionTo="light"
         spacing="none"
         className="ei-phase7-section ei-identity-coherence"
@@ -131,7 +131,7 @@ export function IdentityPage() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeSoft} className="ei-identity-system-map" data-theme="deep">
+            <motion.div variants={fadeSoft} className="ei-identity-system-map">
               <div>
                 <span>Inputs</span>
                 {identityTransformation.signals.map((signal) => <p key={signal}>{signal}</p>)}
@@ -150,8 +150,8 @@ export function IdentityPage() {
       </Section>
 
       <Section
-        theme="light"
-        transitionTo="lightElevated"
+        theme="mist"
+        transitionTo="deep"
         spacing="none"
         className="ei-phase7-section ei-identity-method"
         aria-labelledby="identity-method-heading"
@@ -195,7 +195,7 @@ export function IdentityPage() {
         </Container>
       </Section>
 
-      <Section theme="lightElevated" spacing="none" className="ei-phase7-closing">
+      <Section theme="deep" spacing="none" className="ei-phase7-closing">
         <CTASection
           variant="editorialInvitation"
           eyebrow="Build a coherent identity"

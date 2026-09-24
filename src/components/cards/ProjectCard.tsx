@@ -86,7 +86,6 @@ export function ProjectCard({
         interactive={isLinked}
         padding="none"
         className="ei-works-project-card"
-        data-theme="deep"
         data-presentation={presentation}
         aria-label={!isLinked ? `${title} — ${classification.provenance}, ${classification.status}` : undefined}
       >

@@ -7,7 +7,7 @@ export function LumoPage() {
       title="Lumo — Echo in Ink"
       description="Lumo is an independent product prototype exploring calm planning, emotional safety and coherent digital expression."
       atmosphere="works"
-      theme="light"
+      theme="deep"
       footerTheme="light"
       footerVariant="compact"
       withTopSpacing={false}

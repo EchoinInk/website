@@ -60,7 +60,7 @@ export function WorldsPage() {
         headingId="worlds-heading"
       />
 
-      <Section theme="lightElevated" transitionTo="mist" spacing="none" className="ei-phase7-section ei-worlds-relationship" aria-labelledby="worlds-relationship-heading">
+      <Section theme="lightElevated" transitionTo="atmospheric" spacing="none" className="ei-phase7-section ei-worlds-relationship" aria-labelledby="worlds-relationship-heading">
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.div variants={driftUp} className="ei-phase7-heading">
@@ -88,7 +88,7 @@ export function WorldsPage() {
         </Container>
       </Section>
 
-      <Section theme="mist" transitionTo="light" spacing="none" className="ei-phase7-section ei-worlds-architecture" aria-labelledby="worlds-architecture-heading">
+      <Section theme="atmospheric" transitionTo="light" spacing="none" className="ei-phase7-section ei-worlds-architecture" aria-labelledby="worlds-architecture-heading">
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.div variants={driftUp} className="ei-phase7-heading">
@@ -104,7 +104,7 @@ export function WorldsPage() {
             <div className="ei-phase7-card-grid ei-worlds-layer-grid">
               {worldsLayers.items.map((layer, index) => (
                 <motion.div key={layer.title} variants={driftUp}>
-                  <EchoCard padding="lg" variant={index === 2 ? "feature" : "static"} className="ei-phase7-card" data-theme="deep">
+                  <EchoCard padding="lg" variant={index === 2 ? "feature" : "static"} className="ei-phase7-card">
                     <span className="ei-phase7-card-index">{layer.number}</span>
                     <h3>{layer.title}</h3>
                     <p>{layer.description}</p>
@@ -120,7 +120,7 @@ export function WorldsPage() {
         </Container>
       </Section>
 
-      <Section theme="light" transitionTo="lightElevated" spacing="none" className="ei-phase7-section ei-worlds-process" aria-labelledby="worlds-process-heading">
+      <Section theme="mist" transitionTo="deep" spacing="none" className="ei-phase7-section ei-worlds-process" aria-labelledby="worlds-process-heading">
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.div variants={driftUp} className="ei-phase7-heading">
@@ -157,7 +157,7 @@ export function WorldsPage() {
         </Container>
       </Section>
 
-      <Section theme="lightElevated" spacing="none" className="ei-phase7-closing">
+      <Section theme="deep" spacing="none" className="ei-phase7-closing">
         <CTASection
           variant="editorialInvitation"
           eyebrow="Build with depth and continuity"

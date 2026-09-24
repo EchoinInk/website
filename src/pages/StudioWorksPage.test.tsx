@@ -122,15 +122,15 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(sections.map((section) => section.dataset.theme)).toEqual([
       "light",
       "lightElevated",
+      "atmospheric",
       "mist",
-      "light",
-      "lightElevated",
+      "deep",
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
-      "mist",
+      "atmospheric",
       "light",
-      "lightElevated",
+      "deep",
       undefined,
     ]);
   });
@@ -161,15 +161,15 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(sections.map((section) => section.dataset.theme)).toEqual([
       "light",
       "lightElevated",
-      "mist",
-      "light",
-      "lightElevated",
+      "atmospheric",
+      "deep",
+      "deep",
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
-      "mist",
-      "light",
-      "lightElevated",
+      "atmospheric",
+      undefined,
+      undefined,
       undefined,
     ]);
   });

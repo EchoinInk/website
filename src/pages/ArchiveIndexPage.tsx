@@ -204,10 +204,10 @@ export function ArchiveIndexPage() {
         </Container>
       </Section>
 
-      <Section theme="lightElevated" transitionTo="mist" spacing="none" className="ei-editorial-page-section ei-index-constellation-section">
+      <Section theme="atmospheric" transitionTo="deep" spacing="none" className="ei-editorial-page-section ei-index-constellation-section">
         <Container size="xl" className="relative z-10">
           <motion.div className="mx-auto max-w-[1180px]">
-            <EchoCard variant="offer" padding="none" className="ei-archive-philosophy" data-theme="deep">
+            <EchoCard variant="offer" padding="none" className="ei-archive-philosophy">
               <div className="ei-archive-philosophy-copy">
                 <SectionLabel label="Themes and constellations" index="05" tone="accent" />
                 <h2 className="ei-type-editorial-heading">{archivePhilosophy.title}</h2>
@@ -221,8 +221,7 @@ export function ArchiveIndexPage() {
 
       <CTASection
         variant="editorialInvitation"
-        theme="mist"
-        panelTheme="deep"
+        theme="deep"
         eyebrow="Return to the living archive"
         heading="The index is a map. The Archive is the field."
         body="Move back into featured essays, recent notes, and ideas still taking shape."
