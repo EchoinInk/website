@@ -167,12 +167,48 @@
       "from": "phase:roadmap-9-global-refinement",
       "to": "baseline:Phase 9 global refinement verified baseline",
       "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-24T03:25:43.023184Z",
+      "from": "phase:roadmap-10-motion-accessibility",
+      "to": "phase:roadmap-9-global-refinement",
+      "type": "depends_on"
+    },
+    {
+      "created_at": "2026-09-24T03:25:43.119681Z",
+      "from": "phase:roadmap-10-motion-accessibility",
+      "to": "decision:roadmap-10-motion-timing",
+      "type": "decided_by"
+    },
+    {
+      "created_at": "2026-09-24T03:25:43.219482Z",
+      "from": "finding:roadmap-10-lumo-target-size",
+      "to": "phase:roadmap-10-motion-accessibility",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-24T03:25:43.317833Z",
+      "from": "finding:roadmap-10-scroll-container-position",
+      "to": "phase:roadmap-10-motion-accessibility",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-24T03:25:43.532547Z",
+      "from": "finding:roadmap-10-reduced-motion-test-harness",
+      "to": "phase:roadmap-10-motion-accessibility",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-24T03:25:50.514201Z",
+      "from": "phase:roadmap-10-motion-accessibility",
+      "to": "baseline:Phase 10 motion and accessibility verified baseline",
+      "type": "verified_by"
     }
   ],
   "meta": {
     "created_at": "2026-09-21T20:19:14.069177Z",
     "schema_version": "1.0",
-    "updated_at": "2026-09-24T03:11:00.046190Z"
+    "updated_at": "2026-09-24T03:25:50.514315Z"
   },
   "nodes": {
     "baseline:Phase 10 Cloudflare Pages verified working tree": {
@@ -219,6 +255,27 @@
         "live_cloudflare": "deep links and client 404 return SPA HTML; /api/contact incorrectly returns SPA HTML",
         "local_preview": "deep links and client 404 return SPA HTML",
         "tests": "44/44 passed across 10 files",
+        "typecheck": "passed"
+      }
+    },
+    "baseline:Phase 10 motion and accessibility verified baseline": {
+      "branch": "main",
+      "captured_at": "2026-09-24T03:25:43.642540Z",
+      "commit": "7563d6beb6df143a0f5d265960ef414176a97862",
+      "dirty": true,
+      "id": "baseline:Phase 10 motion and accessibility verified baseline",
+      "repository_fingerprint": "ef4c6d7a9225fe203189b9ba4710844171b439a87cb1ed41af66a2892795e2f4",
+      "status": "proposed",
+      "title": "Phase 10 motion and accessibility verified baseline",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "accessibility": "17-route structural audit passed; keyboard focus, semantic contrast, and target size verified",
+        "build": "passed",
+        "lint": "passed",
+        "motion": "reduced-motion bypass and restrained timing verified",
+        "responsive": "85/85 route-width checks passed",
+        "tests": "51 passed",
         "typecheck": "passed"
       }
     },
@@ -421,6 +478,22 @@
       "type": "decision",
       "updated_at": "2026-09-22T03:01:26.612395Z"
     },
+    "decision:roadmap-10-motion-timing": {
+      "id": "decision:roadmap-10-motion-timing",
+      "invariants": [
+        "micro feedback remains within 160\u2013300ms",
+        "route dissolve remains within 350\u2013400ms",
+        "section reveals remain within 550\u20131100ms",
+        "ambient loops remain within 8\u201312 seconds",
+        "prefers-reduced-motion bypasses nonessential reveal animation"
+      ],
+      "rationale": "Shorter route, loading, reveal, and stagger timings preserve the atmospheric character without making navigation or content access feel delayed.",
+      "status": "accepted",
+      "title": "Use restrained interaction and reveal timing with unchanged ambient cycles",
+      "truth": "observed",
+      "type": "decision",
+      "updated_at": "2026-09-24T03:25:42.635071Z"
+    },
     "decision:roadmap-9-footer-variants": {
       "decision": "Use the full footer on landing and editorial index pages, and the compact footer on focused forms, 404, long-form articles, and Lumo. Footer variants resolve through the light semantic token system.",
       "id": "decision:roadmap-9-footer-variants",
@@ -565,6 +638,42 @@
         "src/pages/BookingPage.test.tsx",
         "npm test"
       ]
+    },
+    "finding:roadmap-10-lumo-target-size": {
+      "classification": "implementation-drift",
+      "evidence": "The mobile Return to selected work link measured 197 by 17 pixels.",
+      "id": "finding:roadmap-10-lumo-target-size",
+      "resolution": "Added a 2.75rem minimum height to the shared Lumo studio bridge link.",
+      "status": "resolved",
+      "title": "Lumo return link was below the recommended touch height",
+      "truth": "observed",
+      "type": "finding",
+      "updated_at": "2026-09-24T03:25:42.733373Z",
+      "verification": "The two Lumo return destinations now measure 44px and 45px high at 390px."
+    },
+    "finding:roadmap-10-reduced-motion-test-harness": {
+      "classification": "evidence-gap",
+      "evidence": "The shared matchMedia mock used a restorable spy, causing Framer Motion to encounter an undefined listener API in later tests.",
+      "id": "finding:roadmap-10-reduced-motion-test-harness",
+      "resolution": "Replaced the baseline matchMedia spy with a stable plain function while preserving per-test spy overrides.",
+      "status": "resolved",
+      "title": "Reduced-motion test setup was reset between cases",
+      "truth": "observed",
+      "type": "finding",
+      "updated_at": "2026-09-24T03:25:42.927315Z",
+      "verification": "All 51 tests pass without the reduced-motion listener error."
+    },
+    "finding:roadmap-10-scroll-container-position": {
+      "classification": "implementation-drift",
+      "evidence": "Framer Motion warned that the scroll container had a static position.",
+      "id": "finding:roadmap-10-scroll-container-position",
+      "resolution": "Made the root html element position: relative without altering layout.",
+      "status": "resolved",
+      "title": "Motion scroll tracking used a static document container",
+      "truth": "observed",
+      "type": "finding",
+      "updated_at": "2026-09-24T03:25:42.831214Z",
+      "verification": "Fresh homepage navigation produced no new scroll-container warning."
     },
     "finding:roadmap-9-nested-light-scope": {
       "classification": "implementation-drift",
@@ -811,6 +920,54 @@
           1024,
           1440
         ]
+      }
+    },
+    "phase:roadmap-10-motion-accessibility": {
+      "acceptance_criteria": [
+        "Motion timings are restrained and consistent",
+        "Reduced-motion users can bypass nonessential reveal animation",
+        "Keyboard entry exposes a visible skip link and focus ring",
+        "Public routes retain one H1 and one main landmark",
+        "No public route has horizontal overflow or broken images across target widths",
+        "Small text semantic tokens meet readable contrast targets",
+        "Recommended touch target sizing is met for the identified Lumo return link",
+        "Required quality gates pass"
+      ],
+      "id": "phase:roadmap-10-motion-accessibility",
+      "objective": "Verify and refine restrained motion, reduced-motion behavior, keyboard access, semantic structure, contrast, target sizing, and responsive stability after the static visual system was completed.",
+      "scope": [
+        "shared cinematic motion timing",
+        "route and loading transitions",
+        "footer reveal behavior",
+        "keyboard focus and skip navigation",
+        "semantic landmarks and accessible names",
+        "Lumo touch target sizing",
+        "five-width public-route regression review"
+      ],
+      "sources": [
+        "Pasted text.txt: Phase 10 \u2014 Motion and accessibility QA",
+        "src/lib/motion-cinematic.ts",
+        "src/system/motion/cinematic.ts",
+        "src/components/system/PageTransition.tsx",
+        "src/components/navigation/Footer.tsx",
+        "src/styles/03-components/lumo.css"
+      ],
+      "status": "complete",
+      "title": "Roadmap Phase 10 \u00b7 Motion and Accessibility QA",
+      "truth": "observed",
+      "type": "phase",
+      "updated_at": "2026-09-24T03:25:42.535460Z",
+      "verification": {
+        "build": "passed; 559 modules transformed",
+        "contrast": "light primary 17.40:1, secondary 6.46:1, muted 5.72:1; deep primary 15.90:1, secondary 12.20:1, muted 7.75:1; focus ring 4.91:1",
+        "git_diff_check": "passed",
+        "keyboard": "skip link is first focus target with visible 2px blue focus ring",
+        "lint": "passed",
+        "responsive": "85 route-width checks passed at 390, 768, 1024, 1280, and 1440",
+        "semantics": "no duplicate IDs, heading skips, missing image alternatives, unlabeled controls, or unnamed interactive controls in the 17-route mobile audit",
+        "target_size": "Lumo return links verified at 44px and 45px high",
+        "tests": "51 passed across 11 files",
+        "typecheck": "passed"
       }
     },
     "phase:roadmap-7-specialist-pages": {

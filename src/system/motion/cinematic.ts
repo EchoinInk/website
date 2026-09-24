@@ -14,11 +14,11 @@ export const EASE_LUXURY = [0.16, 1, 0.3, 1] as const;
 
 // ── Duration Scale ────────────────────────────────────────────
 export const DURATION = {
-  instant: 0.2,
-  fast: 0.5,
-  normal: 0.9,
-  slow: 1.4,
-  slower: 2.0,
+  instant: 0.16,
+  fast: 0.3,
+  normal: 0.55,
+  slow: 0.8,
+  slower: 1.1,
   ambient: 8,
   breath: 12,
 } as const;
@@ -34,9 +34,9 @@ export const VIEWPORT = {
 // ── Stagger Configuration ───────────────────────────────────
 export const STAGGER = {
   tight: 0.06,
-  normal: 0.12,
-  loose: 0.22,
-  cinematic: 0.32,
+  normal: 0.09,
+  loose: 0.14,
+  cinematic: 0.18,
 } as const;
 
 // ── Transition Presets ────────────────────────────────────────

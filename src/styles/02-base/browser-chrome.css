@@ -29,6 +29,7 @@
 
   /* Firefox scrollbar */
   html {
+    position: relative;
     scrollbar-width: thin;
     scrollbar-color: var(--ei-theme-scrollbar) transparent;
   }

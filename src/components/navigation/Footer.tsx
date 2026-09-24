@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import { OrbitalVisual } from "@/components/ui/OrbitalVisual";
@@ -12,6 +12,7 @@ interface FooterProps {
 
 export default function Footer({ theme = "light", variant = "full" }: FooterProps) {
   const isCompact = variant === "compact";
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <footer
@@ -43,7 +44,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
       <div className="relative z-10 ei-container max-w-[1220px]">
         {isCompact ? (
           <motion.div
-            initial="hidden"
+            initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
             variants={atmosphericFade}
@@ -108,7 +109,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
         ) : (
           <>
             <motion.div
-              initial="hidden"
+              initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={VIEWPORT.normal}
               variants={atmosphericFade}
@@ -206,7 +207,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
 
             <motion.nav
               aria-label="Explore deeper"
-              initial="hidden"
+              initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={VIEWPORT.normal}
               variants={atmosphericFade}
@@ -237,7 +238,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
 
             {/* Bottom row */}
             <motion.div
-              initial="hidden"
+              initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={VIEWPORT.normal}
               variants={atmosphericFade}

@@ -23,11 +23,11 @@ export const EASE_LUXURY = [0.16, 1, 0.3, 1] as const;
 
 // ── Duration Scale — Slow, intentional ────────────────────────
 export const DURATION = {
-  instant: 0.2,      // Micro interactions
-  fast: 0.5,         // Quick transitions
-  normal: 0.9,       // Standard reveals
-  slow: 1.4,         // Deliberate motion
-  slower: 2.0,       // Cinematic entrance
+  instant: 0.16,     // Micro interactions
+  fast: 0.3,         // Quick transitions
+  normal: 0.55,      // Standard reveals
+  slow: 0.8,         // Deliberate motion
+  slower: 1.1,       // Cinematic entrance
   ambient: 8,        // Environmental loops
   breath: 12,        // Atmospheric cycles
 } as const;
@@ -68,9 +68,9 @@ export const AMBIENT = {
 // ── Stagger Configuration — Cinematic, deterministic pacing ─────────────────
 export const STAGGER: Record<string, number> = {
   tight: 0.06,       // Quick sequence
-  normal: 0.12,      // Standard flow
-  loose: 0.22,       // Dramatic reveals
-  cinematic: 0.32,   // Hero sequences
+  normal: 0.09,      // Standard flow
+  loose: 0.14,       // Dramatic reveals
+  cinematic: 0.18,   // Hero sequences
 } as const;
 
 // Retained for compatibility. Shared motion now remains deterministic.

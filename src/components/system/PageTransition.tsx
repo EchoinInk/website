@@ -34,7 +34,7 @@ export function PageTransition({ children }: PageTransitionProps) {
       exit={{ opacity: 0 }}
       className="relative"
       transition={{ 
-        duration: 0.6, 
+        duration: 0.35,
         ease: [0.22, 1, 0.36, 1],
       }}
       style={{ willChange: 'opacity' }}
@@ -44,7 +44,7 @@ export function PageTransition({ children }: PageTransitionProps) {
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
         transition={{ 
-          duration: 0.8, 
+          duration: 0.4,
           ease: [0.22, 1, 0.36, 1],
           delay: 0.1 
         }}
@@ -61,12 +61,14 @@ export function PageTransition({ children }: PageTransitionProps) {
 
 // Suspense fallback for lazy-loaded sections
 export function SectionLoading() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={prefersReducedMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       className="w-full py-32 flex items-center justify-center"
     >
       {/* Atmospheric placeholder - no spinner */}
@@ -82,12 +84,14 @@ export function SectionLoading() {
 
 // Image loading placeholder
 export function ImageLoading() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={prefersReducedMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.2 }}
       className="absolute inset-0"
       style={{
         background: 'linear-gradient(135deg, var(--ei-theme-surface-elevated) 0%, var(--ei-theme-surface) 100%)',
