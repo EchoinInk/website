@@ -107,12 +107,48 @@
       "from": "phase:10",
       "to": "baseline:Phase 10 Cloudflare Pages verified working tree",
       "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-24T02:46:19.535558Z",
+      "from": "phase:4",
+      "to": "baseline:Phases 4-6 verified baseline",
+      "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-24T02:46:19.592564Z",
+      "from": "phase:5",
+      "to": "baseline:Phases 4-6 verified baseline",
+      "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-24T02:46:19.651701Z",
+      "from": "phase:6",
+      "to": "baseline:Phases 4-6 verified baseline",
+      "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-24T02:55:56.871596Z",
+      "from": "phase:roadmap-8-global-polish",
+      "to": "phase:roadmap-7-specialist-pages",
+      "type": "depends_on"
+    },
+    {
+      "created_at": "2026-09-24T02:55:57.150193Z",
+      "from": "phase:roadmap-7-specialist-pages",
+      "to": "baseline:Phases 7-8 verified baseline",
+      "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-24T02:55:57.260454Z",
+      "from": "phase:roadmap-8-global-polish",
+      "to": "baseline:Phases 7-8 verified baseline",
+      "type": "verified_by"
     }
   ],
   "meta": {
     "created_at": "2026-09-21T20:19:14.069177Z",
     "schema_version": "1.0",
-    "updated_at": "2026-09-22T11:22:24.718819Z"
+    "updated_at": "2026-09-24T02:55:57.260606Z"
   },
   "nodes": {
     "baseline:Phase 10 Cloudflare Pages verified working tree": {
@@ -223,6 +259,48 @@
         "lint": "passed",
         "responsive": "changed routes at 360, 390, 768, 1024, 1440; all public routes at 390 and 1440",
         "tests": "40/40 passed across 9 files",
+        "typecheck": "passed"
+      }
+    },
+    "baseline:Phases 4-6 verified baseline": {
+      "branch": "main",
+      "captured_at": "2026-09-24T02:46:19.456760Z",
+      "commit": "c971f1f5c5a2d611a4ed843e7f04243bb30172bf",
+      "dirty": true,
+      "id": "baseline:Phases 4-6 verified baseline",
+      "repository_fingerprint": "cae494a2cf9d439a6de38e46e58e164f651084be18178119b194be33b72fd590",
+      "status": "proposed",
+      "title": "Phases 4-6 verified baseline",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "build": "passed; 559 modules transformed",
+        "desktop_routes": "10 routes at 1440px; no horizontal overflow",
+        "git_diff_check": "passed",
+        "lint": "passed",
+        "mobile_routes": "10 routes at 390px; no horizontal overflow",
+        "tests": "50/50 passed across 11 files",
+        "typecheck": "passed",
+        "visual_review": "Selected Work, Contact, Booking, Insights and essay template reviewed"
+      }
+    },
+    "baseline:Phases 7-8 verified baseline": {
+      "branch": "main",
+      "captured_at": "2026-09-24T02:55:57.017245Z",
+      "commit": "c971f1f5c5a2d611a4ed843e7f04243bb30172bf",
+      "dirty": true,
+      "id": "baseline:Phases 7-8 verified baseline",
+      "repository_fingerprint": "5a6acb1a43787aa962d502d8ab38fb4a6179d5c6da8a90d1d767cf56cf4544ff",
+      "status": "proposed",
+      "title": "Phases 7-8 verified baseline",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "build": "passed",
+        "lint": "passed",
+        "lumo_landmarks": "5/5 breakpoints passed",
+        "responsive": "85/85 checks passed",
+        "tests": "50 passed",
         "typecheck": "passed"
       }
     },
@@ -474,6 +552,108 @@
         "typecheck": "npm run typecheck passed; targeted Pages adapter TypeScript check passed"
       }
     },
+    "phase:4": {
+      "acceptance_criteria": [
+        "Section-specific mobile compositions",
+        "Mobile content density reviewed",
+        "No horizontal overflow on relevant routes"
+      ],
+      "id": "phase:4",
+      "objective": "Explicitly refine completed pages for mobile rather than relying on automatic stacking.",
+      "sources": [
+        "Echo in Ink \u2014 Website Improvement Roadmap.md",
+        "src/styles/04-utilities/mobile.css",
+        "src/styles/03-components/home.css",
+        "src/styles/03-components/works.css",
+        "src/styles/03-components/contact.css",
+        "src/styles/03-components/booking.css",
+        "src/styles/03-components/editorial-archive.css"
+      ],
+      "status": "complete",
+      "title": "Phase 4 \u00b7 Mobile System",
+      "truth": "observed",
+      "type": "phase",
+      "updated_at": "2026-09-24T02:46:19.217364Z",
+      "verification": {
+        "horizontal_overflow": "none",
+        "routes_checked": 10,
+        "viewport": "390x844",
+        "visual_review": [
+          "Selected Work",
+          "Start a Project",
+          "Strategy Session",
+          "Insights",
+          "Atmosphere is Information"
+        ]
+      }
+    },
+    "phase:5": {
+      "acceptance_criteria": [
+        "Distinct project and Strategy Session paths",
+        "Grouped form content",
+        "Inline validation and retry states",
+        "Accessible status and focus handling"
+      ],
+      "id": "phase:5",
+      "objective": "Refine project and Strategy Session conversion flows, shared forms, validation, interaction and accessibility states.",
+      "sources": [
+        "src/pages/ContactPage.tsx",
+        "src/pages/BookingPage.tsx",
+        "src/pages/ContactPage.test.tsx",
+        "src/pages/BookingPage.test.tsx",
+        "src/styles/03-components/contact.css",
+        "src/styles/03-components/booking.css",
+        "src/styles/03-components/forms.css"
+      ],
+      "status": "complete",
+      "title": "Phase 5 \u00b7 Conversion Flows",
+      "truth": "observed",
+      "type": "phase",
+      "updated_at": "2026-09-24T02:46:19.278393Z",
+      "verification": {
+        "adapter_tests": "6/6 passed",
+        "booking_tests": "4/4 passed",
+        "contact_tests": "6/6 passed",
+        "server_tests": "3/3 passed",
+        "visual_review": "390x844"
+      }
+    },
+    "phase:6": {
+      "acceptance_criteria": [
+        "Distinct editorial landing, notes, index and essay experiences",
+        "Atmosphere is Information used as long-form quality benchmark",
+        "Article content remains editorial rather than over-componentised"
+      ],
+      "id": "phase:6",
+      "objective": "Differentiate Insights, Notes, Archive and article templates with restrained long-form editorial composition.",
+      "sources": [
+        "src/pages/ArchivePage.tsx",
+        "src/pages/ArchiveNotesPage.tsx",
+        "src/pages/ArchiveIndexPage.tsx",
+        "src/pages/ArchiveEssayPage.tsx",
+        "src/components/layout/EditorialArticleLayout.tsx",
+        "src/styles/03-components/editorial-archive.css"
+      ],
+      "status": "complete",
+      "title": "Phase 6 \u00b7 Editorial Ecosystem",
+      "truth": "observed",
+      "type": "phase",
+      "updated_at": "2026-09-24T02:46:19.350713Z",
+      "verification": {
+        "horizontal_overflow": "none",
+        "phase9_route_contracts": "10/10 passed",
+        "routes_checked": [
+          "/insights",
+          "/archive/notes",
+          "/archive/map",
+          "/archive/atmosphere-is-information"
+        ],
+        "viewport_checks": [
+          "390x844",
+          "1440x900"
+        ]
+      }
+    },
     "phase:8": {
       "acceptance_criteria": [
         "Project and session paths are immediately distinct",
@@ -560,6 +740,72 @@
           1024,
           1440
         ]
+      }
+    },
+    "phase:roadmap-7-specialist-pages": {
+      "acceptance_criteria": [
+        "Specialist pages share the semantic theme and responsive system",
+        "Lumo retains its protected dark immersive treatment",
+        "Identity, Worlds, and Systems remain visually distinct",
+        "Mobile layouts remain legible without overflow"
+      ],
+      "id": "phase:roadmap-7-specialist-pages",
+      "objective": "Refine Lumo, Creative Systems, Brand & Identity, and Brand Worlds within the shared light editorial system while preserving their distinct personalities.",
+      "scope": [
+        "src/pages/LumoPage.tsx",
+        "src/pages/SystemsPage.tsx",
+        "src/pages/IdentityPage.tsx",
+        "src/pages/WorldsPage.tsx",
+        "src/styles/03-components/phase7-pages.css",
+        "specialist-page responsive verification"
+      ],
+      "status": "complete",
+      "title": "Roadmap Phase 7 \u00b7 Specialist Pages",
+      "truth": "observed",
+      "type": "phase",
+      "updated_at": "2026-09-24T02:55:35.934208Z",
+      "verification": {
+        "build": "passed; 559 modules transformed",
+        "lint": "passed",
+        "specialist_visual_review": "passed at 390px for Identity, Worlds, Systems, and Lumo",
+        "tests": "50 passed across 11 files",
+        "typecheck": "passed"
+      }
+    },
+    "phase:roadmap-8-global-polish": {
+      "acceptance_criteria": [
+        "All public routes render at five target widths",
+        "No horizontal overflow or broken imagery",
+        "Each page exposes one main heading and one main landmark",
+        "Reduced-motion and focus rules remain active",
+        "Obsolete transition and duplicated accessibility styles are removed",
+        "Required quality gates pass"
+      ],
+      "id": "phase:roadmap-8-global-polish",
+      "objective": "Complete footer, 404, motion, accessibility, responsive, and legacy-style regression review across the public site.",
+      "scope": [
+        "shared footer variants",
+        "404 page",
+        "reduced-motion and focus behavior",
+        "85-route responsive browser matrix",
+        "legacy CSS cleanup",
+        "Lumo landmark correction"
+      ],
+      "status": "complete",
+      "title": "Roadmap Phase 8 \u00b7 Global Polish, QA, and Cleanup",
+      "truth": "observed",
+      "type": "phase",
+      "updated_at": "2026-09-24T02:55:36.040935Z",
+      "verification": {
+        "broken_images": "none",
+        "build": "passed; 559 modules transformed",
+        "git_diff_check": "passed",
+        "horizontal_overflow": "none",
+        "lint": "passed on settled tree",
+        "lumo_landmarks": "passed at all five widths",
+        "responsive": "85 of 85 route-width checks passed at 360, 390, 768, 1024, and 1440",
+        "tests": "50 passed across 11 files",
+        "typecheck": "passed"
       }
     },
     "project:website": {

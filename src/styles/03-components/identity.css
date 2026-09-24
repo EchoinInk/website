@@ -1124,32 +1124,6 @@
     padding-block: clamp(3.5rem, 9vh, 5rem);
   }
 }
-/* Smooth hero-to-page transition */
-@layer components {
-  .ei-identity-page .ei-echo-hero::after,
-  .ei-systems-page .ei-echo-hero::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    z-index: 6;
-    height: clamp(8rem, 18vh, 15rem);
-    pointer-events: none;
-    background:
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        rgb(var(--ei-ink-rgb) / 0.52) 48%,
-        var(--ei-ink) 100%
-      );
-  }
-
-  .ei-identity-page .ei-echo-hero,
-  .ei-systems-page .ei-echo-hero {
-    overflow: hidden;
-  }
-}
 /* ────────────────────────────────────────────────────────────────
    PageSectionHero pass — Identity
 

@@ -629,7 +629,7 @@ export function SignatureCaseStudy() {
   return (
     <article className="ei-lumo-case-study">
       <LumoRail activeId={activeId} />
-      <main className="ei-lumo-main" aria-label="Lumo case study content">
+      <section className="ei-lumo-main" aria-label="Lumo case study content">
         <LumoMobileNav activeId={activeId} />
         <LumoHeroPanel />
         <LumoEvidencePanel />
@@ -654,7 +654,7 @@ export function SignatureCaseStudy() {
           </div>
         </div>
         <LumoStudioCTA />
-      </main>
+      </section>
     </article>
   );
 }

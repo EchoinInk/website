@@ -785,8 +785,7 @@
 
 /* ─────────────────────────────────────────────────────────
    Global launch polish
-   Keeps the site dark/cinematic while improving readability
-   and ensuring all page backgrounds resolve to #080718.
+   Resolves page backgrounds and type through the active semantic theme.
    ───────────────────────────────────────────────────────── */
 
 @layer components {

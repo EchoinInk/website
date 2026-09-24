@@ -185,5 +185,9 @@ describe("Phase 6 Studio and Work contracts", () => {
     const lumoHero = lumo.container.querySelector<HTMLElement>(".ei-lumo-dashboard-hero")!;
     expect(within(lumoHero).getByText(lumoProject.classification.provenance)).toBeInTheDocument();
     expect(within(lumoHero).getByText(lumoProject.classification.status)).toBeInTheDocument();
+    expect(within(lumo.container).getAllByRole("main")).toHaveLength(1);
+    expect(
+      within(lumo.container).getByRole("region", { name: "Lumo case study content" }),
+    ).toBeInTheDocument();
   });
 });
