@@ -11,23 +11,17 @@ import { EchoFormField } from "@/components/ui/EchoFormField";
 import { EchoFormPanel } from "@/components/ui/EchoFormPanel";
 import { EchoTextarea } from "@/components/ui/EchoTextarea";
 import { IconWell } from "@/components/ui/IconWell";
-import {
-  OrbitalVisual,
-  type OrbitalVariant,
-} from "@/components/ui/OrbitalVisual";
+import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { primaryCallToAction } from "@/data/siteNavigation";
-import {
-  StudioInquirySubmitError,
-  submitStudioInquiry,
-} from "@/lib/studioInquiry";
+import { StudioInquirySubmitError, submitStudioInquiry } from "@/lib/studioInquiry";
 import {
   blurEmergence,
   driftUp,
   fadeSoft,
   staggerContainer,
   STAGGER,
-  VIEWPORT,
+  VIEWPORT
 } from "@/lib/motion-cinematic";
 
 const steps = ["Session", "Timing", "Details", "Review"] as const;
@@ -36,7 +30,7 @@ const sessionFacts = [
   { label: "Duration", value: "60–90 minutes" },
   { label: "Focus", value: "One defined question" },
   { label: "Format", value: "Private video session" },
-  { label: "Reply", value: "Available times sent after review" },
+  { label: "Reply", value: "Available times sent after review" }
 ];
 
 const practicalInformation: Array<{
@@ -46,23 +40,23 @@ const practicalInformation: Array<{
   {
     title: "Timezone handling",
     description:
-      "Share the timezone you actually work in. Echo in Ink replies with options in your timezone and in New Zealand time.",
+      "Share the timezone you actually work in. Echo in Ink replies with options in your timezone and in New Zealand time."
   },
   {
     title: "What happens next",
     description:
-      "Requests are reviewed before any time is suggested. A reply includes available times and a recommended next step.",
+      "Requests are reviewed before any time is suggested. A reply includes available times and a recommended next step."
   },
   {
     title: "What to bring",
     description:
-      "Drafts, references, screenshots or short context notes are welcome when they help explain the question.",
+      "Drafts, references, screenshots or short context notes are welcome when they help explain the question."
   },
   {
     title: "Recording and consent",
     description:
-      "A recording is only made when everyone in the room agrees in advance. Nothing is recorded by default.",
-  },
+      "A recording is only made when everyone in the room agrees in advance. Nothing is recorded by default."
+  }
 ];
 
 const afterRequest: Array<{
@@ -72,28 +66,27 @@ const afterRequest: Array<{
 }> = [
   {
     title: "Request",
-    description:
-      "You send the week, timezone, and context that would make the session useful.",
-    icon: "haloGate",
+    description: "You send the week, timezone, and context that would make the session useful.",
+    icon: "haloGate"
   },
   {
     title: "Review",
     description:
       "Echo in Ink reads the request and checks whether the room fits the question you are bringing.",
-    icon: "threadBeacon",
+    icon: "threadBeacon"
   },
   {
     title: "Reply",
     description:
       "You receive available times and a suggested next step, in your timezone and in New Zealand time.",
-    icon: "focusDial",
+    icon: "focusDial"
   },
   {
     title: "Confirm",
     description:
       "A session is only confirmed after a real time is offered and you choose to accept it.",
-    icon: "signalBridge",
-  },
+    icon: "signalBridge"
+  }
 ];
 
 type BookingFormData = {
@@ -117,12 +110,7 @@ type BookingFieldEvent =
       };
     };
 
-type BookingStatus =
-  | "idle"
-  | "submitting"
-  | "validation-error"
-  | "request-sent"
-  | "request-failed";
+type BookingStatus = "idle" | "submitting" | "validation-error" | "request-sent" | "request-failed";
 
 type BookingErrors = Partial<Record<BookingFieldName, string>>;
 
@@ -130,7 +118,7 @@ const stepFieldMap: Array<BookingFieldName[]> = [
   [],
   ["preferredWeek", "timezone"],
   ["name", "email", "topic", "context"],
-  [],
+  []
 ];
 
 function scrollToBookingFlow(reducedMotion = false) {
@@ -146,23 +134,18 @@ const bookingFieldIds: Record<BookingFieldName, string> = {
   timezone: "booking-timezone",
   topic: "booking-topic",
   context: "booking-context",
-  contactMethod: "booking-contact-method",
+  contactMethod: "booking-contact-method"
 };
 
 function firstInvalidField(errors: BookingErrors) {
-  return (Object.keys(bookingFieldIds) as BookingFieldName[]).find(
-    (field) => errors[field],
-  );
+  return (Object.keys(bookingFieldIds) as BookingFieldName[]).find((field) => errors[field]);
 }
 
 function validateEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 }
 
-function getFieldError(
-  field: BookingFieldName,
-  value: string,
-): string | undefined {
+function getFieldError(field: BookingFieldName, value: string): string | undefined {
   const trimmed = value.trim();
 
   switch (field) {
@@ -173,23 +156,17 @@ function getFieldError(
         return "Enter the email address for the session reply.";
       }
 
-      return validateEmail(trimmed)
-        ? undefined
-        : "Enter a valid email address.";
+      return validateEmail(trimmed) ? undefined : "Enter a valid email address.";
     case "preferredWeek":
       return trimmed
         ? undefined
         : "Name the week that feels most workable, or say that you are flexible.";
     case "timezone":
-      return trimmed
-        ? undefined
-        : "Add the timezone you want the reply to use.";
+      return trimmed ? undefined : "Add the timezone you want the reply to use.";
     case "topic":
       return trimmed ? undefined : "Add a short session topic.";
     case "context":
-      return trimmed
-        ? undefined
-        : "Add a short context note so the request has enough shape.";
+      return trimmed ? undefined : "Add a short context note so the request has enough shape.";
     case "contactMethod":
       return undefined;
     default:
@@ -198,12 +175,10 @@ function getFieldError(
 }
 
 function findFirstInvalidStep(errors: BookingErrors) {
-  const invalidFieldNames = new Set<BookingFieldName>(
-    Object.keys(errors) as BookingFieldName[],
-  );
+  const invalidFieldNames = new Set<BookingFieldName>(Object.keys(errors) as BookingFieldName[]);
 
   const invalidStep = stepFieldMap.findIndex((fields) =>
-    fields.some((field) => invalidFieldNames.has(field)),
+    fields.some((field) => invalidFieldNames.has(field))
   );
 
   return invalidStep > 0 ? invalidStep : 0;
@@ -231,7 +206,7 @@ export function BookingPage() {
     timezone: "",
     topic: "",
     context: "",
-    contactMethod: "",
+    contactMethod: ""
   });
   const [errors, setErrors] = useState<BookingErrors>({});
   const stepRegionRef = useRef<HTMLDivElement | null>(null);
@@ -276,7 +251,7 @@ export function BookingPage() {
   function setFieldValue(name: BookingFieldName, value: string) {
     setFormData((current) => ({
       ...current,
-      [name]: value,
+      [name]: value
     }));
 
     setErrors((current) => {
@@ -321,7 +296,7 @@ export function BookingPage() {
 
     setErrors((current) => ({
       ...current,
-      ...nextErrors,
+      ...nextErrors
     }));
 
     return nextErrors;
@@ -406,9 +381,8 @@ export function BookingPage() {
           timezone: formData.timezone.trim(),
           sessionTopic: formData.topic.trim(),
           context: formData.context.trim(),
-          preferredContactMethod:
-            formData.contactMethod.trim() || "Email reply is fine",
-        },
+          preferredContactMethod: formData.contactMethod.trim() || "Email reply is fine"
+        }
       });
 
       setStatus("request-sent");
@@ -428,6 +402,8 @@ export function BookingPage() {
       description="Send a considered Strategy Session request with your preferred week, timezone, and context. Echo in Ink replies with available times and the clearest next step."
       atmosphere="sessions"
       theme="light"
+      footerTheme="light"
+      footerVariant="compact"
       withTopSpacing={false}
       className="ei-booking-page"
     >
@@ -445,9 +421,8 @@ export function BookingPage() {
                 Book focused time around one defined question.
               </motion.h1>
               <motion.p variants={fadeSoft}>
-                A Strategy Session is a focused 60–90 minute private video
-                engagement for clarity, direction, scoping or a specific
-                digital problem. It can stand alone.
+                A Strategy Session is a focused 60–90 minute private video engagement for clarity,
+                direction, scoping or a specific digital problem. It can stand alone.
               </motion.p>
             </motion.div>
 
@@ -485,22 +460,16 @@ export function BookingPage() {
             className="mx-auto max-w-[1180px] ei-booking-layout"
           >
             <motion.aside variants={driftUp}>
-              <EchoCard
-                variant="offer"
-                padding="lg"
-                className="ei-booking-summary"
-              >
+              <EchoCard variant="offer" padding="lg" className="ei-booking-summary">
                 <IconWell size="lg" tone="violet" orbital glow>
                   <OrbitalVisual variant="synthesisStar" size={56} />
                 </IconWell>
 
-                <span className="ei-booking-summary-kicker">
-                  Focused strategic engagement
-                </span>
+                <span className="ei-booking-summary-kicker">Focused strategic engagement</span>
                 <h2>Strategy Session</h2>
                 <p>
-                  For a defined question that needs clearer decisions,
-                  language, direction or practical next steps.
+                  For a defined question that needs clearer decisions, language, direction or
+                  practical next steps.
                 </p>
 
                 <dl>
@@ -515,8 +484,8 @@ export function BookingPage() {
                 <div className="ei-booking-summary-note">
                   <span>Best for</span>
                   <p>
-                    Clarity, direction, scoping or one specific digital
-                    problem—not a substitute for a broader project enquiry.
+                    Clarity, direction, scoping or one specific digital problem—not a substitute for
+                    a broader project enquiry.
                   </p>
                 </div>
 
@@ -542,17 +511,13 @@ export function BookingPage() {
                       key={step}
                       data-active={activeStep === index ? "true" : "false"}
                       data-complete={
-                        activeStep > index || status === "request-sent"
-                          ? "true"
-                          : "false"
+                        activeStep > index || status === "request-sent" ? "true" : "false"
                       }
                     >
                       <button
                         type="button"
                         onClick={() =>
-                          index <= activeStep && !isLocked
-                            ? returnToStep(index)
-                            : undefined
+                          index <= activeStep && !isLocked ? returnToStep(index) : undefined
                         }
                         disabled={index > activeStep || isLocked}
                         aria-current={activeStep === index ? "step" : undefined}
@@ -578,13 +543,10 @@ export function BookingPage() {
                     </IconWell>
                     <SectionLabel label="Request sent" align="center" rule="none" />
                     <h2>Your session request is on its way.</h2>
-                    <p>
-                      Echo in Ink will reply with available times and a
-                      suggested next step.
-                    </p>
+                    <p>Echo in Ink will reply with available times and a suggested next step.</p>
                     <p className="ei-booking-confirmed-caption">
-                      No time is confirmed yet. Confirmation only happens after
-                      a real time is offered and accepted.
+                      No time is confirmed yet. Confirmation only happens after a real time is
+                      offered and accepted.
                     </p>
                     <div className="ei-booking-confirmed-summary">
                       <span>{formData.preferredWeek}</span>
@@ -611,14 +573,12 @@ export function BookingPage() {
                         tabIndex={-1}
                         className="ei-booking-status"
                         data-state={
-                          status === "request-failed" ||
-                          status === "validation-error"
+                          status === "request-failed" || status === "validation-error"
                             ? "error"
                             : "info"
                         }
                         role={
-                          status === "request-failed" ||
-                          status === "validation-error"
+                          status === "request-failed" || status === "validation-error"
                             ? "alert"
                             : "status"
                         }
@@ -627,9 +587,7 @@ export function BookingPage() {
                           {submitMessage.includes("hello@echoin.ink") ? (
                             <>
                               {submitMessage.split("hello@echoin.ink")[0]}
-                              <a href="mailto:hello@echoin.ink">
-                                hello@echoin.ink
-                              </a>
+                              <a href="mailto:hello@echoin.ink">hello@echoin.ink</a>
                               {submitMessage.split("hello@echoin.ink")[1]}
                             </>
                           ) : (
@@ -644,9 +602,8 @@ export function BookingPage() {
                         <SectionLabel label="Step one" rule="none" />
                         <h2>Begin with a request, not a placeholder booking.</h2>
                         <p>
-                          This page does not hold a slot or simulate a calendar.
-                          It sends a real request with the practical details
-                          needed to suggest a workable time.
+                          This page does not hold a slot or simulate a calendar. It sends a real
+                          request with the practical details needed to suggest a workable time.
                         </p>
 
                         <button
@@ -657,9 +614,7 @@ export function BookingPage() {
                         >
                           <span>
                             <strong>Strategy Session</strong>
-                            <small>
-                              60–90 minutes · Private video room · One defined question
-                            </small>
+                            <small>60–90 minutes · Private video room · One defined question</small>
                           </span>
                           <span>Request flow</span>
                         </button>
@@ -683,9 +638,8 @@ export function BookingPage() {
                         <SectionLabel label="Step two" rule="none" />
                         <h2>Name the week and timezone that make sense.</h2>
                         <p>
-                          Share a preferred week and the timezone you want the
-                          reply to use. If your schedule is flexible, say so in
-                          the week field.
+                          Share a preferred week and the timezone you want the reply to use. If your
+                          schedule is flexible, say so in the week field.
                         </p>
 
                         <form
@@ -751,8 +705,8 @@ export function BookingPage() {
                         <SectionLabel label="Step three" rule="none" />
                         <h2>Give the request enough shape to be useful.</h2>
                         <p>
-                          A short topic and a little context are enough. You do
-                          not need a polished brief before asking for the room.
+                          A short topic and a little context are enough. You do not need a polished
+                          brief before asking for the room.
                         </p>
 
                         <form
@@ -828,17 +782,12 @@ export function BookingPage() {
                     ) : null}
 
                     {activeStep === 3 ? (
-                      <form
-                        onSubmit={handleRequestSubmit}
-                        className="ei-booking-step"
-                        noValidate
-                      >
+                      <form onSubmit={handleRequestSubmit} className="ei-booking-step" noValidate>
                         <SectionLabel label="Step four" rule="none" />
                         <h2>Review the request before you send it.</h2>
                         <p>
-                          Sending this request does not confirm a booking. It
-                          asks Echo in Ink to reply with real available times
-                          and the clearest next step.
+                          Sending this request does not confirm a booking. It asks Echo in Ink to
+                          reply with real available times and the clearest next step.
                         </p>
 
                         <dl className="ei-booking-review">
@@ -876,18 +825,13 @@ export function BookingPage() {
                         <div className="ei-booking-prototype-note">
                           <OrbitalVisual variant="haloGate" size={26} />
                           <p>
-                            Nothing is confirmed until a real time is offered
-                            and accepted. Recording only happens by prior
-                            consent.
+                            Nothing is confirmed until a real time is offered and accepted.
+                            Recording only happens by prior consent.
                           </p>
                         </div>
 
                         <div className="ei-booking-step-actions">
-                          <Button
-                            type="button"
-                            variant="tertiary"
-                            onClick={() => returnToStep(2)}
-                          >
+                          <Button type="button" variant="tertiary" onClick={() => returnToStep(2)}>
                             Edit details
                           </Button>
                           <Button type="submit" disabled={status === "submitting"}>
@@ -925,15 +869,8 @@ export function BookingPage() {
             <div className="ei-booking-after-grid">
               {afterRequest.map((item, index) => (
                 <motion.div key={item.title} variants={driftUp}>
-                  <EchoCard
-                    variant="index"
-                    padding="md"
-                    className="ei-booking-after-card"
-                  >
-                    <IconWell
-                      size="sm"
-                      tone={index === 3 ? "blue" : "violet"}
-                    >
+                  <EchoCard variant="index" padding="md" className="ei-booking-after-card">
+                    <IconWell size="sm" tone={index === 3 ? "blue" : "violet"}>
                       <OrbitalVisual variant={item.icon} size={28} />
                     </IconWell>
                     <span>{String(index + 1).padStart(2, "0")}</span>

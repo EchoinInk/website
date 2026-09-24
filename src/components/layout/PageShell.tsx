@@ -1,17 +1,11 @@
-import { useLayoutEffect, type ReactNode } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
-import Footer from '@/components/navigation/Footer';
+import { useLayoutEffect, type ReactNode } from "react";
+import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
+import Footer from "@/components/navigation/Footer";
 
-export type PageAtmosphere =
-  | 'default'
-  | 'identity'
-  | 'sessions'
-  | 'worlds'
-  | 'works'
-  | 'studio';
+export type PageAtmosphere = "default" | "identity" | "sessions" | "worlds" | "works" | "studio";
 
-export type SemanticTheme = 'light' | 'lightElevated' | 'mist' | 'atmospheric' | 'deep';
+export type SemanticTheme = "light" | "lightElevated" | "mist" | "atmospheric" | "deep";
 
 interface PageShellProps {
   children: ReactNode;
@@ -24,17 +18,18 @@ interface PageShellProps {
   className?: string;
   id?: string;
   withFooter?: boolean;
-  footerTheme?: 'light' | 'deep';
+  footerTheme?: "light" | "deep";
+  footerVariant?: "full" | "compact";
   withTopSpacing?: boolean;
 }
 
 const atmosphereClasses: Record<PageAtmosphere, string> = {
-  default: 'ei-atmosphere-default',
-  identity: 'ei-atmosphere-identity',
-  sessions: 'ei-atmosphere-sessions',
-  worlds: 'ei-atmosphere-worlds',
-  works: 'ei-atmosphere-works',
-  studio: 'ei-atmosphere-default',
+  default: "ei-atmosphere-default",
+  identity: "ei-atmosphere-identity",
+  sessions: "ei-atmosphere-sessions",
+  worlds: "ei-atmosphere-worlds",
+  works: "ei-atmosphere-works",
+  studio: "ei-atmosphere-default"
 };
 
 /**
@@ -53,23 +48,24 @@ export function PageShell({
   title,
   description,
   canonicalPath,
-  robots = 'index,follow',
-  atmosphere = 'default',
-  theme = 'light',
-  className = '',
-  id = 'main-content',
+  robots = "index,follow",
+  atmosphere = "default",
+  theme = "light",
+  className = "",
+  id = "main-content",
   withFooter = true,
-  footerTheme = 'deep',
-  withTopSpacing = true,
+  footerTheme = "light",
+  footerVariant = "full",
+  withTopSpacing = true
 }: PageShellProps) {
   const { pathname } = useLocation();
   const resolvedCanonicalPath = canonicalPath === undefined ? pathname : canonicalPath;
   const canonicalUrl =
     resolvedCanonicalPath === false
       ? null
-      : `https://echoin.ink${resolvedCanonicalPath === '/' ? '/' : resolvedCanonicalPath.replace(/\/$/, '')}`;
-  const socialImageUrl = 'https://echoin.ink/home-hero-desktop.webp';
-  const themeColor = theme === 'deep' || theme === 'atmospheric' ? '#080718' : '#f3f0f7';
+      : `https://echoin.ink${resolvedCanonicalPath === "/" ? "/" : resolvedCanonicalPath.replace(/\/$/, "")}`;
+  const socialImageUrl = "https://echoin.ink/home-hero-desktop.webp";
+  const themeColor = theme === "deep" || theme === "atmospheric" ? "#080718" : "#f3f0f7";
 
   useLayoutEffect(() => {
     document.documentElement.dataset.pageTheme = theme;
@@ -84,7 +80,7 @@ export function PageShell({
         ei-page-shell ei-theme-${theme}
         relative
         ${atmosphereClasses[atmosphere]}
-        ${withTopSpacing ? 'pt-24 md:pt-32' : ''}
+        ${withTopSpacing ? "pt-24 md:pt-32" : ""}
         ${className}
       `.trim()}
     >
@@ -119,7 +115,7 @@ export function PageShell({
       <div className="relative z-10">{children}</div>
 
       {/* Footer */}
-      {withFooter && <Footer theme={footerTheme} />}
+      {withFooter && <Footer theme={footerTheme} variant={footerVariant} />}
     </main>
   );
 }

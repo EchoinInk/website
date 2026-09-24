@@ -51,6 +51,10 @@ describe("site navigation", () => {
     const footerNav = screen.getByRole("navigation", {
       name: "Footer primary navigation"
     });
+    const footer = screen.getByRole("contentinfo");
+
+    expect(footer).toHaveAttribute("data-theme", "light");
+    expect(footer).toHaveAttribute("data-variant", "full");
 
     primaryContract.forEach(([label, href]) => {
       expect(within(headerNav).getByRole("link", { name: label })).toHaveAttribute("href", href);
@@ -65,6 +69,34 @@ describe("site navigation", () => {
       "href",
       "/contact"
     );
+  });
+
+  it("provides a focused compact footer without the full navigation taxonomy", () => {
+    render(
+      <MemoryRouter>
+        <Footer theme="light" variant="compact" />
+      </MemoryRouter>
+    );
+
+    const footer = screen.getByRole("contentinfo");
+    expect(footer).toHaveAttribute("data-theme", "light");
+    expect(footer).toHaveAttribute("data-variant", "compact");
+
+    const recoveryNav = within(footer).getByRole("navigation", {
+      name: "Footer recovery navigation"
+    });
+    expect(within(recoveryNav).getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");
+    expect(within(recoveryNav).getByRole("link", { name: "Work" })).toHaveAttribute(
+      "href",
+      "/works"
+    );
+    expect(within(recoveryNav).getByRole("link", { name: "Project enquiries" })).toHaveAttribute(
+      "href",
+      "/contact"
+    );
+    expect(
+      within(footer).queryByRole("navigation", { name: "Explore deeper" })
+    ).not.toBeInTheDocument();
   });
 
   it("switches contrast when a nested semantic section passes below the header", async () => {
@@ -84,9 +116,7 @@ describe("site navigation", () => {
     let sectionTop = 120;
 
     vi.spyOn(header, "getBoundingClientRect").mockImplementation(() => rect(0, 80));
-    vi.spyOn(main, "getBoundingClientRect").mockImplementation(() =>
-      rect(mainTop, mainTop + 1000)
-    );
+    vi.spyOn(main, "getBoundingClientRect").mockImplementation(() => rect(mainTop, mainTop + 1000));
     vi.spyOn(section, "getBoundingClientRect").mockImplementation(() =>
       rect(sectionTop, sectionTop + 500)
     );

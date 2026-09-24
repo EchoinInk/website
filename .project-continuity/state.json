@@ -143,12 +143,36 @@
       "from": "phase:roadmap-8-global-polish",
       "to": "baseline:Phases 7-8 verified baseline",
       "type": "verified_by"
+    },
+    {
+      "created_at": "2026-09-24T03:10:59.537785Z",
+      "from": "phase:roadmap-9-global-refinement",
+      "to": "phase:roadmap-8-global-polish",
+      "type": "depends_on"
+    },
+    {
+      "created_at": "2026-09-24T03:10:59.643744Z",
+      "from": "phase:roadmap-9-global-refinement",
+      "to": "decision:roadmap-9-footer-variants",
+      "type": "decided_by"
+    },
+    {
+      "created_at": "2026-09-24T03:10:59.748144Z",
+      "from": "finding:roadmap-9-nested-light-scope",
+      "to": "phase:roadmap-9-global-refinement",
+      "type": "relates_to"
+    },
+    {
+      "created_at": "2026-09-24T03:11:00.046062Z",
+      "from": "phase:roadmap-9-global-refinement",
+      "to": "baseline:Phase 9 global refinement verified baseline",
+      "type": "verified_by"
     }
   ],
   "meta": {
     "created_at": "2026-09-21T20:19:14.069177Z",
     "schema_version": "1.0",
-    "updated_at": "2026-09-24T02:55:57.260606Z"
+    "updated_at": "2026-09-24T03:11:00.046190Z"
   },
   "nodes": {
     "baseline:Phase 10 Cloudflare Pages verified working tree": {
@@ -236,6 +260,26 @@
         "git_diff_check": "passed",
         "lint": "passed",
         "tests": "30/30 passed",
+        "typecheck": "passed"
+      }
+    },
+    "baseline:Phase 9 global refinement verified baseline": {
+      "branch": "main",
+      "captured_at": "2026-09-24T03:10:59.909879Z",
+      "commit": "40362d6d1defb90fce137d28af9c187cde07ee4d",
+      "dirty": true,
+      "id": "baseline:Phase 9 global refinement verified baseline",
+      "repository_fingerprint": "5f93673c79ec3077a48e5fffebbc5858b80c1befd06f6d8db897610fd9ae8873",
+      "status": "proposed",
+      "title": "Phase 9 global refinement verified baseline",
+      "truth": "observed",
+      "type": "baseline",
+      "verification": {
+        "build": "passed",
+        "footer_variants": "verified",
+        "lint": "passed",
+        "responsive": "85/85 route-width checks passed",
+        "tests": "51 passed",
         "typecheck": "passed"
       }
     },
@@ -377,6 +421,21 @@
       "type": "decision",
       "updated_at": "2026-09-22T03:01:26.612395Z"
     },
+    "decision:roadmap-9-footer-variants": {
+      "decision": "Use the full footer on landing and editorial index pages, and the compact footer on focused forms, 404, long-form articles, and Lumo. Footer variants resolve through the light semantic token system.",
+      "id": "decision:roadmap-9-footer-variants",
+      "rationale": "This preserves useful navigation on broad pages while reducing unnecessary page length and dark-slab endings in focused contexts.",
+      "sources": [
+        "pasted implementation prompt",
+        "src/components/navigation/Footer.tsx",
+        "responsive browser verification"
+      ],
+      "status": "accepted",
+      "title": "Use full and compact light-system footer variants",
+      "truth": "observed",
+      "type": "decision",
+      "updated_at": "2026-09-24T03:10:59.163179Z"
+    },
     "finding:phase10-cloudflare-domain-state": {
       "class": "external-dependency",
       "files": [
@@ -506,6 +565,18 @@
         "src/pages/BookingPage.test.tsx",
         "npm test"
       ]
+    },
+    "finding:roadmap-9-nested-light-scope": {
+      "classification": "implementation-drift",
+      "evidence": "The Lumo compact footer declared data-theme=light but computed deep canvas and text tokens because light scopes only reset canvas variables.",
+      "id": "finding:roadmap-9-nested-light-scope",
+      "resolution": "Rebound the complete light semantic contract for light, lightElevated, and mist scopes in src/styles/01-tokens/tokens.css.",
+      "status": "resolved",
+      "title": "Nested light scopes inherited deep semantic tokens",
+      "truth": "observed",
+      "type": "finding",
+      "updated_at": "2026-09-24T03:10:59.288538Z",
+      "verification": "Lumo and long-form compact footers compute #fcfaff canvas and #171426 primary text at all five target widths."
     },
     "phase:10": {
       "acceptance": [
@@ -805,6 +876,42 @@
         "lumo_landmarks": "passed at all five widths",
         "responsive": "85 of 85 route-width checks passed at 360, 390, 768, 1024, and 1440",
         "tests": "50 passed across 11 files",
+        "typecheck": "passed"
+      }
+    },
+    "phase:roadmap-9-global-refinement": {
+      "acceptance_criteria": [
+        "404 uses the shared light system and useful recovery routes",
+        "Full and compact footer variants are available and assigned by context",
+        "Signal graphics remain restrained and purposeful",
+        "Nested light scopes do not inherit deep theme tokens",
+        "All public routes pass five-width responsive QA",
+        "Required quality gates pass"
+      ],
+      "id": "phase:roadmap-9-global-refinement",
+      "objective": "Complete global refinement of 404 recovery, footer variants, signal-field usage, hero consistency, spacing, imagery, and responsive behavior.",
+      "scope": [
+        "light full and compact footer variants",
+        "light editorial 404 with recovery routes",
+        "nested semantic light token correction",
+        "focused footer adoption on Contact, Booking, Lumo, and long-form essay",
+        "responsive and shared-component regression review"
+      ],
+      "status": "complete",
+      "title": "Roadmap Phase 9 \u00b7 Global Refinement",
+      "truth": "observed",
+      "type": "phase",
+      "updated_at": "2026-09-24T03:10:59.416652Z",
+      "verification": {
+        "broken_images": "none",
+        "build": "passed; 559 modules transformed",
+        "footer_variants": "full and compact verified across all public routes",
+        "git_diff_check": "passed",
+        "horizontal_overflow": "none",
+        "landmarks": "one H1 and one main per route",
+        "lint": "passed",
+        "responsive": "85 route-width checks passed at 360, 390, 768, 1024, and 1440",
+        "tests": "51 passed across 11 files",
         "typecheck": "passed"
       }
     },

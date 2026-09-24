@@ -434,9 +434,107 @@
     --ei-selection-color: var(--ei-theme-text-primary);
   }
 
-  [data-theme="light"] { --ei-theme-canvas: var(--ei-surface-base); --ei-theme-surface: var(--ei-surface-soft); --ei-theme-surface-elevated: var(--ei-surface-card); }
-  [data-theme="lightElevated"] { --ei-theme-canvas: var(--ei-surface-soft); --ei-theme-surface: var(--ei-surface-card); --ei-theme-surface-elevated: var(--ei-surface-card); --ei-theme-card: var(--ei-surface-card); }
-  [data-theme="mist"] { --ei-theme-canvas: var(--ei-surface-lavender); --ei-theme-surface: var(--ei-surface-soft); --ei-theme-surface-elevated: var(--ei-surface-card); --ei-theme-card: rgb(255 254 254 / 0.9); --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.78); }
+  :is([data-theme="light"], [data-theme="lightElevated"], [data-theme="mist"]) {
+    --ei-theme-text-primary: var(--ei-moonlight-ink);
+    --ei-theme-text-secondary: var(--ei-moonlight-muted);
+    --ei-theme-text-muted: #686172;
+    --ei-theme-text-faint: #6c6576;
+    --ei-theme-border: var(--ei-moonlight-border);
+    --ei-theme-link: var(--ei-moonlight-violet);
+    --ei-theme-focus: var(--ei-moonlight-blue);
+    --ei-theme-shadow: 0 14px 34px rgb(var(--ei-moonlight-ink-rgb) / 0.075);
+    --ei-theme-shadow-elevated: 0 20px 52px rgb(var(--ei-moonlight-ink-rgb) / 0.11);
+    --ei-theme-card: rgb(var(--ei-moonlight-surface-rgb) / 0.92);
+    --ei-theme-card-hover: #ffffff;
+    --ei-theme-form: #ffffff;
+    --ei-theme-form-hover: rgb(var(--ei-moonlight-surface-rgb) / 0.82);
+    --ei-theme-form-focus: #ffffff;
+    --ei-theme-button: var(--ei-moonlight-violet);
+    --ei-theme-button-hover: #5944b2;
+    --ei-theme-button-text: #ffffff;
+    --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.86);
+    --ei-theme-header-text: var(--ei-moonlight-ink);
+    --ei-theme-image-scrim: linear-gradient(180deg, rgb(var(--ei-moonlight-ink-rgb) / 0.04), rgb(var(--ei-moonlight-ink-rgb) / 0.32));
+    --ei-theme-selection: rgb(var(--ei-moonlight-violet-rgb) / 0.24);
+    --ei-theme-heading-shadow: none;
+    --ei-theme-image-filter: none;
+    --ei-theme-atmosphere-violet: var(--ei-moonlight-violet);
+    --ei-theme-atmosphere-blue: var(--ei-moonlight-blue);
+    --ei-theme-atmosphere-magenta: var(--ei-moonlight-magenta);
+
+    --ei-color-background-canvas: var(--ei-theme-canvas);
+    --ei-color-surface: var(--ei-theme-surface);
+    --ei-color-surface-elevated: var(--ei-theme-surface-elevated);
+    --ei-color-surface-hover: var(--ei-theme-card-hover);
+    --ei-color-surface-glass: rgb(var(--ei-moonlight-surface-rgb) / 0.72);
+    --ei-color-surface-scrim: var(--ei-theme-image-scrim);
+    --ei-color-text-primary: var(--ei-theme-text-primary);
+    --ei-color-text-secondary: var(--ei-theme-text-secondary);
+    --ei-color-text-tertiary: var(--ei-theme-text-muted);
+    --ei-color-text-muted: var(--ei-theme-text-muted);
+    --ei-color-text-faint: var(--ei-theme-text-faint);
+    --ei-color-text-accent: var(--ei-theme-link);
+    --ei-type-color-primary: var(--ei-theme-text-primary);
+    --ei-type-color-secondary: var(--ei-theme-text-secondary);
+    --ei-type-color-tertiary: var(--ei-theme-text-muted);
+    --ei-type-color-muted: var(--ei-theme-text-muted);
+    --ei-card-bg: var(--ei-theme-card);
+    --ei-card-bg-hover: var(--ei-theme-card-hover);
+    --ei-card-border: var(--ei-theme-border);
+    --ei-card-border-hover: rgb(var(--ei-moonlight-violet-rgb) / 0.48);
+    --ei-card-shadow: var(--ei-theme-shadow);
+    --ei-card-shadow-hover: var(--ei-theme-shadow-elevated);
+    --ei-button-bg: var(--ei-theme-button);
+    --ei-button-bg-hover: var(--ei-theme-button-hover);
+    --ei-button-border: transparent;
+    --ei-button-border-hover: transparent;
+    --ei-button-text: var(--ei-theme-button-text);
+    --ei-button-secondary-bg: var(--ei-theme-surface);
+    --ei-button-secondary-bg-hover: var(--ei-theme-surface-elevated);
+    --ei-button-secondary-border: var(--ei-theme-border);
+    --ei-button-secondary-border-hover: rgb(var(--ei-moonlight-violet-rgb) / 0.46);
+    --ei-button-secondary-text: var(--ei-theme-text-primary);
+    --ei-header-text: var(--ei-theme-header-text);
+    --ei-header-text-hover: var(--ei-theme-link);
+    --ei-header-text-active: var(--ei-theme-link);
+    --ei-header-text-muted: var(--ei-theme-text-muted);
+    --ei-form-control-bg: var(--ei-theme-form);
+    --ei-form-control-bg-hover: var(--ei-theme-form-hover);
+    --ei-form-control-bg-focus: var(--ei-theme-form-focus);
+    --ei-form-control-border: var(--ei-theme-border);
+    --ei-form-control-border-focus: var(--ei-theme-focus);
+    --ei-form-control-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9);
+    --ei-form-panel-bg: var(--ei-theme-surface);
+    --ei-form-panel-bg-elevated: var(--ei-theme-surface-elevated);
+    --ei-shadow-soft: var(--ei-theme-shadow);
+    --ei-shadow-elevated: var(--ei-theme-shadow-elevated);
+    --ei-shadow-hover: var(--ei-theme-shadow-elevated);
+    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas), 0 0 0 4px var(--ei-theme-focus);
+    --ei-button-focus-ring: var(--ei-ring-focus);
+    --ei-selection-bg: var(--ei-theme-selection);
+    --ei-selection-color: var(--ei-theme-text-primary);
+  }
+
+  [data-theme="light"] {
+    --ei-theme-canvas: var(--ei-surface-base);
+    --ei-theme-surface: var(--ei-surface-soft);
+    --ei-theme-surface-elevated: var(--ei-surface-card);
+  }
+
+  [data-theme="lightElevated"] {
+    --ei-theme-canvas: var(--ei-surface-soft);
+    --ei-theme-surface: var(--ei-surface-card);
+    --ei-theme-surface-elevated: var(--ei-surface-card);
+    --ei-theme-card: var(--ei-surface-card);
+  }
+
+  [data-theme="mist"] {
+    --ei-theme-canvas: var(--ei-surface-lavender);
+    --ei-theme-surface: var(--ei-surface-soft);
+    --ei-theme-surface-elevated: var(--ei-surface-card);
+    --ei-theme-card: rgb(255 254 254 / 0.9);
+    --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.78);
+  }
   [data-header-surface="light"] {
     --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.86);
     --ei-theme-header-text: var(--ei-moonlight-ink);

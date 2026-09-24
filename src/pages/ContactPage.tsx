@@ -1,11 +1,4 @@
-import {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type ChangeEvent,
-  type FormEvent,
-} from "react";
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 
@@ -25,7 +18,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import {
   primaryCapabilities,
   projectInquiryTypeOptions,
-  strategySessionsEngagement,
+  strategySessionsEngagement
 } from "@/data/servicesContent";
 import {
   CONTACT_DIRECT_EMAIL,
@@ -36,15 +29,9 @@ import {
   submitContactForm,
   validateContactForm,
   type ContactFieldErrors,
-  type ContactFormState,
+  type ContactFormState
 } from "@/lib/contactForm";
-import {
-  driftUp,
-  fadeSoft,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT,
-} from "@/lib/motion-cinematic";
+import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const trustItems: Array<{
   title: string;
@@ -54,18 +41,18 @@ const trustItems: Array<{
   {
     title: "A direct response",
     description: "Every project enquiry is read and answered personally.",
-    icon: "threadBeacon",
+    icon: "threadBeacon"
   },
   {
     title: "No solution required",
     description: "Bring the problem, opportunity or change—not a technical diagnosis.",
-    icon: "synthesisStar",
+    icon: "synthesisStar"
   },
   {
     title: "Private by default",
     description: "Your details and project context are kept private.",
-    icon: "haloGate",
-  },
+    icon: "haloGate"
+  }
 ];
 
 type ContactFieldEvent =
@@ -85,7 +72,7 @@ function buildProjectMessage(outcome: string, changedContext: string, timing: st
     changedContext.trim() || "Not provided",
     "",
     "Timing",
-    timing.trim() || "Not specified",
+    timing.trim() || "Not specified"
   ].join("\n");
 }
 
@@ -94,7 +81,7 @@ export function ContactPage() {
   const prefersReducedMotion = useReducedMotion();
   const [formState, setFormState] = useState<ContactFormState>("idle");
   const [formData, setFormData] = useState(() =>
-    createEmptyContactFormData({ exploration: "Project Inquiry" }),
+    createEmptyContactFormData({ exploration: "Project Inquiry" })
   );
   const [changedContext, setChangedContext] = useState("");
   const [timing, setTiming] = useState("");
@@ -108,15 +95,11 @@ export function ContactPage() {
     variants: staggerContainer(STAGGER.loose, 0),
     initial: prefersReducedMotion ? false : "hidden",
     whileInView: "visible",
-    viewport: VIEWPORT.normal,
+    viewport: VIEWPORT.normal
   } as const;
 
-  const hasFieldErrors = useMemo(
-    () => Object.values(fieldErrors).some(Boolean),
-    [fieldErrors],
-  );
-  const visibleProjectType =
-    formData.exploration === "Project Inquiry" ? "" : formData.exploration;
+  const hasFieldErrors = useMemo(() => Object.values(fieldErrors).some(Boolean), [fieldErrors]);
+  const visibleProjectType = formData.exploration === "Project Inquiry" ? "" : formData.exploration;
 
   useEffect(() => {
     const preselectedInquiry = getPreselectedInquiry(searchParams.get("inquiry"));
@@ -128,7 +111,7 @@ export function ContactPage() {
       exploration:
         current.exploration && current.exploration !== "Project Inquiry"
           ? current.exploration
-          : preselectedInquiry,
+          : preselectedInquiry
     }));
   }, [searchParams]);
 
@@ -142,7 +125,7 @@ export function ContactPage() {
 
   const focusFirstInvalidField = (errors: ContactFieldErrors) => {
     const firstField = ["name", "email", "projectUrl", "message"].find(
-      (field) => errors[field as keyof ContactFieldErrors],
+      (field) => errors[field as keyof ContactFieldErrors]
     );
     if (firstField) document.getElementById(firstField)?.focus();
   };
@@ -174,7 +157,7 @@ export function ContactPage() {
     try {
       await submitContactForm({
         ...formData,
-        message: projectMessage,
+        message: projectMessage
       });
       setFormState("success");
       setStatusMessage(CONTACT_SUCCESS_MESSAGE);
@@ -215,10 +198,11 @@ export function ContactPage() {
       description="Start a project with Echo in Ink by sharing the problem, opportunity or idea you want to make real."
       atmosphere="default"
       theme="light"
+      footerTheme="light"
+      footerVariant="compact"
       withTopSpacing={false}
       className="ei-contact-page"
     >
-
       <PageSectionHero
         eyebrow="START A PROJECT"
         title="Begin with what you're trying to make real."
@@ -314,7 +298,9 @@ export function ContactPage() {
                         )}
                       </div>
 
-                      <p className="sr-only" aria-live="polite">{announcement}</p>
+                      <p className="sr-only" aria-live="polite">
+                        {announcement}
+                      </p>
 
                       <div className="ei-contact-form-row">
                         <EchoFormField
@@ -421,14 +407,18 @@ export function ContactPage() {
                       </div>
 
                       <div className="ei-contact-submit-row">
-                        <Button type="submit" variant="primary" disabled={formState === "submitting"}>
+                        <Button
+                          type="submit"
+                          variant="primary"
+                          disabled={formState === "submitting"}
+                        >
                           {formState === "submitting"
                             ? "Sending..."
                             : formState === "error"
                               ? "Try again"
                               : "Start a Project"}
                         </Button>
-                      <p>Your details are sent to Echo in Ink to respond to this enquiry.</p>
+                        <p>Your details are sent to Echo in Ink to respond to this enquiry.</p>
                       </div>
                     </form>
                   )}
