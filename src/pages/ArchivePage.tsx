@@ -286,7 +286,7 @@ export function ArchivePage() {
         id="archive-index"
         spacing="none"
         theme="mist"
-        transitionTo="atmospheric"
+        transitionTo="lightElevated"
         className="ei-archive-section ei-archive-index-section"
       >
         <Container size="xl" className="relative z-10">
@@ -324,7 +324,7 @@ export function ArchivePage() {
         </Container>
       </Section>
 
-      <Section theme="atmospheric" spacing="none" className="ei-archive-section ei-archive-philosophy-section">
+      <Section theme="lightElevated" transitionTo="mist" spacing="none" className="ei-archive-section ei-archive-philosophy-section">
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
@@ -333,7 +333,7 @@ export function ArchivePage() {
             viewport={VIEWPORT.normal}
             className="mx-auto max-w-[1180px]"
           >
-            <EchoCard variant="offer" padding="none" className="ei-archive-philosophy">
+            <EchoCard variant="offer" padding="none" className="ei-archive-philosophy" data-theme="deep">
               <div className="ei-archive-philosophy-copy">
                 <SectionLabel label="A living constellation" index="06" tone="accent" />
                 <motion.h2 variants={blurEmergence} className="ei-type-editorial-heading">{archivePhilosophy.title}</motion.h2>
@@ -350,7 +350,8 @@ export function ArchivePage() {
 
       <CTASection
         variant="editorialInvitation"
-        theme="deep"
+        theme="mist"
+        panelTheme="deep"
         eyebrow="Follow the signal"
         heading={archiveCta.title}
         body={archiveCta.description}

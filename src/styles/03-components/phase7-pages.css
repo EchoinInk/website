@@ -172,7 +172,7 @@
     min-width: 0;
     padding: clamp(1.5rem, 4vw, 3rem);
     border: 1px solid var(--ei-theme-border);
-    background: rgb(var(--ei-ink-rgb) / 0.24);
+    background: var(--ei-theme-card);
     box-shadow: var(--ei-theme-shadow);
   }
 

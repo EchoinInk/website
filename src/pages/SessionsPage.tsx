@@ -103,7 +103,7 @@ export function SessionsPage() {
         </Container>
       </Section>
 
-      <Section theme="mist" transitionTo="atmospheric" spacing="none" className="ei-phase7-section ei-sessions-expectations" aria-labelledby="sessions-expectations-heading">
+      <Section theme="mist" transitionTo="light" spacing="none" className="ei-phase7-section ei-sessions-expectations" aria-labelledby="sessions-expectations-heading">
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.div variants={driftUp} className="ei-phase7-heading">
@@ -129,7 +129,7 @@ export function SessionsPage() {
         </Container>
       </Section>
 
-      <Section theme="atmospheric" transitionTo="light" spacing="none" className="ei-phase7-section ei-sessions-room" aria-labelledby="sessions-room-heading">
+      <Section theme="light" transitionTo="lightElevated" spacing="none" className="ei-phase7-section ei-sessions-room" aria-labelledby="sessions-room-heading">
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner ei-sessions-room-layout">
             <motion.div variants={driftUp} className="ei-sessions-room-copy">
@@ -155,7 +155,7 @@ export function SessionsPage() {
         </Container>
       </Section>
 
-      <Section theme="light" transitionTo="deep" spacing="none" className="ei-phase7-section ei-sessions-standalone" aria-labelledby="sessions-standalone-heading">
+      <Section theme="lightElevated" transitionTo="mist" spacing="none" className="ei-phase7-section ei-sessions-standalone" aria-labelledby="sessions-standalone-heading">
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.aside variants={driftUp} className="ei-phase7-relationship">
@@ -174,7 +174,7 @@ export function SessionsPage() {
         </Container>
       </Section>
 
-      <Section theme="deep" spacing="none" className="ei-phase7-closing">
+      <Section theme="mist" spacing="none" className="ei-phase7-closing">
         <CTASection
           variant="editorialInvitation"
           eyebrow="Bring the question"

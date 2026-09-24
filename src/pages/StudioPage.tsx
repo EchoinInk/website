@@ -97,7 +97,7 @@ export function StudioPage() {
 
       <Section
         theme="lightElevated"
-        transitionTo="atmospheric"
+        transitionTo="mist"
         spacing="none"
         className="ei-studio-capabilities"
         aria-labelledby="studio-capabilities-heading"
@@ -148,7 +148,7 @@ export function StudioPage() {
       </Section>
 
       <Section
-        theme="atmospheric"
+        theme="mist"
         transitionTo="light"
         spacing="none"
         className="ei-studio-philosophy"
@@ -201,8 +201,8 @@ export function StudioPage() {
       </Section>
 
       <Section
-        theme="mist"
-        transitionTo="deep"
+        theme="light"
+        transitionTo="lightElevated"
         spacing="none"
         className="ei-studio-model"
         aria-labelledby="studio-model-heading"
@@ -240,9 +240,10 @@ export function StudioPage() {
         </Container>
       </Section>
 
-      <Section theme="deep" spacing="none" className="ei-studio-closing">
+      <Section theme="lightElevated" spacing="none" className="ei-studio-closing">
         <CTASection
           variant="editorialInvitation"
+          panelTheme="deep"
           eyebrow="Continue"
           heading="See what this way of working can make."
           body="Explore selected work and its project context, or bring Echo the challenge you are ready to shape."
