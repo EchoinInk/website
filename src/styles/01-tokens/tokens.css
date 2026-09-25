@@ -5,7 +5,6 @@
    ──────────────────────────────────────────────────────────────── */
 @layer base {
   :root {
-
     --ei-void: #05030b; /* Absolute darkest tone, used for the deepest shadows and overlays */
     --ei-ink: #080718; /* Primary canvas color, used for backgrounds and surfaces */
     --ei-midnight: #0b0d2a; /* Secondary canvas color, used for surfaces */
@@ -169,52 +168,52 @@
       );
 
     --ei-background-nebula: linear-gradient(
-        135deg,
-        #05030b 0%,
-        #080718 32%,
-        #0b0d2a 52%,
-        #7107ea 74%,
-        #dd12cb 100%
-      );
+      135deg,
+      #05030b 0%,
+      #080718 32%,
+      #0b0d2a 52%,
+      #7107ea 74%,
+      #dd12cb 100%
+    );
 
     /* ────────────────────────────────────────────────────────────────
        GRADIENTS
        ──────────────────────────────────────────────────────────────── */
 
     --ei-gradient-primary: linear-gradient(
-        110deg,
-        var(--ei-halo-blue) 0%,
-        var(--ei-violet) 48%,
-        var(--ei-echo-magenta) 100%
-      );
+      110deg,
+      var(--ei-halo-blue) 0%,
+      var(--ei-violet) 48%,
+      var(--ei-echo-magenta) 100%
+    );
 
     --ei-gradient-primary-hover: linear-gradient(
-        110deg,
-        var(--ei-halo-blue) 0%,
-        var(--ei-soft-neon) 50%,
-        var(--ei-echo-magenta) 100%
-      );
+      110deg,
+      var(--ei-halo-blue) 0%,
+      var(--ei-soft-neon) 50%,
+      var(--ei-echo-magenta) 100%
+    );
 
     --ei-gradient-orbital-border: linear-gradient(
-        120deg,
-        rgba(73, 133, 253, 0.82),
-        rgba(113, 7, 234, 0.58),
-        rgba(221, 18, 203, 0.84)
-      );
+      120deg,
+      rgba(73, 133, 253, 0.82),
+      rgba(113, 7, 234, 0.58),
+      rgba(221, 18, 203, 0.84)
+    );
 
     --ei-gradient-image-overlay-soft: linear-gradient(
-        180deg,
-        rgba(5, 3, 11, 0) 0%,
-        rgba(5, 3, 11, 0.46) 62%,
-        rgba(5, 3, 11, 0.84) 100%
-      );
+      180deg,
+      rgba(5, 3, 11, 0) 0%,
+      rgba(5, 3, 11, 0.46) 62%,
+      rgba(5, 3, 11, 0.84) 100%
+    );
 
     --ei-gradient-image-overlay-left: linear-gradient(
-        90deg,
-        rgba(5, 3, 11, 0.88) 0%,
-        rgba(5, 3, 11, 0.46) 48%,
-        rgba(5, 3, 11, 0) 100%
-      );
+      90deg,
+      rgba(5, 3, 11, 0.88) 0%,
+      rgba(5, 3, 11, 0.46) 48%,
+      rgba(5, 3, 11, 0) 100%
+    );
 
     /* ────────────────────────────────────────────────────────────────
        GLOWS
@@ -295,15 +294,15 @@
     --ei-form-control-radius: 0.875rem;
     --ei-form-control-shadow: inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04);
     --ei-form-panel-bg: linear-gradient(
-        180deg,
-        rgb(var(--ei-midnight-rgb) / 0.34),
-        rgb(var(--ei-void-rgb) / 0.9)
-      );
+      180deg,
+      rgb(var(--ei-midnight-rgb) / 0.34),
+      rgb(var(--ei-void-rgb) / 0.9)
+    );
     --ei-form-panel-bg-elevated: linear-gradient(
-        180deg,
-        rgb(var(--ei-midnight-rgb) / 0.52),
-        rgb(var(--ei-void-rgb) / 0.88)
-      );
+      180deg,
+      rgb(var(--ei-midnight-rgb) / 0.52),
+      rgb(var(--ei-void-rgb) / 0.88)
+    );
 
     --ei-selection-bg: rgba(221, 18, 203, 0.34);
     --ei-selection-color: var(--ei-ice-white);
@@ -355,7 +354,8 @@
     --ei-theme-link: var(--ei-moonlight-violet);
     --ei-theme-focus: var(--ei-moonlight-blue);
     --ei-theme-shadow: 0 14px 34px rgb(var(--ei-moonlight-ink-rgb) / 0.075);
-    --ei-theme-shadow-elevated: 0 20px 52px rgb(var(--ei-moonlight-ink-rgb) / 0.11);
+    --ei-theme-shadow-elevated: 0 20px 52px
+      rgb(var(--ei-moonlight-ink-rgb) / 0.11);
     --ei-theme-card: rgb(var(--ei-moonlight-surface-rgb) / 0.92);
     --ei-theme-card-hover: #ffffff;
     --ei-theme-form: #ffffff;
@@ -367,7 +367,11 @@
     --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.86);
     --ei-theme-header-text: var(--ei-moonlight-ink);
     --ei-header-logo-filter: brightness(0) saturate(100%);
-    --ei-theme-image-scrim: linear-gradient(180deg, rgb(var(--ei-moonlight-ink-rgb) / 0.04), rgb(var(--ei-moonlight-ink-rgb) / 0.32));
+    --ei-theme-image-scrim: linear-gradient(
+      180deg,
+      rgb(var(--ei-moonlight-ink-rgb) / 0.04),
+      rgb(var(--ei-moonlight-ink-rgb) / 0.32)
+    );
     --ei-theme-selection: rgb(var(--ei-moonlight-violet-rgb) / 0.24);
     --ei-theme-scrollbar: rgb(var(--ei-moonlight-ink-rgb) / 0.2);
     --ei-theme-scrollbar-hover: rgb(var(--ei-moonlight-ink-rgb) / 0.34);
@@ -378,9 +382,13 @@
     --ei-theme-atmosphere-magenta: var(--ei-moonlight-magenta);
 
     /* Semantic boundary canvases used by Section transitions. */
-    --ei-transition-canvas-light: var(--ei-moonlight-canvas);
-    --ei-transition-canvas-light-elevated: var(--ei-surface-soft);
-    --ei-transition-canvas-mist: var(--ei-surface-lavender);
+    --ei-transition-canvas-light: var(--ei-surface-base);
+    --ei-transition-canvas-light-elevated: var(--ei-surface-base);
+    --ei-transition-canvas-mist: color-mix(
+      in srgb,
+      var(--ei-surface-base) 88%,
+      var(--ei-surface-lavender) 12%
+    );
     --ei-transition-canvas-atmospheric: var(--ei-ink);
     --ei-transition-canvas-deep: var(--ei-ink);
     --ei-transition-depth: clamp(5rem, 10vw, 10rem);
@@ -413,7 +421,9 @@
     --ei-button-secondary-bg: var(--ei-theme-surface);
     --ei-button-secondary-bg-hover: var(--ei-theme-surface-elevated);
     --ei-button-secondary-border: var(--ei-theme-border);
-    --ei-button-secondary-border-hover: rgb(var(--ei-moonlight-violet-rgb) / 0.46);
+    --ei-button-secondary-border-hover: rgb(
+      var(--ei-moonlight-violet-rgb) / 0.46
+    );
     --ei-button-secondary-text: var(--ei-theme-text-primary);
     --ei-header-text: var(--ei-theme-header-text);
     --ei-header-text-hover: var(--ei-theme-link);
@@ -430,7 +440,8 @@
     --ei-shadow-soft: var(--ei-theme-shadow);
     --ei-shadow-elevated: var(--ei-theme-shadow-elevated);
     --ei-shadow-hover: var(--ei-theme-shadow-elevated);
-    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas), 0 0 0 4px var(--ei-theme-focus);
+    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas),
+      0 0 0 4px var(--ei-theme-focus);
     --ei-button-focus-ring: var(--ei-ring-focus);
     --ei-selection-bg: var(--ei-theme-selection);
     --ei-selection-color: var(--ei-theme-text-primary);
@@ -445,7 +456,8 @@
     --ei-theme-link: var(--ei-moonlight-violet);
     --ei-theme-focus: var(--ei-moonlight-blue);
     --ei-theme-shadow: 0 14px 34px rgb(var(--ei-moonlight-ink-rgb) / 0.075);
-    --ei-theme-shadow-elevated: 0 20px 52px rgb(var(--ei-moonlight-ink-rgb) / 0.11);
+    --ei-theme-shadow-elevated: 0 20px 52px
+      rgb(var(--ei-moonlight-ink-rgb) / 0.11);
     --ei-theme-card: rgb(var(--ei-moonlight-surface-rgb) / 0.92);
     --ei-theme-card-hover: #ffffff;
     --ei-theme-form: #ffffff;
@@ -456,7 +468,11 @@
     --ei-theme-button-text: #ffffff;
     --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.86);
     --ei-theme-header-text: var(--ei-moonlight-ink);
-    --ei-theme-image-scrim: linear-gradient(180deg, rgb(var(--ei-moonlight-ink-rgb) / 0.04), rgb(var(--ei-moonlight-ink-rgb) / 0.32));
+    --ei-theme-image-scrim: linear-gradient(
+      180deg,
+      rgb(var(--ei-moonlight-ink-rgb) / 0.04),
+      rgb(var(--ei-moonlight-ink-rgb) / 0.32)
+    );
     --ei-theme-selection: rgb(var(--ei-moonlight-violet-rgb) / 0.24);
     --ei-theme-heading-shadow: none;
     --ei-theme-image-filter: none;
@@ -494,7 +510,9 @@
     --ei-button-secondary-bg: var(--ei-theme-surface);
     --ei-button-secondary-bg-hover: var(--ei-theme-surface-elevated);
     --ei-button-secondary-border: var(--ei-theme-border);
-    --ei-button-secondary-border-hover: rgb(var(--ei-moonlight-violet-rgb) / 0.46);
+    --ei-button-secondary-border-hover: rgb(
+      var(--ei-moonlight-violet-rgb) / 0.46
+    );
     --ei-button-secondary-text: var(--ei-theme-text-primary);
     --ei-header-text: var(--ei-theme-header-text);
     --ei-header-text-hover: var(--ei-theme-link);
@@ -511,7 +529,8 @@
     --ei-shadow-soft: var(--ei-theme-shadow);
     --ei-shadow-elevated: var(--ei-theme-shadow-elevated);
     --ei-shadow-hover: var(--ei-theme-shadow-elevated);
-    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas), 0 0 0 4px var(--ei-theme-focus);
+    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas),
+      0 0 0 4px var(--ei-theme-focus);
     --ei-button-focus-ring: var(--ei-ring-focus);
     --ei-selection-bg: var(--ei-theme-selection);
     --ei-selection-color: var(--ei-theme-text-primary);
@@ -524,14 +543,18 @@
   }
 
   [data-theme="lightElevated"] {
-    --ei-theme-canvas: var(--ei-surface-soft);
+    --ei-theme-canvas: var(--ei-surface-base);
     --ei-theme-surface: var(--ei-surface-card);
     --ei-theme-surface-elevated: var(--ei-surface-card);
     --ei-theme-card: var(--ei-surface-card);
   }
 
   [data-theme="mist"] {
-    --ei-theme-canvas: var(--ei-surface-lavender);
+    --ei-theme-canvas: color-mix(
+      in srgb,
+      var(--ei-surface-base) 88%,
+      var(--ei-surface-lavender) 12%
+    );
     --ei-theme-surface: var(--ei-surface-soft);
     --ei-theme-surface-elevated: var(--ei-surface-card);
     --ei-theme-card: rgb(255 254 254 / 0.9);
@@ -551,12 +574,71 @@
     --ei-header-text-muted: var(--ei-moonlight-muted);
     --ei-header-logo-filter: brightness(0) saturate(100%);
   }
-  html[data-page-theme="atmospheric"], html[data-page-theme="deep"], [data-theme="atmospheric"], [data-theme="deep"] {
-    --ei-theme-canvas: var(--ei-ink); --ei-theme-surface: rgb(var(--ei-midnight-rgb) / 0.64); --ei-theme-surface-elevated: rgb(var(--ei-midnight-rgb) / 0.82); --ei-theme-text-primary: #f4eeff; --ei-theme-text-secondary: #d9cff6; --ei-theme-text-muted: #b4a1d7; --ei-theme-text-faint: #9489b7; --ei-theme-border: rgb(var(--ei-moonlit-rgb) / 0.12); --ei-theme-link: var(--ei-halo-blue); --ei-theme-focus: var(--ei-halo-blue); --ei-theme-shadow: 0 20px 80px rgb(0 0 0 / 0.34); --ei-theme-shadow-elevated: 0 28px 120px rgb(0 0 0 / 0.48); --ei-theme-card: rgb(var(--ei-midnight-rgb) / 0.84); --ei-theme-card-hover: rgb(var(--ei-midnight-rgb) / 0.9); --ei-theme-form: rgb(var(--ei-void-rgb) / 0.22); --ei-theme-form-hover: rgb(var(--ei-ice-white-rgb) / 0.025); --ei-theme-form-focus: rgb(var(--ei-void-rgb) / 0.32); --ei-theme-button: var(--ei-gradient-primary); --ei-theme-button-hover: var(--ei-gradient-primary-hover); --ei-theme-button-text: var(--ei-ice-white); --ei-theme-header: rgb(var(--ei-midnight-rgb) / 0.78); --ei-theme-header-text: var(--ei-moonlit); --ei-header-logo-filter: none; --ei-theme-image-scrim: linear-gradient(180deg, rgb(var(--ei-void-rgb) / 0), rgb(var(--ei-void-rgb) / 0.84)); --ei-theme-selection: rgb(var(--ei-halo-blue-rgb) / 0.26); --ei-theme-scrollbar: rgb(var(--ei-ice-white-rgb) / 0.08); --ei-theme-scrollbar-hover: rgb(var(--ei-ice-white-rgb) / 0.15); --ei-color-surface-glass: rgb(var(--ei-moonlit-rgb) / 0.055); --ei-color-surface-scrim: rgb(var(--ei-void-rgb) / 0.72); --ei-card-border-hover: rgb(var(--ei-moonlit-rgb) / 0.2); --ei-button-border: rgb(var(--ei-ice-white-rgb) / 0.18); --ei-button-border-hover: rgb(var(--ei-ice-white-rgb) / 0.34); --ei-button-secondary-bg: rgb(var(--ei-moonlit-rgb) / 0.055); --ei-button-secondary-bg-hover: rgb(var(--ei-moonlit-rgb) / 0.085); --ei-button-secondary-border: rgb(var(--ei-moonlit-rgb) / 0.14); --ei-button-secondary-border-hover: rgb(var(--ei-moonlit-rgb) / 0.24); --ei-button-secondary-text: var(--ei-moonlit); --ei-form-control-shadow: inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04); --ei-form-panel-bg: linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.34), rgb(var(--ei-void-rgb) / 0.9)); --ei-form-panel-bg-elevated: linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.52), rgb(var(--ei-void-rgb) / 0.88)); --ei-selection-color: var(--ei-ice-white);
+  html[data-page-theme="atmospheric"],
+  html[data-page-theme="deep"],
+  [data-theme="atmospheric"],
+  [data-theme="deep"] {
+    --ei-theme-canvas: var(--ei-ink);
+    --ei-theme-surface: rgb(var(--ei-midnight-rgb) / 0.64);
+    --ei-theme-surface-elevated: rgb(var(--ei-midnight-rgb) / 0.82);
+    --ei-theme-text-primary: #f4eeff;
+    --ei-theme-text-secondary: #d9cff6;
+    --ei-theme-text-muted: #b4a1d7;
+    --ei-theme-text-faint: #9489b7;
+    --ei-theme-border: rgb(var(--ei-moonlit-rgb) / 0.12);
+    --ei-theme-link: var(--ei-halo-blue);
+    --ei-theme-focus: var(--ei-halo-blue);
+    --ei-theme-shadow: 0 20px 80px rgb(0 0 0 / 0.34);
+    --ei-theme-shadow-elevated: 0 28px 120px rgb(0 0 0 / 0.48);
+    --ei-theme-card: rgb(var(--ei-midnight-rgb) / 0.84);
+    --ei-theme-card-hover: rgb(var(--ei-midnight-rgb) / 0.9);
+    --ei-theme-form: rgb(var(--ei-void-rgb) / 0.22);
+    --ei-theme-form-hover: rgb(var(--ei-ice-white-rgb) / 0.025);
+    --ei-theme-form-focus: rgb(var(--ei-void-rgb) / 0.32);
+    --ei-theme-button: var(--ei-gradient-primary);
+    --ei-theme-button-hover: var(--ei-gradient-primary-hover);
+    --ei-theme-button-text: var(--ei-ice-white);
+    --ei-theme-header: rgb(var(--ei-midnight-rgb) / 0.78);
+    --ei-theme-header-text: var(--ei-moonlit);
+    --ei-header-logo-filter: none;
+    --ei-theme-image-scrim: linear-gradient(
+      180deg,
+      rgb(var(--ei-void-rgb) / 0),
+      rgb(var(--ei-void-rgb) / 0.84)
+    );
+    --ei-theme-selection: rgb(var(--ei-halo-blue-rgb) / 0.26);
+    --ei-theme-scrollbar: rgb(var(--ei-ice-white-rgb) / 0.08);
+    --ei-theme-scrollbar-hover: rgb(var(--ei-ice-white-rgb) / 0.15);
+    --ei-color-surface-glass: rgb(var(--ei-moonlit-rgb) / 0.055);
+    --ei-color-surface-scrim: rgb(var(--ei-void-rgb) / 0.72);
+    --ei-card-border-hover: rgb(var(--ei-moonlit-rgb) / 0.2);
+    --ei-button-border: rgb(var(--ei-ice-white-rgb) / 0.18);
+    --ei-button-border-hover: rgb(var(--ei-ice-white-rgb) / 0.34);
+    --ei-button-secondary-bg: rgb(var(--ei-moonlit-rgb) / 0.055);
+    --ei-button-secondary-bg-hover: rgb(var(--ei-moonlit-rgb) / 0.085);
+    --ei-button-secondary-border: rgb(var(--ei-moonlit-rgb) / 0.14);
+    --ei-button-secondary-border-hover: rgb(var(--ei-moonlit-rgb) / 0.24);
+    --ei-button-secondary-text: var(--ei-moonlit);
+    --ei-form-control-shadow: inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04);
+    --ei-form-panel-bg: linear-gradient(
+      180deg,
+      rgb(var(--ei-midnight-rgb) / 0.34),
+      rgb(var(--ei-void-rgb) / 0.9)
+    );
+    --ei-form-panel-bg-elevated: linear-gradient(
+      180deg,
+      rgb(var(--ei-midnight-rgb) / 0.52),
+      rgb(var(--ei-void-rgb) / 0.88)
+    );
+    --ei-selection-color: var(--ei-ice-white);
   }
 
-  html[data-page-theme="atmospheric"], html[data-page-theme="deep"], [data-theme="atmospheric"], [data-theme="deep"] {
-    --ei-theme-heading-shadow: 0 2px 28px rgb(0 0 0 / 0.44), 0 0 54px rgb(var(--ei-violet-rgb) / 0.08);
+  html[data-page-theme="atmospheric"],
+  html[data-page-theme="deep"],
+  [data-theme="atmospheric"],
+  [data-theme="deep"] {
+    --ei-theme-heading-shadow: 0 2px 28px rgb(0 0 0 / 0.44),
+      0 0 54px rgb(var(--ei-violet-rgb) / 0.08);
     --ei-theme-image-filter: brightness(0.86) saturate(0.92) contrast(1.04);
     --ei-theme-atmosphere-violet: var(--ei-violet);
     --ei-theme-atmosphere-blue: var(--ei-halo-blue);
@@ -608,7 +690,8 @@
     --ei-shadow-soft: var(--ei-theme-shadow);
     --ei-shadow-elevated: var(--ei-theme-shadow-elevated);
     --ei-shadow-hover: var(--ei-theme-shadow-elevated);
-    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas), 0 0 0 4px var(--ei-theme-focus);
+    --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas),
+      0 0 0 4px var(--ei-theme-focus);
     --ei-button-focus-ring: var(--ei-ring-focus);
     --ei-selection-bg: var(--ei-theme-selection);
   }
