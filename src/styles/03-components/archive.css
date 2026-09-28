@@ -22,10 +22,6 @@
     opacity: 0.56;
   }
 
-  .ei-archive-page .ei-page-section-hero-copy-wrap {
-    max-width: 760px;
-  }
-
   .ei-archive-section {
     background: var(--ei-color-background-canvas);
     padding-block: clamp(4.5rem, 9vw, 8rem);

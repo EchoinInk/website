@@ -12,13 +12,16 @@ export function Hero() {
     <Section
       theme="light"
       spacing="none"
-      className="ei-section-hero ei-home-hero"
+      className="ei-section-hero ei-home-hero ei-hero-system"
       aria-labelledby="hero-heading"
     >
       <HeroBackground />
 
-      <Container size="xl" className="ei-home-hero-container relative z-10">
-        <motion.div className="ei-home-hero-copy">
+      <Container
+        size="xl"
+        className="ei-home-hero-container ei-hero-system-container relative z-10"
+      >
+        <motion.div className="ei-home-hero-copy ei-hero-system-copy">
           <motion.div variants={heroReveal}>
             <HeroHeading />
           </motion.div>

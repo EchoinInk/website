@@ -1,0 +1,148 @@
+/* Shared geometry for the primary editorial hero states. Content and artwork
+   may vary; layout dimensions and anchors do not. */
+
+@layer components {
+  .ei-hero-system {
+    --ei-hero-artwork-start: 42%;
+    --ei-hero-copy-width: min(56%, 46rem);
+    min-height: 55.5rem;
+    align-items: flex-start;
+  }
+
+  .ei-hero-system-container {
+    display: flex;
+    min-height: inherit;
+    align-items: flex-start;
+  }
+
+  .ei-hero-system-copy-wrap,
+  .ei-hero-system-copy {
+    width: var(--ei-hero-copy-width);
+    max-width: 46rem;
+  }
+
+  .ei-hero-system-copy {
+    padding-block: clamp(10.75rem, 14vw, 11.5rem) 5.5rem;
+  }
+
+  .ei-hero-system-copy-wrap .ei-hero-system-copy {
+    width: 100%;
+  }
+
+  .ei-hero-system-text {
+    width: 100%;
+    max-width: none;
+  }
+
+  .ei-hero-system-heading {
+    width: 100%;
+    max-width: 15ch;
+  }
+
+  .ei-hero-system-heading,
+  .ei-home-hero-heading.ei-hero-system-heading,
+  .ei-page-section-hero-title.ei-hero-system-heading {
+    font-size: clamp(3.25rem, 5.4vw, 5.8rem);
+    letter-spacing: -0.052em;
+    line-height: 0.96;
+    text-wrap: balance;
+  }
+
+  .ei-hero-system-description,
+  .ei-home-hero-description.ei-hero-system-description,
+  .ei-page-section-hero-description.ei-hero-system-description {
+    max-width: 46ch;
+    color: var(--ei-color-text-secondary);
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    line-height: 1.72;
+    text-wrap: pretty;
+  }
+
+  .ei-hero-system-media {
+    inset: 0;
+    overflow: hidden;
+    clip-path: inset(0 0 0 var(--ei-hero-artwork-start));
+  }
+
+  .ei-page-section-hero .ei-hero-system-media {
+    opacity: 0.76;
+  }
+
+  .ei-page-section-hero .ei-hero-system-media img {
+    object-position: 66% 50%;
+  }
+
+  @media (max-width: 1023px) {
+    .ei-hero-system {
+      --ei-hero-artwork-start: 47%;
+      --ei-hero-copy-width: min(61%, 40rem);
+    }
+
+    .ei-hero-system-copy {
+      padding-top: 9.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ei-hero-system {
+      --ei-hero-artwork-start: 0%;
+      --ei-hero-copy-width: 100%;
+      min-height: 71.25rem;
+    }
+
+    .ei-hero-system-copy-wrap,
+    .ei-hero-system-copy {
+      width: 100%;
+      max-width: none;
+    }
+
+    .ei-hero-system-copy {
+      padding-block: 7.5rem 23rem;
+    }
+
+    .ei-hero-system-text,
+    .ei-hero-system-heading {
+      max-width: 100%;
+    }
+
+    .ei-hero-system-heading,
+    .ei-home-hero-heading.ei-hero-system-heading,
+    .ei-page-section-hero-title.ei-hero-system-heading {
+      font-size: clamp(2.7rem, 11.7vw, 3.35rem);
+      letter-spacing: -0.046em;
+      line-height: 0.98;
+    }
+
+    .ei-hero-system-description,
+    .ei-home-hero-description.ei-hero-system-description,
+    .ei-page-section-hero-description.ei-hero-system-description {
+      margin-top: 1.4rem;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .ei-hero-system-media {
+      inset: auto 0 0;
+      height: 28rem;
+      clip-path: none;
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    }
+
+    .ei-page-section-hero .ei-hero-system-media {
+      opacity: 0.38;
+    }
+
+    .ei-page-section-hero .ei-hero-system-media img {
+      object-position: 58% 48%;
+    }
+  }
+
+  @media (max-width: 389px) {
+    .ei-hero-system-heading,
+    .ei-home-hero-heading.ei-hero-system-heading,
+    .ei-page-section-hero-title.ei-hero-system-heading {
+      font-size: 2.62rem;
+    }
+  }
+}

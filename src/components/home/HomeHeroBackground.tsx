@@ -9,7 +9,7 @@ export function HeroBackground() {
 
       <picture
         aria-hidden="true"
-        className="ei-home-hero-picture"
+        className="ei-home-hero-picture ei-hero-system-media"
       >
         <source media="(max-width: 768px)" srcSet={homeHeroMobile} />
 
@@ -21,7 +21,6 @@ export function HeroBackground() {
       </picture>
 
       <div aria-hidden="true" className="ei-home-hero-wash" />
-      <div aria-hidden="true" className="ei-home-hero-orbit" />
       <div aria-hidden="true" className="ei-home-hero-frame" />
     </>
   );

@@ -10,15 +10,6 @@
     background: var(--ei-color-background-canvas);
   }
 
-  .ei-works-page .ei-page-section-hero {
-    min-height: clamp(46rem, 86svh, 55rem);
-  }
-
-  .ei-works-page .ei-page-section-hero-media {
-    left: 38%;
-    opacity: 0.72;
-  }
-
   .ei-works-page .ei-page-section-hero-image {
     object-position: 54% 50%;
     filter: saturate(0.72) brightness(1.05) contrast(0.94);
@@ -36,27 +27,6 @@
       rgb(var(--ei-moonlight-canvas-rgb) / 0.62) 70%,
       transparent 92%
     ) !important;
-  }
-
-  .ei-works-page .ei-page-section-hero-copy-wrap {
-    max-width: 55rem;
-  }
-
-  .ei-works-page .ei-page-section-hero-copy {
-    padding-top: clamp(9.25rem, 15vw, 11.5rem);
-  }
-
-  .ei-works-page .ei-page-section-hero-title {
-    max-width: 16ch;
-    font-size: clamp(3.2rem, 6vw, 6rem);
-    line-height: 0.98;
-    text-wrap: balance;
-  }
-
-  .ei-works-page .ei-page-section-hero-description {
-    max-width: 48ch;
-    font-size: clamp(1rem, 1.35vw, 1.2rem);
-    line-height: 1.68;
   }
 
   .ei-works-page .ei-page-offer-anchor-text {
@@ -470,25 +440,6 @@
   }
 
   @media (max-width: 767px) {
-    .ei-works-page .ei-page-section-hero {
-      min-height: 52rem;
-    }
-
-    .ei-works-page .ei-page-section-hero-media {
-      left: 0;
-      top: 36%;
-      opacity: 0.28;
-    }
-
-    .ei-works-page .ei-page-section-hero-copy {
-      padding-top: 8.5rem;
-    }
-
-    .ei-works-page .ei-page-section-hero-title {
-      max-width: 12ch;
-      font-size: clamp(2.75rem, 12.5vw, 4.25rem);
-    }
-
     .ei-works-filter-wrap {
       margin-inline: calc(var(--ei-gutter-mobile) * -1);
       padding-inline: var(--ei-gutter-mobile);

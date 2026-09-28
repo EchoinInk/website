@@ -85,7 +85,6 @@
   .ei-home-hero-base,
   .ei-home-hero-picture,
   .ei-home-hero-wash,
-  .ei-home-hero-orbit,
   .ei-home-hero-frame {
     pointer-events: none;
     position: absolute;
@@ -138,18 +137,6 @@
         transparent 76%,
         var(--ei-color-background-canvas) 100%
       );
-  }
-
-  .ei-home-hero-orbit {
-    z-index: 3;
-    right: clamp(2rem, 8vw, 9rem);
-    top: 20%;
-    width: clamp(18rem, 33vw, 34rem);
-    aspect-ratio: 1;
-    border: 1px solid color-mix(in srgb, var(--ei-theme-link) 18%, transparent);
-    border-radius: 999px;
-    opacity: 0.7;
-    transform: rotate(-14deg);
   }
 
   .ei-home-hero-frame {
@@ -797,14 +784,6 @@
         color-mix(in srgb, var(--ei-color-background-canvas) 44%, transparent) 72%,
         var(--ei-color-background-canvas) 100%
       );
-    }
-
-    .ei-home-hero-orbit {
-      right: -8rem;
-      top: auto;
-      bottom: 6rem;
-      width: 23rem;
-      opacity: 0.48;
     }
 
     .ei-home-hero-frame {

@@ -68,22 +68,21 @@ export function PageSectionHero({
       viewport={VIEWPORT.loose}
       data-theme={theme}
       data-tone={tone}
-      className=" ei-page-section-hero
-  relative flex min-h-[620px] w-full items-start overflow-hidden
+      className="ei-page-section-hero ei-hero-system
+  relative flex w-full overflow-hidden
   bg-[var(--ei-color-background-canvas)]
-  md:min-h-[720px] lg:min-h-[760px]
 "
       aria-labelledby={headingId}
     >
       <picture
-        className="ei-page-section-hero-media absolute inset-0 z-0 block"
+        className="ei-page-section-hero-media ei-hero-system-media absolute z-0 block"
         aria-hidden="true"
       >
         <source media="(min-width: 768px)" srcSet={image} />
         <img
           src={mobileImage}
           alt=""
-          className="ei-page-section-hero-image h-full w-full object-cover object-center saturate-[0.86] md:object-[72%_50%]"
+          className="ei-page-section-hero-image h-full w-full object-cover saturate-[0.86]"
         />
       </picture>
 
@@ -137,25 +136,24 @@ export function PageSectionHero({
 
       <Container
         size="xl"
-  className="ei-page-section-hero-container relative z-10 w-full"
+  className="ei-page-section-hero-container ei-hero-system-container relative z-10 w-full"
 >
         <div
-          className={`ei-page-section-hero-copy-wrap max-w-[680px] ${
+          className={`ei-page-section-hero-copy-wrap ei-hero-system-copy-wrap ${
             isLeft ? "" : "mx-auto text-center"
           }`}
         >
           <motion.div
   variants={driftUp}
   className={`
-  ei-page-section-hero-copy
-  pt-36 md:pt-[135px] lg:pt-[160px]
-  ${isLeft ? "text-left md:pl-10 lg:pl-14" : "text-center"}
+  ei-page-section-hero-copy ei-hero-system-copy
+  ${isLeft ? "text-left" : "text-center"}
 `}
 >
-  <div className="ei-monogram-frame max-w-[640px] md:max-w-[620px] lg:max-w-[680px]">
+  <div className="ei-monogram-frame ei-hero-system-text">
             <div
               className={`
-                ei-page-section-hero-eyebrow-row
+                ei-page-section-hero-eyebrow-row ei-hero-system-eyebrow
                 mb-4 flex items-center gap-4 md:mb-5
                 ${isLeft ? "" : "justify-center"}
               `}
@@ -174,7 +172,7 @@ export function PageSectionHero({
 
             <h1
               id={headingId}
-              className="ei-type-hero-home ei-page-section-hero-title max-w-[24ch] whitespace-pre-line"
+              className="ei-type-hero-home ei-page-section-hero-title ei-hero-system-heading whitespace-pre-line"
               style={{
                 textShadow: isEditorial
                   ? "none"
@@ -194,7 +192,7 @@ export function PageSectionHero({
                 : title}
             </h1>
 
-            <p className="ei-type-hero-description ei-page-section-hero-description mt-5 max-w-[46ch] md:mt-6">
+            <p className="ei-type-hero-description ei-page-section-hero-description ei-hero-system-description mt-5 md:mt-6">
               {description}
             </p>
 
@@ -207,7 +205,7 @@ export function PageSectionHero({
             {(ctaLabel && ctaHref) || (secondaryCtaLabel && secondaryCtaHref) ? (
               <motion.div
                 variants={fadeSoft}
-                className={`ei-page-section-hero-actions mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center md:mt-10 md:gap-4 ${
+                className={`ei-page-section-hero-actions ei-hero-system-actions mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center md:mt-10 md:gap-4 ${
                   isLeft ? "" : "justify-center"
                 }`}
               >

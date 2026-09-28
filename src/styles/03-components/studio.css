@@ -10,15 +10,6 @@
     background: var(--ei-color-background-canvas);
   }
 
-  .ei-studio-page .ei-page-section-hero {
-    min-height: clamp(44rem, 82svh, 52rem);
-  }
-
-  .ei-studio-page .ei-page-section-hero-media {
-    left: 34%;
-    opacity: 0.78;
-  }
-
   .ei-studio-page .ei-page-section-hero-image {
     object-position: 58% 48%;
     filter: saturate(0.72) brightness(1.08) contrast(0.92);
@@ -26,28 +17,6 @@
 
   .ei-studio-page .ei-page-section-hero-scrim {
     opacity: 0.18;
-  }
-
-  .ei-studio-page .ei-page-section-hero-copy-wrap {
-    max-width: 52rem;
-  }
-
-  .ei-studio-page .ei-page-section-hero-copy {
-    padding-top: clamp(9.25rem, 15vw, 11.5rem);
-  }
-
-  .ei-studio-page .ei-page-section-hero-title {
-    max-width: 15ch;
-    font-size: clamp(3.25rem, 6.25vw, 6.2rem);
-    line-height: 0.98;
-    text-wrap: balance;
-  }
-
-  .ei-studio-page .ei-page-section-hero-description {
-    max-width: 43ch;
-    color: var(--ei-color-text-secondary);
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-    line-height: 1.65;
   }
 
   .ei-studio-page .ei-page-offer-anchor-text {
@@ -328,27 +297,8 @@
   }
 
   @media (max-width: 767px) {
-    .ei-studio-page .ei-page-section-hero {
-      min-height: 49rem;
-    }
-
-    .ei-studio-page .ei-page-section-hero-media {
-      left: 0;
-      top: 32%;
-      opacity: 0.32;
-    }
-
     .ei-studio-page .ei-page-section-hero-image {
       object-position: 58% 44%;
-    }
-
-    .ei-studio-page .ei-page-section-hero-copy {
-      padding-top: 8.5rem;
-    }
-
-    .ei-studio-page .ei-page-section-hero-title {
-      max-width: 12ch;
-      font-size: clamp(2.8rem, 13vw, 4.4rem);
     }
 
     .ei-studio-services-link {
