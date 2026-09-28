@@ -107,13 +107,13 @@ const productScreens = [
 
 const swatches = [
   { name: "Lumo Violet", value: "#6d5dfc" },
-  { name: "Halo Blue", value: "var(--ei-halo-blue)" },
-  { name: "Echo Magenta", value: "var(--ei-echo-magenta)" },
+  { name: "Halo Blue", value: "#4985fd" },
+  { name: "Echo Magenta", value: "#dd12cb" },
   { name: "Warm Gold", value: "#ffb45c" },
   { name: "Soft Mint", value: "#63d5b4" },
-  { name: "Deep Ink", value: "var(--ei-ink)" },
-  { name: "Moonlit", value: "var(--ei-moonlit)" },
-  { name: "Ice White", value: "var(--ei-ice-white)" },
+  { name: "Deep Ink", value: "#080718" },
+  { name: "Moonlit", value: "#e3d8fd" },
+  { name: "Ice White", value: "#f7f5fa" },
 ];
 
 const outcomes = [

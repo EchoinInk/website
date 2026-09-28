@@ -2800,6 +2800,10 @@
     font-size: clamp(1.05rem, 1.4vw, 1.35rem);
   }
 
+  .ei-lumo-palette-card h2 {
+    color: var(--ei-moonlit);
+  }
+
   .ei-lumo-brand-card p,
   .ei-lumo-type-card p,
   .ei-lumo-palette-card small,
@@ -2807,7 +2811,10 @@
     color: rgb(var(--ei-moonlit-rgb) / 0.7);
   }
 
-  .ei-lumo-palette-card b,
+  .ei-lumo-palette-card b {
+    color: var(--ei-moonlit);
+  }
+
   .ei-lumo-type-card dt {
     color: var(--ei-color-text-primary);
   }
