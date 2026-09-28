@@ -53,7 +53,7 @@ export function ServicesPage() {
       <Section
         theme="light"
         spacing="none"
-        className="ei-services-hero"
+        className="ei-services-hero ei-hero-system"
         aria-labelledby="services-heading"
       >
         <div className="ei-services-hero-orbit" aria-hidden="true">
@@ -62,25 +62,35 @@ export function ServicesPage() {
           <span />
         </div>
 
-        <Container size="xl" className="relative z-10">
+        <Container
+          size="xl"
+          className="ei-hero-system-container relative z-10"
+        >
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
             initial={prefersReducedMotion ? false : "hidden"}
             animate="visible"
             className="ei-services-hero-layout"
           >
-            <motion.div variants={driftUp} className="ei-services-hero-copy">
-              <SectionLabel label="Services" tone="accent" />
+            <motion.div
+              variants={driftUp}
+              className="ei-services-hero-copy ei-hero-system-copy"
+            >
+              <SectionLabel
+                label="Services"
+                tone="accent"
+                className="ei-hero-system-eyebrow"
+              />
               <p className="ei-services-hero-kicker">What you can hire Echo in Ink to do</p>
-              <h1 id="services-heading">
+              <h1 id="services-heading" className="ei-hero-system-heading">
                 Strategy, design and technology—shaped as one connected system.
               </h1>
-              <p className="ei-services-hero-description">
+              <p className="ei-services-hero-description ei-hero-system-description">
                 Echo helps founders, teams and growing businesses turn unclear ideas, outdated
                 digital presence and operational friction into brands, experiences and systems
                 that work.
               </p>
-              <div className="ei-services-hero-actions">
+              <div className="ei-services-hero-actions ei-hero-system-actions">
                 <Button to="/contact?inquiry=project">Start a Project</Button>
                 <Button to="/works" variant="secondary">
                   View Work
@@ -88,7 +98,11 @@ export function ServicesPage() {
               </div>
             </motion.div>
 
-            <motion.ol variants={fadeSoft} className="ei-services-hero-index" aria-label="Services">
+            <motion.ol
+              variants={fadeSoft}
+              className="ei-services-hero-index ei-hero-system-aside"
+              aria-label="Services"
+            >
               {primaryCapabilities.map((capability, index) => (
                 <li key={capability.id}>
                   <span>{String(index + 1).padStart(2, "0")}</span>

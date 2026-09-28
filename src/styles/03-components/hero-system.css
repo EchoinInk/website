@@ -41,7 +41,8 @@
 
   .ei-hero-system-heading,
   .ei-home-hero-heading.ei-hero-system-heading,
-  .ei-page-section-hero-title.ei-hero-system-heading {
+  .ei-page-section-hero-title.ei-hero-system-heading,
+  .ei-services-hero .ei-hero-system-heading {
     font-size: clamp(3.25rem, 5.4vw, 5.8rem);
     letter-spacing: -0.052em;
     line-height: 0.96;
@@ -50,12 +51,20 @@
 
   .ei-hero-system-description,
   .ei-home-hero-description.ei-hero-system-description,
-  .ei-page-section-hero-description.ei-hero-system-description {
+  .ei-page-section-hero-description.ei-hero-system-description,
+  .ei-services-hero .ei-hero-system-description {
     max-width: 46ch;
     color: var(--ei-color-text-secondary);
     font-size: clamp(1rem, 1.2vw, 1.125rem);
     line-height: 1.72;
     text-wrap: pretty;
+  }
+
+  .ei-hero-system-aside {
+    position: absolute;
+    right: 0;
+    bottom: 5.5rem;
+    left: calc(var(--ei-hero-artwork-start) + clamp(3rem, 5vw, 5rem));
   }
 
   .ei-hero-system-media {
@@ -107,7 +116,8 @@
 
     .ei-hero-system-heading,
     .ei-home-hero-heading.ei-hero-system-heading,
-    .ei-page-section-hero-title.ei-hero-system-heading {
+    .ei-page-section-hero-title.ei-hero-system-heading,
+    .ei-services-hero .ei-hero-system-heading {
       font-size: clamp(2.7rem, 11.7vw, 3.35rem);
       letter-spacing: -0.046em;
       line-height: 0.98;
@@ -115,10 +125,17 @@
 
     .ei-hero-system-description,
     .ei-home-hero-description.ei-hero-system-description,
-    .ei-page-section-hero-description.ei-hero-system-description {
+    .ei-page-section-hero-description.ei-hero-system-description,
+    .ei-services-hero .ei-hero-system-description {
       margin-top: 1.4rem;
       font-size: 1rem;
       line-height: 1.65;
+    }
+
+    .ei-hero-system-aside {
+      right: 0;
+      bottom: 4.5rem;
+      left: 0;
     }
 
     .ei-hero-system-media {
@@ -141,7 +158,8 @@
   @media (max-width: 389px) {
     .ei-hero-system-heading,
     .ei-home-hero-heading.ei-hero-system-heading,
-    .ei-page-section-hero-title.ei-hero-system-heading {
+    .ei-page-section-hero-title.ei-hero-system-heading,
+    .ei-services-hero .ei-hero-system-heading {
       font-size: 2.62rem;
     }
   }
