@@ -14,7 +14,7 @@ function renderPage(page: React.ReactNode) {
   return render(
     <HelmetProvider>
       <MemoryRouter>{page}</MemoryRouter>
-    </HelmetProvider>,
+    </HelmetProvider>
   );
 }
 
@@ -30,8 +30,8 @@ beforeEach(() => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
-    })),
+      dispatchEvent: vi.fn()
+    }))
   });
 });
 
@@ -43,65 +43,37 @@ describe("Phase 6 Studio and Work contracts", () => {
         provenance: classification.provenance,
         status: classification.status,
         capabilities,
-        href,
-      })),
+        href
+      }))
     ).toEqual([
       {
         title: "LUMO",
         provenance: "Independent Product",
         status: "Prototype",
         capabilities: ["brand-identity", "websites-experiences", "digital-products"],
-        href: "/works/lumo",
+        href: "/works/lumo"
       },
       {
         title: "Keystone",
         provenance: "Internal Project",
         status: "Exploratory Study",
         capabilities: ["digital-products", "systems-automation"],
-        href: "/works/keystone",
+        href: "/works/keystone"
       },
       {
         title: "Codexia",
         provenance: "Independent Product",
         status: "Prototype",
         capabilities: ["digital-products", "systems-automation"],
-        href: "/works/codexia",
-      },
-      {
-        title: "Aurora Payments",
-        provenance: "Concept Project",
-        status: "Exploratory Study",
-        capabilities: ["brand-identity"],
-        href: undefined,
-      },
-      {
-        title: "Obsidian",
-        provenance: "Concept Project",
-        status: "Prototype",
-        capabilities: ["websites-experiences"],
-        href: undefined,
-      },
-      {
-        title: "Verde",
-        provenance: "Concept Project",
-        status: "Exploratory Study",
-        capabilities: ["brand-identity"],
-        href: undefined,
-      },
-      {
-        title: "Nexus Design System",
-        provenance: "Internal Project",
-        status: "Prototype",
-        capabilities: ["digital-products", "systems-automation"],
-        href: undefined,
-      },
+        href: "/works/codexia"
+      }
     ]);
 
     const capabilityIds = new Set(primaryCapabilities.map((capability) => capability.id));
     worksProjects.forEach((project) => {
       expect(project.capabilities.length).toBeGreaterThan(0);
       project.capabilities.forEach((capability) =>
-        expect(capabilityIds.has(capability)).toBe(true),
+        expect(capabilityIds.has(capability)).toBe(true)
       );
     });
   });
@@ -112,8 +84,8 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "A creative technology studio for ambitious digital work.",
-      }),
+        name: "A creative technology studio for ambitious digital work."
+      })
     ).toBeInTheDocument();
     expect(screen.getByText(/founder-led creative technology studio/i)).toBeInTheDocument();
 
@@ -124,87 +96,89 @@ describe("Phase 6 Studio and Work contracts", () => {
 
     expect(screen.getAllByRole("link", { name: primaryCallToAction.label })[0]).toHaveAttribute(
       "href",
-      primaryCallToAction.href,
+      primaryCallToAction.href
     );
     expect(screen.getAllByRole("link", { name: "View Work" })[0]).toHaveAttribute("href", "/works");
     expect(screen.getByRole("link", { name: "Explore Services" })).toHaveAttribute(
       "href",
-      "/services",
+      "/services"
     );
 
     const sections = Array.from(
-      container.querySelectorAll<HTMLElement>(".ei-studio-page > div > [data-theme]"),
+      container.querySelectorAll<HTMLElement>(".ei-studio-page > div > [data-theme]")
     );
     expect(sections.map((section) => section.dataset.theme)).toEqual([
       "light",
       "lightElevated",
       "mist",
       "light",
-      "lightElevated",
+      "lightElevated"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
       "mist",
       "light",
       "lightElevated",
-      undefined,
+      undefined
     ]);
   });
 
-  it("makes Work provenance explicit, links reviewed projects and preserves unsupported fragments as non-links", () => {
+  it("presents only the three reviewed projects with working detail links", () => {
     const { container } = renderPage(<WorksPage />);
 
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Work across brands, digital experiences, products and systems.",
-      }),
+        name: "Three projects, shown with their context intact."
+      })
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/No project in the current collection is presented as client work/i),
+      screen.getByText(/No project in the current collection is presented as client work/i)
     ).toBeInTheDocument();
     expect(screen.queryByText("The Vortex Group")).not.toBeInTheDocument();
 
     const cards = container.querySelectorAll(".ei-works-project-card");
-    expect(cards).toHaveLength(6);
+    expect(cards).toHaveLength(2);
+    expect(screen.getByRole("button", { name: "All Work" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Products & Apps" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Systems & Automation" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Brand & Identity" })).not.toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i }),
+      screen.queryByRole("button", { name: "Websites & Digital Experiences" })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i })
     ).toHaveAttribute("href", "/works/keystone");
     expect(
-      screen.getByRole("link", { name: /Codexia — Independent Product, Prototype/i }),
+      screen.getByRole("link", { name: /Codexia — Independent Product, Prototype/i })
     ).toHaveAttribute("href", "/works/codexia");
     expect(screen.getAllByText("View project evidence")).toHaveLength(2);
-    expect(screen.getAllByText("Preview only · No case study")).toHaveLength(4);
+    expect(screen.queryByText("Preview only · No case study")).not.toBeInTheDocument();
     expect(screen.getAllByText("Decision demonstrated")).toHaveLength(3);
     expect(screen.getAllByText("Evidence boundary")).toHaveLength(3);
     expect(cards[0]).toHaveAttribute("data-link-state", "linked");
     expect(cards[1]).toHaveAttribute("data-link-state", "linked");
-    expect(cards[2].querySelector("a")).toBeNull();
-    expect(cards[2]).toHaveAttribute("data-link-state", "preview");
-    expect(cards[3].querySelector("a")).toBeNull();
-    expect(cards[4].querySelector("a")).toBeNull();
-    expect(cards[5].querySelector("a")).toBeNull();
     expect(screen.getByRole("link", { name: "View Lumo Case Study" })).toHaveAttribute(
       "href",
-      "/works/lumo",
+      "/works/lumo"
     );
 
     const sections = Array.from(
-      container.querySelectorAll<HTMLElement>(".ei-works-page > div > [data-theme]"),
+      container.querySelectorAll<HTMLElement>(".ei-works-page > div > [data-theme]")
     );
     expect(sections.map((section) => section.dataset.theme)).toEqual([
       "light",
       "lightElevated",
       "mist",
       "light",
-      "lightElevated",
+      "lightElevated"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
       "mist",
       "light",
       "lightElevated",
-      undefined,
+      undefined
     ]);
   });
 
@@ -212,7 +186,7 @@ describe("Phase 6 Studio and Work contracts", () => {
     const work = renderPage(<WorksPage />);
     const workFeature = work.container.querySelector<HTMLElement>(".ei-works-featured-panel")!;
     expect(
-      within(workFeature).getByText(lumoProject.classification.provenance),
+      within(workFeature).getByText(lumoProject.classification.provenance)
     ).toBeInTheDocument();
     expect(within(workFeature).getByText(lumoProject.classification.status)).toBeInTheDocument();
     work.unmount();
@@ -223,15 +197,16 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(within(lumoHero).getByText(lumoProject.classification.status)).toBeInTheDocument();
     expect(within(lumo.container).getAllByRole("main")).toHaveLength(1);
     expect(
-      within(lumo.container).getByRole("region", { name: "Lumo case study content" }),
+      within(lumo.container).getByRole("region", { name: "Lumo case study content" })
     ).toBeInTheDocument();
     expect(within(lumo.container).getByText("Echo’s role")).toBeInTheDocument();
     expect(within(lumo.container).getByText(/no launch, clinical validation/i)).toBeInTheDocument();
     expect(
-      within(lumo.container).getByRole("link", { name: "Explore related services" }),
+      within(lumo.container).getByRole("link", { name: "Explore related services" })
     ).toHaveAttribute("href", "/services");
-    expect(
-      within(lumo.container).getByRole("link", { name: "Interface screens" }),
-    ).toHaveAttribute("href", "#product-screens");
+    expect(within(lumo.container).getByRole("link", { name: "Interface screens" })).toHaveAttribute(
+      "href",
+      "#product-screens"
+    );
   });
 });

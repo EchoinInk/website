@@ -12,7 +12,7 @@ function renderHomePage() {
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>
-    </HelmetProvider>,
+    </HelmetProvider>
   );
 }
 
@@ -23,19 +23,19 @@ describe("homepage reference implementation", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "We design and build brands, websites, digital products and systems.",
-      }),
+        name: "We design and build brands, websites, digital products and systems."
+      })
     ).toBeInTheDocument();
     expect(screen.getByText("Designing the worlds your work lives in.")).toBeInTheDocument();
 
     const hero = screen.getByRole("heading", { level: 1 }).closest("section")!;
     expect(within(hero).getByRole("link", { name: primaryCallToAction.label })).toHaveAttribute(
       "href",
-      primaryCallToAction.href,
+      primaryCallToAction.href
     );
     expect(within(hero).getByRole("link", { name: "View Our Work" })).toHaveAttribute(
       "href",
-      "/works",
+      "/works"
     );
 
     primaryCapabilities.forEach((capability) => {
@@ -51,7 +51,7 @@ describe("homepage reference implementation", () => {
       expect(within(card).getByText(model.bestFor)).toBeInTheDocument();
       expect(within(card).getByRole("link", { name: model.cta })).toHaveAttribute(
         "href",
-        model.href,
+        model.href
       );
     });
 
@@ -61,7 +61,7 @@ describe("homepage reference implementation", () => {
   it("publishes the semantic section rhythm and current flagship selection", () => {
     const { container } = renderHomePage();
     const sections = Array.from(
-      container.querySelectorAll<HTMLElement>(".ei-home-page > div > .ei-section"),
+      container.querySelectorAll<HTMLElement>(".ei-home-page > div > .ei-section")
     );
 
     expect(sections.map((section) => section.dataset.theme)).toEqual([
@@ -71,7 +71,7 @@ describe("homepage reference implementation", () => {
       "light",
       "mist",
       "light",
-      "mist",
+      "mist"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
@@ -80,29 +80,25 @@ describe("homepage reference implementation", () => {
       "light",
       "light",
       "light",
-      undefined,
+      undefined
     ]);
 
     const selectedWork = container.querySelector<HTMLElement>(".ei-home-selected-work")!;
     expect(selectedWork.querySelectorAll(".ei-works-project-card")).toHaveLength(2);
     expect(
-      within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" }),
+      within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" })
     ).toBeInTheDocument();
     expect(
-      within(selectedWork).getByRole("heading", { level: 3, name: "Codexia" }),
+      within(selectedWork).getByRole("heading", { level: 3, name: "Codexia" })
     ).toBeInTheDocument();
     expect(
       within(selectedWork).getByRole("link", {
-        name: /Keystone — Internal Project, Exploratory Study/i,
-      }),
+        name: /Keystone — Internal Project, Exploratory Study/i
+      })
     ).toHaveAttribute("href", "/works/keystone");
     expect(
-      within(selectedWork).getByRole("link", { name: /Codexia — Independent Product, Prototype/i }),
+      within(selectedWork).getByRole("link", { name: /Codexia — Independent Product, Prototype/i })
     ).toHaveAttribute("href", "/works/codexia");
-    expect(within(selectedWork).queryByText("Aurora Payments")).not.toBeInTheDocument();
-    expect(within(selectedWork).queryByText("Obsidian")).not.toBeInTheDocument();
-    expect(within(selectedWork).queryByText("Verde")).not.toBeInTheDocument();
-
     const lumo = container.querySelector<HTMLElement>(".ei-home-lumo")!;
     expect(within(lumo).getByText("Independent Product")).toBeInTheDocument();
     expect(within(lumo).getByText("React Native")).toBeInTheDocument();
@@ -112,10 +108,10 @@ describe("homepage reference implementation", () => {
     const closing = container.querySelector<HTMLElement>(".ei-home-closing")!;
     expect(within(closing).getByRole("link", { name: primaryCallToAction.label })).toHaveAttribute(
       "href",
-      primaryCallToAction.href,
+      primaryCallToAction.href
     );
     expect(
-      within(closing).getByRole("link", { name: "Request a Strategy Session" }),
+      within(closing).getByRole("link", { name: "Request a Strategy Session" })
     ).toHaveAttribute("href", "/booking");
   });
 });

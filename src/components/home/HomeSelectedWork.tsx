@@ -6,12 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { homeFeaturedProjects } from "@/data/worksProjects";
-import {
-  driftUp,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT,
-} from "@/lib/motion-cinematic";
+import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 export function HomeSelectedWork() {
   return (
@@ -37,7 +32,7 @@ export function HomeSelectedWork() {
                 Selected Work
               </h2>
               <p className="ei-home-section-intro">
-                Selected current work from Echo in Ink.
+                Keystone and Codexia complete the three-project collection alongside Lumo.
               </p>
             </div>
           </motion.div>

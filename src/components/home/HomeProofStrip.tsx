@@ -3,26 +3,21 @@ import { Link } from "react-router-dom";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import {
-  driftUp,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT,
-} from "@/lib/motion-cinematic";
+import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const proofItems = [
   {
     label: "Selected proof",
-    body: "Lumo leads as an independent product concept and prototype case study, with status made explicit before the deeper story.",
+    body: "Lumo leads as an independent product concept and prototype case study, with status made explicit before the deeper story."
   },
   {
     label: "Evidence with context",
-    body: "Provenance, status, and demonstrated capabilities stay separate so concepts and prototypes are never presented as client delivery.",
+    body: "Provenance, status, and demonstrated capabilities stay separate so concepts and prototypes are never presented as client delivery."
   },
   {
     label: "Clear taxonomy",
-    body: "Independent products, concept projects, internal projects, prototypes, and exploratory studies are separated instead of blurred together.",
-  },
+    body: "Independent products and internal projects are separated, with prototype and exploratory status made explicit."
+  }
 ] as const;
 
 export function HomeProofStrip() {

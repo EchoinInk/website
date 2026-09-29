@@ -19,7 +19,7 @@ import {
   lumoProject,
   worksProjects,
   type ProjectProvenance,
-  type WorkFilter,
+  type WorkFilter
 } from "@/data/worksProjects";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
@@ -27,11 +27,11 @@ const provenanceDescriptions: Record<ProjectProvenance, string> = {
   "Independent Product": "A product initiated and developed independently by Echo in Ink.",
   "Concept Project":
     "A self-directed concept used to explore and demonstrate a specific direction.",
-  "Internal Project": "A studio-initiated system or tool developed for internal exploration.",
+  "Internal Project": "A studio-initiated system or tool developed for internal exploration."
 };
 
 const displayedProvenance = Array.from(
-  new Set(worksProjects.map((project) => project.classification.provenance)),
+  new Set(worksProjects.map((project) => project.classification.provenance))
 );
 
 export function WorksPage() {
@@ -41,7 +41,7 @@ export function WorksPage() {
   return (
     <PageShell
       title="Selected Work — Echo in Ink"
-      description="Independent products, concepts, prototypes and exploratory work across brands, digital experiences, products and systems."
+      description="Three studio-initiated projects spanning an independent prototype, an internal exploratory study and a governed engineering prototype."
       atmosphere="works"
       theme="light"
       withTopSpacing={false}
@@ -49,8 +49,8 @@ export function WorksPage() {
     >
       <PageSectionHero
         eyebrow="SELECTED WORK"
-        title="Work across brands, digital experiences, products and systems."
-        description="A selected collection of independent products, concept projects, prototypes and exploratory studies—each labelled so what it demonstrates is clear without implying commissioned client work."
+        title="Three projects, shown with their context intact."
+        description="Lumo, Keystone and Codexia form this selected collection. Each is labelled with its provenance and maturity so the work is clear without implying commissioned delivery or a public launch."
         offerAnchor="Proof, shaped as atmosphere."
         ctaLabel="Explore the Work"
         ctaHref="#selected-work"
@@ -153,8 +153,9 @@ export function WorksPage() {
               <div>
                 <h2 id="works-collection-heading">What each project demonstrates.</h2>
                 <p>
-                  See the artifact, Echo&apos;s role, the decision being explored and the maturity
-                  of the evidence. Filter by the same four capability areas used on Services.
+                  Explore Keystone and Codexia alongside the featured Lumo case study. Each project
+                  shows the artifact, Echo&apos;s role, the decision being explored and the maturity
+                  of its evidence. Filter the two projects below by their relevant capabilities.
                 </p>
               </div>
             </motion.div>
