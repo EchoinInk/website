@@ -21,6 +21,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
 import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import { ProjectContext } from "@/components/works/ProjectContext";
+import { ProjectNavigation } from "@/components/works/ProjectNavigation";
 import { lumoProject } from "@/data/worksProjects";
 import { blurEmergence, driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
@@ -651,6 +652,7 @@ export function SignatureCaseStudy() {
             <OutcomePanel />
           </div>
         </div>
+        <ProjectNavigation currentProject={lumoProject.title} className="ei-lumo-project-navigation" />
         <LumoStudioCTA />
       </section>
     </article>

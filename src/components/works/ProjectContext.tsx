@@ -21,6 +21,7 @@ export function ProjectContext({
   const items = [
     { label: 'Provenance', value: classification.provenance },
     { label: 'Status', value: classification.status },
+    { label: 'Evidence', value: classification.evidence },
     { label: 'Capabilities', value: getCapabilityLabels(capabilities).join(' · ') },
     scope ? { label: scopeLabel, value: scope } : null,
   ].filter((item): item is { label: string; value: string } => Boolean(item));

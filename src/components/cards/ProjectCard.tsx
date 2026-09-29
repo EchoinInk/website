@@ -20,7 +20,6 @@ export function ProjectCard({
   challenge,
   image,
   href,
-  output,
   result,
   presentation,
   capabilities,
@@ -63,24 +62,18 @@ export function ProjectCard({
         <ProjectContext
           classification={classification}
           capabilities={capabilities}
-          scope={scope}
-          scopeLabel={showEvidence ? "Echo's role" : undefined}
           compact
           className="ei-works-project-context"
         />
         {showEvidence ? (
-          <dl className="ei-works-project-evidence" aria-label={`${title} project evidence`}>
+          <dl className="ei-works-project-summary" aria-label={`${title} project summary`}>
             <div>
-              <dt>Decision demonstrated</dt>
+              <dt>Challenge / opportunity</dt>
               <dd>{challenge}</dd>
             </div>
             <div>
-              <dt>Artifact</dt>
-              <dd>{output}</dd>
-            </div>
-            <div>
-              <dt>Evidence boundary</dt>
-              <dd>{result}</dd>
+              <dt>Echo&apos;s role</dt>
+              <dd>{scope}</dd>
             </div>
           </dl>
         ) : highlightOutcome ? (
@@ -93,7 +86,7 @@ export function ProjectCard({
         )}
 
         <span className="ei-card-action" data-link-state={isLinked ? 'linked' : 'preview'}>
-          {isLinked ? 'View project evidence' : 'Preview only · No case study'}
+          {isLinked ? `View ${title} case study` : 'Preview only · No case study'}
           {isLinked ? <span className="ei-card-action-arrow ei-cta-arrow-right">→</span> : null}
         </span>
       </div>

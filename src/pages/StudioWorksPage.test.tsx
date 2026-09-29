@@ -152,10 +152,11 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(
       screen.getByRole("link", { name: /Codexia — Independent Product, Prototype/i })
     ).toHaveAttribute("href", "/works/codexia");
-    expect(screen.getAllByText("View project evidence")).toHaveLength(2);
+    expect(screen.getByText("View Keystone case study")).toBeInTheDocument();
+    expect(screen.getByText("View Codexia case study")).toBeInTheDocument();
     expect(screen.queryByText("Preview only · No case study")).not.toBeInTheDocument();
-    expect(screen.getAllByText("Decision demonstrated")).toHaveLength(3);
-    expect(screen.getAllByText("Evidence boundary")).toHaveLength(3);
+    expect(screen.getAllByText("Challenge / opportunity")).toHaveLength(3);
+    expect(screen.getAllByText("Echo's role")).toHaveLength(3);
     expect(cards[0]).toHaveAttribute("data-link-state", "linked");
     expect(cards[1]).toHaveAttribute("data-link-state", "linked");
     expect(screen.getByRole("link", { name: "View Lumo Case Study" })).toHaveAttribute(
@@ -208,5 +209,10 @@ describe("Phase 6 Studio and Work contracts", () => {
       "href",
       "#product-screens"
     );
+    const projectNavigation = within(lumo.container).getByRole("navigation", {
+      name: "Explore other projects"
+    });
+    expect(within(projectNavigation).getByText("CODEXIA", { exact: false })).toBeInTheDocument();
+    expect(within(projectNavigation).getByText("Keystone", { exact: false })).toBeInTheDocument();
   });
 });

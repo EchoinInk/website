@@ -46,7 +46,7 @@ export function WorksGrid({ activeFilter }: WorksGridProps) {
             key={project.title}
             {...project}
             index={index + 1}
-            showEvidence={Boolean(project.href)}
+            showEvidence
           />
         ))}
       </div>

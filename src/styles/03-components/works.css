@@ -452,6 +452,33 @@
     border-top: 1px solid var(--ei-color-border-hairline);
   }
 
+  .ei-works-project-summary {
+    display: grid;
+    width: 100%;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--ei-color-border-hairline);
+  }
+
+  .ei-works-project-summary > div {
+    display: grid;
+    gap: 0.45rem;
+    border-bottom: 1px solid var(--ei-color-border-hairline);
+    padding-block: 0.9rem;
+  }
+
+  .ei-works-project-summary dt {
+    color: var(--ei-color-text-muted);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .ei-works-project-summary dd {
+    color: var(--ei-color-text-secondary);
+    line-height: 1.58;
+  }
+
   .ei-works-project-evidence > div {
     display: grid;
     gap: 0.4rem;
@@ -582,12 +609,9 @@
     }
 
     .ei-works-project-context div[data-field="capabilities"],
+    .ei-works-project-context div[data-field="evidence"],
     .ei-works-project-context div[data-field="echo-s-role"],
     .ei-works-project-context div[data-field="project-scope"] {
-      display: none;
-    }
-
-    .ei-works-project-evidence > div:nth-child(-n + 2) {
       display: none;
     }
 

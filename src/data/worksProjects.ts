@@ -12,6 +12,7 @@ export type ProjectStatus = "Prototype" | "Exploratory Study";
 export interface ProjectClassification {
   provenance: ProjectProvenance;
   status: ProjectStatus;
+  evidence: "Prototype evidence" | "Exploratory evidence";
 }
 
 export interface WorkProject {
@@ -50,7 +51,8 @@ export const worksProjects: WorkProject[] = [
     featured: true,
     classification: {
       provenance: "Independent Product",
-      status: "Prototype"
+      status: "Prototype",
+      evidence: "Prototype evidence"
     }
   },
   {
@@ -71,7 +73,8 @@ export const worksProjects: WorkProject[] = [
     presentation: "study",
     classification: {
       provenance: "Internal Project",
-      status: "Exploratory Study"
+      status: "Exploratory Study",
+      evidence: "Exploratory evidence"
     }
   },
   {
@@ -94,7 +97,8 @@ export const worksProjects: WorkProject[] = [
     presentation: "study",
     classification: {
       provenance: "Independent Product",
-      status: "Prototype"
+      status: "Prototype",
+      evidence: "Prototype evidence"
     }
   }
 ];
@@ -106,6 +110,17 @@ export const homeFeaturedProjects = worksProjects.filter((project) =>
 
 export function getWorkProject(title: string) {
   return worksProjects.find((project) => project.title === title);
+}
+
+export function getAdjacentWorkProjects(title: string) {
+  const index = worksProjects.findIndex((project) => project.title === title);
+
+  if (index === -1) return undefined;
+
+  return {
+    previous: worksProjects[(index - 1 + worksProjects.length) % worksProjects.length],
+    next: worksProjects[(index + 1) % worksProjects.length]
+  };
 }
 
 export function getCapabilityLabels(capabilities: readonly ServiceCapabilityId[]) {

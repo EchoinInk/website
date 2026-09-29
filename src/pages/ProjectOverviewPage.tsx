@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { EchoCard } from "@/components/ui/EchoCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectContext } from "@/components/works/ProjectContext";
+import { ProjectNavigation } from "@/components/works/ProjectNavigation";
 import { getWorkProject } from "@/data/worksProjects";
 import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 
@@ -89,15 +90,13 @@ export function ProjectOverviewPage({ projectTitle }: ProjectOverviewPageProps) 
       </Section>
 
       <Section theme="mist" spacing="none" className="ei-project-overview-next">
-        <CTASection
-          variant="editorialInvitation"
-          panelTheme="deep"
-          eyebrow="Continue exploring"
-          heading="See the wider project collection."
-          body="Browse the reviewed Work collection, or bring Echo a challenge that needs strategy, design and technology to move together."
-          actions={<Button to="/works">{siteActionLabels.viewWork}</Button>}
-          secondary={<Button to="/contact" variant="tertiary">{primaryCallToAction.label}</Button>}
-        />
+        <Container size="xl" className="ei-project-overview-navigation-inner">
+          <ProjectNavigation currentProject={project.title} />
+        </Container>
+      </Section>
+
+      <Section theme="light" spacing="none" className="ei-project-overview-next">
+        <CTASection variant="editorialInvitation" panelTheme="deep" eyebrow="Continue exploring" heading="See the wider project collection." body="Browse the reviewed Work collection, or bring Echo a challenge that needs strategy, design and technology to move together." actions={<Button to="/works">{siteActionLabels.viewWork}</Button>} secondary={<Button to="/contact" variant="tertiary">{primaryCallToAction.label}</Button>} />
       </Section>
     </PageShell>
   );

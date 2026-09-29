@@ -158,6 +158,7 @@ describe("Phase 9 editorial, systems, and public-route contracts", () => {
     expect(lumoProject.classification).toEqual({
       provenance: "Independent Product",
       status: "Prototype",
+      evidence: "Prototype evidence",
     });
   });
 

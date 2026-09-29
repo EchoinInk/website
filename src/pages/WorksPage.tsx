@@ -104,22 +104,14 @@ export function WorksPage() {
                     className="ei-works-featured-context"
                   />
                   <p className="ei-works-featured-proof">{lumoProject.proofLine}</p>
-                  <dl className="ei-works-featured-evidence" aria-label="Lumo project evidence">
+                  <dl className="ei-works-featured-evidence" aria-label="Lumo project summary">
                     <div>
                       <dt>Echo&apos;s role</dt>
                       <dd>{lumoProject.scope}</dd>
                     </div>
                     <div>
-                      <dt>Decision demonstrated</dt>
+                      <dt>Challenge / opportunity</dt>
                       <dd>{lumoProject.challenge}</dd>
-                    </div>
-                    <div>
-                      <dt>Artifact</dt>
-                      <dd>{lumoProject.output}</dd>
-                    </div>
-                    <div>
-                      <dt>Evidence boundary</dt>
-                      <dd>{lumoProject.result}</dd>
                     </div>
                   </dl>
                   <Button to={lumoProject.href ?? "/works/lumo"} variant="secondary">
@@ -154,8 +146,8 @@ export function WorksPage() {
                 <h2 id="works-collection-heading">What each project demonstrates.</h2>
                 <p>
                   Explore Keystone and Codexia alongside the featured Lumo case study. Each project
-                  shows the artifact, Echo&apos;s role, the decision being explored and the maturity
-                  of its evidence. Filter the two projects below by their relevant capabilities.
+                  shows the challenge, Echo&apos;s role and the maturity of its evidence. Deeper proof
+                  and evidence boundaries live in each case study.
                 </p>
               </div>
             </motion.div>

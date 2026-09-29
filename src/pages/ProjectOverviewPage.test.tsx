@@ -27,6 +27,9 @@ describe("compact project overviews", () => {
     expect(within(details).getByText(provenance)).toBeInTheDocument();
     expect(within(details).getByText(status)).toBeInTheDocument();
     expect(screen.getByText("Evidence boundary")).toBeInTheDocument();
+    const projectNavigation = screen.getByRole("navigation", { name: "Explore other projects" });
+    expect(within(projectNavigation).getByText("Previous project", { exact: false })).toBeInTheDocument();
+    expect(within(projectNavigation).getByText("Next project", { exact: false })).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: siteActionLabels.viewWork })[0]).toHaveAttribute("href", workHref);
     expect(screen.getAllByRole("link", { name: primaryCallToAction.label })[0]).toHaveAttribute("href", "/contact");
     expect(container.querySelectorAll("main")).toHaveLength(1);

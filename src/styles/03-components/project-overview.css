@@ -75,6 +75,91 @@
     line-height: 1.7;
   }
 
+  .ei-project-overview-navigation-inner {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .ei-project-navigation {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid rgb(var(--ei-moonlit-rgb) / 0.24);
+    border-radius: var(--ei-card-radius-xl);
+    background:
+      radial-gradient(circle at 50% 0%, rgb(var(--ei-halo-blue-rgb) / 0.14), transparent 52%),
+      rgb(var(--ei-void-rgb) / 0.94);
+    box-shadow: 0 1.5rem 4rem rgb(var(--ei-void-rgb) / 0.22);
+  }
+
+  .ei-project-navigation-link {
+    display: flex;
+    min-height: 13rem;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(1.5rem, 5vw, 3.25rem);
+    color: var(--ei-color-text-secondary);
+    text-decoration: none;
+    transition:
+      background-color var(--ei-duration-fast) var(--ei-ease-soft),
+      color var(--ei-duration-fast) var(--ei-ease-soft);
+  }
+
+  .ei-project-navigation-link + .ei-project-navigation-link {
+    border-top: 1px solid rgb(var(--ei-moonlit-rgb) / 0.2);
+  }
+
+  .ei-project-navigation-link[data-direction="next"] {
+    text-align: right;
+  }
+
+  .ei-project-navigation-link:hover,
+  .ei-project-navigation-link:focus-visible {
+    background: rgb(var(--ei-moonlit-rgb) / 0.09);
+    color: var(--ei-color-text-primary);
+    outline: none;
+  }
+
+  .ei-project-navigation-link:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--ei-color-text-accent);
+  }
+
+  .ei-project-navigation-direction {
+    color: var(--ei-color-text-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .ei-project-navigation-link strong {
+    margin-block: 0.8rem 0.55rem;
+    color: var(--ei-color-text-primary);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .ei-project-navigation-link > span:last-child {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .ei-lumo-project-navigation {
+    margin: clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2.5rem) 0;
+  }
+
+  @media (min-width: 48rem) {
+    .ei-project-navigation {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ei-project-navigation-link + .ei-project-navigation-link {
+      border-top: 0;
+      border-left: 1px solid rgb(var(--ei-moonlit-rgb) / 0.2);
+    }
+  }
+
   @media (min-width: 64rem) {
     .ei-project-overview-inner {
       grid-template-columns: minmax(0, 0.9fr) minmax(28rem, 1.1fr);
