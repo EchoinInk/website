@@ -19,6 +19,7 @@
 @import './03-components/editorial-archive.css' layer(components);
 @import './03-components/booking.css' layer(components);
 @import './03-components/works.css' layer(components);
+@import './03-components/project-overview.css' layer(components);
 @import './03-components/lumo.css' layer(components);
 @import './03-components/contact.css' layer(components);
 @import './03-components/home.css' layer(components);

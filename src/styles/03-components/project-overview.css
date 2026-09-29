@@ -1,0 +1,72 @@
+@layer components {
+  .ei-project-overview-inner {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 5.5rem);
+    padding-block: clamp(5rem, 9vw, 8rem);
+  }
+
+  .ei-project-overview-heading {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .ei-project-overview-heading > div {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .ei-project-overview-heading h2 {
+    max-width: 18ch;
+    font-size: clamp(2.2rem, 5vw, 4.8rem);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .ei-project-overview-heading p {
+    max-width: 42rem;
+    color: var(--ei-color-text-secondary);
+    font-family: var(--ei-font-copy);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    line-height: 1.75;
+  }
+
+  .ei-project-overview-card {
+    display: grid;
+    gap: 2rem;
+    background: var(--ei-theme-card);
+  }
+
+  .ei-project-overview-facts {
+    display: grid;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-project-overview-facts div {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .ei-project-overview-facts dt {
+    color: var(--ei-color-text-muted);
+    font-family: var(--ei-font-system);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .ei-project-overview-facts dd {
+    max-width: 48rem;
+    color: var(--ei-color-text-secondary);
+    font-family: var(--ei-font-copy);
+    line-height: 1.7;
+  }
+
+  @media (min-width: 64rem) {
+    .ei-project-overview-inner {
+      grid-template-columns: minmax(0, 0.9fr) minmax(28rem, 1.1fr);
+      align-items: start;
+    }
+  }
+}

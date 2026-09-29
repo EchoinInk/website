@@ -54,6 +54,20 @@ describe("Phase 6 Studio and Work contracts", () => {
         href: "/works/lumo",
       },
       {
+        title: "Keystone",
+        provenance: "Internal Project",
+        status: "Exploratory Study",
+        capabilities: ["digital-products", "systems-automation"],
+        href: "/works/keystone",
+      },
+      {
+        title: "Codexia",
+        provenance: "Independent Product",
+        status: "Prototype",
+        capabilities: ["digital-products", "systems-automation"],
+        href: "/works/codexia",
+      },
+      {
         title: "Aurora Payments",
         provenance: "Concept Project",
         status: "Exploratory Study",
@@ -135,7 +149,7 @@ describe("Phase 6 Studio and Work contracts", () => {
     ]);
   });
 
-  it("makes Work provenance explicit, omits unsupported testimony and preserves non-links", () => {
+  it("makes Work provenance explicit, links reviewed projects and preserves unsupported fragments as non-links", () => {
     const { container } = renderPage(<WorksPage />);
 
     expect(
@@ -148,8 +162,19 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(screen.queryByText("The Vortex Group")).not.toBeInTheDocument();
 
     const cards = container.querySelectorAll(".ei-works-project-card");
-    expect(cards).toHaveLength(4);
-    cards.forEach((card) => expect(card.querySelector("a")).toBeNull());
+    expect(cards).toHaveLength(6);
+    expect(screen.getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i })).toHaveAttribute(
+      "href",
+      "/works/keystone",
+    );
+    expect(screen.getByRole("link", { name: /Codexia — Independent Product, Prototype/i })).toHaveAttribute(
+      "href",
+      "/works/codexia",
+    );
+    expect(cards[2].querySelector("a")).toBeNull();
+    expect(cards[3].querySelector("a")).toBeNull();
+    expect(cards[4].querySelector("a")).toBeNull();
+    expect(cards[5].querySelector("a")).toBeNull();
     expect(screen.getByRole("link", { name: "View Lumo Case Study" })).toHaveAttribute(
       "href",
       "/works/lumo",

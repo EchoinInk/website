@@ -3,6 +3,8 @@ import auroraImage from '@/assets/imagery/sections/works-image-6.webp';
 import obsidianImage from '@/assets/imagery/sections/works-image-5.webp';
 import verdeImage from '@/assets/imagery/sections/works-image-4.webp';
 import nexusImage from '@/assets/imagery/sections/works-image-1.webp';
+import codexiaHome from '@/assets/projects/codexia-home.png';
+import keystoneHome from '@/assets/projects/keystone-home.png';
 import {
   primaryCapabilities,
   type ServiceCapabilityId
@@ -53,6 +55,46 @@ export const worksProjects: WorkProject[] = [
     capabilities: ['brand-identity', 'websites-experiences', 'digital-products'],
     presentation: 'study',
     featured: true,
+    classification: {
+      provenance: 'Independent Product',
+      status: 'Prototype',
+    },
+  },
+  {
+    title: 'Keystone',
+    category: 'Studio operations platform concept',
+    description:
+      'An internal product concept exploring how projects, tasks, content and studio operations could live in one coherent control centre.',
+    proofLine:
+      'Exploring a calmer operational workspace for seeing active work, priorities and studio signals together.',
+    challenge: 'Bring several studio-management concerns into one legible workspace without overstating what has been built.',
+    scope: 'Product concept, interface direction, and operational information architecture.',
+    output: 'A focused control-centre interface concept for internal studio operations.',
+    result: 'An exploratory visual direction; no launched platform or measured outcome is claimed.',
+    image: keystoneHome,
+    href: '/works/keystone',
+    capabilities: ['digital-products', 'systems-automation'],
+    presentation: 'study',
+    classification: {
+      provenance: 'Internal Project',
+      status: 'Exploratory Study',
+    },
+  },
+  {
+    title: 'Codexia',
+    category: 'Governed engineering platform prototype',
+    description:
+      'An independently developed engineering-platform prototype exploring governed planning, execution, validation and reporting for software work.',
+    proofLine:
+      'Giving complex engineering workflows a clearer operational surface while keeping authority and evidence visible.',
+    challenge: 'Make a governed engineering workflow understandable without implying unsupported product readiness.',
+    scope: 'Product architecture, interface system, and engineering workflow design.',
+    output: 'A working prototype direction and a visual control surface for governed engineering work.',
+    result: 'Prototype evidence only; no public launch, customer adoption or external validation is claimed.',
+    image: codexiaHome,
+    href: '/works/codexia',
+    capabilities: ['digital-products', 'systems-automation'],
+    presentation: 'study',
     classification: {
       provenance: 'Independent Product',
       status: 'Prototype',
@@ -137,6 +179,13 @@ export const worksProjects: WorkProject[] = [
 ];
 
 export const lumoProject = worksProjects[0];
+export const homeFeaturedProjects = worksProjects.filter((project) =>
+  ['Keystone', 'Codexia'].includes(project.title),
+);
+
+export function getWorkProject(title: string) {
+  return worksProjects.find((project) => project.title === title);
+}
 
 export function getCapabilityLabels(capabilities: readonly ServiceCapabilityId[]) {
   return primaryCapabilities

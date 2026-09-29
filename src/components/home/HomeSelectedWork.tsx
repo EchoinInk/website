@@ -4,19 +4,14 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import codexiaHome from "@/assets/projects/codexia-home.png";
-import keystoneHome from "@/assets/projects/keystone-home.png";
+import { ProjectCard } from "@/components/cards/ProjectCard";
+import { homeFeaturedProjects } from "@/data/worksProjects";
 import {
   driftUp,
   staggerContainer,
   STAGGER,
   VIEWPORT,
 } from "@/lib/motion-cinematic";
-
-const selectedProjects = [
-  { name: "Keystone", image: keystoneHome },
-  { name: "Codexia", image: codexiaHome },
-] as const;
 
 export function HomeSelectedWork() {
   return (
@@ -42,32 +37,14 @@ export function HomeSelectedWork() {
                 Selected Work
               </h2>
               <p className="ei-home-section-intro">
-                Current flagship work from Echo in Ink.
+                Selected current work from Echo in Ink.
               </p>
             </div>
           </motion.div>
 
           <div className="ei-home-selected-grid">
-            {selectedProjects.map((project, index) => (
-              <motion.article
-                key={project.name}
-                variants={driftUp}
-                className="ei-home-flagship-card"
-                data-project={project.name.toLowerCase()}
-              >
-                <div className="ei-home-flagship-visual">
-                  <img
-                    src={project.image}
-                    alt={`${project.name} project interface`}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="ei-home-flagship-meta">
-                  <span>Selected work</span>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                </div>
-                <h3>{project.name}</h3>
-              </motion.article>
+            {homeFeaturedProjects.map((project, index) => (
+              <ProjectCard key={project.title} {...project} index={index} />
             ))}
           </div>
 

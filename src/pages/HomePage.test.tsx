@@ -75,9 +75,15 @@ describe("homepage reference implementation", () => {
     ]);
 
     const selectedWork = container.querySelector<HTMLElement>(".ei-home-selected-work")!;
-    expect(selectedWork.querySelectorAll(".ei-home-flagship-card")).toHaveLength(2);
+    expect(selectedWork.querySelectorAll(".ei-works-project-card")).toHaveLength(2);
     expect(within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" })).toBeInTheDocument();
     expect(within(selectedWork).getByRole("heading", { level: 3, name: "Codexia" })).toBeInTheDocument();
+    expect(
+      within(selectedWork).getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i }),
+    ).toHaveAttribute("href", "/works/keystone");
+    expect(
+      within(selectedWork).getByRole("link", { name: /Codexia — Independent Product, Prototype/i }),
+    ).toHaveAttribute("href", "/works/codexia");
     expect(within(selectedWork).queryByText("Aurora Payments")).not.toBeInTheDocument();
     expect(within(selectedWork).queryByText("Obsidian")).not.toBeInTheDocument();
     expect(within(selectedWork).queryByText("Verde")).not.toBeInTheDocument();
