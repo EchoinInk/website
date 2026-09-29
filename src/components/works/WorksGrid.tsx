@@ -3,11 +3,7 @@ import { motion } from 'framer-motion';
 
 import { ProjectCard } from '@/components/cards/ProjectCard';
 import { primaryCapabilities } from '@/data/servicesContent';
-import {
-  worksProjects,
-  type WorkFilter,
-  type WorkProject
-} from '@/data/worksProjects';
+import { worksProjects, type WorkFilter, type WorkProject } from '@/data/worksProjects';
 import { fadeSoft, VIEWPORT } from '@/lib/motion-cinematic';
 
 interface WorksGridProps {
@@ -46,7 +42,12 @@ export function WorksGrid({ activeFilter }: WorksGridProps) {
     <div className="ei-works-collection">
       <div className="ei-works-selected-grid">
         {visibleProjects.map((project, index) => (
-          <ProjectCard key={project.title} {...project} index={index + 1} />
+          <ProjectCard
+            key={project.title}
+            {...project}
+            index={index + 1}
+            showEvidence={Boolean(project.href)}
+          />
         ))}
       </div>
     </div>

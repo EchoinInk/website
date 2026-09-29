@@ -100,7 +100,9 @@ describe("Phase 6 Studio and Work contracts", () => {
     const capabilityIds = new Set(primaryCapabilities.map((capability) => capability.id));
     worksProjects.forEach((project) => {
       expect(project.capabilities.length).toBeGreaterThan(0);
-      project.capabilities.forEach((capability) => expect(capabilityIds.has(capability)).toBe(true));
+      project.capabilities.forEach((capability) =>
+        expect(capabilityIds.has(capability)).toBe(true),
+      );
     });
   });
 
@@ -158,20 +160,27 @@ describe("Phase 6 Studio and Work contracts", () => {
         name: "Work across brands, digital experiences, products and systems.",
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/No project in the current collection is presented as client work/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/No project in the current collection is presented as client work/i),
+    ).toBeInTheDocument();
     expect(screen.queryByText("The Vortex Group")).not.toBeInTheDocument();
 
     const cards = container.querySelectorAll(".ei-works-project-card");
     expect(cards).toHaveLength(6);
-    expect(screen.getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i })).toHaveAttribute(
-      "href",
-      "/works/keystone",
-    );
-    expect(screen.getByRole("link", { name: /Codexia — Independent Product, Prototype/i })).toHaveAttribute(
-      "href",
-      "/works/codexia",
-    );
+    expect(
+      screen.getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i }),
+    ).toHaveAttribute("href", "/works/keystone");
+    expect(
+      screen.getByRole("link", { name: /Codexia — Independent Product, Prototype/i }),
+    ).toHaveAttribute("href", "/works/codexia");
+    expect(screen.getAllByText("View project evidence")).toHaveLength(2);
+    expect(screen.getAllByText("Preview only · No case study")).toHaveLength(4);
+    expect(screen.getAllByText("Decision demonstrated")).toHaveLength(3);
+    expect(screen.getAllByText("Evidence boundary")).toHaveLength(3);
+    expect(cards[0]).toHaveAttribute("data-link-state", "linked");
+    expect(cards[1]).toHaveAttribute("data-link-state", "linked");
     expect(cards[2].querySelector("a")).toBeNull();
+    expect(cards[2]).toHaveAttribute("data-link-state", "preview");
     expect(cards[3].querySelector("a")).toBeNull();
     expect(cards[4].querySelector("a")).toBeNull();
     expect(cards[5].querySelector("a")).toBeNull();
@@ -202,7 +211,9 @@ describe("Phase 6 Studio and Work contracts", () => {
   it("uses the same Lumo provenance contract on Work and the protected case study", () => {
     const work = renderPage(<WorksPage />);
     const workFeature = work.container.querySelector<HTMLElement>(".ei-works-featured-panel")!;
-    expect(within(workFeature).getByText(lumoProject.classification.provenance)).toBeInTheDocument();
+    expect(
+      within(workFeature).getByText(lumoProject.classification.provenance),
+    ).toBeInTheDocument();
     expect(within(workFeature).getByText(lumoProject.classification.status)).toBeInTheDocument();
     work.unmount();
 

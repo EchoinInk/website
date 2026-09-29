@@ -216,11 +216,33 @@
     line-height: 1.42;
   }
 
-  .ei-works-featured-boundary {
-    max-width: 50ch;
-    margin-block: 1.25rem 2rem;
+  .ei-works-featured-evidence {
+    display: grid;
+    width: 100%;
+    margin-block: 1.5rem 2rem;
+    border-top: 1px solid var(--ei-color-border-hairline);
+  }
+
+  .ei-works-featured-evidence > div {
+    display: grid;
+    gap: 0.45rem;
+    border-bottom: 1px solid var(--ei-color-border-hairline);
+    padding-block: 1rem;
+  }
+
+  .ei-works-featured-evidence dt,
+  .ei-works-project-evidence dt {
+    color: var(--ei-color-text-muted);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .ei-works-featured-evidence dd,
+  .ei-works-project-evidence dd {
     color: var(--ei-color-text-secondary);
-    line-height: 1.68;
+    line-height: 1.58;
   }
 
   .ei-works-collection-section {
@@ -278,6 +300,15 @@
     background: rgb(var(--ei-midnight-rgb) / 0.6);
   }
 
+  .ei-works-project-card[data-link-state="preview"] {
+    border-style: dashed;
+    background: rgb(var(--ei-midnight-rgb) / 0.42);
+  }
+
+  .ei-works-project-card[data-link-state="preview"] .ei-works-project-media img {
+    filter: saturate(0.58) brightness(0.68);
+  }
+
   .ei-works-project-link {
     display: grid;
     color: inherit;
@@ -305,7 +336,9 @@
   .ei-works-project-media img {
     object-fit: cover;
     filter: saturate(0.8) brightness(0.75);
-    transition: transform var(--ei-duration-slow) var(--ei-ease-soft), filter var(--ei-duration-slow) var(--ei-ease-soft);
+    transition:
+      transform var(--ei-duration-slow) var(--ei-ease-soft),
+      filter var(--ei-duration-slow) var(--ei-ease-soft);
   }
 
   .ei-works-project-media-scrim {
@@ -361,6 +394,13 @@
     line-height: 1.45;
   }
 
+  .ei-works-project-description {
+    max-width: 48ch;
+    margin-top: 1rem;
+    color: var(--ei-color-text-secondary);
+    line-height: 1.62;
+  }
+
   .ei-works-project-context {
     width: 100%;
     margin-top: 1.5rem;
@@ -378,6 +418,25 @@
     color: var(--ei-color-text-secondary);
     font-size: 0.98rem;
     line-height: 1.65;
+  }
+
+  .ei-works-project-evidence {
+    display: grid;
+    width: 100%;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--ei-color-border-hairline);
+  }
+
+  .ei-works-project-evidence > div {
+    display: grid;
+    gap: 0.4rem;
+    border-bottom: 1px solid var(--ei-color-border-hairline);
+    padding-block: 0.9rem;
+  }
+
+  .ei-works-project-copy .ei-card-action[data-link-state="preview"] {
+    color: var(--ei-color-text-muted);
+    letter-spacing: 0.08em;
   }
 
   .ei-works-project-copy .ei-card-action {

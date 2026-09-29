@@ -8,19 +8,25 @@ import { DURATION, EASE_CINEMATIC, VIEWPORT } from '@/lib/motion-cinematic';
 
 interface ProjectCardProps extends WorkProject {
   index?: number;
+  showEvidence?: boolean;
 }
 
 export function ProjectCard({
   title,
   category,
+  description,
   proofLine,
+  challenge,
   image,
   href,
+  output,
+  result,
   presentation,
   capabilities,
   classification,
   scope,
-  index = 0
+  index = 0,
+  showEvidence = false,
 }: ProjectCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const isLinked = Boolean(href);
@@ -30,7 +36,7 @@ export function ProjectCard({
     !prefersReducedMotion && isLinked
       ? {
           y: -3,
-          transition: { duration: DURATION.instant, ease: EASE_CINEMATIC }
+          transition: { duration: DURATION.instant, ease: EASE_CINEMATIC },
         }
       : undefined;
 
@@ -49,19 +55,38 @@ export function ProjectCard({
           </div>
           <h3>{title}</h3>
           <p className="ei-works-project-category">{category}</p>
+          {showEvidence ? <p className="ei-works-project-description">{description}</p> : null}
         </div>
 
         <ProjectContext
           classification={classification}
           capabilities={capabilities}
           scope={scope}
+          scopeLabel={showEvidence ? "Echo's role" : undefined}
           compact
           className="ei-works-project-context"
         />
-        <p className="ei-works-project-proof">{proofLine}</p>
+        {showEvidence ? (
+          <dl className="ei-works-project-evidence" aria-label={`${title} project evidence`}>
+            <div>
+              <dt>Decision demonstrated</dt>
+              <dd>{challenge}</dd>
+            </div>
+            <div>
+              <dt>Artifact</dt>
+              <dd>{output}</dd>
+            </div>
+            <div>
+              <dt>Evidence boundary</dt>
+              <dd>{result}</dd>
+            </div>
+          </dl>
+        ) : (
+          <p className="ei-works-project-proof">{proofLine}</p>
+        )}
 
-        <span className="ei-card-action">
-          {isLinked ? 'View case study' : classification.status}
+        <span className="ei-card-action" data-link-state={isLinked ? 'linked' : 'preview'}>
+          {isLinked ? 'View project evidence' : 'Preview only · No case study'}
           {isLinked ? <span className="ei-card-action-arrow ei-cta-arrow-right">→</span> : null}
         </span>
       </div>
@@ -76,7 +101,7 @@ export function ProjectCard({
       transition={{
         duration: DURATION.slow,
         ease: EASE_CINEMATIC,
-        delay: index * 0.06
+        delay: index * 0.06,
       }}
       whileHover={hoverMotion}
       className="ei-works-project-motion"
@@ -88,7 +113,12 @@ export function ProjectCard({
         className="ei-works-project-card"
         data-theme="deep"
         data-presentation={presentation}
-        aria-label={!isLinked ? `${title} — ${classification.provenance}, ${classification.status}` : undefined}
+        data-link-state={isLinked ? 'linked' : 'preview'}
+        aria-label={
+          !isLinked
+            ? `${title} — ${classification.provenance}, ${classification.status}`
+            : undefined
+        }
       >
         {href ? (
           <Link
