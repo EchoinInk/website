@@ -51,9 +51,21 @@
   .ei-project-overview-facts dt {
     color: var(--ei-color-text-muted);
     font-family: var(--ei-font-system);
-    font-size: 0.6875rem;
+    font-size: var(--ei-type-size-label);
     letter-spacing: 0.14em;
     text-transform: uppercase;
+  }
+
+  /* The nested deep theme needs its own surface; otherwise its light text is
+     rendered directly on the surrounding Moonlight section. */
+  .ei-project-overview-next .ei-cta-section-panel {
+    border: 1px solid var(--ei-theme-border);
+    border-radius: var(--ei-card-radius-xl);
+    background:
+      radial-gradient(circle at 50% 15%, rgb(var(--ei-halo-blue-rgb) / 0.14), transparent 42%),
+      var(--ei-theme-canvas);
+    box-shadow: var(--ei-theme-shadow-elevated);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4rem);
   }
 
   .ei-project-overview-facts dd {

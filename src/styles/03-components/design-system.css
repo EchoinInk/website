@@ -161,6 +161,8 @@
 
   .ei-echo-card[data-interactive="true"] {
     cursor: pointer;
+    border-color: color-mix(in srgb, var(--ei-card-border-hover) 62%, var(--ei-card-border));
+    box-shadow: var(--ei-card-inner-highlight), var(--ei-card-shadow), inset 0 -2px 0 color-mix(in srgb, var(--ei-color-text-accent) 28%, transparent);
   }
 
   .ei-echo-card[data-interactive="true"]:hover,
@@ -276,7 +278,7 @@
     padding: 0.7rem 1rem;
     color: var(--ei-color-text-tertiary);
     font-family: var(--ei-font-structural);
-    font-size: 0.625rem;
+    font-size: var(--ei-type-size-functional);
     letter-spacing: 0.18em;
     line-height: 1;
     text-transform: uppercase;
@@ -325,7 +327,7 @@
   .ei-form-message {
     color: var(--ei-color-text-muted);
     font-family: var(--ei-font-structural);
-    font-size: 0.75rem;
+    font-size: var(--ei-type-size-functional);
     line-height: 1.5;
   }
 

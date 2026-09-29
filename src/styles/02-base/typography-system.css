@@ -297,7 +297,7 @@
   .ei-type-meta {
     color: var(--ei-type-color-tertiary);
     font-family: var(--ei-font-structural);
-    font-size: 0.625rem;
+    font-size: var(--ei-type-size-meta);
     font-weight: 400;
     letter-spacing: 0.16em;
     line-height: 1.5;
@@ -307,7 +307,7 @@
   .ei-type-label {
     color: var(--ei-type-color-tertiary);
     font-family: var(--ei-font-system);
-    font-size: clamp(0.625rem, 0.75vw, 0.75rem);
+    font-size: var(--ei-type-size-label);
     font-weight: 400;
     letter-spacing: 0.16em;
     line-height: 1.4;
@@ -317,7 +317,7 @@
   .ei-type-nav {
     color: var(--ei-type-color-tertiary);
     font-family: var(--ei-font-structural);
-    font-size: 0.8125rem;
+    font-size: var(--ei-type-size-functional);
     font-weight: 500;
     letter-spacing: 0.02em;
     line-height: 1;

@@ -341,6 +341,13 @@
     --ei-duration-slow: 0.8s;
     --ei-duration-slower: 1.2s;
 
+    /* Functional type floors. Decorative microtype may remain smaller, but
+       controls and supporting information must stay readable at 100% zoom. */
+    --ei-type-size-navigation: 0.75rem;
+    --ei-type-size-functional: 0.8125rem;
+    --ei-type-size-label: 0.75rem;
+    --ei-type-size-meta: 0.75rem;
+
     /* Semantic theme contract. Components use these aliases rather than raw
        canvas values, allowing each section to set contrast independently. */
     --ei-theme-canvas: var(--ei-moonlight-canvas);
@@ -350,7 +357,7 @@
     --ei-theme-text-secondary: var(--ei-moonlight-muted);
     --ei-theme-text-muted: #686172;
     --ei-theme-text-faint: #6c6576;
-    --ei-theme-border: var(--ei-moonlight-border);
+    --ei-theme-border: #d2cadb;
     --ei-theme-link: var(--ei-moonlight-violet);
     --ei-theme-focus: var(--ei-moonlight-blue);
     --ei-theme-shadow: 0 14px 34px rgb(var(--ei-moonlight-ink-rgb) / 0.075);
@@ -452,7 +459,7 @@
     --ei-theme-text-secondary: var(--ei-moonlight-muted);
     --ei-theme-text-muted: #686172;
     --ei-theme-text-faint: #6c6576;
-    --ei-theme-border: var(--ei-moonlight-border);
+    --ei-theme-border: #d2cadb;
     --ei-theme-link: var(--ei-moonlight-violet);
     --ei-theme-focus: var(--ei-moonlight-blue);
     --ei-theme-shadow: 0 14px 34px rgb(var(--ei-moonlight-ink-rgb) / 0.075);
@@ -585,7 +592,7 @@
     --ei-theme-text-secondary: #d9cff6;
     --ei-theme-text-muted: #b4a1d7;
     --ei-theme-text-faint: #9489b7;
-    --ei-theme-border: rgb(var(--ei-moonlit-rgb) / 0.12);
+    --ei-theme-border: rgb(var(--ei-moonlit-rgb) / 0.2);
     --ei-theme-link: var(--ei-halo-blue);
     --ei-theme-focus: var(--ei-halo-blue);
     --ei-theme-shadow: 0 20px 80px rgb(0 0 0 / 0.34);

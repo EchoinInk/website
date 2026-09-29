@@ -54,7 +54,7 @@ export function Button({
       min-w-[200px]
       rounded-full
       px-11 py-[18px]
-      text-[10px]
+      text-[var(--ei-type-size-functional)]
       font-medium
       tracking-[0.18em]
       text-[var(--ei-button-text-primary)]
@@ -70,7 +70,7 @@ export function Button({
       border border-[var(--ei-button-secondary-border)]
       bg-[var(--ei-button-secondary-bg)]
       px-6 py-3.5
-      text-[10px]
+      text-[var(--ei-type-size-functional)]
       font-medium
       tracking-[0.18em]
       text-[var(--ei-button-text-secondary)]
@@ -88,7 +88,7 @@ export function Button({
       rounded-none
       bg-transparent
       px-0 py-1
-      text-[10px]
+      text-[var(--ei-type-size-functional)]
       font-medium
       tracking-[0.14em]
       text-[var(--ei-button-text-tertiary)]

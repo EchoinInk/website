@@ -8,7 +8,7 @@
   /* ── Form Labels ─────────────────────────────────────────────── */
   .ei-form-label {
     font-family: var(--ei-font-structural);
-    font-size: 0.625rem;
+    font-size: var(--ei-type-size-label);
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -127,7 +127,7 @@
   /* ── Submit Button ───────────────────────────────────────────── */
   .ei-form-submit {
     font-family: var(--ei-font-structural);
-    font-size: 0.6875rem;
+    font-size: var(--ei-type-size-functional);
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -160,6 +160,15 @@
   .ei-form-submit:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  .ei-form-input:disabled,
+  .ei-form-textarea:disabled,
+  .ei-form-select:disabled {
+    cursor: not-allowed;
+    color: var(--ei-color-text-muted);
+    background: var(--ei-theme-surface);
+    opacity: 0.65;
   }
 
   /* ── Validation States ───────────────────────────────────────── */
