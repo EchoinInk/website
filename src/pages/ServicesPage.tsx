@@ -14,7 +14,6 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import {
   engagementModels,
   primaryCapabilities,
-  type EngagementModelId,
   type ServiceCapabilityId,
 } from "@/data/servicesContent";
 import {
@@ -30,12 +29,6 @@ const capabilityVisuals: Record<ServiceCapabilityId, OrbitalVariant> = {
   "websites-experiences": "memoryComet",
   "digital-products": "focusDial",
   "systems-automation": "quietAxis",
-};
-
-const engagementActions: Record<EngagementModelId, { label: string; href: string }> = {
-  "strategy-sessions": { label: "Book a Strategy Session", href: "/booking" },
-  "digital-reset": { label: "Start a Project", href: "/contact?inquiry=project" },
-  "full-projects": { label: "Start a Project", href: "/contact?inquiry=project" },
 };
 
 export function ServicesPage() {
@@ -199,8 +192,6 @@ export function ServicesPage() {
 
             <div className="ei-services-engagement-grid">
               {engagementModels.map((model, index) => {
-                const action = engagementActions[model.id];
-
                 return (
                   <motion.div key={model.id} variants={driftUp}>
                     <EchoCard
@@ -213,8 +204,26 @@ export function ServicesPage() {
                       </span>
                       <h3>{model.title}</h3>
                       <p>{model.description}</p>
-                      <Button to={action.href} variant="tertiary">
-                        {action.label}
+                      <dl className="ei-services-engagement-details">
+                        <div>
+                          <dt>Best when</dt>
+                          <dd>{model.bestFor}</dd>
+                        </div>
+                        <div>
+                          <dt>Typical scope</dt>
+                          <dd>{model.typicalScope}</dd>
+                        </div>
+                        <div>
+                          <dt>Possible outcomes</dt>
+                          <dd>{model.possibleOutcomes}</dd>
+                        </div>
+                        <div>
+                          <dt>Next action</dt>
+                          <dd>{model.nextAction}</dd>
+                        </div>
+                      </dl>
+                      <Button to={model.href} variant="tertiary">
+                        {model.cta}
                         <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
                           →
                         </span>

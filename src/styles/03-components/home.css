@@ -446,6 +446,22 @@
     min-height: 6.4rem;
   }
 
+  .ei-home-engagement .ei-home-engagement-fit {
+    min-height: 0;
+    margin-top: 1rem;
+    color: var(--ei-color-text-secondary);
+  }
+
+  .ei-home-engagement-fit span {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--ei-color-text-muted);
+    font-family: var(--ei-font-system);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
   .ei-home-engagement .ei-btn-primary-cinematic,
   .ei-home-engagement a {
     align-self: flex-start;

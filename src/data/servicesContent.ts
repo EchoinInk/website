@@ -66,6 +66,10 @@ export interface EngagementModel {
   id: EngagementModelId;
   title: string;
   description: string;
+  bestFor: string;
+  typicalScope: string;
+  possibleOutcomes: string;
+  nextAction: string;
   cta: string;
   href: string;
 }
@@ -76,6 +80,14 @@ export const engagementModels = [
     title: "Strategy Sessions",
     description:
       "Focused 60–90 minute engagements for a clearly defined problem.",
+    bestFor:
+      "One defined question that needs clarity, direction, scoping or a practical next step.",
+    typicalScope:
+      "A private video session centred on the question you bring.",
+    possibleOutcomes:
+      "Clearer decisions, language, direction or practical next steps.",
+    nextAction:
+      "Request a session with your question, preferred week and timezone.",
     cta: "Book a Strategy Session",
     href: "/booking",
   },
@@ -84,16 +96,32 @@ export const engagementModels = [
     title: "Digital Reset",
     description:
       "A structured engagement for businesses that have grown or changed while their digital presence has not kept pace.",
-    cta: "Start a Project",
-    href: primaryCallToAction.href,
+    bestFor:
+      "An existing business whose brand, website, product or systems no longer fit the business as it is now.",
+    typicalScope:
+      "A bounded reset of the connected parts that are causing confusion, friction or inconsistency.",
+    possibleOutcomes:
+      "Clearer digital direction and focused changes across the relevant experience or system.",
+    nextAction:
+      "Send a project enquiry describing what has changed and what no longer fits.",
+    cta: "Discuss a Digital Reset",
+    href: "/contact?inquiry=project",
   },
   {
     id: "full-projects",
     title: "Full Projects",
     description:
       "End-to-end strategy, design and technical implementation for larger or new initiatives.",
+    bestFor:
+      "A larger or new initiative that needs strategy, design and technical implementation to work together.",
+    typicalScope:
+      "End-to-end work across the relevant combination of brand, website, product or systems.",
+    possibleOutcomes:
+      "A new or substantially rebuilt identity, digital experience, product or system shaped around the initiative.",
+    nextAction:
+      "Send a project enquiry with the initiative, its context and what the work needs to make possible.",
     cta: primaryCallToAction.label,
-    href: primaryCallToAction.href,
+    href: "/contact?inquiry=project",
   },
 ] as const satisfies readonly EngagementModel[];
 

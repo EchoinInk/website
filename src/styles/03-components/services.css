@@ -276,7 +276,7 @@
   }
 
   .ei-services-engagement-card {
-    min-height: 23rem;
+    min-height: 42rem;
     display: flex;
     flex-direction: column;
   }
@@ -297,13 +297,40 @@
     letter-spacing: 0.18em;
   }
 
+  .ei-services-engagement-details {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0 1.75rem;
+  }
+
+  .ei-services-engagement-details div {
+    padding-top: 1rem;
+    border-top: 1px solid var(--ei-theme-border);
+  }
+
+  .ei-services-engagement-details dt {
+    color: var(--ei-theme-link);
+    font-family: var(--ei-font-structural);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .ei-services-engagement-details dd {
+    margin-top: 0.45rem;
+    color: var(--ei-theme-text-secondary);
+    font-family: var(--ei-font-copy);
+    font-size: 0.94rem;
+    line-height: 1.58;
+  }
+
   .ei-services-engagement-card .ei-btn-primary-cinematic,
   .ei-services-engagement-card a {
     align-self: flex-start;
   }
 
   .ei-services-engagement-card a {
-    margin-top: 1.75rem;
+    margin-top: auto;
   }
 
   .ei-services-engagement-card a,

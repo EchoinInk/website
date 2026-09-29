@@ -44,9 +44,15 @@ describe("homepage reference implementation", () => {
     });
 
     engagementModels.forEach((model) => {
-      expect(screen.getByRole("heading", { level: 3, name: model.title })).toBeInTheDocument();
-      expect(screen.getByText(model.description)).toBeInTheDocument();
+      const heading = screen.getByRole("heading", { level: 3, name: model.title });
+      const card = heading.closest("article")!;
+
+      expect(within(card).getByText(model.description)).toBeInTheDocument();
+      expect(within(card).getByText(model.bestFor)).toBeInTheDocument();
+      expect(within(card).getByRole("link", { name: model.cta })).toHaveAttribute("href", model.href);
     });
+
+    expect(screen.getByText(/recommend the smallest engagement/i)).toBeInTheDocument();
   });
 
   it("publishes the semantic section rhythm and current flagship selection", () => {

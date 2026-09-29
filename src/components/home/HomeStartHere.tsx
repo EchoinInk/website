@@ -33,11 +33,12 @@ export function HomeStartHere() {
             <SectionLabel label="Ways to Work Together" tone="accent" />
             <div>
               <h2 id="home-engagements-heading" className="ei-type-section-heading">
-                Choose the shape that fits the problem.
+                Three ways in, chosen around the problem.
               </h2>
               <p className="ei-home-section-intro">
-                Each engagement can stand on its own. Start with the level of focus and momentum
-                the problem needs now.
+                Bring one question, reset what no longer fits, or build a larger initiative from
+                end to end. If you are unsure, Echo will recommend the smallest engagement that
+                can move the work forward properly.
               </p>
             </div>
           </motion.div>
@@ -54,6 +55,10 @@ export function HomeStartHere() {
                 </span>
                 <h3>{model.title}</h3>
                 <p>{model.description}</p>
+                <p className="ei-home-engagement-fit">
+                  <span>Best when</span>
+                  {model.bestFor}
+                </p>
                 <Button to={model.href} variant="tertiary">
                   {model.cta}
                   <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
