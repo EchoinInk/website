@@ -420,6 +420,31 @@
     line-height: 1.65;
   }
 
+  .ei-works-project-outcome {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--ei-color-border-hairline);
+    padding-top: 1.25rem;
+  }
+
+  .ei-works-project-outcome > span {
+    color: var(--ei-color-text-accent);
+    font-family: var(--ei-font-structural);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .ei-works-project-outcome p {
+    max-width: 48ch;
+    margin-top: 0.55rem;
+    color: var(--ei-color-text-primary);
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
   .ei-works-project-evidence {
     display: grid;
     width: 100%;

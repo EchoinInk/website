@@ -371,7 +371,7 @@
   }
 
   .ei-home-selected-work .ei-works-project-copy {
-    min-height: 25rem;
+    min-height: 31rem;
     padding: clamp(1.4rem, 2.5vw, 2rem);
   }
 
@@ -381,10 +381,20 @@
 
   .ei-home-selected-work .ei-works-project-category {
     color: var(--ei-color-text-secondary);
+    font-size: 1.1rem;
   }
 
-  .ei-home-selected-work .ei-works-project-proof {
-    font-size: 0.98rem;
+  .ei-home-selected-work .ei-works-project-meta {
+    color: var(--ei-color-text-secondary);
+    font-size: 0.72rem;
+  }
+
+  .ei-home-selected-work .ei-project-context dt {
+    font-size: 0.65rem;
+  }
+
+  .ei-home-selected-work .ei-project-context dd {
+    font-size: 0.84rem;
   }
 
   /* Engagement models */
@@ -979,7 +989,20 @@
   }
 
   .ei-home-page .ei-home-selected-work .ei-home-section-action {
-    margin-top: clamp(2rem, 4vw, 3.25rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+    border-top: 1px solid var(--ei-theme-border);
+    padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+
+  .ei-home-page .ei-home-selected-work .ei-home-section-action p {
+    max-width: 38rem;
+    color: var(--ei-color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
 
   .ei-home-page .ei-home-selected-work .ei-home-section-inner {
@@ -1184,15 +1207,16 @@
 
   @media (min-width: 1024px) {
     .ei-home-page .ei-home-selected-grid {
-      grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
-    }
-
-    .ei-home-page .ei-home-selected-grid > :first-child {
-      grid-row: span 2;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (max-width: 767px) {
+    .ei-home-page .ei-home-selected-work .ei-home-section-action {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
     .ei-home-page .ei-home-capability-grid::before {
       display: none;
     }

@@ -85,6 +85,10 @@ describe("homepage reference implementation", () => {
 
     const selectedWork = container.querySelector<HTMLElement>(".ei-home-selected-work")!;
     expect(selectedWork.querySelectorAll(".ei-works-project-card")).toHaveLength(2);
+    selectedWork.querySelectorAll(".ei-works-project-card").forEach((card) => {
+      expect(card.querySelectorAll("a")).toHaveLength(1);
+      expect(card.querySelector("a")).toHaveClass("ei-works-project-link");
+    });
     expect(
       within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" })
     ).toBeInTheDocument();
@@ -99,6 +103,14 @@ describe("homepage reference implementation", () => {
     expect(
       within(selectedWork).getByRole("link", { name: /Codexia — Independent Product, Prototype/i })
     ).toHaveAttribute("href", "/works/codexia");
+    expect(within(selectedWork).getAllByText("Evidence boundary")).toHaveLength(2);
+    expect(
+      within(selectedWork).getByText(/no launched platform or measured outcome is claimed/i)
+    ).toBeInTheDocument();
+    expect(within(selectedWork).getByRole("link", { name: "View all work" })).toHaveAttribute(
+      "href",
+      "/works"
+    );
     const lumo = container.querySelector<HTMLElement>(".ei-home-lumo")!;
     expect(within(lumo).getByText("Independent Product")).toBeInTheDocument();
     expect(within(lumo).getByText("React Native")).toBeInTheDocument();

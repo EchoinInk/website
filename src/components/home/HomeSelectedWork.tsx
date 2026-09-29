@@ -39,13 +39,14 @@ export function HomeSelectedWork() {
 
           <div className="ei-home-selected-grid">
             {homeFeaturedProjects.map((project, index) => (
-              <ProjectCard key={project.title} {...project} index={index} />
+              <ProjectCard key={project.title} {...project} index={index} highlightOutcome />
             ))}
           </div>
 
           <motion.div variants={driftUp} className="ei-home-section-action">
+            <p>Explore the complete three-project collection and the evidence behind each study.</p>
             <Button to="/works" variant="secondary">
-              View Our Work
+              View all work
               <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
                 →
               </span>

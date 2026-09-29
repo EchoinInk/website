@@ -9,6 +9,7 @@ import { DURATION, EASE_CINEMATIC, VIEWPORT } from '@/lib/motion-cinematic';
 interface ProjectCardProps extends WorkProject {
   index?: number;
   showEvidence?: boolean;
+  highlightOutcome?: boolean;
 }
 
 export function ProjectCard({
@@ -27,6 +28,7 @@ export function ProjectCard({
   scope,
   index = 0,
   showEvidence = false,
+  highlightOutcome = false,
 }: ProjectCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const isLinked = Boolean(href);
@@ -50,7 +52,7 @@ export function ProjectCard({
       <div className="ei-works-project-copy">
         <div className="ei-works-project-header">
           <div className="ei-works-project-meta">
-            <span>{classification.provenance}</span>
+            <span>{classification.provenance} · {classification.status}</span>
             <span>{number}</span>
           </div>
           <h3>{title}</h3>
@@ -81,6 +83,11 @@ export function ProjectCard({
               <dd>{result}</dd>
             </div>
           </dl>
+        ) : highlightOutcome ? (
+          <div className="ei-works-project-outcome">
+            <span>Evidence boundary</span>
+            <p>{result}</p>
+          </div>
         ) : (
           <p className="ei-works-project-proof">{proofLine}</p>
         )}
@@ -113,6 +120,7 @@ export function ProjectCard({
         className="ei-works-project-card"
         data-theme="deep"
         data-presentation={presentation}
+        data-outcome-highlighted={highlightOutcome ? 'true' : undefined}
         data-link-state={isLinked ? 'linked' : 'preview'}
         aria-label={
           !isLinked
