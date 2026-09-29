@@ -225,5 +225,13 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(
       within(lumo.container).getByRole("region", { name: "Lumo case study content" }),
     ).toBeInTheDocument();
+    expect(within(lumo.container).getByText("Echo’s role")).toBeInTheDocument();
+    expect(within(lumo.container).getByText(/no launch, clinical validation/i)).toBeInTheDocument();
+    expect(
+      within(lumo.container).getByRole("link", { name: "Explore related services" }),
+    ).toHaveAttribute("href", "/services");
+    expect(
+      within(lumo.container).getByRole("link", { name: "Interface screens" }),
+    ).toHaveAttribute("href", "#product-screens");
   });
 });

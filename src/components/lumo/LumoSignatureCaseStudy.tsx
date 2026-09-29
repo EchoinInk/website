@@ -124,23 +124,30 @@ const outcomes = [
   "Built for Neurodivergent Minds",
 ];
 
-const lumoEvidence = [
+const lumoBrief = [
   {
-    title: "Product challenge",
-    body: "Make planning feel less rigid, less punitive, and easier to return to after overwhelm.",
+    title: "Challenge",
+    body: lumoProject.challenge,
   },
   {
-    title: "Design intent",
-    body: "Use softness, hierarchy, and a companion character system to make the next step feel approachable.",
+    title: "Echo’s role",
+    body: "Shape the identity system, product atmosphere, and interface direction into one coherent prototype world.",
   },
   {
-    title: "Accessibility considerations",
-    body: "Reduce cognitive load through simple flows, legible interface rhythm, gentle reminders, and flexible routines.",
+    title: "Key decisions",
+    body: "Pair clear hierarchy and modular planning flows with a gentle companion character, soft colour, and supportive feedback.",
   },
   {
-    title: "Concept boundary",
-    body: "This page does not claim a launched product, clinical validation, user research, or accessibility testing.",
+    title: "What it demonstrates",
+    body: "How identity, interface, and emotional tone can work as one recognisable product system across core touchpoints.",
   },
+] as const;
+
+const artifactLinks = [
+  { href: "#product-screens", label: "Interface screens" },
+  { href: "#character-system", label: "Character system" },
+  { href: "#identity-system", label: "Identity system" },
+  { href: "#ecosystem", label: "Ecosystem concepts" },
 ] as const;
 
 function useActiveSection() {
@@ -273,7 +280,7 @@ function LumoPanel({
   className?: string;
 }) {
   return (
-    <section id={id} className={`ei-lumo-panel ${className}`} aria-labelledby={`${id}-heading`}>
+    <section id={id} className={`ei-lumo-panel ${className}`} data-theme="deep" aria-label={label}>
       <Reveal>
         <SectionKicker index={index} label={label} />
         {children}
@@ -323,55 +330,45 @@ function LumoHeroPanel() {
   );
 }
 
-function LumoEvidencePanel() {
+function LumoProjectBrief() {
   return (
-    <section className="ei-lumo-evidence-panel" aria-labelledby="lumo-evidence-heading">
-      <Reveal className="ei-lumo-evidence-shell">
-        <motion.div variants={driftUp} className="ei-lumo-evidence-copy">
-          <SectionKicker index="" label="Project context" />
-          <h2 id="lumo-evidence-heading">What this case study proves, and what it does not claim.</h2>
+    <section className="ei-lumo-brief" data-theme="deep" aria-labelledby="lumo-brief-heading">
+      <Reveal className="ei-lumo-brief-shell">
+        <motion.div variants={driftUp} className="ei-lumo-brief-intro">
+          <SectionKicker index="" label="Project brief" />
+          <h2 id="lumo-brief-heading">A product world designed to make planning feel easier to return to.</h2>
           <p>
-            The page is presented as independent product-world exploration: identity, interface
-            direction, emotional UX, and a prototype-level experience system.
+            Lumo is an independent prototype, not a launched or validated product. The work
+            explores how a calmer visual language and clearer interaction rhythm could support
+            overwhelmed people without turning encouragement into pressure.
           </p>
+          <div className="ei-lumo-brief-actions">
+            <Button to="/services" variant="secondary">Explore related services</Button>
+            <Button to="/contact?inquiry=project" variant="primary">Discuss a project</Button>
+          </div>
         </motion.div>
 
-        <motion.div variants={fadeSoft} className="ei-lumo-evidence-list">
-          {lumoEvidence.map((item) => (
-            <article key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </motion.div>
-      </Reveal>
-    </section>
-  );
-}
-
-function StudioBridgePanel() {
-  return (
-    <section className="ei-lumo-studio-bridge" data-theme="deep" aria-labelledby="lumo-studio-bridge-heading">
-      <Reveal className="ei-lumo-studio-bridge-shell">
-        <motion.div variants={driftUp} className="ei-lumo-studio-bridge-copy">
-          <SectionKicker index="" label="Selected Work" />
-          <h2 id="lumo-studio-bridge-heading">
-            Lumo sits inside Echo in Ink&apos;s selected work in identity, product atmosphere,
-            and digital experience.
-          </h2>
-          <p>
-            It shows how the studio carries emotional clarity, interface direction, and
-            atmosphere into a product world without flattening its softness.
+        <motion.div variants={fadeSoft} className="ei-lumo-brief-details">
+          <div className="ei-lumo-brief-grid">
+            {lumoBrief.map((item) => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="ei-lumo-artifact-links" aria-label="Explore representative Lumo artifacts">
+            <span>Explore the visual story</span>
+            <nav>
+              {artifactLinks.map((item) => (
+                <a key={item.href} href={item.href}>{item.label}<span aria-hidden="true">↓</span></a>
+              ))}
+            </nav>
+          </div>
+          <p className="ei-lumo-claim-boundary">
+            <strong>Evidence boundary:</strong> no launch, clinical validation, user research, or
+            accessibility testing is claimed.
           </p>
-        </motion.div>
-
-        <motion.div variants={fadeSoft} className="ei-lumo-studio-bridge-link">
-          <Link to="/works">
-            Return to selected work{" "}
-            <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
-              →
-            </span>
-          </Link>
         </motion.div>
       </Reveal>
     </section>
@@ -633,8 +630,7 @@ export function SignatureCaseStudy() {
       <section className="ei-lumo-main" aria-label="Lumo case study content">
         <LumoMobileNav activeId={activeId} />
         <LumoHeroPanel />
-        <LumoEvidencePanel />
-        <StudioBridgePanel />
+        <LumoProjectBrief />
         <div className="ei-lumo-panel-stack">
           <IntroductionOverview />
           <div className="ei-lumo-two-column">
