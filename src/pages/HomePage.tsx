@@ -1,4 +1,6 @@
 import { ClosingSection } from "@/components/home/HomeClosingSection";
+import { HomeCredibility } from "@/components/home/HomeCredibility";
+import { HomeDelivery } from "@/components/home/HomeDelivery";
 import { LumoCaseStudyTeaser } from "@/components/home/HomeFeaturedLumo";
 import { Hero } from "@/components/home/HomeHero";
 import { Philosophy } from "@/components/home/HomePhilosophySection";
@@ -20,10 +22,12 @@ export function HomePage() {
       className="ei-home-page"
     >
       <Hero />
-      <WhatWeCreate />
+      <HomeCredibility />
       <HomeSelectedWork />
+      <WhatWeCreate />
       <HomeStartHere />
       <LumoCaseStudyTeaser />
+      <HomeDelivery />
       <Philosophy />
       <ClosingSection />
     </PageShell>

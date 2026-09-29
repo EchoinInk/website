@@ -27,6 +27,7 @@ describe("homepage reference implementation", () => {
       })
     ).toBeInTheDocument();
     expect(screen.getByText("Designing the worlds your work lives in.")).toBeInTheDocument();
+    expect(screen.getByText(/For founders and teams whose next move/i)).toBeInTheDocument();
 
     const hero = screen.getByRole("heading", { level: 1 }).closest("section")!;
     expect(within(hero).getByRole("link", { name: primaryCallToAction.label })).toHaveAttribute(
@@ -38,9 +39,10 @@ describe("homepage reference implementation", () => {
       "/works"
     );
 
+    const capabilities = document.querySelector<HTMLElement>(".ei-home-capabilities")!;
     primaryCapabilities.forEach((capability) => {
-      expect(screen.getByRole("heading", { level: 3, name: capability.title })).toBeInTheDocument();
-      expect(screen.getByText(capability.description)).toBeInTheDocument();
+      expect(within(capabilities).getByText(capability.title)).toBeInTheDocument();
+      expect(within(capabilities).getByText(capability.description)).toBeInTheDocument();
     });
 
     engagementModels.forEach((model) => {
@@ -56,6 +58,8 @@ describe("homepage reference implementation", () => {
     });
 
     expect(screen.getByText(/recommend the smallest engagement/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: /Fewer gaps between/i })).toBeInTheDocument();
+    expect(screen.getByText(/Clients work directly with Alexandria Farley/i)).toBeInTheDocument();
   });
 
   it("publishes the semantic section rhythm and current flagship selection", () => {
@@ -68,8 +72,10 @@ describe("homepage reference implementation", () => {
       "light",
       "lightElevated",
       "mist",
+      "lightElevated",
       "light",
       "mist",
+      "lightElevated",
       "light",
       "mist"
     ]);
@@ -80,15 +86,20 @@ describe("homepage reference implementation", () => {
       "light",
       "light",
       "light",
+      "light",
+      "light",
       undefined
     ]);
 
     const selectedWork = container.querySelector<HTMLElement>(".ei-home-selected-work")!;
-    expect(selectedWork.querySelectorAll(".ei-works-project-card")).toHaveLength(2);
+    expect(selectedWork.querySelectorAll(".ei-works-project-card")).toHaveLength(3);
     selectedWork.querySelectorAll(".ei-works-project-card").forEach((card) => {
       expect(card.querySelectorAll("a")).toHaveLength(1);
       expect(card.querySelector("a")).toHaveClass("ei-works-project-link");
     });
+    expect(
+      within(selectedWork).getByRole("heading", { level: 3, name: "LUMO" })
+    ).toBeInTheDocument();
     expect(
       within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" })
     ).toBeInTheDocument();
@@ -103,7 +114,7 @@ describe("homepage reference implementation", () => {
     expect(
       within(selectedWork).getByRole("link", { name: /Codexia — Independent Product, Prototype/i })
     ).toHaveAttribute("href", "/works/codexia");
-    expect(within(selectedWork).getAllByText("Evidence boundary")).toHaveLength(2);
+    expect(within(selectedWork).getAllByText("Evidence boundary")).toHaveLength(3);
     expect(
       within(selectedWork).getByText(/no launched platform or measured outcome is claimed/i)
     ).toBeInTheDocument();

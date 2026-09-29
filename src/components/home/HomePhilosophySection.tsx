@@ -44,8 +44,10 @@ export function Philosophy() {
               </motion.h2>
 
               <motion.p variants={driftUp} className="ei-home-studio-body">
-                We work closely with people building businesses, products and ideas that need
-                clearer positioning, stronger design or thoughtful technical implementation.
+                Clients work directly with Alexandria Farley, the senior practitioner responsible
+                for the strategy, design and technical thinking throughout the engagement. There is
+                no hand-off to a junior delivery layer: the person shaping the direction stays
+                accountable for the work.
               </motion.p>
 
               <motion.div variants={driftUp}>
@@ -59,8 +61,8 @@ export function Philosophy() {
             </motion.div>
 
             <motion.div variants={driftUp} className="ei-home-studio-editorial">
-              <p>Close collaboration. Deliberate outcomes.</p>
-              <span>Every engagement connects the idea to what people see, use and understand.</span>
+              <p>Senior attention, from first question to final detail.</p>
+              <span>One accountable collaborator connecting the idea to what people see, use and understand.</span>
             </motion.div>
           </div>
         </motion.div>

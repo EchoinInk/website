@@ -30,6 +30,25 @@ const capabilityVisuals: Record<
   "systems-automation": { variant: "quietAxis", tone: "ice" },
 };
 
+const capabilityProblems: Record<ServiceCapabilityId, { prompt: string; outcome: string }> = {
+  "brand-identity": {
+    prompt: "Your brand no longer says what the business has become.",
+    outcome: "Clarify the positioning, identity and digital expression so people understand and recognise it."
+  },
+  "websites-experiences": {
+    prompt: "Your website looks present, but it is not doing enough.",
+    outcome: "Turn it into a clear, useful experience that helps the right people understand and act."
+  },
+  "digital-products": {
+    prompt: "The product idea is strong, but the experience is still unresolved.",
+    outcome: "Shape the strategy, interface and product system into something coherent enough to test or build."
+  },
+  "systems-automation": {
+    prompt: "Manual work and disconnected tools are slowing the team down.",
+    outcome: "Design focused software, integrations or automation around the way the work actually needs to move."
+  }
+};
+
 interface WhatWeCreateProps {
   capabilities?: readonly ServiceCapability[];
 }
@@ -57,11 +76,11 @@ export function WhatWeCreate({
             <SectionLabel label="What Echo Does" tone="accent" />
             <div>
               <h2 id="home-capabilities-heading" className="ei-type-section-heading">
-                Four areas of practice, combined as needed.
+                Start with the problem, then combine the right capabilities.
               </h2>
               <p className="ei-home-section-intro">
-                Echo combines brand, digital experience, product and automation work around the
-                needs of each project.
+                You do not need to diagnose the discipline before getting in touch. Echo connects
+                brand, digital experience, product and systems work around the outcome you need.
               </p>
             </div>
           </motion.div>
@@ -82,8 +101,10 @@ export function WhatWeCreate({
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <OrbitalVisual variant={visual.variant} size={62} />
                     </div>
-                    <h3>{capability.title}</h3>
-                    <p>{capability.description}</p>
+                    <span className="ei-home-capability-label">{capability.title}</span>
+                    <h3>{capabilityProblems[capability.id].prompt}</h3>
+                    <p>{capabilityProblems[capability.id].outcome}</p>
+                    <span className="sr-only">{capability.description}</span>
                     <span className="ei-card-action">
                       Explore
                       <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">

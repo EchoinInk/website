@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectCard } from "@/components/cards/ProjectCard";
-import { homeFeaturedProjects } from "@/data/worksProjects";
+import { worksProjects } from "@/data/worksProjects";
 import { siteActionLabels } from "@/data/siteNavigation";
 import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
@@ -33,13 +33,14 @@ export function HomeSelectedWork() {
                 Selected Work
               </h2>
               <p className="ei-home-section-intro">
-                Keystone and Codexia complete the three-project collection alongside Lumo.
+                Three real studio projects, each presented with its provenance, current maturity
+                and evidence boundary intact.
               </p>
             </div>
           </motion.div>
 
           <div className="ei-home-selected-grid">
-            {homeFeaturedProjects.map((project, index) => (
+            {worksProjects.map((project, index) => (
               <ProjectCard key={project.title} {...project} index={index} highlightOutcome />
             ))}
           </div>

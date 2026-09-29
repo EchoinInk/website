@@ -27,8 +27,9 @@ export function HeroHeading() {
         variants={heroReveal}
         className="ei-type-hero-description ei-home-hero-description ei-hero-system-description"
       >
-        Echo in Ink brings strategy, design and development together to create thoughtful digital
-        experiences for businesses, products and ideas that are ready for what’s next.
+        For founders and teams whose next move needs more than a surface-level fix, Echo brings
+        strategy, design and development together to create a clearer brand, stronger digital
+        experience and a practical path from idea to implementation.
       </motion.p>
 
       <PageOfferAnchor className="ei-home-hero-philosophy">
