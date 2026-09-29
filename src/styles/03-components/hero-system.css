@@ -96,7 +96,7 @@
     .ei-hero-system {
       --ei-hero-artwork-start: 0%;
       --ei-hero-copy-width: 100%;
-      min-height: 71.25rem;
+      min-height: 52rem;
     }
 
     .ei-hero-system-copy-wrap,
@@ -106,19 +106,19 @@
     }
 
     .ei-hero-system-copy {
-      padding-block: 7.5rem 23rem;
+      padding-block: 7rem 17rem;
     }
 
     .ei-hero-system-text,
     .ei-hero-system-heading {
-      max-width: 100%;
+      max-width: min(100%, 20rem);
     }
 
     .ei-hero-system-heading,
     .ei-home-hero-heading.ei-hero-system-heading,
     .ei-page-section-hero-title.ei-hero-system-heading,
     .ei-services-hero .ei-hero-system-heading {
-      font-size: clamp(2.7rem, 11.7vw, 3.35rem);
+      font-size: clamp(2.35rem, 11vw, 3.1rem);
       letter-spacing: -0.046em;
       line-height: 0.98;
     }
@@ -128,19 +128,20 @@
     .ei-page-section-hero-description.ei-hero-system-description,
     .ei-services-hero .ei-hero-system-description {
       margin-top: 1.4rem;
+      max-width: 38ch;
       font-size: 1rem;
       line-height: 1.65;
     }
 
     .ei-hero-system-aside {
       right: 0;
-      bottom: 4.5rem;
+      bottom: 2.25rem;
       left: 0;
     }
 
     .ei-hero-system-media {
       inset: auto 0 0;
-      height: 28rem;
+      height: 22rem;
       clip-path: none;
       -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
       mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
@@ -160,7 +161,7 @@
     .ei-home-hero-heading.ei-hero-system-heading,
     .ei-page-section-hero-title.ei-hero-system-heading,
     .ei-services-hero .ei-hero-system-heading {
-      font-size: 2.62rem;
+      font-size: clamp(2.3rem, 11.5vw, 2.62rem);
     }
   }
 }

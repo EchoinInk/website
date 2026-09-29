@@ -32,7 +32,7 @@ export function ProjectContext({
       aria-label="Project details"
     >
       {items.map((item) => (
-        <div key={item.label}>
+        <div key={item.label} data-field={item.label.toLowerCase().replace(/[^a-z]+/g, '-')}>
           <dt>{item.label}</dt>
           <dd>{item.value}</dd>
         </div>

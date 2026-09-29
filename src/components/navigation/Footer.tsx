@@ -122,7 +122,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
             >
               <div className="grid grid-cols-2 items-start gap-8 md:grid-cols-[1.05fr_0.95fr_0.85fr_1.1fr] md:gap-8 lg:gap-10">
                 {/* Col 1 — Brand */}
-                <div className="col-span-2 md:col-span-1">
+                <div className="order-1 col-span-2 md:order-1 md:col-span-1">
                   <span className="ei-type-footer-brand mb-3 block font-structural text-[var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
                     Echo in Ink
                   </span>
@@ -134,7 +134,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 </div>
 
                 {/* Col 2 — Navigation */}
-                <nav aria-label="Footer primary navigation">
+                <nav className="order-3 md:order-2" aria-label="Footer primary navigation">
                   <span className="ei-type-footer-label mb-4 block font-mono text-[var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Navigation
                   </span>
@@ -154,7 +154,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 </nav>
 
                 {/* Col 3 — Connect */}
-                <div>
+                <div className="order-2 md:order-3">
                   <span className="ei-type-footer-label mb-4 block font-mono text-[var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Connect
                   </span>
@@ -176,7 +176,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 </div>
 
                 {/* Col 4 — Creative resources */}
-                <div className="relative">
+                <div className="relative order-4 md:order-4">
                   <span className="ei-type-footer-label mb-4 block font-mono text-[var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Creative Systems &amp; Tools
                   </span>
@@ -187,7 +187,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                       experiments for clearer creative decisions.
                     </p>
 
-                    <div className="shrink-0 pt-0.5 opacity-70">
+                    <div className="hidden shrink-0 pt-0.5 opacity-70 md:block">
                       <OrbitalVisual variant="chorusCore" size={44} />
                     </div>
                   </div>

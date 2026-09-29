@@ -7,6 +7,11 @@
 
 @layer utilities {
   @media (max-width: 768px) {
+    :root {
+      --ei-section-padding-y: 4rem;
+      --ei-section-padding-y-sm: 3rem;
+    }
+
     /* ── Section Rhythm ──────────────────────────────────────────── */
 
     .ei-section-standard {
@@ -27,6 +32,48 @@
     .ei-section-closing {
       padding-top: clamp(2.5rem, 6vh, 4rem);
       padding-bottom: clamp(4rem, 12vh, 7rem);
+    }
+
+    /* Keep recurring editorial stacks compact and intentional on phones. */
+    .ei-studio-section-inner,
+    .ei-services-section-inner,
+    .ei-phase7-inner {
+      padding-block: 4rem;
+    }
+
+    .ei-studio-section-heading,
+    .ei-phase7-heading {
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .ei-studio-section-heading h2,
+    .ei-studio-philosophy-intro h2,
+    .ei-phase7-heading h2,
+    .ei-phase7-relationship h2,
+    .ei-sessions-room-copy > h2 {
+      max-width: min(100%, 20rem);
+      font-size: clamp(2.1rem, 10vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .ei-studio-section-heading p,
+    .ei-phase7-heading h2 + p {
+      margin-top: 1rem;
+      line-height: 1.62;
+    }
+
+    .ei-section-label-system-rule[data-length] {
+      max-width: 2.5rem;
+      opacity: 0.55;
+    }
+
+    .ei-footer .ei-container {
+      padding-inline: var(--ei-gutter-mobile);
+    }
+
+    .ei-footer nav ul {
+      gap-block: 0;
     }
 
     /* ── Text Spacing ────────────────────────────────────────────── */

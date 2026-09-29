@@ -524,13 +524,96 @@
   }
 
   @media (max-width: 767px) {
+    .ei-works-section-inner {
+      padding-block: 4rem;
+    }
+
+    .ei-works-section-heading {
+      gap: 1.25rem;
+    }
+
+    .ei-works-section-heading h2 {
+      max-width: min(100%, 19rem);
+      font-size: clamp(2.15rem, 10.5vw, 3rem);
+      line-height: 1.04;
+    }
+
+    .ei-works-section-heading p {
+      margin-top: 1rem;
+      line-height: 1.62;
+    }
+
     .ei-works-filter-wrap {
-      margin-inline: calc(var(--ei-gutter-mobile) * -1);
-      padding-inline: var(--ei-gutter-mobile);
+      margin-top: 2rem;
+      padding-block: 0.75rem;
+    }
+
+    .ei-works-filter-bar .ei-filter-bar-scroll {
+      margin-inline: 0;
+      overflow: visible;
+      padding: 0;
+    }
+
+    .ei-works-filter-bar .ei-filter-bar-options {
+      display: grid;
+      width: 100%;
+      gap: 0.25rem;
+    }
+
+    .ei-works-filter-bar[data-tone="editorial"] .ei-filter-pill {
+      width: 100%;
+      justify-content: flex-start;
+      padding-inline: 0.5rem;
+      text-align: left;
+    }
+
+    .ei-works-project-media {
+      min-height: 13rem;
     }
 
     .ei-works-project-copy {
-      min-height: 25rem;
+      min-height: 0;
+      padding: 1.35rem;
+    }
+
+    .ei-works-project-copy h3 {
+      margin-top: 1.25rem;
+      font-size: clamp(1.9rem, 9vw, 2.5rem);
+    }
+
+    .ei-works-project-context div[data-field="capabilities"],
+    .ei-works-project-context div[data-field="echo-s-role"],
+    .ei-works-project-context div[data-field="project-scope"] {
+      display: none;
+    }
+
+    .ei-works-project-evidence > div:nth-child(-n + 2) {
+      display: none;
+    }
+
+    .ei-works-project-copy .ei-card-action {
+      min-height: 2.75rem;
+      padding-top: 1.5rem;
+    }
+
+    .ei-works-featured-media {
+      min-height: 17rem;
+    }
+
+    .ei-works-featured-copy {
+      padding: 1.5rem;
+    }
+
+    .ei-works-featured-copy h2 {
+      font-size: clamp(2.75rem, 14vw, 3.6rem);
+    }
+
+    .ei-works-guide-card {
+      min-height: 0;
+    }
+
+    .ei-works-guide-card h3 {
+      margin-top: 2rem;
     }
   }
 
