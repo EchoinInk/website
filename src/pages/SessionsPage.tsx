@@ -11,7 +11,7 @@ import { PageSectionHero } from "@/components/sections/PageSectionHero";
 import { Button } from "@/components/ui/Button";
 import { EchoCard } from "@/components/ui/EchoCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { strategySessionsEngagement } from "@/data/servicesContent";
+import { strategySessionPricingPolicy, strategySessionsEngagement } from "@/data/servicesContent";
 import { primaryCallToAction } from "@/data/siteNavigation";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
@@ -33,9 +33,19 @@ const sessionArc = [
 
 const sessionExpectations = [
   ["Format", "A focused 60–90 minute private video session, shaped around one defined question."],
-  ["What to bring", "The question plus any useful fragments: a draft, reference, screenshot or short context note."],
-  ["What you leave with", "Clearer decisions, language and practical next steps appropriate to the question."],
-  ["Notes and recording", "A reflection note may be available; recording only happens when agreed in advance and is never automatic."],
+  [
+    "What to bring",
+    "The question plus any useful fragments: a draft, reference, screenshot or short context note.",
+  ],
+  [
+    "What it is intended to produce",
+    "A clearer decision or direction, the language to express it, and practical next steps appropriate to the question—not a finished project deliverable.",
+  ],
+  ["Pricing", strategySessionPricingPolicy],
+  [
+    "Notes and recording",
+    "A reflection note may be available; recording only happens when agreed in advance and is never automatic.",
+  ],
 ] as const;
 
 export function SessionsPage() {
@@ -74,13 +84,20 @@ export function SessionsPage() {
         headingId="sessions-heading"
       />
 
-      <Section theme="lightElevated" spacing="none" className="ei-phase7-section ei-sessions-use-cases" aria-labelledby="sessions-use-cases-heading">
+      <Section
+        theme="lightElevated"
+        spacing="none"
+        className="ei-phase7-section ei-sessions-use-cases"
+        aria-labelledby="sessions-use-cases-heading"
+      >
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.div variants={driftUp} className="ei-phase7-heading">
               <SectionLabel label="When a session is useful" tone="accent" />
               <div>
-                <h2 id="sessions-use-cases-heading">Bring one question that needs a clearer way forward.</h2>
+                <h2 id="sessions-use-cases-heading">
+                  Bring one question that needs a clearer way forward.
+                </h2>
                 <p>
                   These are examples of the kinds of questions a session can hold—not six new
                   services. The best fit is a defined problem that benefits from focused strategic
@@ -91,8 +108,14 @@ export function SessionsPage() {
             <div className="ei-phase7-card-grid ei-sessions-use-case-grid">
               {sessionUseCases.map(([title, description], index) => (
                 <motion.div key={title} variants={driftUp}>
-                  <EchoCard padding="lg" variant={index === 0 ? "feature" : "static"} className="ei-phase7-card">
-                    <span className="ei-phase7-card-index">{String(index + 1).padStart(2, "0")}</span>
+                  <EchoCard
+                    padding="lg"
+                    variant={index === 0 ? "feature" : "static"}
+                    className="ei-phase7-card"
+                  >
+                    <span className="ei-phase7-card-index">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     <h3>{title}</h3>
                     <p>{description}</p>
                   </EchoCard>
@@ -103,13 +126,21 @@ export function SessionsPage() {
         </Container>
       </Section>
 
-      <Section theme="mist" transitionTo="light" spacing="none" className="ei-phase7-section ei-sessions-expectations" aria-labelledby="sessions-expectations-heading">
+      <Section
+        theme="mist"
+        transitionTo="light"
+        spacing="none"
+        className="ei-phase7-section ei-sessions-expectations"
+        aria-labelledby="sessions-expectations-heading"
+      >
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.div variants={driftUp} className="ei-phase7-heading">
               <SectionLabel label="What to expect" tone="accent" />
               <div>
-                <h2 id="sessions-expectations-heading">A practical format with room to think properly.</h2>
+                <h2 id="sessions-expectations-heading">
+                  A practical format with room to think properly.
+                </h2>
                 <p>
                   Echo Sessions is the broader brand language for the room. The commercial
                   engagement is Strategy Sessions: focused, one-to-one and centred on the question
@@ -129,7 +160,13 @@ export function SessionsPage() {
         </Container>
       </Section>
 
-      <Section theme="light" transitionTo="lightElevated" spacing="none" className="ei-phase7-section ei-sessions-room" aria-labelledby="sessions-room-heading">
+      <Section
+        theme="light"
+        transitionTo="lightElevated"
+        spacing="none"
+        className="ei-phase7-section ei-sessions-room"
+        aria-labelledby="sessions-room-heading"
+      >
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner ei-sessions-room-layout">
             <motion.div variants={driftUp} className="ei-sessions-room-copy">
@@ -143,19 +180,32 @@ export function SessionsPage() {
                 {sessionArc.map(([title, description], index) => (
                   <li key={title}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
-                    <div><h3>{title}</h3><p>{description}</p></div>
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{description}</p>
+                    </div>
                   </li>
                 ))}
               </ol>
             </motion.div>
             <motion.figure variants={fadeSoft} className="ei-sessions-room-image">
-              <img src={imageOffer} alt="Abstract violet forms creating a calm, focused space" loading="lazy" />
+              <img
+                src={imageOffer}
+                alt="Abstract violet forms creating a calm, focused space"
+                loading="lazy"
+              />
             </motion.figure>
           </motion.div>
         </Container>
       </Section>
 
-      <Section theme="lightElevated" transitionTo="mist" spacing="none" className="ei-phase7-section ei-sessions-standalone" aria-labelledby="sessions-standalone-heading">
+      <Section
+        theme="lightElevated"
+        transitionTo="mist"
+        spacing="none"
+        className="ei-phase7-section ei-sessions-standalone"
+        aria-labelledby="sessions-standalone-heading"
+      >
         <Container size="xl">
           <motion.div {...reveal} className="ei-phase7-inner">
             <motion.aside variants={driftUp} className="ei-phase7-relationship">
@@ -168,7 +218,9 @@ export function SessionsPage() {
                   defined project, you can go directly to Start a Project.
                 </p>
               </div>
-              <Button to={primaryCallToAction.href} variant="secondary">{primaryCallToAction.label}</Button>
+              <Button to={primaryCallToAction.href} variant="secondary">
+                {primaryCallToAction.label}
+              </Button>
             </motion.aside>
           </motion.div>
         </Container>
@@ -179,11 +231,13 @@ export function SessionsPage() {
           variant="editorialInvitation"
           eyebrow="Bring the question"
           heading="Clarity before expression."
-          body="The booking flow begins with a request. Share the timing, timezone and context; a session is only confirmed after a real time is offered and accepted."
+          body="The booking flow begins with a request. You are asking Echo to review the fit and suggest a time—not reserving a session or agreeing to a fee. A session exists only after the time and fee are confirmed in writing and you accept."
           actions={
             <>
               <Button to={strategySessionsEngagement.href}>{strategySessionsEngagement.cta}</Button>
-              <Button to={primaryCallToAction.href} variant="secondary">{primaryCallToAction.label}</Button>
+              <Button to={primaryCallToAction.href} variant="secondary">
+                {primaryCallToAction.label}
+              </Button>
             </>
           }
           headingId="sessions-cta-heading"

@@ -6,23 +6,15 @@ import { Section } from "@/components/layout/Section";
 import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
 import { EchoCard } from "@/components/ui/EchoCard";
-import {
-  OrbitalVisual,
-  type OrbitalVariant,
-} from "@/components/ui/OrbitalVisual";
+import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import {
   engagementModels,
   primaryCapabilities,
+  strategySessionPricingPolicy,
   type ServiceCapabilityId,
 } from "@/data/servicesContent";
-import {
-  driftUp,
-  fadeSoft,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT,
-} from "@/lib/motion-cinematic";
+import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const capabilityVisuals: Record<ServiceCapabilityId, OrbitalVariant> = {
   "brand-identity": "axiomRing",
@@ -55,33 +47,23 @@ export function ServicesPage() {
           <span />
         </div>
 
-        <Container
-          size="xl"
-          className="ei-hero-system-container relative z-10"
-        >
+        <Container size="xl" className="ei-hero-system-container relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
             initial={prefersReducedMotion ? false : "hidden"}
             animate="visible"
             className="ei-services-hero-layout"
           >
-            <motion.div
-              variants={driftUp}
-              className="ei-services-hero-copy ei-hero-system-copy"
-            >
-              <SectionLabel
-                label="Services"
-                tone="accent"
-                className="ei-hero-system-eyebrow"
-              />
+            <motion.div variants={driftUp} className="ei-services-hero-copy ei-hero-system-copy">
+              <SectionLabel label="Services" tone="accent" className="ei-hero-system-eyebrow" />
               <p className="ei-services-hero-kicker">What you can hire Echo in Ink to do</p>
               <h1 id="services-heading" className="ei-hero-system-heading">
                 Strategy, design and technology—shaped as one connected system.
               </h1>
               <p className="ei-services-hero-description ei-hero-system-description">
                 Echo helps founders, teams and growing businesses turn unclear ideas, outdated
-                digital presence and operational friction into brands, experiences and systems
-                that work.
+                digital presence and operational friction into brands, experiences and systems that
+                work.
               </p>
               <div className="ei-services-hero-actions ei-hero-system-actions">
                 <Button to="/contact?inquiry=project">Start a Project</Button>
@@ -221,6 +203,12 @@ export function ServicesPage() {
                           <dt>Next action</dt>
                           <dd>{model.nextAction}</dd>
                         </div>
+                        {model.id === "strategy-sessions" ? (
+                          <div>
+                            <dt>Pricing</dt>
+                            <dd>{strategySessionPricingPolicy}</dd>
+                          </div>
+                        ) : null}
                       </dl>
                       <Button to={model.href} variant="tertiary">
                         {model.cta}
@@ -252,7 +240,7 @@ export function ServicesPage() {
             <>
               <Button to="/contact?inquiry=project">Start a Project</Button>
               <Button to="/booking" variant="secondary">
-                Book a Strategy Session
+                Request a Strategy Session
               </Button>
               <Button to="/works" variant="tertiary">
                 View Work

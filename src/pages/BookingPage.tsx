@@ -13,6 +13,7 @@ import { EchoTextarea } from "@/components/ui/EchoTextarea";
 import { IconWell } from "@/components/ui/IconWell";
 import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { strategySessionPricingPolicy } from "@/data/servicesContent";
 import { primaryCallToAction } from "@/data/siteNavigation";
 import { StudioInquirySubmitError, submitStudioInquiry } from "@/lib/studioInquiry";
 import {
@@ -21,7 +22,7 @@ import {
   fadeSoft,
   staggerContainer,
   STAGGER,
-  VIEWPORT
+  VIEWPORT,
 } from "@/lib/motion-cinematic";
 
 const steps = ["Session", "Timing", "Details", "Review"] as const;
@@ -30,7 +31,8 @@ const sessionFacts = [
   { label: "Duration", value: "60–90 minutes" },
   { label: "Focus", value: "One defined question" },
   { label: "Format", value: "Private video session" },
-  { label: "Reply", value: "Available times sent after review" }
+  { label: "Pricing", value: strategySessionPricingPolicy },
+  { label: "Reply", value: "Available times sent after review" },
 ];
 
 const practicalInformation: Array<{
@@ -40,23 +42,23 @@ const practicalInformation: Array<{
   {
     title: "Timezone handling",
     description:
-      "Share the timezone you actually work in. Echo in Ink replies with options in your timezone and in New Zealand time."
+      "Share the timezone you actually work in. Echo in Ink replies with options in your timezone and in New Zealand time.",
   },
   {
     title: "What happens next",
     description:
-      "Requests are reviewed before any time is suggested. A reply includes available times and a recommended next step."
+      "Requests are reviewed before any time is suggested. A reply includes available times, the session fee and a recommended next step.",
   },
   {
     title: "What to bring",
     description:
-      "Drafts, references, screenshots or short context notes are welcome when they help explain the question."
+      "Drafts, references, screenshots or short context notes are welcome when they help explain the question.",
   },
   {
     title: "Recording and consent",
     description:
-      "A recording is only made when everyone in the room agrees in advance. Nothing is recorded by default."
-  }
+      "A recording is only made when everyone in the room agrees in advance. Nothing is recorded by default.",
+  },
 ];
 
 const afterRequest: Array<{
@@ -67,26 +69,26 @@ const afterRequest: Array<{
   {
     title: "Request",
     description: "You send the week, timezone, and context that would make the session useful.",
-    icon: "haloGate"
+    icon: "haloGate",
   },
   {
     title: "Review",
     description:
       "Echo in Ink reads the request and checks whether the room fits the question you are bringing.",
-    icon: "threadBeacon"
+    icon: "threadBeacon",
   },
   {
     title: "Reply",
     description:
-      "You receive available times and a suggested next step, in your timezone and in New Zealand time.",
-    icon: "focusDial"
+      "You receive available times, the session fee and a suggested next step, in your timezone and in New Zealand time.",
+    icon: "focusDial",
   },
   {
     title: "Confirm",
     description:
       "A session is only confirmed after a real time is offered and you choose to accept it.",
-    icon: "signalBridge"
-  }
+    icon: "signalBridge",
+  },
 ];
 
 type BookingFormData = {
@@ -118,7 +120,7 @@ const stepFieldMap: Array<BookingFieldName[]> = [
   [],
   ["preferredWeek", "timezone"],
   ["name", "email", "topic", "context"],
-  []
+  [],
 ];
 
 function scrollToBookingFlow(reducedMotion = false) {
@@ -134,7 +136,7 @@ const bookingFieldIds: Record<BookingFieldName, string> = {
   timezone: "booking-timezone",
   topic: "booking-topic",
   context: "booking-context",
-  contactMethod: "booking-contact-method"
+  contactMethod: "booking-contact-method",
 };
 
 function firstInvalidField(errors: BookingErrors) {
@@ -178,7 +180,7 @@ function findFirstInvalidStep(errors: BookingErrors) {
   const invalidFieldNames = new Set<BookingFieldName>(Object.keys(errors) as BookingFieldName[]);
 
   const invalidStep = stepFieldMap.findIndex((fields) =>
-    fields.some((field) => invalidFieldNames.has(field))
+    fields.some((field) => invalidFieldNames.has(field)),
   );
 
   return invalidStep > 0 ? invalidStep : 0;
@@ -206,7 +208,7 @@ export function BookingPage() {
     timezone: "",
     topic: "",
     context: "",
-    contactMethod: ""
+    contactMethod: "",
   });
   const [errors, setErrors] = useState<BookingErrors>({});
   const stepRegionRef = useRef<HTMLDivElement | null>(null);
@@ -251,7 +253,7 @@ export function BookingPage() {
   function setFieldValue(name: BookingFieldName, value: string) {
     setFormData((current) => ({
       ...current,
-      [name]: value
+      [name]: value,
     }));
 
     setErrors((current) => {
@@ -296,7 +298,7 @@ export function BookingPage() {
 
     setErrors((current) => ({
       ...current,
-      ...nextErrors
+      ...nextErrors,
     }));
 
     return nextErrors;
@@ -381,8 +383,8 @@ export function BookingPage() {
           timezone: formData.timezone.trim(),
           sessionTopic: formData.topic.trim(),
           context: formData.context.trim(),
-          preferredContactMethod: formData.contactMethod.trim() || "Email reply is fine"
-        }
+          preferredContactMethod: formData.contactMethod.trim() || "Email reply is fine",
+        },
       });
 
       setStatus("request-sent");
@@ -418,7 +420,7 @@ export function BookingPage() {
             <motion.div variants={driftUp}>
               <SectionLabel label="Strategy Session request" />
               <motion.h1 variants={blurEmergence}>
-                Book focused time around one defined question.
+                Request focused time around one defined question.
               </motion.h1>
               <motion.p variants={fadeSoft}>
                 A Strategy Session is a focused 60–90 minute private video engagement for clarity,
@@ -437,7 +439,7 @@ export function BookingPage() {
               </div>
               <div>
                 <dt>Reply</dt>
-                <dd>Available times arrive after review</dd>
+                <dd>Available times and the fee arrive after review</dd>
               </div>
             </motion.dl>
           </motion.div>
@@ -603,7 +605,9 @@ export function BookingPage() {
                         <h2>Begin with a request, not a placeholder booking.</h2>
                         <p>
                           This page does not hold a slot or simulate a calendar. It sends a real
-                          request with the practical details needed to suggest a workable time.
+                          request with the practical details needed to suggest a workable time. You
+                          are asking for a considered reply; you are not reserving a session,
+                          accepting a fee or committing to proceed.
                         </p>
 
                         <button
@@ -787,7 +791,8 @@ export function BookingPage() {
                         <h2>Review the request before you send it.</h2>
                         <p>
                           Sending this request does not confirm a booking. It asks Echo in Ink to
-                          reply with real available times and the clearest next step.
+                          reply with real available times, the session fee and the clearest next
+                          step. You can decide whether to accept after receiving all three.
                         </p>
 
                         <dl className="ei-booking-review">
@@ -825,8 +830,8 @@ export function BookingPage() {
                         <div className="ei-booking-prototype-note">
                           <OrbitalVisual variant="haloGate" size={26} />
                           <p>
-                            Nothing is confirmed until a real time is offered and accepted.
-                            Recording only happens by prior consent.
+                            Nothing is confirmed until a real time and the fee are provided in
+                            writing and you accept. Recording only happens by prior consent.
                           </p>
                         </div>
 
@@ -913,7 +918,9 @@ export function BookingPage() {
                 <SectionLabel label="Once the room is confirmed" rule="none" />
                 <h2>The conversation stays useful after the room closes.</h2>
                 <ul>
-                  <li>Available times are confirmed in writing before the session exists</li>
+                  <li>
+                    The time and session fee are confirmed in writing before the session exists
+                  </li>
                   <li>Recording only happens if everyone agrees in advance</li>
                   <li>Clearer decisions, language and practical next steps are the aim</li>
                   <li>A reflection note may be available after the session</li>

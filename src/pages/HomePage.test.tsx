@@ -49,7 +49,10 @@ describe("homepage reference implementation", () => {
 
       expect(within(card).getByText(model.description)).toBeInTheDocument();
       expect(within(card).getByText(model.bestFor)).toBeInTheDocument();
-      expect(within(card).getByRole("link", { name: model.cta })).toHaveAttribute("href", model.href);
+      expect(within(card).getByRole("link", { name: model.cta })).toHaveAttribute(
+        "href",
+        model.href,
+      );
     });
 
     expect(screen.getByText(/recommend the smallest engagement/i)).toBeInTheDocument();
@@ -82,10 +85,16 @@ describe("homepage reference implementation", () => {
 
     const selectedWork = container.querySelector<HTMLElement>(".ei-home-selected-work")!;
     expect(selectedWork.querySelectorAll(".ei-works-project-card")).toHaveLength(2);
-    expect(within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" })).toBeInTheDocument();
-    expect(within(selectedWork).getByRole("heading", { level: 3, name: "Codexia" })).toBeInTheDocument();
     expect(
-      within(selectedWork).getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i }),
+      within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" }),
+    ).toBeInTheDocument();
+    expect(
+      within(selectedWork).getByRole("heading", { level: 3, name: "Codexia" }),
+    ).toBeInTheDocument();
+    expect(
+      within(selectedWork).getByRole("link", {
+        name: /Keystone — Internal Project, Exploratory Study/i,
+      }),
     ).toHaveAttribute("href", "/works/keystone");
     expect(
       within(selectedWork).getByRole("link", { name: /Codexia — Independent Product, Prototype/i }),
@@ -105,9 +114,8 @@ describe("homepage reference implementation", () => {
       "href",
       primaryCallToAction.href,
     );
-    expect(within(closing).getByRole("link", { name: "Book a Strategy Session" })).toHaveAttribute(
-      "href",
-      "/booking",
-    );
+    expect(
+      within(closing).getByRole("link", { name: "Request a Strategy Session" }),
+    ).toHaveAttribute("href", "/booking");
   });
 });

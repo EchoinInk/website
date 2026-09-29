@@ -2,7 +2,11 @@ import { render, screen, within } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
 
-import { engagementModels, primaryCapabilities } from "@/data/servicesContent";
+import {
+  engagementModels,
+  primaryCapabilities,
+  strategySessionPricingPolicy,
+} from "@/data/servicesContent";
 import { ServicesPage } from "@/pages/ServicesPage";
 
 function renderServicesPage() {
@@ -22,7 +26,9 @@ describe("Services engagement guidance", () => {
 
     expect(primaryCapabilities).toHaveLength(4);
     primaryCapabilities.forEach((capability) => {
-      expect(within(page).getByRole("heading", { level: 3, name: capability.title })).toBeInTheDocument();
+      expect(
+        within(page).getByRole("heading", { level: 3, name: capability.title }),
+      ).toBeInTheDocument();
     });
 
     engagementModels.forEach((model) => {
@@ -33,9 +39,18 @@ describe("Services engagement guidance", () => {
       expect(within(card).getByText(model.typicalScope)).toBeInTheDocument();
       expect(within(card).getByText(model.possibleOutcomes)).toBeInTheDocument();
       expect(within(card).getByText(model.nextAction)).toBeInTheDocument();
-      expect(within(card).getByRole("link", { name: model.cta })).toHaveAttribute("href", model.href);
+      expect(within(card).getByRole("link", { name: model.cta })).toHaveAttribute(
+        "href",
+        model.href,
+      );
     });
 
-    expect(within(page).getByText(/smallest engagement that can move it forward properly/i)).toBeInTheDocument();
+    expect(
+      within(page).getByText(/smallest engagement that can move it forward properly/i),
+    ).toBeInTheDocument();
+    expect(within(page).getByText(strategySessionPricingPolicy)).toBeInTheDocument();
+    expect(
+      within(page).getByText(/no session or fee is accepted at this stage/i),
+    ).toBeInTheDocument();
   });
 });

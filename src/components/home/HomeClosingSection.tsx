@@ -73,7 +73,7 @@ export function ClosingSection() {
             {primaryCallToAction.label}
           </Button>
           <Button to="/booking" variant="secondary">
-            Book a Strategy Session
+            Request a Strategy Session
           </Button>
         </motion.div>
       </motion.div>

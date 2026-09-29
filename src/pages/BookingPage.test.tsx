@@ -56,9 +56,7 @@ function renderBookingPage() {
 }
 
 async function moveToReviewStep() {
-  fireEvent.click(
-    screen.getByRole("button", { name: /continue with request/i }),
-  );
+  fireEvent.click(screen.getByRole("button", { name: /continue with request/i }));
 
   fireEvent.change(screen.getByLabelText(/preferred week/i), {
     target: { value: "Week of 6 July" },
@@ -103,22 +101,16 @@ describe("BookingPage", () => {
   it("shows validation feedback before advancing past timing details", async () => {
     renderBookingPage();
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /continue with request/i }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /continue with request/i }));
     fireEvent.click(screen.getByRole("button", { name: /add your details/i }));
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "Please correct the highlighted timing details.",
     );
     expect(
-      screen.getByText(
-        "Name the week that feels most workable, or say that you are flexible.",
-      ),
+      screen.getByText("Name the week that feels most workable, or say that you are flexible."),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText("Add the timezone you want the reply to use."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Add the timezone you want the reply to use.")).toBeInTheDocument();
     expect(screen.getByLabelText(/preferred week/i)).toHaveFocus();
   });
 
@@ -126,11 +118,15 @@ describe("BookingPage", () => {
     renderBookingPage();
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Book focused time around one defined question.",
+      "Request focused time around one defined question.",
     );
     expect(screen.getAllByText(/60–90 minutes/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/it can stand alone/i)).toBeInTheDocument();
     expect(screen.queryByText(/\$120|\$150/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText(/session fee is confirmed in writing/i).length).toBeGreaterThan(0);
+    expect(
+      screen.getByText(/not reserving a session, accepting a fee or committing to proceed/i),
+    ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Start a Project" })).toHaveAttribute(
       "href",
       "/contact",
@@ -141,12 +137,15 @@ describe("BookingPage", () => {
     motionPreference.reduced = true;
     const { container } = renderBookingPage();
 
-    expect(container.querySelectorAll('[data-motion-initial="false"].ei-booking-intro-grid'))
-      .toHaveLength(1);
-    expect(container.querySelectorAll('[data-motion-initial="false"].ei-booking-layout'))
-      .toHaveLength(1);
-    expect(screen.getByRole("heading", { name: /have a larger project in mind/i }))
-      .toBeInTheDocument();
+    expect(
+      container.querySelectorAll('[data-motion-initial="false"].ei-booking-intro-grid'),
+    ).toHaveLength(1);
+    expect(
+      container.querySelectorAll('[data-motion-initial="false"].ei-booking-layout'),
+    ).toHaveLength(1);
+    expect(
+      screen.getByRole("heading", { name: /have a larger project in mind/i }),
+    ).toBeInTheDocument();
   });
 
   it("supports failure and retry before showing the request-sent state", async () => {
@@ -186,9 +185,7 @@ describe("BookingPage", () => {
     });
 
     expect(
-      screen.getByText(
-        "Echo in Ink will reply with available times and a suggested next step.",
-      ),
+      screen.getByText("Echo in Ink will reply with available times and a suggested next step."),
     ).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(2);
 

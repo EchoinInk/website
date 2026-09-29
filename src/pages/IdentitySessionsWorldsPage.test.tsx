@@ -7,6 +7,7 @@ import {
   brandIdentityCapability,
   brandWorldsCapability,
   primaryCapabilities,
+  strategySessionPricingPolicy,
   strategySessionsEngagement,
 } from "@/data/servicesContent";
 import { primaryCallToAction } from "@/data/siteNavigation";
@@ -54,14 +55,17 @@ describe("Phase 7 capability and engagement contracts", () => {
     const page = container.querySelector<HTMLElement>(".ei-identity-page")!;
 
     expect(within(page).getByText(brandIdentityCapability.description)).toBeInTheDocument();
-    expect(within(page).getByRole("heading", { level: 1, name: "Every world begins with a feeling." })).toBeInTheDocument();
-    ["Brand strategy", "Visual identity", "Identity systems", "Digital expression"].forEach((label) => {
-      expect(within(page).getByRole("heading", { level: 3, name: label })).toBeInTheDocument();
-    });
-    expect(within(page).getAllByRole("link", { name: primaryCallToAction.label })[0]).toHaveAttribute(
-      "href",
-      primaryCallToAction.href,
+    expect(
+      within(page).getByRole("heading", { level: 1, name: "Every world begins with a feeling." }),
+    ).toBeInTheDocument();
+    ["Brand strategy", "Visual identity", "Identity systems", "Digital expression"].forEach(
+      (label) => {
+        expect(within(page).getByRole("heading", { level: 3, name: label })).toBeInTheDocument();
+      },
     );
+    expect(
+      within(page).getAllByRole("link", { name: primaryCallToAction.label })[0],
+    ).toHaveAttribute("href", primaryCallToAction.href);
   });
 
   it("presents Strategy Sessions as a concrete standalone engagement with the booking destination", () => {
@@ -69,24 +73,38 @@ describe("Phase 7 capability and engagement contracts", () => {
     const page = container.querySelector<HTMLElement>(".ei-sessions-page")!;
 
     expect(within(page).getByText(strategySessionsEngagement.description)).toBeInTheDocument();
-    expect(within(page).getByRole("heading", { level: 2, name: "A Strategy Session can stand alone." })).toBeInTheDocument();
-    expect(within(page).getAllByRole("link", { name: strategySessionsEngagement.cta })[0]).toHaveAttribute(
-      "href",
-      "/booking",
-    );
-    expect(within(page).getAllByRole("link", { name: primaryCallToAction.label })[0]).toHaveAttribute(
-      "href",
-      primaryCallToAction.href,
-    );
+    expect(
+      within(page).getByRole("heading", { level: 2, name: "A Strategy Session can stand alone." }),
+    ).toBeInTheDocument();
+    expect(
+      within(page).getAllByRole("link", { name: strategySessionsEngagement.cta })[0],
+    ).toHaveAttribute("href", "/booking");
+    expect(
+      within(page).getAllByRole("link", { name: primaryCallToAction.label })[0],
+    ).toHaveAttribute("href", primaryCallToAction.href);
+    expect(within(page).getByText(strategySessionPricingPolicy)).toBeInTheDocument();
+    expect(within(page).getByText(/not a finished project deliverable/i)).toBeInTheDocument();
+    expect(
+      within(page).getByText(/not reserving a session or agreeing to a fee/i),
+    ).toBeInTheDocument();
 
-    ["Website direction", "Brand clarity", "Product direction", "Digital strategy", "UX problems", "Technical scoping"].forEach((label) => {
+    [
+      "Website direction",
+      "Brand clarity",
+      "Product direction",
+      "Digital strategy",
+      "UX problems",
+      "Technical scoping",
+    ].forEach((label) => {
       expect(within(page).getByRole("heading", { level: 3, name: label })).toBeInTheDocument();
     });
   });
 
   it("keeps Brand Worlds outside the four primary capabilities", () => {
     expect(primaryCapabilities).toHaveLength(4);
-    expect(primaryCapabilities.some((capability) => capability.title === brandWorldsCapability.title)).toBe(false);
+    expect(
+      primaryCapabilities.some((capability) => capability.title === brandWorldsCapability.title),
+    ).toBe(false);
 
     const { container } = renderPage(<WorldsPage />);
     const page = container.querySelector<HTMLElement>(".ei-worlds-page")!;
@@ -97,14 +115,22 @@ describe("Phase 7 capability and engagement contracts", () => {
   it("makes the Identity and Worlds relationship explicit in both directions", () => {
     const identity = renderPage(<IdentityPage />);
     const identityPage = identity.container.querySelector<HTMLElement>(".ei-identity-page")!;
-    expect(within(identityPage).getByText(/Brand & Identity establishes the system/i)).toBeInTheDocument();
-    expect(within(identityPage).getByRole("link", { name: "Explore Brand Worlds" })).toHaveAttribute("href", "/worlds");
+    expect(
+      within(identityPage).getByText(/Brand & Identity establishes the system/i),
+    ).toBeInTheDocument();
+    expect(
+      within(identityPage).getByRole("link", { name: "Explore Brand Worlds" }),
+    ).toHaveAttribute("href", "/worlds");
     identity.unmount();
 
     const worlds = renderPage(<WorldsPage />);
     const worldsPage = worlds.container.querySelector<HTMLElement>(".ei-worlds-page")!;
-    expect(within(worldsPage).getByText(/Brand & Identity establishes the system/i)).toBeInTheDocument();
-    expect(within(worldsPage).getAllByRole("link", { name: "Explore Brand & Identity" })[0]).toHaveAttribute("href", "/identity");
+    expect(
+      within(worldsPage).getByText(/Brand & Identity establishes the system/i),
+    ).toBeInTheDocument();
+    expect(
+      within(worldsPage).getAllByRole("link", { name: "Explore Brand & Identity" })[0],
+    ).toHaveAttribute("href", "/identity");
   });
 
   it("uses the intended semantic theme and transition sequences", () => {

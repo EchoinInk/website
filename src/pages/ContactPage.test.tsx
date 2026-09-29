@@ -2,10 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
 
-import {
-  primaryCapabilities,
-  projectInquiryTypeOptions,
-} from "@/data/servicesContent";
+import { primaryCapabilities, projectInquiryTypeOptions } from "@/data/servicesContent";
 import { ContactPage } from "@/pages/ContactPage";
 
 function renderContactPage(initialEntry = "/contact") {
@@ -25,15 +22,12 @@ function fillRequiredFields() {
   fireEvent.change(screen.getByLabelText(/^Email/), {
     target: { value: "avery@example.com" },
   });
-  fireEvent.change(
-    screen.getByLabelText(/^What are you trying to achieve/),
-    {
-      target: {
-        value:
-          "We are building a more considered studio presence and need help clarifying the identity and direction.",
-      },
+  fireEvent.change(screen.getByLabelText(/^What are you trying to achieve/), {
+    target: {
+      value:
+        "We are building a more considered studio presence and need help clarifying the identity and direction.",
     },
-  );
+  });
 }
 
 describe("ContactPage", () => {
@@ -53,13 +47,9 @@ describe("ContactPage", () => {
     fireEvent.click(screen.getByRole("button", { name: "Start a Project" }));
 
     expect(fetchMock).not.toHaveBeenCalled();
-    expect(
-      await screen.findByText("Please enter your name."),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("Please enter your name.")).toBeInTheDocument();
     expect(screen.getByText("Please enter your email address.")).toBeInTheDocument();
-    expect(
-      screen.getByText("Please tell us what you are building."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Please tell us what you are building.")).toBeInTheDocument();
     expect(screen.getByLabelText(/^Name/)).toHaveFocus();
   });
 
@@ -74,7 +64,7 @@ describe("ContactPage", () => {
     expect(
       screen.getByText(/you do not need to arrive with a predefined technical solution/i),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /book a strategy session/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /request a strategy session/i })).toHaveAttribute(
       "href",
       "/booking",
     );
@@ -164,16 +154,14 @@ describe("ContactPage", () => {
   });
 
   it("shows a retryable error state and can recover on the next submit", async () => {
-    fetchMock
-      .mockRejectedValueOnce(new Error("network down"))
-      .mockResolvedValueOnce(
-        new Response(JSON.stringify({ ok: true }), {
-          status: 200,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }),
-      );
+    fetchMock.mockRejectedValueOnce(new Error("network down")).mockResolvedValueOnce(
+      new Response(JSON.stringify({ ok: true }), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+    );
 
     renderContactPage();
     fillRequiredFields();
@@ -183,9 +171,7 @@ describe("ContactPage", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "Your message could not be sent just yet. Please try again, or email directly.",
     );
-    expect(
-      screen.getByRole("button", { name: /try again/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /try again/i })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /try again/i }));
 

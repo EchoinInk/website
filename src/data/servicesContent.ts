@@ -57,10 +57,7 @@ export const brandWorldsCapability = {
   href: "/worlds",
 } as const;
 
-export type EngagementModelId =
-  | "strategy-sessions"
-  | "digital-reset"
-  | "full-projects";
+export type EngagementModelId = "strategy-sessions" | "digital-reset" | "full-projects";
 
 export interface EngagementModel {
   id: EngagementModelId;
@@ -74,21 +71,21 @@ export interface EngagementModel {
   href: string;
 }
 
+export const strategySessionPricingPolicy =
+  "The session fee is confirmed in writing with the proposed time, before you decide whether to accept.";
+
 export const engagementModels = [
   {
     id: "strategy-sessions",
     title: "Strategy Sessions",
-    description:
-      "Focused 60–90 minute engagements for a clearly defined problem.",
+    description: "Focused 60–90 minute engagements for a clearly defined problem.",
     bestFor:
       "One defined question that needs clarity, direction, scoping or a practical next step.",
-    typicalScope:
-      "A private video session centred on the question you bring.",
-    possibleOutcomes:
-      "Clearer decisions, language, direction or practical next steps.",
+    typicalScope: "A private video session centred on the question you bring.",
+    possibleOutcomes: "Clearer decisions, language, direction or practical next steps.",
     nextAction:
-      "Request a session with your question, preferred week and timezone.",
-    cta: "Book a Strategy Session",
+      "Send a request with your question, preferred week and timezone. No session or fee is accepted at this stage.",
+    cta: "Request a Strategy Session",
     href: "/booking",
   },
   {
@@ -102,8 +99,7 @@ export const engagementModels = [
       "A bounded reset of the connected parts that are causing confusion, friction or inconsistency.",
     possibleOutcomes:
       "Clearer digital direction and focused changes across the relevant experience or system.",
-    nextAction:
-      "Send a project enquiry describing what has changed and what no longer fits.",
+    nextAction: "Send a project enquiry describing what has changed and what no longer fits.",
     cta: "Discuss a Digital Reset",
     href: "/contact?inquiry=project",
   },
