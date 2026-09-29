@@ -3,6 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
 
 import { ProjectOverviewPage } from "@/pages/ProjectOverviewPage";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 
 function renderProject(projectTitle: "Keystone" | "Codexia") {
   return render(
@@ -26,8 +27,8 @@ describe("compact project overviews", () => {
     expect(within(details).getByText(provenance)).toBeInTheDocument();
     expect(within(details).getByText(status)).toBeInTheDocument();
     expect(screen.getByText("Evidence boundary")).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /View all work/i })[0]).toHaveAttribute("href", workHref);
-    expect(screen.getAllByRole("link", { name: /Start a project/i })[0]).toHaveAttribute("href", "/contact");
+    expect(screen.getAllByRole("link", { name: siteActionLabels.viewWork })[0]).toHaveAttribute("href", workHref);
+    expect(screen.getAllByRole("link", { name: primaryCallToAction.label })[0]).toHaveAttribute("href", "/contact");
     expect(container.querySelectorAll("main")).toHaveLength(1);
   });
 });

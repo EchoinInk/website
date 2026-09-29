@@ -14,6 +14,7 @@ import {
   strategySessionPricingPolicy,
   type ServiceCapabilityId,
 } from "@/data/servicesContent";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const capabilityVisuals: Record<ServiceCapabilityId, OrbitalVariant> = {
@@ -58,17 +59,16 @@ export function ServicesPage() {
               <SectionLabel label="Services" tone="accent" className="ei-hero-system-eyebrow" />
               <p className="ei-services-hero-kicker">What you can hire Echo in Ink to do</p>
               <h1 id="services-heading" className="ei-hero-system-heading">
-                Strategy, design and technology—shaped as one connected system.
+                Shape the idea and the infrastructure together.
               </h1>
               <p className="ei-services-hero-description ei-hero-system-description">
-                Echo helps founders, teams and growing businesses turn unclear ideas, outdated
-                digital presence and operational friction into brands, experiences and systems that
-                work.
+                Echo combines strategy, design and development to create or improve brands,
+                websites, digital products and operational tools.
               </p>
               <div className="ei-services-hero-actions ei-hero-system-actions">
-                <Button to="/contact?inquiry=project">Start a Project</Button>
+                <Button to="/contact?inquiry=project">{primaryCallToAction.label}</Button>
                 <Button to="/works" variant="secondary">
-                  View Work
+                  {siteActionLabels.viewWork}
                 </Button>
               </div>
             </motion.div>
@@ -107,7 +107,7 @@ export function ServicesPage() {
             <motion.div variants={driftUp} className="ei-services-section-heading">
               <SectionLabel label="Primary capabilities" tone="accent" />
               <div>
-                <h2 id="services-capabilities-heading">Four connected areas of practice.</h2>
+                <h2 id="services-capabilities-heading">Four areas of practice, combined as needed.</h2>
                 <p>
                   The work begins with the problem, not a predetermined deliverable. Strategy,
                   design and implementation are combined as the project requires.
@@ -135,7 +135,7 @@ export function ServicesPage() {
             </div>
 
             <motion.div variants={fadeSoft} className="ei-services-capability-note">
-              <span>One studio, one connected view.</span>
+              <span>One studio, one accountable lead.</span>
               <p>
                 Echo can lead a complete engagement or focus on the part that is holding the wider
                 work back.
@@ -238,12 +238,12 @@ export function ServicesPage() {
           body="Whether you need one clear decision or an end-to-end build, the first step is a straightforward conversation about what needs to change."
           actions={
             <>
-              <Button to="/contact?inquiry=project">Start a Project</Button>
+              <Button to="/contact?inquiry=project">{primaryCallToAction.label}</Button>
               <Button to="/booking" variant="secondary">
-                Request a Strategy Session
+                {siteActionLabels.requestStrategySession}
               </Button>
               <Button to="/works" variant="tertiary">
-                View Work
+                {siteActionLabels.viewWork}
                 <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
                   →
                 </span>

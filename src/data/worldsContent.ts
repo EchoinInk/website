@@ -1,9 +1,11 @@
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
+
 export const worldsHero = {
   eyebrow: 'World Architecture',
   title: 'Build the world your work belongs to.',
   description:
     'World Architecture is a high-touch creative collaboration for founders, artists, and creative projects that need more than branding. Together, we shape the emotional arc, visual atmosphere, narrative language, and digital presence of a world people can feel before they understand.',
-  primaryCta: { label: 'Enquire about World Architecture', href: '/contact' },
+  primaryCta: { label: primaryCallToAction.label, href: '/contact' },
   secondaryCta: { label: 'View the framework', href: '#layers' },
 };
 
@@ -174,7 +176,7 @@ export const worldsProof = {
 export const worldsClosing = {
   atmosphere: 'Some projects are not brands. They are worlds.',
   heading: 'If your work needs a deeper atmosphere, a clearer narrative, and a system people can enter, this is where the world begins.',
-  cta: { label: 'Enquire about World Architecture', href: '/contact' },
+  cta: { label: primaryCallToAction.label, href: '/contact' },
 };
 
 export const worldsSignalCards = [
@@ -250,5 +252,5 @@ export const worldsFitSignals = [
 export const worldsJourneyLinks = [
   { label: 'Begin a collaboration', href: '/contact', variant: 'primary' },
   { label: 'Explore identity translation', href: '/identity', variant: 'tertiary' },
-  { label: 'Explore the works', href: '/works', variant: 'tertiary' },
+  { label: siteActionLabels.viewWork, href: '/works', variant: 'tertiary' },
 ];

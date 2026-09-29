@@ -202,7 +202,7 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(within(lumo.container).getByText("Echo’s role")).toBeInTheDocument();
     expect(within(lumo.container).getByText(/no launch, clinical validation/i)).toBeInTheDocument();
     expect(
-      within(lumo.container).getByRole("link", { name: "Explore related services" })
+      within(lumo.container).getByRole("link", { name: "Explore Services" })
     ).toHaveAttribute("href", "/services");
     expect(within(lumo.container).getByRole("link", { name: "Interface screens" })).toHaveAttribute(
       "href",

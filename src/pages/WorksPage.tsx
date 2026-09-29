@@ -14,7 +14,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectContext } from "@/components/works/ProjectContext";
 import { WorkFilterBar } from "@/components/works/WorkFilterBar";
 import { WorksGrid } from "@/components/works/WorksGrid";
-import { primaryCallToAction } from "@/data/siteNavigation";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import {
   lumoProject,
   worksProjects,
@@ -51,8 +51,8 @@ export function WorksPage() {
         eyebrow="SELECTED WORK"
         title="Three projects, shown with their context intact."
         description="Lumo, Keystone and Codexia form this selected collection. Each is labelled with its provenance and maturity so the work is clear without implying commissioned delivery or a public launch."
-        offerAnchor="Proof, shaped as atmosphere."
-        ctaLabel="Explore the Work"
+        offerAnchor="Project evidence, shown with its context."
+        ctaLabel={siteActionLabels.viewWork}
         ctaHref="#selected-work"
         secondaryCtaLabel={primaryCallToAction.label}
         secondaryCtaHref={primaryCallToAction.href}

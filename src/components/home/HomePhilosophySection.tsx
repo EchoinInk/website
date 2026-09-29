@@ -44,8 +44,8 @@ export function Philosophy() {
               </motion.h2>
 
               <motion.p variants={driftUp} className="ei-home-studio-body">
-                We work closely with people building businesses, products and ideas that need to
-                become clearer, more coherent and more real in the world.
+                We work closely with people building businesses, products and ideas that need
+                clearer positioning, stronger design or thoughtful technical implementation.
               </motion.p>
 
               <motion.div variants={driftUp}>
@@ -59,8 +59,8 @@ export function Philosophy() {
             </motion.div>
 
             <motion.div variants={driftUp} className="ei-home-studio-editorial">
-              <p>High-touch work. Meaningful worlds.</p>
-              <span>Atmosphere is not decoration — it is how meaning is felt.</span>
+              <p>Close collaboration. Deliberate outcomes.</p>
+              <span>Every engagement connects the idea to what people see, use and understand.</span>
             </motion.div>
           </div>
         </motion.div>

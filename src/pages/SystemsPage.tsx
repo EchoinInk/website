@@ -13,6 +13,7 @@ import { EchoCard } from "@/components/ui/EchoCard";
 import { IconWell } from "@/components/ui/IconWell";
 import { OrbitalVisual } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { primaryCallToAction } from "@/data/siteNavigation";
 import {
   featuredSystem,
   creativeResources,
@@ -414,7 +415,7 @@ export function SystemsPage() {
               {systemsClosing.cta.label}
             </Button>
             <Button to="/contact?inquiry=project" variant="tertiary">
-              Start a Project <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
+              {primaryCallToAction.label} <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">→</span>
             </Button>
           </>
         }

@@ -20,6 +20,7 @@ import {
   projectInquiryTypeOptions,
   strategySessionsEngagement,
 } from "@/data/servicesContent";
+import { siteActionLabels } from "@/data/siteNavigation";
 import {
   CONTACT_DIRECT_EMAIL,
   CONTACT_ERROR_MESSAGE,
@@ -208,9 +209,9 @@ export function ContactPage() {
         title="Begin with what you're trying to make real."
         description="Share the problem, the opportunity, what has changed, what is not working, or what you want to create. You do not need to arrive with a predefined technical solution."
         offerAnchor="For broader work across brand, digital experiences, products and systems."
-        ctaLabel="Start your enquiry"
+        ctaLabel={siteActionLabels.startProject}
         ctaHref="#contact-form"
-        secondaryCtaLabel="View selected work"
+        secondaryCtaLabel={siteActionLabels.viewWork}
         secondaryCtaHref="/works"
         image={contactHeroDesktop}
         mobileImage={contactHeroMobile}
@@ -416,7 +417,7 @@ export function ContactPage() {
                             ? "Sending..."
                             : formState === "error"
                               ? "Try again"
-                              : "Start a Project"}
+                              : siteActionLabels.sendProjectEnquiry}
                         </Button>
                         <p>Your details are sent to Echo in Ink to respond to this enquiry.</p>
                       </div>
@@ -453,7 +454,7 @@ export function ContactPage() {
                 <p>{strategySessionsEngagement.description} It can stand alone.</p>
               </div>
               <Button to={strategySessionsEngagement.href} variant="secondary">
-                Request a Strategy Session
+                {siteActionLabels.requestStrategySession}
               </Button>
             </motion.aside>
           </motion.div>

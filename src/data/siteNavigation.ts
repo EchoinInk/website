@@ -16,8 +16,16 @@ export const primaryNavigation = [
   { label: "Contact", href: "/contact" }
 ] as const satisfies readonly SiteNavigationItem[];
 
+export const siteActionLabels = {
+  viewWork: "View Work",
+  exploreServices: "Explore Services",
+  startProject: "Start a Project",
+  requestStrategySession: "Request a Strategy Session",
+  sendProjectEnquiry: "Send Project Enquiry",
+} as const;
+
 export const primaryCallToAction = {
-  label: "Start a Project",
+  label: siteActionLabels.startProject,
   href: "/contact"
 } as const satisfies SiteNavigationItem;
 

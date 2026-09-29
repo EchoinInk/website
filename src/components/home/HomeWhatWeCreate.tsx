@@ -57,11 +57,11 @@ export function WhatWeCreate({
             <SectionLabel label="What Echo Does" tone="accent" />
             <div>
               <h2 id="home-capabilities-heading" className="ei-type-section-heading">
-                Four connected areas of practice.
+                Four areas of practice, combined as needed.
               </h2>
               <p className="ei-home-section-intro">
-                Strategy, design and development are shaped together, so the idea and the thing
-                people experience stay connected.
+                Echo combines brand, digital experience, product and automation work around the
+                needs of each project.
               </p>
             </div>
           </motion.div>

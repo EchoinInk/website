@@ -1,4 +1,4 @@
-import { primaryCallToAction } from "@/data/siteNavigation";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 
 export type ServiceCapabilityId =
   | "brand-identity"
@@ -85,7 +85,7 @@ export const engagementModels = [
     possibleOutcomes: "Clearer decisions, language, direction or practical next steps.",
     nextAction:
       "Send a request with your question, preferred week and timezone. No session or fee is accepted at this stage.",
-    cta: "Request a Strategy Session",
+    cta: siteActionLabels.requestStrategySession,
     href: "/booking",
   },
   {
@@ -100,7 +100,7 @@ export const engagementModels = [
     possibleOutcomes:
       "Clearer digital direction and focused changes across the relevant experience or system.",
     nextAction: "Send a project enquiry describing what has changed and what no longer fits.",
-    cta: "Discuss a Digital Reset",
+    cta: primaryCallToAction.label,
     href: "/contact?inquiry=project",
   },
   {

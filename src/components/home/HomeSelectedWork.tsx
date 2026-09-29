@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { homeFeaturedProjects } from "@/data/worksProjects";
+import { siteActionLabels } from "@/data/siteNavigation";
 import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 export function HomeSelectedWork() {
@@ -26,7 +27,7 @@ export function HomeSelectedWork() {
           className="ei-home-section-inner"
         >
           <motion.div variants={driftUp} className="ei-home-section-header">
-            <SectionLabel label="Proof, shaped as atmosphere" tone="accent" />
+            <SectionLabel label="Selected project evidence" tone="accent" />
             <div>
               <h2 id="home-selected-work-heading" className="ei-type-section-heading">
                 Selected Work
@@ -46,7 +47,7 @@ export function HomeSelectedWork() {
           <motion.div variants={driftUp} className="ei-home-section-action">
             <p>Explore the complete three-project collection and the evidence behind each study.</p>
             <Button to="/works" variant="secondary">
-              View all work
+              {siteActionLabels.viewWork}
               <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
                 →
               </span>

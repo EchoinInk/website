@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { siteActionLabels } from "@/data/siteNavigation";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -43,7 +44,7 @@ export function HomeProofStrip() {
           ))}
           <motion.div variants={driftUp} className="ei-home-proof-strip-action">
             <Link to="/works">
-              Start with selected work{" "}
+              {siteActionLabels.viewWork}{" "}
               <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
                 →
               </span>

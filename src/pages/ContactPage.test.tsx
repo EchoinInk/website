@@ -3,6 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
 
 import { primaryCapabilities, projectInquiryTypeOptions } from "@/data/servicesContent";
+import { siteActionLabels } from "@/data/siteNavigation";
 import { ContactPage } from "@/pages/ContactPage";
 
 function renderContactPage(initialEntry = "/contact") {
@@ -44,7 +45,7 @@ describe("ContactPage", () => {
   it("shows inline validation errors before submitting", async () => {
     renderContactPage();
 
-    fireEvent.click(screen.getByRole("button", { name: "Start a Project" }));
+    fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
 
     expect(fetchMock).not.toHaveBeenCalled();
     expect(await screen.findByText("Please enter your name.")).toBeInTheDocument();
@@ -86,7 +87,7 @@ describe("ContactPage", () => {
     fireEvent.change(screen.getByLabelText(/when are you hoping to begin/i), {
       target: { value: "November, but flexible" },
     });
-    fireEvent.click(screen.getByRole("button", { name: "Start a Project" }));
+    fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
     const [, init] = fetchMock.mock.calls[0];
@@ -112,7 +113,7 @@ describe("ContactPage", () => {
       }),
     );
     fireEvent.click(screen.getByRole("option", { name: "Brand & Identity" }));
-    fireEvent.click(screen.getByRole("button", { name: "Start a Project" }));
+    fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
     const [, init] = fetchMock.mock.calls[0];
@@ -132,7 +133,7 @@ describe("ContactPage", () => {
     renderContactPage();
     fillRequiredFields();
 
-    fireEvent.click(screen.getByRole("button", { name: "Start a Project" }));
+    fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
 
     await waitFor(() =>
       expect(fetchMock).toHaveBeenCalledWith(
@@ -166,7 +167,7 @@ describe("ContactPage", () => {
     renderContactPage();
     fillRequiredFields();
 
-    fireEvent.click(screen.getByRole("button", { name: "Start a Project" }));
+    fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "Your message could not be sent just yet. Please try again, or email directly.",

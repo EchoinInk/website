@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
@@ -34,14 +35,14 @@ export function NotFoundPage() {
                   Return home
                 </Button>
                 <Button to="/works" variant="secondary">
-                  View work
+                  {siteActionLabels.viewWork}
                 </Button>
                 <Button to="/services" variant="tertiary">
-                  Explore services →
+                  {siteActionLabels.exploreServices} →
                 </Button>
               </div>
               <Button to="/contact" variant="tertiary" className="mt-5">
-                Start a project →
+                {primaryCallToAction.label} →
               </Button>
             </div>
 

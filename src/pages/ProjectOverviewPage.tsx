@@ -10,6 +10,7 @@ import { EchoCard } from "@/components/ui/EchoCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectContext } from "@/components/works/ProjectContext";
 import { getWorkProject } from "@/data/worksProjects";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 
 interface ProjectOverviewPageProps {
   projectTitle: "Keystone" | "Codexia";
@@ -38,10 +39,10 @@ export function ProjectOverviewPage({ projectTitle }: ProjectOverviewPageProps) 
         title={project.title}
         description={project.description}
         offerAnchor={project.category}
-        ctaLabel="View all work"
+        ctaLabel={siteActionLabels.viewWork}
         ctaHref="/works"
         ctaVariant="secondary"
-        secondaryCtaLabel="Start a project"
+        secondaryCtaLabel={primaryCallToAction.label}
         secondaryCtaHref="/contact"
         image={project.image}
         mobileImage={project.image}
@@ -94,8 +95,8 @@ export function ProjectOverviewPage({ projectTitle }: ProjectOverviewPageProps) 
           eyebrow="Continue exploring"
           heading="See the wider project collection."
           body="Browse the reviewed Work collection, or bring Echo a challenge that needs strategy, design and technology to move together."
-          actions={<Button to="/works">View all work</Button>}
-          secondary={<Button to="/contact" variant="tertiary">Start a project</Button>}
+          actions={<Button to="/works">{siteActionLabels.viewWork}</Button>}
+          secondary={<Button to="/contact" variant="tertiary">{primaryCallToAction.label}</Button>}
         />
       </Section>
     </PageShell>

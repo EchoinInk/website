@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { CtaOrbitalBackground } from "@/components/ui/CTAOrbitalBackground";
-import { primaryCallToAction } from "@/data/siteNavigation";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import {
   blurEmergence,
   dissolveReveal,
@@ -73,7 +73,7 @@ export function ClosingSection() {
             {primaryCallToAction.label}
           </Button>
           <Button to="/booking" variant="secondary">
-            Request a Strategy Session
+            {siteActionLabels.requestStrategySession}
           </Button>
         </motion.div>
       </motion.div>

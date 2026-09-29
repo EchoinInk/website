@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
 
-import { primaryCallToAction } from "@/data/siteNavigation";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import { engagementModels, primaryCapabilities } from "@/data/servicesContent";
 import { HomePage } from "@/pages/HomePage";
 
@@ -33,7 +33,7 @@ describe("homepage reference implementation", () => {
       "href",
       primaryCallToAction.href
     );
-    expect(within(hero).getByRole("link", { name: "View Our Work" })).toHaveAttribute(
+    expect(within(hero).getByRole("link", { name: siteActionLabels.viewWork })).toHaveAttribute(
       "href",
       "/works"
     );
@@ -107,7 +107,7 @@ describe("homepage reference implementation", () => {
     expect(
       within(selectedWork).getByText(/no launched platform or measured outcome is claimed/i)
     ).toBeInTheDocument();
-    expect(within(selectedWork).getByRole("link", { name: "View all work" })).toHaveAttribute(
+    expect(within(selectedWork).getByRole("link", { name: siteActionLabels.viewWork })).toHaveAttribute(
       "href",
       "/works"
     );
@@ -123,7 +123,7 @@ describe("homepage reference implementation", () => {
       primaryCallToAction.href
     );
     expect(
-      within(closing).getByRole("link", { name: "Request a Strategy Session" })
+      within(closing).getByRole("link", { name: siteActionLabels.requestStrategySession })
     ).toHaveAttribute("href", "/booking");
   });
 });

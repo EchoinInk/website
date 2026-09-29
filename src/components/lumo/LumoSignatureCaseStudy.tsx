@@ -19,6 +19,7 @@ import thumbsUpCloud from "@/assets/projects/lumo/lumo-clouds/lumo-thumbsupcloud
 import youTriedCloud from "@/assets/projects/lumo/lumo-clouds/lumo-youtriedcloud.png";
 import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
+import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import { ProjectContext } from "@/components/works/ProjectContext";
 import { lumoProject } from "@/data/worksProjects";
 import { blurEmergence, driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
@@ -343,8 +344,8 @@ function LumoProjectBrief() {
             overwhelmed people without turning encouragement into pressure.
           </p>
           <div className="ei-lumo-brief-actions">
-            <Button to="/services" variant="secondary">Explore related services</Button>
-            <Button to="/contact?inquiry=project" variant="primary">Discuss a project</Button>
+            <Button to="/services" variant="secondary">{siteActionLabels.exploreServices}</Button>
+            <Button to="/contact?inquiry=project" variant="primary">{primaryCallToAction.label}</Button>
           </div>
         </motion.div>
 
@@ -607,10 +608,10 @@ function LumoStudioCTA() {
       actions={
         <>
           <Button to="/contact?inquiry=project" variant="primary">
-            Discuss a project
+            {primaryCallToAction.label}
           </Button>
           <Button to="/works" variant="secondary">
-            Return to selected work{" "}
+            {siteActionLabels.viewWork}{" "}
             <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
               →
             </span>
