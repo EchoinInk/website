@@ -12,6 +12,7 @@ const BookingPage = lazy(() => import('@/pages/BookingPage').then((module) => ({
 const WorldsPage = lazy(() => import('@/pages/WorldsPage').then((module) => ({ default: module.WorldsPage })));
 const WorksPage = lazy(() => import('@/pages/WorksPage').then((module) => ({ default: module.WorksPage })));
 const LumoPage = lazy(() => import('@/pages/LumoPage').then((module) => ({ default: module.LumoPage })));
+const CodexiaPage = lazy(() => import('@/pages/CodexiaPage').then((module) => ({ default: module.CodexiaPage })));
 const ProjectOverviewPage = lazy(() => import('@/pages/ProjectOverviewPage').then((module) => ({ default: module.ProjectOverviewPage })));
 const StudioPage = lazy(() => import('@/pages/StudioPage').then((module) => ({ default: module.StudioPage })));
 const ContactPage = lazy(() => import('@/pages/ContactPage').then((module) => ({ default: module.ContactPage })));
@@ -43,7 +44,7 @@ export function AppRoutes() {
           <Route path="/works" element={<WorksPage />} />
           <Route path="/works/lumo" element={<LumoPage />} />
           <Route path="/works/keystone" element={<ProjectOverviewPage projectTitle="Keystone" />} />
-          <Route path="/works/codexia" element={<ProjectOverviewPage projectTitle="Codexia" />} />
+          <Route path="/works/codexia" element={<CodexiaPage />} />
           <Route path="/studio" element={<StudioPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/services" element={<ServicesPage />} />

@@ -1,0 +1,637 @@
+@layer components {
+  .ei-codexia-page,
+  .ei-codexia-case-study {
+    --cx-ink: #050b1b;
+    --cx-deep: #09142b;
+    --cx-orbit: #0e1c38;
+    --cx-slate: #172a4d;
+    --cx-line: rgb(111 120 244 / 0.3);
+    --cx-text: #f5f7ff;
+    --cx-muted: #c9d4f3;
+    --cx-blue: #6f78f4;
+    --cx-cyan: #35d9f2;
+    --cx-violet: #a78bfa;
+    background: var(--cx-ink);
+    color: var(--cx-text);
+  }
+
+  .ei-codexia-case-study {
+    overflow: clip;
+  }
+
+  .ei-codexia-page .ei-glow-page,
+  .ei-codexia-page .ei-vignette-edges {
+    display: none;
+  }
+
+  .ei-codexia-shell {
+    width: min(calc(100% - 2rem), 88rem);
+    margin-inline: auto;
+  }
+
+  .ei-codexia-hero {
+    position: relative;
+    overflow: clip;
+    padding-block: clamp(8rem, 14vw, 12rem) clamp(4rem, 8vw, 7rem);
+    background:
+      linear-gradient(180deg, rgb(5 11 27 / 0.08), var(--cx-ink) 96%),
+      radial-gradient(circle at 75% 20%, rgb(66 133 244 / 0.28), transparent 27%),
+      radial-gradient(circle at 90% 40%, rgb(126 88 255 / 0.2), transparent 32%),
+      var(--cx-ink);
+  }
+
+  .ei-codexia-hero-glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0.22;
+    background-image:
+      linear-gradient(rgb(111 120 244 / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(111 120 244 / 0.12) 1px, transparent 1px);
+    background-size: 4.5rem 4.5rem;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+    pointer-events: none;
+  }
+
+  .ei-codexia-hero-grid {
+    position: relative;
+    display: grid;
+    gap: clamp(3rem, 7vw, 6rem);
+  }
+
+  .ei-codexia-hero-copy {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+  }
+
+  .ei-codexia-kicker,
+  .ei-codexia-section-heading > p:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--cx-cyan);
+    font-family: var(--ei-font-system);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .ei-codexia-section-heading > p:first-child span {
+    color: var(--cx-violet);
+  }
+
+  .ei-codexia-logo {
+    width: min(18rem, 66vw);
+    height: auto;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .ei-codexia-hero h1 {
+    max-width: 14ch;
+    color: var(--cx-text);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(3rem, 6.8vw, 6.5rem);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .ei-codexia-hero-lede {
+    max-width: 43rem;
+    color: var(--cx-muted);
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+    line-height: 1.72;
+  }
+
+  .ei-codexia-context {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cx-line);
+  }
+
+  .ei-codexia-context dt {
+    color: var(--cx-violet);
+  }
+
+  .ei-codexia-context dd {
+    color: var(--cx-muted);
+  }
+
+  .ei-codexia-evidence-figure {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .ei-codexia-figure-frame {
+    overflow: hidden;
+    border: 1px solid var(--cx-line);
+    border-radius: clamp(0.75rem, 1.4vw, 1.25rem);
+    background: var(--cx-deep);
+    box-shadow: 0 2rem 6rem rgb(0 0 0 / 0.34), 0 0 4rem rgb(111 120 244 / 0.12);
+  }
+
+  .ei-codexia-evidence-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .ei-codexia-evidence-figure figcaption {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .ei-codexia-evidence-figure figcaption span,
+  .ei-codexia-codier-card figcaption span {
+    color: var(--cx-cyan);
+    font-family: var(--ei-font-system);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .ei-codexia-evidence-figure figcaption p,
+  .ei-codexia-codier-card figcaption p {
+    max-width: 64ch;
+    color: rgb(201 212 243 / 0.72);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .ei-codexia-local-nav {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+    overflow-x: auto;
+    border-block: 1px solid var(--cx-line);
+    background: rgb(5 11 27 / 0.9);
+    backdrop-filter: blur(1rem);
+  }
+
+  .ei-codexia-local-nav .ei-codexia-shell {
+    display: flex;
+    min-width: max-content;
+  }
+
+  .ei-codexia-local-nav a {
+    display: flex;
+    min-height: 3.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding-inline: 1rem;
+    color: var(--cx-muted);
+    font-size: 0.76rem;
+    text-decoration: none;
+  }
+
+  .ei-codexia-local-nav a span {
+    color: var(--cx-violet);
+    font-family: var(--ei-font-system);
+    font-size: 0.65rem;
+  }
+
+  .ei-codexia-local-nav a:hover,
+  .ei-codexia-local-nav a:focus-visible {
+    color: var(--cx-text);
+    background: rgb(111 120 244 / 0.11);
+    outline: none;
+  }
+
+  .ei-codexia-local-nav a:focus-visible {
+    box-shadow: inset 0 -2px var(--cx-cyan);
+  }
+
+  .ei-codexia-section {
+    scroll-margin-top: 4rem;
+    padding-block: clamp(5rem, 10vw, 9rem);
+    border-bottom: 1px solid rgb(111 120 244 / 0.18);
+  }
+
+  .ei-codexia-section-heading {
+    display: grid;
+    max-width: 64rem;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.75rem, 6vw, 5rem);
+  }
+
+  .ei-codexia-section-heading h2,
+  .ei-codexia-boundary-grid h2,
+  .ei-codexia-next-step h2 {
+    max-width: 18ch;
+    color: var(--cx-text);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(2.25rem, 5vw, 4.75rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 1.03;
+    text-wrap: balance;
+  }
+
+  .ei-codexia-section-intro {
+    max-width: 54rem;
+    color: var(--cx-muted);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.72;
+  }
+
+  .ei-codexia-section-context,
+  .ei-codexia-section-state,
+  .ei-codexia-section-boundary {
+    background: var(--cx-deep);
+  }
+
+  .ei-codexia-context-grid,
+  .ei-codexia-decision-grid,
+  .ei-codexia-demonstrates-grid {
+    display: grid;
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--cx-line);
+    border-radius: 1.25rem;
+    background: var(--cx-line);
+  }
+
+  .ei-codexia-context-grid article,
+  .ei-codexia-decision-grid article,
+  .ei-codexia-demonstrates-grid p {
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    background: rgb(14 28 56 / 0.98);
+  }
+
+  .ei-codexia-context-grid h3,
+  .ei-codexia-decision-grid h3,
+  .ei-codexia-repository-proof h3,
+  .ei-codexia-state-list h3 {
+    color: var(--cx-text);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(1.45rem, 2.4vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  .ei-codexia-context-grid p,
+  .ei-codexia-decision-grid p,
+  .ei-codexia-repository-proof p,
+  .ei-codexia-state-list p,
+  .ei-codexia-demonstrates-grid p,
+  .ei-codexia-boundary-grid p {
+    color: var(--cx-muted);
+    line-height: 1.68;
+  }
+
+  .ei-codexia-context-grid article {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+  }
+
+  .ei-codexia-context-state {
+    background: linear-gradient(145deg, rgb(23 42 77 / 0.98), rgb(14 28 56 / 0.98)) !important;
+  }
+
+  .ei-codexia-decision-grid article {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+  }
+
+  .ei-codexia-decision-grid article > span,
+  .ei-codexia-state-list article > span {
+    color: var(--cx-cyan);
+    font-family: var(--ei-font-system);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .ei-codexia-decision-grid code {
+    align-self: end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cx-line);
+    color: rgb(201 212 243 / 0.64);
+    font-family: var(--ei-font-system);
+    font-size: 0.72rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .ei-codexia-section-architecture {
+    background:
+      radial-gradient(circle at 50% 50%, rgb(126 88 255 / 0.1), transparent 38%),
+      var(--cx-ink);
+  }
+
+  .ei-codexia-architecture-flow {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .ei-codexia-architecture-flow > div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 0.7fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    min-height: 5.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--cx-line);
+    border-radius: 0.8rem;
+    background: linear-gradient(90deg, rgb(14 28 56 / 0.98), rgb(9 20 43 / 0.84));
+  }
+
+  .ei-codexia-architecture-flow > div:not(:last-child)::after {
+    position: absolute;
+    z-index: 2;
+    bottom: -0.8rem;
+    left: 2rem;
+    width: 1px;
+    height: 0.8rem;
+    background: var(--cx-cyan);
+    content: "";
+  }
+
+  .ei-codexia-architecture-flow span {
+    color: var(--cx-cyan);
+    font-family: var(--ei-font-system);
+    font-size: 0.7rem;
+  }
+
+  .ei-codexia-architecture-flow h3 {
+    color: var(--cx-text);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .ei-codexia-architecture-flow p {
+    color: var(--cx-muted);
+    font-size: 0.9rem;
+  }
+
+  .ei-codexia-authority-note {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-left: 3px solid var(--cx-cyan);
+    background: rgb(53 217 242 / 0.06);
+  }
+
+  .ei-codexia-authority-note strong {
+    color: var(--cx-cyan);
+    font-family: var(--ei-font-system);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .ei-codexia-authority-note p {
+    max-width: 64rem;
+    color: var(--cx-muted);
+    line-height: 1.65;
+  }
+
+  .ei-codexia-section-evidence {
+    background: linear-gradient(180deg, var(--cx-deep), var(--cx-ink));
+  }
+
+  .ei-codexia-gallery {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .ei-codexia-repository-proof {
+    display: grid;
+    gap: 2rem;
+    margin-top: clamp(4rem, 8vw, 7rem);
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    border: 1px solid var(--cx-line);
+    border-radius: 1.25rem;
+    background: rgb(14 28 56 / 0.72);
+  }
+
+  .ei-codexia-repository-proof > div {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+  }
+
+  .ei-codexia-repository-proof ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ei-codexia-repository-proof li {
+    display: grid;
+    gap: 0.35rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--cx-line);
+  }
+
+  .ei-codexia-repository-proof code {
+    color: var(--cx-text);
+    font-family: var(--ei-font-system);
+    font-size: 0.78rem;
+    overflow-wrap: anywhere;
+  }
+
+  .ei-codexia-repository-proof li span {
+    color: rgb(201 212 243 / 0.66);
+    font-size: 0.85rem;
+  }
+
+  .ei-codexia-state-layout {
+    display: grid;
+    gap: clamp(3rem, 8vw, 7rem);
+  }
+
+  .ei-codexia-state-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .ei-codexia-state-list article {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.5rem;
+    border: 1px solid var(--cx-line);
+    border-radius: 0.9rem;
+    background: var(--cx-orbit);
+  }
+
+  .ei-codexia-codier-card {
+    align-self: start;
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid var(--cx-line);
+    border-radius: 1.25rem;
+    background: var(--cx-orbit);
+  }
+
+  .ei-codexia-codier-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  .ei-codexia-codier-card figcaption {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .ei-codexia-demonstrates-grid p {
+    margin: 0;
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(1.35rem, 2.5vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .ei-codexia-boundary-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .ei-codexia-boundary-grid > div {
+    display: grid;
+    align-content: start;
+    gap: 1.25rem;
+  }
+
+  .ei-codexia-next-step {
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 20%, rgb(111 120 244 / 0.23), transparent 36%),
+      var(--cx-ink);
+  }
+
+  .ei-codexia-next-step .ei-codexia-shell {
+    display: grid;
+    justify-items: center;
+    gap: 2rem;
+  }
+
+  .ei-codexia-next-step h2 {
+    max-width: 17ch;
+  }
+
+  .ei-codexia-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .ei-codexia-back-link {
+    color: var(--cx-muted);
+    font-size: 0.85rem;
+    text-underline-offset: 0.3em;
+  }
+
+  .ei-codexia-project-navigation {
+    padding: clamp(1rem, 3vw, 2rem);
+    background: var(--cx-ink);
+  }
+
+  @media (min-width: 48rem) {
+    .ei-codexia-context-grid,
+    .ei-codexia-decision-grid,
+    .ei-codexia-demonstrates-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ei-codexia-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ei-codexia-gallery figure:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .ei-codexia-repository-proof,
+    .ei-codexia-boundary-grid {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    }
+  }
+
+  @media (min-width: 70rem) {
+    .ei-codexia-hero-grid {
+      grid-template-columns: minmax(24rem, 0.75fr) minmax(36rem, 1.25fr);
+      align-items: center;
+    }
+
+    .ei-codexia-hero .ei-codexia-evidence-figure {
+      margin-right: min(-6vw, -4rem);
+    }
+
+    .ei-codexia-state-layout {
+      grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.85fr);
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .ei-codexia-shell {
+      width: min(calc(100% - 1.25rem), 88rem);
+    }
+
+    .ei-codexia-hero {
+      padding-top: 7rem;
+    }
+
+    .ei-codexia-context {
+      grid-template-columns: 1fr;
+    }
+
+    .ei-codexia-context > div {
+      padding-block: 0.7rem;
+    }
+
+    .ei-codexia-local-nav .ei-codexia-shell {
+      width: max-content;
+      margin-left: 0.25rem;
+    }
+
+    .ei-codexia-local-nav a {
+      min-height: 3.5rem;
+      padding-inline: 0.75rem;
+      font-size: 0.7rem;
+    }
+
+    .ei-codexia-architecture-flow > div {
+      grid-template-columns: 2rem minmax(0, 1fr);
+    }
+
+    .ei-codexia-architecture-flow p {
+      grid-column: 2;
+    }
+
+    .ei-codexia-evidence-figure figcaption {
+      padding-inline: 0.25rem;
+    }
+
+    .ei-codexia-actions {
+      width: 100%;
+    }
+
+    .ei-codexia-actions a {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ei-codexia-local-nav a {
+      transition: none;
+    }
+  }
+}
