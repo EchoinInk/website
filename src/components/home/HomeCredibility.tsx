@@ -2,22 +2,26 @@ import { motion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const credibilityPoints = [
   {
-    label: "One connected practice",
-    body: "Strategy, design and development are considered together, so the direction survives implementation."
+    label: "Solve real problems",
+    body: "From complexity to clarity, we start with the problem.",
+    visual: "chorusCore"
   },
   {
-    label: "Direct senior collaboration",
-    body: "You work with the founder responsible for shaping and delivering the work."
+    label: "Founder-led, collaborative",
+    body: "Work directly with senior attention from first question through delivery.",
+    visual: "axiomRing"
   },
   {
-    label: "Proof with boundaries",
-    body: "Every selected project names what it is, what it demonstrates and what is not being claimed."
+    label: "Design that survives",
+    body: "Considered systems, not fragile artifacts — built to be used, adapted and grown.",
+    visual: "quietAxis"
   }
-] as const;
+] as const satisfies readonly { label: string; body: string; visual: OrbitalVariant }[];
 
 export function HomeCredibility() {
   return (
@@ -38,8 +42,9 @@ export function HomeCredibility() {
         >
           {credibilityPoints.map((point, index) => (
             <motion.article key={point.label} variants={driftUp}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <OrbitalVisual variant={point.visual} size={42} />
               <div>
+                <span>{String(index + 1).padStart(2, "0")}</span>
                 <h2>{point.label}</h2>
                 <p>{point.body}</p>
               </div>

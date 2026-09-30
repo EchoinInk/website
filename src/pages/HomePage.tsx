@@ -1,9 +1,8 @@
 import { ClosingSection } from "@/components/home/HomeClosingSection";
 import { HomeCredibility } from "@/components/home/HomeCredibility";
 import { HomeDelivery } from "@/components/home/HomeDelivery";
-import { LumoCaseStudyTeaser } from "@/components/home/HomeFeaturedLumo";
 import { Hero } from "@/components/home/HomeHero";
-import { Philosophy } from "@/components/home/HomePhilosophySection";
+import { HomeKindWords } from "@/components/home/HomeKindWords";
 import { HomeSelectedWork } from "@/components/home/HomeSelectedWork";
 import { HomeStartHere } from "@/components/home/HomeStartHere";
 import { WhatWeCreate } from "@/components/home/HomeWhatWeCreate";
@@ -20,6 +19,7 @@ export function HomePage() {
       atmosphere="default"
       theme="light"
       footerTheme="light"
+      footerVariant="home"
       withTopSpacing={false}
       className="ei-home-page"
     >
@@ -28,9 +28,8 @@ export function HomePage() {
       <HomeSelectedWork />
       <WhatWeCreate />
       <HomeStartHere />
-      <LumoCaseStudyTeaser />
       <HomeDelivery />
-      <Philosophy />
+      <HomeKindWords />
       <ClosingSection />
     </PageShell>
   );

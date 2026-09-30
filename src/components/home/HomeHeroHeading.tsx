@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { PageOfferAnchor } from "@/components/sections/PageOfferAnchor";
 import { heroReveal } from "@/lib/motion-cinematic";
 
 export function HeroHeading() {
@@ -20,21 +19,17 @@ export function HeroHeading() {
         id="hero-heading"
         className="ei-type-hero-home ei-home-hero-heading ei-hero-system-heading"
       >
-        We design and build brands, websites, digital products and systems.
+        We design and build brands, websites, digital products and <em>systems.</em>
       </h1>
 
       <motion.p
         variants={heroReveal}
         className="ei-type-hero-description ei-home-hero-description ei-hero-system-description"
       >
-        For founders and teams whose next move needs more than a surface-level fix, Echo brings
-        strategy, design and development together to create a clearer brand, stronger digital
-        experience and a practical path from idea to implementation.
+        Strategy, identity, product design and development — led as one connected practice from
+        first question to working product. Built for ambitious teams who care about what their work
+        feels like.
       </motion.p>
-
-      <PageOfferAnchor className="ei-home-hero-philosophy">
-        Designing the worlds your work lives in.
-      </PageOfferAnchor>
     </div>
   );
 }

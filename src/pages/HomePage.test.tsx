@@ -26,15 +26,19 @@ describe("homepage reference implementation", () => {
         name: "We design and build brands, websites, digital products and systems."
       })
     ).toBeInTheDocument();
-    expect(screen.getByText("Designing the worlds your work lives in.")).toBeInTheDocument();
-    expect(screen.getByText(/For founders and teams whose next move/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Strategy, identity, product design and development/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("From complexity to clarity, we start with the problem.")
+    ).toBeInTheDocument();
 
     const hero = screen.getByRole("heading", { level: 1 }).closest("section")!;
     expect(within(hero).getByRole("link", { name: primaryCallToAction.label })).toHaveAttribute(
       "href",
       primaryCallToAction.href
     );
-    expect(within(hero).getByRole("link", { name: siteActionLabels.viewWork })).toHaveAttribute(
+    expect(within(hero).getByRole("link", { name: "Explore our work" })).toHaveAttribute(
       "href",
       "/works"
     );
@@ -45,21 +49,26 @@ describe("homepage reference implementation", () => {
       expect(within(capabilities).getByText(capability.description)).toBeInTheDocument();
     });
 
-    engagementModels.forEach((model) => {
-      const heading = screen.getByRole("heading", { level: 3, name: model.title });
+    const engagementTitles = ["Strategy Session", "Digital Reset", "Full Project"];
+    engagementModels.forEach((model, index) => {
+      const heading = screen.getByRole("heading", { level: 3, name: engagementTitles[index] });
       const card = heading.closest("article")!;
 
-      expect(within(card).getByText(model.description)).toBeInTheDocument();
-      expect(within(card).getByText(model.bestFor)).toBeInTheDocument();
-      expect(within(card).getByRole("link", { name: model.cta })).toHaveAttribute(
+      expect(within(card).getByRole("link", { name: new RegExp(model.cta) })).toHaveAttribute(
         "href",
         model.href
       );
     });
 
-    expect(screen.getByText(/recommend the smallest engagement/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /Fewer gaps between/i })).toBeInTheDocument();
-    expect(screen.getByText(/Clients work directly with Alexandria Farley/i)).toBeInTheDocument();
+    expect(screen.getByText(/Not every project needs the same approach/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: /Fewer gaps between/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: /Real people/i })).toBeInTheDocument();
+    expect(
+      screen.getByText(/project provenance and evidence remain explicit/i)
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Best when:")).not.toBeInTheDocument();
   });
 
   it("publishes the semantic section rhythm and current flagship selection", () => {
@@ -74,10 +83,9 @@ describe("homepage reference implementation", () => {
       "mist",
       "lightElevated",
       "light",
-      "mist",
-      "lightElevated",
       "light",
-      "mist"
+      "light",
+      "light"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
@@ -86,8 +94,7 @@ describe("homepage reference implementation", () => {
       "light",
       "light",
       "light",
-      "light",
-      "light",
+      "mist",
       undefined
     ]);
 
@@ -98,7 +105,7 @@ describe("homepage reference implementation", () => {
       expect(card.querySelector("a")).toHaveClass("ei-works-project-link");
     });
     expect(
-      within(selectedWork).getByRole("heading", { level: 3, name: "LUMO" })
+      within(selectedWork).getByRole("heading", { level: 3, name: "Lumo" })
     ).toBeInTheDocument();
     expect(
       within(selectedWork).getByRole("heading", { level: 3, name: "Keystone" })
@@ -114,19 +121,32 @@ describe("homepage reference implementation", () => {
     expect(
       within(selectedWork).getByRole("link", { name: /Codexia — Independent Product, Prototype/i })
     ).toHaveAttribute("href", "/works/codexia");
-    expect(within(selectedWork).getAllByText("Evidence boundary")).toHaveLength(3);
     expect(
-      within(selectedWork).getByText(/no launched platform or measured outcome is claimed/i)
+      within(selectedWork).getByText(/A calmer operating model for the work behind the studio/i)
     ).toBeInTheDocument();
-    expect(within(selectedWork).getByRole("link", { name: siteActionLabels.viewWork })).toHaveAttribute(
+    expect(within(selectedWork).getByRole("link", { name: "View all work" })).toHaveAttribute(
       "href",
       "/works"
     );
-    const lumo = container.querySelector<HTMLElement>(".ei-home-lumo")!;
-    expect(within(lumo).getByText("Independent Product")).toBeInTheDocument();
-    expect(within(lumo).getByText("React Native")).toBeInTheDocument();
-    expect(within(lumo).getByAltText("LUMO — atmospheric UI exploration")).toBeInTheDocument();
+    expect(container.querySelector(".ei-home-lumo")).not.toBeInTheDocument();
+    expect(container.querySelector(".ei-home-studio")).not.toBeInTheDocument();
     expect(screen.queryByText("The Vortex Group")).not.toBeInTheDocument();
+
+    const evidence = container.querySelector<HTMLElement>(".ei-home-evidence-grid")!;
+    expect(evidence.querySelectorAll(".ei-home-evidence-card")).toHaveLength(2);
+    expect(within(evidence).getByText("Client words — when shareable.")).toBeInTheDocument();
+    expect(within(evidence).getByText("Project evidence — clearly labelled.")).toBeInTheDocument();
+
+    const heroPicture = container.querySelector<HTMLPictureElement>(".ei-home-hero-picture")!;
+    expect(heroPicture.querySelector("source")).toHaveAttribute("srcset", "/home-hero-mobile.webp");
+    expect(heroPicture.querySelector("source")).toHaveAttribute("media", "(max-width: 768px)");
+    expect(heroPicture.querySelector("img")).toHaveAttribute("src", "/home-hero-desktop.webp");
+
+    const footer = container.querySelector<HTMLElement>("footer")!;
+    expect(within(footer).queryByText("Explore deeper")).not.toBeInTheDocument();
+    expect(
+      within(footer).queryByText("Explore frameworks and experiments")
+    ).not.toBeInTheDocument();
 
     const closing = container.querySelector<HTMLElement>(".ei-home-closing")!;
     expect(within(closing).getByRole("link", { name: primaryCallToAction.label })).toHaveAttribute(

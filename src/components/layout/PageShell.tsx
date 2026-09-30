@@ -20,7 +20,7 @@ interface PageShellProps {
   id?: string;
   withFooter?: boolean;
   footerTheme?: "light" | "deep";
-  footerVariant?: "full" | "compact";
+  footerVariant?: "full" | "compact" | "home";
   withTopSpacing?: boolean;
   structuredData?: StructuredData | readonly StructuredData[];
 }
@@ -59,7 +59,7 @@ export function PageShell({
   footerTheme = "light",
   footerVariant = "full",
   withTopSpacing = true,
-  structuredData,
+  structuredData
 }: PageShellProps) {
   const { pathname } = useLocation();
   const resolvedCanonicalPath = canonicalPath === undefined ? pathname : canonicalPath;
@@ -106,9 +106,7 @@ export function PageShell({
           {description && <meta name="twitter:description" content={description} />}
           <meta name="twitter:image" content={socialImageUrl} />
           {structuredData && (
-            <script type="application/ld+json">
-              {JSON.stringify(structuredData)}
-            </script>
+            <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
           )}
         </Helmet>
       )}

@@ -7,11 +7,12 @@ import { atmosphericFade, EASE_LUXURY, DURATION, VIEWPORT } from "@/system/motio
 
 interface FooterProps {
   theme?: "light" | "deep";
-  variant?: "full" | "compact";
+  variant?: "full" | "compact" | "home";
 }
 
 export default function Footer({ theme = "light", variant = "full" }: FooterProps) {
   const isCompact = variant === "compact";
+  const isHome = variant === "home";
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -120,7 +121,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
               }}
               className="pt-8 pb-0 md:pt-8"
             >
-              <div className="grid grid-cols-2 items-start gap-8 md:grid-cols-[1.05fr_0.95fr_0.85fr_1.1fr] md:gap-8 lg:gap-10">
+              <div className="ei-footer-primary-grid grid grid-cols-2 items-start gap-8 md:grid-cols-[1.05fr_0.95fr_0.85fr_1.1fr] md:gap-8 lg:gap-10">
                 {/* Col 1 — Brand */}
                 <div className="order-1 col-span-2 md:order-1 md:col-span-1">
                   <span className="ei-type-footer-brand mb-3 block font-structural text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
@@ -139,7 +140,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                     Navigation
                   </span>
 
-                  <ul className="grid grid-cols-2 gap-x-7 gap-y-2">
+                  <ul className="ei-footer-primary-links grid grid-cols-2 gap-x-7 gap-y-2">
                     {primaryNavigation.map((link) => (
                       <li key={link.label}>
                         <Link
@@ -181,7 +182,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                     Creative Systems &amp; Tools
                   </span>
 
-                  <div className="flex items-start justify-between gap-5">
+                  <div className="ei-footer-systems-row flex items-start justify-between gap-5">
                     <p className="ei-type-footer-copy mb-4 max-w-[32ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
                       Prompt systems, reference frameworks, direction kits, and practical
                       experiments for clearer creative decisions.
@@ -192,49 +193,53 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                     </div>
                   </div>
 
-                  <Link
-                    to="/systems"
-                    className="ei-type-footer-link group inline-flex min-h-11 max-w-[34ch] items-center gap-2 font-mono text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.14em] transition-colors duration-400"
-                  >
-                    <span>Explore frameworks and experiments</span>
-                    <span className="shrink-0 transition-transform duration-400 group-hover:translate-x-0.5">
-                      →
-                    </span>
-                  </Link>
+                  {isHome ? null : (
+                    <Link
+                      to="/systems"
+                      className="ei-type-footer-link group inline-flex min-h-11 max-w-[34ch] items-center gap-2 font-mono text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.14em] transition-colors duration-400"
+                    >
+                      <span>Explore frameworks and experiments</span>
+                      <span className="shrink-0 transition-transform duration-400 group-hover:translate-x-0.5">
+                        →
+                      </span>
+                    </Link>
+                  )}
                 </div>
               </div>
             </motion.div>
 
-            <motion.nav
-              aria-label="Explore deeper"
-              initial={prefersReducedMotion ? false : "hidden"}
-              whileInView="visible"
-              viewport={VIEWPORT.normal}
-              variants={atmosphericFade}
-              transition={{
-                duration: DURATION.slower,
-                ease: EASE_LUXURY,
-                delay: 0.16
-              }}
-              className="border-t border-[var(--ei-theme-border)] py-5"
-            >
-              <span className="ei-type-footer-label mb-3 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
-                Explore deeper
-              </span>
+            {isHome ? null : (
+              <motion.nav
+                aria-label="Explore deeper"
+                initial={prefersReducedMotion ? false : "hidden"}
+                whileInView="visible"
+                viewport={VIEWPORT.normal}
+                variants={atmosphericFade}
+                transition={{
+                  duration: DURATION.slower,
+                  ease: EASE_LUXURY,
+                  delay: 0.16
+                }}
+                className="border-t border-[var(--ei-theme-border)] py-5"
+              >
+                <span className="ei-type-footer-label mb-3 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                  Explore deeper
+                </span>
 
-              <ul className="flex flex-wrap gap-x-5 gap-y-1.5">
-                {secondaryNavigation.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="ei-type-footer-meta inline-flex min-h-11 items-center font-structural text-[length:var(--ei-type-size-meta)] tracking-[0.06em] opacity-75 transition-[color,opacity] duration-400 hover:opacity-100 focus-visible:opacity-100"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.nav>
+                <ul className="flex flex-wrap gap-x-5 gap-y-1.5">
+                  {secondaryNavigation.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        to={link.href}
+                        className="ei-type-footer-meta inline-flex min-h-11 items-center font-structural text-[length:var(--ei-type-size-meta)] tracking-[0.06em] opacity-75 transition-[color,opacity] duration-400 hover:opacity-100 focus-visible:opacity-100"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </motion.nav>
+            )}
 
             {/* Bottom row */}
             <motion.div

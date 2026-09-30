@@ -3,22 +3,14 @@ import { Link } from "react-router-dom";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import {
-  OrbitalVisual,
-  type OrbitalVariant,
-} from "@/components/ui/OrbitalVisual";
+import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import {
   primaryCapabilities,
   type ServiceCapability,
-  type ServiceCapabilityId,
+  type ServiceCapabilityId
 } from "@/data/servicesContent";
-import {
-  driftUp,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT,
-} from "@/lib/motion-cinematic";
+import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const capabilityVisuals: Record<
   ServiceCapabilityId,
@@ -27,25 +19,25 @@ const capabilityVisuals: Record<
   "brand-identity": { variant: "axiomRing", tone: "halo" },
   "websites-experiences": { variant: "memoryComet", tone: "violet" },
   "digital-products": { variant: "focusDial", tone: "magenta" },
-  "systems-automation": { variant: "quietAxis", tone: "ice" },
+  "systems-automation": { variant: "quietAxis", tone: "ice" }
 };
 
 const capabilityProblems: Record<ServiceCapabilityId, { prompt: string; outcome: string }> = {
   "brand-identity": {
-    prompt: "Your brand no longer says what the business has become.",
-    outcome: "Clarify the positioning, identity and digital expression so people understand and recognise it."
+    prompt: "When the company has evolved",
+    outcome: "Strategy, positioning and identity systems that reflect what you’ve become."
   },
   "websites-experiences": {
-    prompt: "Your website looks present, but it is not doing enough.",
-    outcome: "Turn it into a clear, useful experience that helps the right people understand and act."
+    prompt: "When the website no longer fits",
+    outcome: "Digital strategy, UX/UI and development for clearer, more effective experiences."
   },
   "digital-products": {
-    prompt: "The product idea is strong, but the experience is still unresolved.",
-    outcome: "Shape the strategy, interface and product system into something coherent enough to test or build."
+    prompt: "When an idea needs structure",
+    outcome: "Product strategy, interface design and implementation for real-world use."
   },
   "systems-automation": {
-    prompt: "Manual work and disconnected tools are slowing the team down.",
-    outcome: "Design focused software, integrations or automation around the way the work actually needs to move."
+    prompt: "When manual work creates friction",
+    outcome: "Internal tools, workflow design, integrations and automation to reduce complexity."
   }
 };
 
@@ -53,9 +45,7 @@ interface WhatWeCreateProps {
   capabilities?: readonly ServiceCapability[];
 }
 
-export function WhatWeCreate({
-  capabilities = primaryCapabilities,
-}: WhatWeCreateProps) {
+export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreateProps) {
   return (
     <Section
       theme="lightElevated"
@@ -73,20 +63,23 @@ export function WhatWeCreate({
           className="ei-home-section-inner"
         >
           <motion.div variants={driftUp} className="ei-home-section-header">
-            <SectionLabel label="What Echo Does" tone="accent" />
             <div>
+              <SectionLabel label="Areas of Practice" tone="accent" />
               <h2 id="home-capabilities-heading" className="ei-type-section-heading">
-                Start with the problem, then combine the right capabilities.
+                <span>Different challenges.</span> <span>A connected approach.</span>
               </h2>
+            </div>
+            <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
-                You do not need to diagnose the discipline before getting in touch. Echo connects
-                brand, digital experience, product and systems work around the outcome you need.
+                Brand, experience, product and systems are deeply connected. We shape the visible
+                and the structural together — from strategy and design through to implementation —
+                so the work feels coherent and works in the real world.
               </p>
             </div>
           </motion.div>
 
           <div className="ei-home-capability-grid">
-            {capabilities.map((capability, index) => {
+            {capabilities.map((capability) => {
               const visual = capabilityVisuals[capability.id];
 
               return (
@@ -98,15 +91,17 @@ export function WhatWeCreate({
                     aria-label={`Explore ${capability.title}`}
                   >
                     <div className="ei-home-capability-meta">
-                      <span>{String(index + 1).padStart(2, "0")}</span>
                       <OrbitalVisual variant={visual.variant} size={62} />
+                      <span aria-hidden="true">→</span>
                     </div>
-                    <span className="ei-home-capability-label">{capability.title}</span>
-                    <h3>{capabilityProblems[capability.id].prompt}</h3>
+                    <h3>{capability.title}</h3>
+                    <span className="ei-home-capability-label">
+                      {capabilityProblems[capability.id].prompt}
+                    </span>
                     <p>{capabilityProblems[capability.id].outcome}</p>
                     <span className="sr-only">{capability.description}</span>
                     <span className="ei-card-action">
-                      Explore
+                      Explore {capability.title.split(" ")[0]}
                       <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
                         →
                       </span>

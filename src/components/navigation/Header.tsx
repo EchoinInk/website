@@ -107,6 +107,7 @@ export function Header() {
 
   const closeMenu = () => setMenuOpen(false);
   const contactActive = isNavigationItemActive(pathname, primaryCallToAction);
+  const isHome = pathname === "/";
   const menuTransition = prefersReducedMotion
     ? { duration: 0.01 }
     : { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
@@ -168,7 +169,7 @@ export function Header() {
                       ${
                         active
                           ? "!text-[var(--ei-header-text)] [text-shadow:0_0_16px_rgb(var(--ei-halo-blue-rgb)/0.24)]"
-                          : "!text-[var(--ei-header-text)] opacity-80 hover:!text-[var(--ei-header-text-hover)] hover:opacity-100 focus-visible:!text-[var(--ei-header-text-hover)]"
+                          : `!text-[var(--ei-header-text)] ${isHome ? "opacity-[0.88]" : "opacity-80"} hover:!text-[var(--ei-header-text-hover)] hover:opacity-100 focus-visible:!text-[var(--ei-header-text-hover)]`
                       }
                     `}
                   >
@@ -200,8 +201,8 @@ export function Header() {
                 ei-focus-rounded rounded-full
                 border border-[var(--ei-theme-border)]
                 bg-[var(--ei-theme-surface)]
-                px-3 py-2
-                font-structural text-[length:var(--ei-type-size-navigation)] font-semibold uppercase tracking-[0.14em] lg:px-3.5 lg:tracking-[0.19em]
+                ${isHome ? "px-[0.8125rem] py-[0.54rem] lg:px-[0.9375rem]" : "px-3 py-2 lg:px-3.5"}
+                font-structural text-[length:var(--ei-type-size-navigation)] font-semibold uppercase tracking-[0.14em] lg:tracking-[0.19em]
                 transition-all duration-500
                 hover:border-[var(--ei-theme-focus)]
                 hover:bg-[var(--ei-theme-surface-elevated)]
@@ -211,7 +212,7 @@ export function Header() {
                 ${
                   contactActive
                     ? "border-[var(--ei-theme-focus)] bg-[var(--ei-theme-surface-elevated)] !text-[var(--ei-header-text)] shadow-[0_0_22px_rgb(var(--ei-halo-blue-rgb)/0.12)]"
-                    : "!text-[var(--ei-header-text)] opacity-80"
+                    : `!text-[var(--ei-header-text)] ${isHome ? "opacity-[0.88]" : "opacity-80"}`
                 }
               `}
             >
@@ -291,7 +292,11 @@ export function Header() {
                 onClick={closeMenu}
                 className="ei-focus-rounded inline-flex min-h-[44px] items-center rounded-sm"
               >
-                <img src={wordmark} alt="" className="h-[1.05rem] w-auto opacity-90 [filter:var(--ei-header-logo-filter)]" />
+                <img
+                  src={wordmark}
+                  alt=""
+                  className="h-[1.05rem] w-auto opacity-90 [filter:var(--ei-header-logo-filter)]"
+                />
               </Link>
 
               <button
