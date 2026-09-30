@@ -5,13 +5,18 @@ import identityHeroMobile from "@/assets/imagery/hero/identity-hero-orbital-syst
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
+import { PageJumpLinks } from "@/components/navigation/PageJumpLinks";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageSectionHero } from "@/components/sections/PageSectionHero";
 import { Button } from "@/components/ui/Button";
 import { EchoCard } from "@/components/ui/EchoCard";
 import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { identityApplications, identityProcess, identityTransformation } from "@/data/identityContent";
+import {
+  identityApplications,
+  identityProcess,
+  identityTransformation
+} from "@/data/identityContent";
 import { brandIdentityCapability, brandWorldsCapability } from "@/data/servicesContent";
 import { primaryCallToAction } from "@/data/siteNavigation";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
@@ -19,24 +24,28 @@ import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/mo
 const identityAreas: Array<{ title: string; description: string; icon: OrbitalVariant }> = [
   {
     title: "Brand strategy",
-    description: "Clarify the position, audience, purpose and central idea the identity needs to carry.",
-    icon: "focusDial",
+    description:
+      "Clarify the position, audience, purpose and central idea the identity needs to carry.",
+    icon: "focusDial"
   },
   {
     title: "Visual identity",
-    description: "Shape a distinctive visual language through typography, colour, imagery and composition.",
-    icon: "prismMirror",
+    description:
+      "Shape a distinctive visual language through typography, colour, imagery and composition.",
+    icon: "prismMirror"
   },
   {
     title: "Identity systems",
-    description: "Create principles and patterns that keep expression consistent without making it rigid.",
-    icon: "chorusCore",
+    description:
+      "Create principles and patterns that keep expression consistent without making it rigid.",
+    icon: "chorusCore"
   },
   {
     title: "Digital expression",
-    description: "Carry the identity into websites, products, launches and the other places people meet it.",
-    icon: "signalBridge",
-  },
+    description:
+      "Carry the identity into websites, products, launches and the other places people meet it.",
+    icon: "signalBridge"
+  }
 ];
 
 export function IdentityPage() {
@@ -45,7 +54,7 @@ export function IdentityPage() {
     variants: staggerContainer(STAGGER.loose, 0),
     initial: prefersReducedMotion ? false : "hidden",
     whileInView: "visible",
-    viewport: VIEWPORT.normal,
+    viewport: VIEWPORT.normal
   } as const;
 
   return (
@@ -75,7 +84,19 @@ export function IdentityPage() {
         headingId="identity-heading"
       />
 
+      <Container size="xl" className="ei-phase7-jump-container">
+        <PageJumpLinks
+          label="Identity page"
+          links={[
+            { href: "#identity-capability", label: "Scope" },
+            { href: "#identity-evidence", label: "System evidence" },
+            { href: "#identity-method", label: "Method" }
+          ]}
+        />
+      </Container>
+
       <Section
+        id="identity-capability"
         theme="lightElevated"
         transitionTo="mist"
         spacing="none"
@@ -87,7 +108,9 @@ export function IdentityPage() {
             <motion.div variants={driftUp} className="ei-phase7-heading">
               <SectionLabel label="What the work can involve" tone="accent" />
               <div>
-                <h2 id="identity-capability-heading">More than a logo. A system for being recognised.</h2>
+                <h2 id="identity-capability-heading">
+                  More than a logo. A system for being recognised.
+                </h2>
                 <p>
                   Identity creates coherence across the places a brand appears. The exact scope is
                   shaped around the problem; these are connected areas of the same capability, not
@@ -99,7 +122,11 @@ export function IdentityPage() {
             <div className="ei-phase7-card-grid ei-phase7-card-grid-four">
               {identityAreas.map((area, index) => (
                 <motion.div key={area.title} variants={driftUp}>
-                  <EchoCard padding="lg" variant={index === 1 ? "feature" : "static"} className="ei-phase7-card">
+                  <EchoCard
+                    padding="lg"
+                    variant={index === 1 ? "feature" : "static"}
+                    className="ei-phase7-card"
+                  >
                     <div className="ei-phase7-card-meta">
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <OrbitalVisual variant={area.icon} size={54} />
@@ -115,6 +142,7 @@ export function IdentityPage() {
       </Section>
 
       <Section
+        id="identity-evidence"
         theme="mist"
         transitionTo="light"
         spacing="none"
@@ -126,7 +154,9 @@ export function IdentityPage() {
             <motion.div variants={driftUp} className="ei-phase7-heading">
               <SectionLabel label="Coherent expression" />
               <div>
-                <h2 id="identity-coherence-heading">From scattered signals to one recognisable centre.</h2>
+                <h2 id="identity-coherence-heading">
+                  From scattered signals to one recognisable centre.
+                </h2>
                 <p>{identityTransformation.intro}</p>
               </div>
             </motion.div>
@@ -134,7 +164,9 @@ export function IdentityPage() {
             <motion.div variants={fadeSoft} className="ei-identity-system-map" data-theme="deep">
               <div>
                 <span>Inputs</span>
-                {identityTransformation.signals.map((signal) => <p key={signal}>{signal}</p>)}
+                {identityTransformation.signals.map((signal) => (
+                  <p key={signal}>{signal}</p>
+                ))}
               </div>
               <div className="ei-identity-system-core">
                 <OrbitalVisual variant="chorusCore" size={78} />
@@ -142,7 +174,9 @@ export function IdentityPage() {
               </div>
               <div>
                 <span>Expression</span>
-                {identityApplications.map((application) => <p key={application.title}>{application.title}</p>)}
+                {identityApplications.map((application) => (
+                  <p key={application.title}>{application.title}</p>
+                ))}
               </div>
             </motion.div>
           </motion.div>
@@ -150,6 +184,7 @@ export function IdentityPage() {
       </Section>
 
       <Section
+        id="identity-method"
         theme="light"
         transitionTo="lightElevated"
         spacing="none"
@@ -161,7 +196,9 @@ export function IdentityPage() {
             <motion.div variants={driftUp} className="ei-phase7-heading">
               <SectionLabel label="How the direction takes shape" tone="accent" />
               <div>
-                <h2 id="identity-method-heading">Feeling becomes a usable visual and verbal system.</h2>
+                <h2 id="identity-method-heading">
+                  Feeling becomes a usable visual and verbal system.
+                </h2>
                 <p>
                   The existing Echo method moves from the signals already present in the work to
                   principles that can guide consistent expression in real contexts.
@@ -189,7 +226,9 @@ export function IdentityPage() {
                   requirement for an identity project.
                 </p>
               </div>
-              <Button to={brandWorldsCapability.href} variant="secondary">Explore Brand Worlds</Button>
+              <Button to={brandWorldsCapability.href} variant="secondary">
+                Explore Brand Worlds
+              </Button>
             </motion.aside>
           </motion.div>
         </Container>
@@ -204,7 +243,9 @@ export function IdentityPage() {
           actions={
             <>
               <Button to={primaryCallToAction.href}>{primaryCallToAction.label}</Button>
-              <Button to="/services" variant="secondary">Explore Services</Button>
+              <Button to="/services" variant="secondary">
+                Explore Services
+              </Button>
             </>
           }
           headingId="identity-cta-heading"

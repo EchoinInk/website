@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
+import { PageJumpLinks } from "@/components/navigation/PageJumpLinks";
 import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
 import { EchoCard } from "@/components/ui/EchoCard";
@@ -12,17 +13,65 @@ import {
   engagementModels,
   primaryCapabilities,
   strategySessionPricingPolicy,
-  type ServiceCapabilityId,
+  type ServiceCapabilityId
 } from "@/data/servicesContent";
 import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
+
+import codexiaWorkspace from "@/assets/projects/codexia/execution-workspace.jpg";
+import lumoInterface from "@/assets/imagery/sections/lumo-featured-bg.webp";
 
 const capabilityVisuals: Record<ServiceCapabilityId, OrbitalVariant> = {
   "brand-identity": "axiomRing",
   "websites-experiences": "memoryComet",
   "digital-products": "focusDial",
-  "systems-automation": "quietAxis",
+  "systems-automation": "quietAxis"
 };
+
+const serviceEvidence = [
+  {
+    id: "brand-identity",
+    eyebrow: "Identity system",
+    title: "From signals to a recognisable system",
+    description:
+      "Position, voice and visual decisions are connected to the touchpoints where the identity has to work.",
+    href: "/identity",
+    linkLabel: "See the identity system",
+    labels: ["Position", "Voice", "Visual language", "Digital expression"]
+  },
+  {
+    id: "websites-experiences",
+    eyebrow: "Annotated interface",
+    title: "A journey made visible before it is built",
+    description:
+      "Page hierarchy, interaction and responsive behaviour are reviewed as one connected experience.",
+    href: "/works/lumo",
+    linkLabel: "View interface evidence",
+    labels: ["01 Entry", "02 Orientation", "03 Action", "04 Response"],
+    image: lumoInterface
+  },
+  {
+    id: "digital-products",
+    eyebrow: "Product flow",
+    title: "Concept, state and prototype in one product loop",
+    description:
+      "The product is shaped through the decisions, states and feedback people need—not a collection of isolated screens.",
+    href: "/works/codexia",
+    linkLabel: "View prototype evidence",
+    labels: ["Intent", "Flow", "Interface", "Prototype", "Validation"],
+    image: codexiaWorkspace
+  },
+  {
+    id: "systems-automation",
+    eyebrow: "Workflow architecture",
+    title: "Authority and automation stay legible",
+    description:
+      "Inputs, decisions, integrations and human checkpoints are mapped before implementation changes the workflow.",
+    href: "/works/codexia",
+    linkLabel: "View systems evidence",
+    labels: ["Request", "Rules", "Execution", "Evidence"]
+  }
+] as const;
 
 export function ServicesPage() {
   const prefersReducedMotion = useReducedMotion();
@@ -89,6 +138,17 @@ export function ServicesPage() {
         </Container>
       </Section>
 
+      <Container size="xl" className="ei-services-jump-container">
+        <PageJumpLinks
+          label="On this page"
+          links={[
+            { href: "#capabilities", label: "Capabilities" },
+            { href: "#evidence", label: "Evidence" },
+            { href: "#ways-to-work", label: "Ways to work" }
+          ]}
+        />
+      </Container>
+
       <Section
         id="capabilities"
         theme="lightElevated"
@@ -107,7 +167,9 @@ export function ServicesPage() {
             <motion.div variants={driftUp} className="ei-services-section-heading">
               <SectionLabel label="Primary capabilities" tone="accent" />
               <div>
-                <h2 id="services-capabilities-heading">Four areas of practice, combined as needed.</h2>
+                <h2 id="services-capabilities-heading">
+                  Four areas of practice, combined as needed.
+                </h2>
                 <p>
                   The work begins with the problem, not a predetermined deliverable. Strategy,
                   design and implementation are combined as the project requires.
@@ -129,6 +191,9 @@ export function ServicesPage() {
                     </div>
                     <h3>{capability.title}</h3>
                     <p>{capability.description}</p>
+                    <a href="#evidence" className="ei-services-capability-link">
+                      See the evidence pattern <span aria-hidden="true">↓</span>
+                    </a>
                   </EchoCard>
                 </motion.div>
               ))}
@@ -141,6 +206,73 @@ export function ServicesPage() {
                 work back.
               </p>
             </motion.div>
+          </motion.div>
+        </Container>
+      </Section>
+
+      <Section
+        id="evidence"
+        theme="light"
+        transitionTo="mist"
+        spacing="none"
+        className="ei-services-evidence"
+        aria-labelledby="services-evidence-heading"
+      >
+        <Container size="xl">
+          <motion.div
+            {...{
+              variants: staggerContainer(STAGGER.loose, 0),
+              initial: prefersReducedMotion ? false : "hidden",
+              whileInView: "visible",
+              viewport: VIEWPORT.normal
+            }}
+            className="ei-services-section-inner"
+          >
+            <motion.div variants={driftUp} className="ei-services-section-heading">
+              <SectionLabel label="Evidence, not atmosphere" tone="accent" />
+              <div>
+                <h2 id="services-evidence-heading">
+                  Each practice leaves a different kind of proof.
+                </h2>
+                <p>
+                  These are working artefacts and prototype examples from Echo’s own projects—not
+                  client outcomes or invented performance claims.
+                </p>
+              </div>
+            </motion.div>
+
+            <div className="ei-services-evidence-list">
+              {serviceEvidence.map((item, index) => (
+                <motion.article
+                  key={item.id}
+                  variants={driftUp}
+                  className={`ei-service-evidence ei-service-evidence-${item.id}`}
+                >
+                  <div className="ei-service-evidence-copy">
+                    <span>
+                      {String(index + 1).padStart(2, "0")} / {item.eyebrow}
+                    </span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <Button to={item.href} variant="tertiary">
+                      {item.linkLabel} →
+                    </Button>
+                  </div>
+                  {"image" in item ? (
+                    <figure className="ei-service-evidence-interface">
+                      <img src={item.image} alt="" loading="lazy" />
+                      <figcaption>{item.labels.join(" · ")}</figcaption>
+                    </figure>
+                  ) : (
+                    <ol className="ei-service-evidence-flow" aria-label={`${item.eyebrow} stages`}>
+                      {item.labels.map((label) => (
+                        <li key={label}>{label}</li>
+                      ))}
+                    </ol>
+                  )}
+                </motion.article>
+              ))}
+            </div>
           </motion.div>
         </Container>
       </Section>
