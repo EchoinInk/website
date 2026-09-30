@@ -1,0 +1,251 @@
+@layer components {
+  .ei-keystone-case-study {
+    --keystone-blue: 107 132 255;
+    --keystone-cyan: 105 224 232;
+    --keystone-ink: 5 10 25;
+    overflow: clip;
+    background: rgb(var(--keystone-ink));
+    color: #f4f7ff;
+  }
+
+  .ei-keystone-shell {
+    width: min(calc(100% - 2rem), 76rem);
+    margin-inline: auto;
+  }
+
+  .ei-keystone-hero {
+    position: relative;
+    min-height: 46rem;
+    overflow: hidden;
+    padding: clamp(8rem, 13vw, 11rem) 0 clamp(5rem, 9vw, 8rem);
+    background:
+      radial-gradient(circle at 76% 22%, rgb(var(--keystone-blue) / 0.22), transparent 30rem),
+      linear-gradient(150deg, #0a1430 0%, rgb(var(--keystone-ink)) 62%);
+  }
+
+  .ei-keystone-hero-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.32;
+    background-image:
+      linear-gradient(rgb(150 171 255 / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(150 171 255 / 0.08) 1px, transparent 1px);
+    background-size: 4.5rem 4.5rem;
+    mask-image: linear-gradient(to bottom, black, transparent 88%);
+  }
+
+  .ei-keystone-hero-layout {
+    position: relative;
+    display: grid;
+    gap: clamp(3rem, 7vw, 6rem);
+    align-items: center;
+  }
+
+  .ei-keystone-kicker,
+  .ei-keystone-section-heading > p:first-child {
+    color: rgb(var(--keystone-cyan));
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ei-keystone-hero h1 {
+    max-width: 12ch;
+    margin-top: 1.25rem;
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(3.3rem, 7.5vw, 6.7rem);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+
+  .ei-keystone-hero-lede {
+    max-width: 42rem;
+    margin-top: 1.75rem;
+    color: rgb(220 228 250 / 0.78);
+    font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+    line-height: 1.68;
+  }
+
+  .ei-keystone-context {
+    margin-top: 2.25rem;
+    border-color: rgb(166 183 255 / 0.18);
+  }
+
+  .ei-keystone-context dt { color: rgb(190 202 239 / 0.62); }
+  .ei-keystone-context dd { color: #f4f7ff; }
+
+  .ei-keystone-workspace-artifact { min-width: 0; }
+
+  .ei-keystone-workspace-frame {
+    overflow: hidden;
+    border: 1px solid rgb(139 162 255 / 0.28);
+    border-radius: 1rem;
+    background: #071023;
+    box-shadow: 0 2.5rem 8rem rgb(0 0 0 / 0.44), inset 0 0 0 1px rgb(255 255 255 / 0.025);
+    transform: perspective(80rem) rotateY(-4deg) rotateX(1deg);
+  }
+
+  .ei-keystone-workspace-bar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(139 162 255 / 0.15);
+    padding: 0.8rem 1rem;
+    color: rgb(197 208 240 / 0.6);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .ei-keystone-workspace-bar span:first-child { color: white; font-weight: 700; }
+  .ei-keystone-workspace-body { display: grid; grid-template-columns: 7rem 1fr; min-height: 22rem; }
+
+  .ei-keystone-workspace-body aside {
+    display: flex;
+    flex-direction: column;
+    gap: 0.42rem;
+    border-right: 1px solid rgb(139 162 255 / 0.13);
+    padding: 1rem 0.65rem;
+    color: rgb(185 198 234 / 0.62);
+    font-size: 0.62rem;
+  }
+
+  .ei-keystone-workspace-body aside strong { margin-bottom: 0.7rem; color: white; font-size: 0.58rem; text-transform: uppercase; }
+  .ei-keystone-workspace-body aside span { border-radius: 0.35rem; padding: 0.42rem 0.5rem; }
+  .ei-keystone-workspace-body aside .is-active { background: rgb(var(--keystone-blue) / 0.22); color: white; }
+  .ei-keystone-workspace-main { padding: 1.2rem; }
+  .ei-keystone-workspace-heading span { display: block; color: rgb(var(--keystone-cyan)); font-size: 0.55rem; text-transform: uppercase; }
+  .ei-keystone-workspace-heading strong { display: block; margin-top: 0.25rem; font-size: 1.05rem; }
+  .ei-keystone-workspace-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; margin-top: 1rem; }
+  .ei-keystone-workspace-grid div,
+  .ei-keystone-workspace-lanes div { border: 1px solid rgb(139 162 255 / 0.14); border-radius: 0.55rem; background: rgb(15 27 57 / 0.8); }
+  .ei-keystone-workspace-grid div { min-height: 6rem; padding: 0.7rem; }
+  .ei-keystone-workspace-grid span,
+  .ei-keystone-workspace-lanes span { display: block; color: rgb(185 198 234 / 0.58); font-size: 0.52rem; text-transform: uppercase; }
+  .ei-keystone-workspace-grid strong { display: block; margin-top: 0.5rem; font-size: 0.68rem; }
+  .ei-keystone-workspace-grid i { display: block; width: 70%; height: 0.3rem; margin-top: 1.25rem; border-radius: 1rem; background: linear-gradient(90deg, rgb(var(--keystone-blue)), rgb(var(--keystone-cyan))); }
+  .ei-keystone-workspace-lanes { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0.55rem; margin-top: 0.55rem; }
+  .ei-keystone-workspace-lanes div { min-height: 7rem; padding: 0.7rem; }
+  .ei-keystone-workspace-lanes i { display: block; width: 100%; height: 0.48rem; margin-top: 0.62rem; border-radius: 0.25rem; background: rgb(144 165 232 / 0.12); }
+  .ei-keystone-workspace-artifact figcaption { display: grid; gap: 0.4rem; margin-top: 1.15rem; padding-left: 1rem; border-left: 1px solid rgb(var(--keystone-blue) / 0.5); }
+  .ei-keystone-workspace-artifact figcaption span { color: rgb(var(--keystone-cyan)); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .ei-keystone-workspace-artifact figcaption p { color: rgb(199 210 239 / 0.64); font-size: 0.82rem; line-height: 1.55; }
+
+  .ei-keystone-local-nav {
+    position: sticky;
+    z-index: 20;
+    top: var(--ei-header-height, 0);
+    overflow-x: auto;
+    border-block: 1px solid rgb(150 171 255 / 0.13);
+    background: rgb(var(--keystone-ink) / 0.93);
+    backdrop-filter: blur(1rem);
+  }
+  .ei-keystone-local-nav .ei-keystone-shell { display: flex; min-width: max-content; }
+  .ei-keystone-local-nav a { display: flex; gap: 0.5rem; padding: 1rem 1.15rem; color: rgb(208 218 246 / 0.7); font-size: 0.72rem; text-decoration: none; }
+  .ei-keystone-local-nav a:hover,
+  .ei-keystone-local-nav a:focus-visible { color: white; background: rgb(var(--keystone-blue) / 0.12); }
+  .ei-keystone-local-nav a span { color: rgb(var(--keystone-cyan)); }
+
+  .ei-keystone-section { padding: clamp(5rem, 10vw, 9rem) 0; }
+  .ei-keystone-section-heading { max-width: 58rem; }
+  .ei-keystone-section-heading > p:first-child { display: flex; gap: 0.75rem; }
+  .ei-keystone-section-heading h2 { max-width: 17ch; margin-top: 1.25rem; font-family: var(--ei-font-editorial); font-size: clamp(2.6rem, 5.5vw, 5rem); font-weight: 400; letter-spacing: -0.045em; line-height: 1; text-wrap: balance; }
+  .ei-keystone-section-intro { max-width: 52rem; margin-top: 1.5rem; color: rgb(211 220 245 / 0.7); font-size: 1.05rem; line-height: 1.72; }
+  .ei-keystone-section-context { background: #09142c; }
+  .ei-keystone-context-grid { display: grid; gap: 1px; margin-top: 4rem; background: rgb(144 165 232 / 0.14); }
+  .ei-keystone-context-grid article { padding: clamp(1.5rem, 3.5vw, 2.5rem); background: #09142c; }
+  .ei-keystone-context-grid h3 { color: rgb(var(--keystone-cyan)); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; }
+  .ei-keystone-context-grid p { margin-top: 1rem; color: rgb(219 226 247 / 0.74); line-height: 1.7; }
+
+  .ei-keystone-section-approach { background: #f0f3fb; color: #0a1530; }
+  .ei-keystone-section-approach .ei-keystone-section-intro { color: rgb(10 21 48 / 0.68); }
+  .ei-keystone-decision-grid { display: grid; gap: 1px; margin-top: 4rem; background: rgb(36 62 126 / 0.14); }
+  .ei-keystone-decision-grid article { display: flex; flex-direction: column; min-height: 20rem; padding: 2rem; background: #f7f9ff; }
+  .ei-keystone-decision-grid article > span { color: rgb(64 91 189); font-size: 0.68rem; letter-spacing: 0.15em; }
+  .ei-keystone-decision-grid h3 { margin-top: 3.5rem; font-family: var(--ei-font-editorial); font-size: 1.75rem; font-weight: 400; }
+  .ei-keystone-decision-grid p { margin-top: 1rem; color: rgb(10 21 48 / 0.68); line-height: 1.65; }
+  .ei-keystone-decision-grid small { margin-top: auto; padding-top: 2rem; color: rgb(64 91 189); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .ei-keystone-section-system { background: #071022; }
+  .ei-keystone-system-map { display: grid; gap: 1rem; margin-top: 4rem; }
+  .ei-keystone-system-core { display: flex; flex-direction: column; justify-content: flex-end; min-height: 18rem; border: 1px solid rgb(var(--keystone-blue) / 0.32); border-radius: 1rem; padding: clamp(1.5rem, 4vw, 3rem); background: radial-gradient(circle at 75% 10%, rgb(var(--keystone-blue) / 0.22), transparent 46%), #0b1732; }
+  .ei-keystone-system-core span { color: rgb(var(--keystone-cyan)); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .ei-keystone-system-core strong { margin-top: 0.8rem; font-family: var(--ei-font-editorial); font-size: clamp(2.4rem, 5vw, 4.5rem); font-weight: 400; }
+  .ei-keystone-system-core p { margin-top: 0.5rem; color: rgb(205 216 247 / 0.65); }
+  .ei-keystone-system-layers { display: grid; gap: 0.75rem; }
+  .ei-keystone-system-layers article { display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; border: 1px solid rgb(144 165 232 / 0.16); border-radius: 0.75rem; padding: 1.25rem; background: rgb(15 29 60 / 0.72); }
+  .ei-keystone-system-layers article > span { color: rgb(var(--keystone-cyan)); font-size: 0.65rem; }
+  .ei-keystone-system-layers h3 { font-size: 1rem; }
+  .ei-keystone-system-layers p { margin-top: 0.35rem; color: rgb(205 216 247 / 0.62); font-size: 0.88rem; }
+  .ei-keystone-artifact-note { margin-top: 1rem; border-left: 2px solid rgb(var(--keystone-cyan)); padding: 1.1rem 1.25rem; background: rgb(var(--keystone-blue) / 0.08); }
+  .ei-keystone-artifact-note p { margin-top: 0.4rem; color: rgb(205 216 247 / 0.68); line-height: 1.6; }
+
+  .ei-keystone-section-state { background: #0a1731; }
+  .ei-keystone-state-grid { display: grid; gap: 4rem; }
+  .ei-keystone-state-list { border-top: 1px solid rgb(144 165 232 / 0.18); }
+  .ei-keystone-state-list article { padding: 1.75rem 0; border-bottom: 1px solid rgb(144 165 232 / 0.18); }
+  .ei-keystone-state-list span { color: rgb(var(--keystone-cyan)); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .ei-keystone-state-list h3 { margin-top: 0.7rem; font-family: var(--ei-font-editorial); font-size: 1.65rem; font-weight: 400; }
+  .ei-keystone-state-list p { margin-top: 0.65rem; color: rgb(211 220 245 / 0.68); line-height: 1.65; }
+  .ei-keystone-section-demonstrates { background: #edf1fa; color: #0a1530; }
+  .ei-keystone-demonstrates-grid { display: grid; gap: 1px; margin-top: 4rem; background: rgb(36 62 126 / 0.14); }
+  .ei-keystone-demonstrates-grid p { min-height: 10rem; padding: 1.5rem; background: #f6f8fd; font-family: var(--ei-font-editorial); font-size: 1.45rem; line-height: 1.35; }
+  .ei-keystone-section-boundary { background: #061022; }
+  .ei-keystone-boundary-grid { display: grid; gap: 3rem; }
+  .ei-keystone-boundary-grid h2 { max-width: 13ch; margin-top: 1rem; font-family: var(--ei-font-editorial); font-size: clamp(2.6rem, 5vw, 4.6rem); font-weight: 400; letter-spacing: -0.04em; line-height: 1; }
+  .ei-keystone-boundary-grid > div:last-child { border-top: 1px solid rgb(144 165 232 / 0.2); padding-top: 1.5rem; }
+  .ei-keystone-boundary-grid > div:last-child p { color: rgb(218 226 248 / 0.72); line-height: 1.72; }
+  .ei-keystone-boundary-grid > div:last-child p + p { margin-top: 1.25rem; }
+  .ei-keystone-next-step { background: linear-gradient(145deg, #10285a, #071126); text-align: center; }
+  .ei-keystone-next-step h2 { max-width: 18ch; margin: 1.25rem auto 0; font-family: var(--ei-font-editorial); font-size: clamp(2.7rem, 6vw, 5.6rem); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98; }
+  .ei-keystone-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2.5rem; }
+  .ei-keystone-back-link { display: inline-block; margin-top: 2rem; color: rgb(211 220 245 / 0.7); font-size: 0.78rem; }
+  .ei-keystone-project-navigation { width: min(calc(100% - 2rem), 76rem); margin: 0 auto; padding: 0 0 clamp(4rem, 8vw, 7rem); }
+
+  @media (min-width: 760px) {
+    .ei-keystone-context-grid,
+    .ei-keystone-decision-grid,
+    .ei-keystone-demonstrates-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ei-keystone-system-map { grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr); }
+    .ei-keystone-boundary-grid { grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 0.7fr); justify-content: space-between; }
+  }
+
+  @media (min-width: 1040px) {
+    .ei-keystone-hero-layout { grid-template-columns: minmax(0, 0.92fr) minmax(28rem, 1.08fr); }
+    .ei-keystone-state-grid { grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr); }
+  }
+
+  @media (max-width: 639px) {
+    .ei-keystone-shell { width: min(calc(100% - 1.25rem), 76rem); }
+    .ei-keystone-hero { min-height: 0; padding-top: 7rem; }
+    .ei-keystone-hero h1 { font-size: clamp(3rem, 15vw, 4.2rem); }
+    .ei-keystone-context div[data-field="capabilities"],
+    .ei-keystone-context div[data-field="project-scope"] { display: none; }
+    .ei-keystone-workspace-frame { transform: none; }
+    .ei-keystone-workspace-body { grid-template-columns: 4.5rem 1fr; min-height: 18rem; }
+    .ei-keystone-workspace-body aside { padding-inline: 0.4rem; }
+    .ei-keystone-workspace-body aside strong { font-size: 0.48rem; }
+    .ei-keystone-workspace-body aside span { overflow: hidden; padding-inline: 0.3rem; font-size: 0.52rem; text-overflow: ellipsis; }
+    .ei-keystone-workspace-main { padding: 0.7rem; }
+    .ei-keystone-workspace-grid { grid-template-columns: 1fr; }
+    .ei-keystone-workspace-grid div { min-height: 3.8rem; }
+    .ei-keystone-workspace-grid i { margin-top: 0.65rem; }
+    .ei-keystone-workspace-lanes { grid-template-columns: 1fr; }
+    .ei-keystone-workspace-lanes div { min-height: 4.5rem; }
+    .ei-keystone-workspace-lanes div:last-child { display: none; }
+    .ei-keystone-section { padding-block: 4.5rem; }
+    .ei-keystone-section-heading h2 { font-size: clamp(2.4rem, 12vw, 3.25rem); }
+    .ei-keystone-decision-grid article { min-height: 0; }
+    .ei-keystone-decision-grid h3 { margin-top: 2rem; }
+    .ei-keystone-decision-grid small { margin-top: 1.5rem; }
+    .ei-keystone-demonstrates-grid p { min-height: 0; }
+    .ei-keystone-actions { align-items: stretch; flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ei-keystone-workspace-frame { transform: none; }
+    .ei-keystone-local-nav { scroll-behavior: auto; }
+  }
+}

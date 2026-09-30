@@ -17,7 +17,6 @@ function renderProject(projectTitle: "Keystone" | "Codexia") {
 
 describe("compact project overviews", () => {
   it.each([
-    ["Keystone", "Internal Project", "Exploratory Study", "/works"],
     ["Codexia", "Independent Product", "Prototype", "/works"],
   ] as const)("publishes truthful context and onward paths for %s", (title, provenance, status, workHref) => {
     const { container } = renderProject(title);
