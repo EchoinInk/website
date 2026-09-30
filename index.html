@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Echo in Ink — Creative Technology Studio</title>
-    <meta name="description" content="Echo in Ink brings strategy, design and development together to create thoughtful brands, websites, digital products and systems." />
+    <title>Echo in Ink — Creative Technology Studio in Auckland</title>
+    <meta name="description" content="Auckland creative technology studio bringing strategy, design and development together for thoughtful brands, websites, digital products and systems across New Zealand." />
     <meta name="author" content="Echo in Ink" />
     <meta name="theme-color" content="#f3f0f7" />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="preload" href="/home-hero-desktop.webp" as="image" media="(min-width: 769px)" />
+    <link rel="preload" href="/home-hero-mobile.webp" as="image" media="(max-width: 768px)" />
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,16 +20,15 @@
     <!-- Neue Montreal (body/structural) is loaded via @font-face from local assets -->
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
     
-    <!-- Critical font preloading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Geist+Mono:wght@400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Geist+Mono:wght@400&display=swap"></noscript>
+    <!-- Critical structural face; remaining local weights load on demand. -->
+    <link rel="preload" href="/fonts/neue-montreal/NeueMontreal-Regular.otf" as="font" type="font/otf" crossorigin />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Echo in Ink — Creative Technology Studio" />
-    <meta name="twitter:title" content="Echo in Ink — Creative Technology Studio" />
-    <meta property="og:description" content="Echo in Ink brings strategy, design and development together to create thoughtful brands, websites, digital products and systems." />
-    <meta name="twitter:description" content="Echo in Ink brings strategy, design and development together to create thoughtful brands, websites, digital products and systems." />
+    <meta property="og:title" content="Echo in Ink — Creative Technology Studio in Auckland" />
+    <meta name="twitter:title" content="Echo in Ink — Creative Technology Studio in Auckland" />
+    <meta property="og:description" content="Auckland creative technology studio bringing strategy, design and development together for thoughtful brands, websites, digital products and systems across New Zealand." />
+    <meta name="twitter:description" content="Auckland creative technology studio bringing strategy, design and development together for thoughtful brands, websites, digital products and systems across New Zealand." />
     <meta property="og:image" content="https://echoin.ink/home-hero-desktop.webp" />
     <meta property="og:image:alt" content="Echo in Ink atmospheric studio artwork" />
     <meta name="twitter:image" content="https://echoin.ink/home-hero-desktop.webp" />

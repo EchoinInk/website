@@ -16,6 +16,7 @@ export function HeroBackground() {
         <img
           src={homeHero}
           alt=""
+          loading="eager"
           className="ei-home-hero-image"
         />
       </picture>

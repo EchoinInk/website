@@ -26,10 +26,10 @@ describe("launch metadata", () => {
     });
 
     await waitFor(() => {
-      expect(document.title).toBe("Echo in Ink — Creative Technology Studio");
+      expect(document.title).toBe("Echo in Ink — Creative Technology Studio in Auckland");
       expect(document.querySelector('meta[name="description"]')).toHaveAttribute(
         "content",
-        expect.stringContaining("strategy, design and development"),
+        expect.stringMatching(/Auckland.*New Zealand/),
       );
       expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
         "href",
@@ -42,6 +42,40 @@ describe("launch metadata", () => {
       expect(document.querySelector('meta[name="twitter:card"]')).toHaveAttribute(
         "content",
         "summary_large_image",
+      );
+
+      const structuredData = JSON.parse(
+        document.querySelector('script[type="application/ld+json"]')?.textContent ?? "{}",
+      );
+      expect(structuredData["@graph"]).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            "@type": ["Organization", "ProfessionalService"],
+            sameAs: ["https://github.com/EchoinInk"],
+          }),
+          expect.objectContaining({ "@type": "Person", name: "Alexandria Farley" }),
+        ]),
+      );
+    });
+  });
+
+  it("publishes truthful project schema on case studies", async () => {
+    renderRoute("/works/codexia");
+    await screen.findByRole("heading", {
+      level: 1,
+      name: "Engineering work with authority, evidence and recovery built in.",
+    });
+
+    await waitFor(() => {
+      const structuredData = JSON.parse(
+        document.querySelector('script[type="application/ld+json"]')?.textContent ?? "{}",
+      );
+      expect(structuredData).toEqual(
+        expect.objectContaining({
+          "@type": "CreativeWork",
+          name: "Codexia",
+          url: "https://echoin.ink/works/codexia",
+        }),
       );
     });
   });

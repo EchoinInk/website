@@ -8,13 +8,15 @@ import { HomeSelectedWork } from "@/components/home/HomeSelectedWork";
 import { HomeStartHere } from "@/components/home/HomeStartHere";
 import { WhatWeCreate } from "@/components/home/HomeWhatWeCreate";
 import { PageShell } from "@/components/layout/PageShell";
+import { homepageStructuredData } from "@/lib/structuredData";
 
 export function HomePage() {
   return (
     <PageShell
       id="main-content"
-      title="Echo in Ink — Creative Technology Studio"
-      description="Echo in Ink brings strategy, design and development together to create thoughtful brands, websites, digital products and systems."
+      title="Echo in Ink — Creative Technology Studio in Auckland"
+      description="Auckland creative technology studio bringing strategy, design and development together for thoughtful brands, websites, digital products and systems across New Zealand."
+      structuredData={homepageStructuredData}
       atmosphere="default"
       theme="light"
       footerTheme="light"

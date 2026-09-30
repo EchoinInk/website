@@ -2,6 +2,7 @@ import { useLayoutEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import Footer from "@/components/navigation/Footer";
+import type { StructuredData } from "@/lib/structuredData";
 
 export type PageAtmosphere = "default" | "identity" | "sessions" | "worlds" | "works" | "studio";
 
@@ -21,6 +22,7 @@ interface PageShellProps {
   footerTheme?: "light" | "deep";
   footerVariant?: "full" | "compact";
   withTopSpacing?: boolean;
+  structuredData?: StructuredData | readonly StructuredData[];
 }
 
 const atmosphereClasses: Record<PageAtmosphere, string> = {
@@ -56,7 +58,8 @@ export function PageShell({
   withFooter = true,
   footerTheme = "light",
   footerVariant = "full",
-  withTopSpacing = true
+  withTopSpacing = true,
+  structuredData,
 }: PageShellProps) {
   const { pathname } = useLocation();
   const resolvedCanonicalPath = canonicalPath === undefined ? pathname : canonicalPath;
@@ -102,6 +105,11 @@ export function PageShell({
           <meta name="twitter:title" content={title} />
           {description && <meta name="twitter:description" content={description} />}
           <meta name="twitter:image" content={socialImageUrl} />
+          {structuredData && (
+            <script type="application/ld+json">
+              {JSON.stringify(structuredData)}
+            </script>
+          )}
         </Helmet>
       )}
 
