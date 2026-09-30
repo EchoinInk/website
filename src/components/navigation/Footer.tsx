@@ -56,10 +56,10 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
             className="grid gap-7 py-7 md:grid-cols-[1fr_auto] md:items-end md:gap-12 md:py-8"
           >
             <div>
-              <span className="ei-type-footer-brand mb-2 block font-structural text-[var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
+              <span className="ei-type-footer-brand mb-2 block font-structural text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
                 Echo in Ink
               </span>
-              <p className="ei-type-footer-copy max-w-[48ch] font-structural text-[var(--ei-type-size-functional)] leading-[1.7]">
+              <p className="ei-type-footer-copy max-w-[48ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
                 Strategy, design, and development for brands, digital experiences, products, and
                 systems.
               </p>
@@ -70,7 +70,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 <li>
                   <Link
                     to="/"
-                    className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[var(--ei-type-size-functional)] transition-colors duration-400"
+                    className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[length:var(--ei-type-size-functional)] transition-colors duration-400"
                   >
                     Home
                   </Link>
@@ -78,7 +78,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 <li>
                   <Link
                     to="/works"
-                    className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[var(--ei-type-size-functional)] transition-colors duration-400"
+                    className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[length:var(--ei-type-size-functional)] transition-colors duration-400"
                   >
                     Work
                   </Link>
@@ -86,7 +86,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 <li>
                   <Link
                     to="/contact"
-                    className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[var(--ei-type-size-functional)] transition-colors duration-400"
+                    className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[length:var(--ei-type-size-functional)] transition-colors duration-400"
                   >
                     Project enquiries
                   </Link>
@@ -95,12 +95,12 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
             </nav>
 
             <div className="border-t border-[var(--ei-theme-border)] pt-4 md:col-span-2 md:flex md:items-center md:justify-between">
-              <span className="ei-type-footer-meta block font-structural text-[var(--ei-type-size-meta)] tracking-[0.1em]">
+              <span className="ei-type-footer-meta block font-structural text-[length:var(--ei-type-size-meta)] tracking-[0.1em]">
                 © {new Date().getFullYear()} Echo in Ink
               </span>
               <a
                 href="mailto:hello@echoin.ink"
-                className="ei-type-footer-meta mt-2 inline-flex min-h-11 items-center font-structural text-[var(--ei-type-size-meta)] tracking-[0.08em] md:mt-0"
+                className="ei-type-footer-meta mt-2 inline-flex min-h-11 items-center font-structural text-[length:var(--ei-type-size-meta)] tracking-[0.08em] md:mt-0"
               >
                 hello@echoin.ink
               </a>
@@ -123,11 +123,11 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
               <div className="grid grid-cols-2 items-start gap-8 md:grid-cols-[1.05fr_0.95fr_0.85fr_1.1fr] md:gap-8 lg:gap-10">
                 {/* Col 1 — Brand */}
                 <div className="order-1 col-span-2 md:order-1 md:col-span-1">
-                  <span className="ei-type-footer-brand mb-3 block font-structural text-[var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
+                  <span className="ei-type-footer-brand mb-3 block font-structural text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
                     Echo in Ink
                   </span>
 
-                  <p className="ei-type-footer-copy max-w-[31ch] font-structural text-[var(--ei-type-size-functional)] leading-[1.7]">
+                  <p className="ei-type-footer-copy max-w-[31ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
                     Strategy, design, and development brought together for brands, digital
                     experiences, products, and systems.
                   </p>
@@ -135,7 +135,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
 
                 {/* Col 2 — Navigation */}
                 <nav className="order-3 md:order-2" aria-label="Footer primary navigation">
-                  <span className="ei-type-footer-label mb-4 block font-mono text-[var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                  <span className="ei-type-footer-label mb-4 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Navigation
                   </span>
 
@@ -155,7 +155,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
 
                 {/* Col 3 — Connect */}
                 <div className="order-2 md:order-3">
-                  <span className="ei-type-footer-label mb-4 block font-mono text-[var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                  <span className="ei-type-footer-label mb-4 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Connect
                   </span>
 
@@ -166,23 +166,23 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                     hello@echoin.ink
                   </a>
 
-                  <span className="ei-type-footer-copy mb-5 block font-structural text-[var(--ei-type-size-functional)]">
+                  <span className="ei-type-footer-copy mb-5 block font-structural text-[length:var(--ei-type-size-functional)]">
                     Auckland, New Zealand
                   </span>
 
-                  <span className="ei-type-footer-copy block max-w-[28ch] font-structural text-[var(--ei-type-size-functional)] leading-[1.7]">
+                  <span className="ei-type-footer-copy block max-w-[28ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
                     Project enquiries and Strategy Session requests begin on their dedicated pages.
                   </span>
                 </div>
 
                 {/* Col 4 — Creative resources */}
                 <div className="relative order-4 md:order-4">
-                  <span className="ei-type-footer-label mb-4 block font-mono text-[var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                  <span className="ei-type-footer-label mb-4 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Creative Systems &amp; Tools
                   </span>
 
                   <div className="flex items-start justify-between gap-5">
-                    <p className="ei-type-footer-copy mb-4 max-w-[32ch] font-structural text-[var(--ei-type-size-functional)] leading-[1.7]">
+                    <p className="ei-type-footer-copy mb-4 max-w-[32ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
                       Prompt systems, reference frameworks, direction kits, and practical
                       experiments for clearer creative decisions.
                     </p>
@@ -194,7 +194,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
 
                   <Link
                     to="/systems"
-                    className="ei-type-footer-link group inline-flex min-h-11 max-w-[34ch] items-center gap-2 font-mono text-[var(--ei-type-size-functional)] uppercase tracking-[0.14em] transition-colors duration-400"
+                    className="ei-type-footer-link group inline-flex min-h-11 max-w-[34ch] items-center gap-2 font-mono text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.14em] transition-colors duration-400"
                   >
                     <span>Explore frameworks and experiments</span>
                     <span className="shrink-0 transition-transform duration-400 group-hover:translate-x-0.5">
@@ -218,7 +218,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
               }}
               className="border-t border-[var(--ei-theme-border)] py-5"
             >
-              <span className="ei-type-footer-label mb-3 block font-mono text-[var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+              <span className="ei-type-footer-label mb-3 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                 Explore deeper
               </span>
 
@@ -227,7 +227,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="ei-type-footer-meta inline-flex min-h-11 items-center font-structural text-[var(--ei-type-size-meta)] tracking-[0.06em] opacity-75 transition-[color,opacity] duration-400 hover:opacity-100 focus-visible:opacity-100"
+                      className="ei-type-footer-meta inline-flex min-h-11 items-center font-structural text-[length:var(--ei-type-size-meta)] tracking-[0.06em] opacity-75 transition-[color,opacity] duration-400 hover:opacity-100 focus-visible:opacity-100"
                     >
                       {link.label}
                     </Link>
@@ -259,11 +259,11 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
               />
 
               <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
-                <span className="ei-type-footer-meta font-structural text-[var(--ei-type-size-meta)] tracking-[0.1em]">
+                <span className="ei-type-footer-meta font-structural text-[length:var(--ei-type-size-meta)] tracking-[0.1em]">
                   © {new Date().getFullYear()} Echo in Ink
                 </span>
 
-                <span className="ei-type-footer-meta font-structural text-[var(--ei-type-size-meta)] uppercase tracking-[0.12em]">
+                <span className="ei-type-footer-meta font-structural text-[length:var(--ei-type-size-meta)] uppercase tracking-[0.12em]">
                   Strategy · Design · Development
                 </span>
               </div>

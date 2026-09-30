@@ -18,7 +18,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import {
   primaryCapabilities,
   projectInquiryTypeOptions,
-  strategySessionsEngagement,
+  strategySessionsEngagement
 } from "@/data/servicesContent";
 import { siteActionLabels } from "@/data/siteNavigation";
 import {
@@ -31,8 +31,9 @@ import {
   validateContactField,
   validateContactForm,
   type ContactFieldErrors,
-  type ContactFormState,
+  type ContactFormState
 } from "@/lib/contactForm";
+import { consumeFunnelAttribution, trackFunnelEvent } from "@/lib/analytics";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const trustItems: Array<{
@@ -43,18 +44,18 @@ const trustItems: Array<{
   {
     title: "A direct response",
     description: "Every project enquiry is read and answered personally.",
-    icon: "threadBeacon",
+    icon: "threadBeacon"
   },
   {
     title: "No solution required",
     description: "Bring the problem, opportunity or change—not a technical diagnosis.",
-    icon: "synthesisStar",
+    icon: "synthesisStar"
   },
   {
     title: "Private by default",
     description: "Your details and project context are kept private.",
-    icon: "haloGate",
-  },
+    icon: "haloGate"
+  }
 ];
 
 type ContactFieldEvent =
@@ -74,13 +75,13 @@ function buildProjectMessage(outcome: string, changedContext: string, timing: st
     changedContext.trim() || "Not provided",
     "",
     "Timing",
-    timing.trim() || "Not specified",
+    timing.trim() || "Not specified"
   ].join("\n");
 }
 
 function focusFirstInvalidField(errors: ContactFieldErrors) {
   const firstField = ["name", "email", "projectUrl", "message"].find(
-    (field) => errors[field as keyof ContactFieldErrors],
+    (field) => errors[field as keyof ContactFieldErrors]
   );
   if (firstField) document.getElementById(firstField)?.focus();
 }
@@ -90,7 +91,7 @@ export function ContactPage() {
   const prefersReducedMotion = useReducedMotion();
   const [formState, setFormState] = useState<ContactFormState>("idle");
   const [formData, setFormData] = useState(() =>
-    createEmptyContactFormData({ exploration: "Project Inquiry" }),
+    createEmptyContactFormData({ exploration: "Project Inquiry" })
   );
   const [changedContext, setChangedContext] = useState("");
   const [timing, setTiming] = useState("");
@@ -99,12 +100,14 @@ export function ContactPage() {
   const [announcement, setAnnouncement] = useState("");
   const statusRef = useRef<HTMLDivElement | null>(null);
   const successRef = useRef<HTMLDivElement | null>(null);
+  const enquiryStartedRef = useRef(false);
+  const enquiryAttributionRef = useRef<ReturnType<typeof consumeFunnelAttribution>>();
 
   const reveal = {
     variants: staggerContainer(STAGGER.loose, 0),
     initial: prefersReducedMotion ? false : "hidden",
     whileInView: "visible",
-    viewport: VIEWPORT.normal,
+    viewport: VIEWPORT.normal
   } as const;
 
   const hasFieldErrors = useMemo(() => Object.values(fieldErrors).some(Boolean), [fieldErrors]);
@@ -120,7 +123,7 @@ export function ContactPage() {
       exploration:
         current.exploration && current.exploration !== "Project Inquiry"
           ? current.exploration
-          : preselectedInquiry,
+          : preselectedInquiry
     }));
   }, [searchParams]);
 
@@ -165,7 +168,13 @@ export function ContactPage() {
     try {
       await submitContactForm({
         ...formData,
-        message: projectMessage,
+        message: projectMessage
+      });
+      trackFunnelEvent({
+        event: "enquiry_submit",
+        path: window.location.pathname,
+        ...enquiryAttributionRef.current,
+        journey: "form_completion"
       });
       setFormState("success");
       setStatusMessage(CONTACT_SUCCESS_MESSAGE);
@@ -183,8 +192,23 @@ export function ContactPage() {
     }
   };
 
+  const markEnquiryStarted = () => {
+    if (!enquiryStartedRef.current) {
+      enquiryStartedRef.current = true;
+      enquiryAttributionRef.current = consumeFunnelAttribution();
+      trackFunnelEvent({
+        event: "enquiry_start",
+        path: window.location.pathname,
+        ...enquiryAttributionRef.current
+      });
+    }
+  };
+
   const handleChange = (event: ContactFieldEvent) => {
     const { name, value } = event.target;
+
+    if (name !== "company") markEnquiryStarted();
+
     setFormData((current) => ({ ...current, [name]: value }));
     setFieldErrors((current) => {
       if (!current[name as keyof ContactFieldErrors]) return current;
@@ -381,7 +405,10 @@ export function ContactPage() {
                         name="projectContext"
                         label="What has changed or isn't working?"
                         value={changedContext}
-                        onChange={(event) => setChangedContext(event.target.value)}
+                        onChange={(event) => {
+                          markEnquiryStarted();
+                          setChangedContext(event.target.value);
+                        }}
                         hint="Optional. Share why this matters now or what prompted the enquiry."
                         rows={5}
                         disabled={formState === "submitting"}
@@ -394,7 +421,10 @@ export function ContactPage() {
                           name="projectTiming"
                           label="When are you hoping to begin?"
                           value={timing}
-                          onChange={(event) => setTiming(event.target.value)}
+                          onChange={(event) => {
+                            markEnquiryStarted();
+                            setTiming(event.target.value);
+                          }}
                           hint="Optional. A rough month, date or ‘flexible’ is enough."
                           autoComplete="off"
                           disabled={formState === "submitting"}

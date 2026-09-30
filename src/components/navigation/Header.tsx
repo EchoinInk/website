@@ -163,7 +163,7 @@ export function Header() {
                     aria-current={active ? "page" : undefined}
                     className={`
                       group relative pb-1.5
-                      font-structural text-[var(--ei-type-size-navigation)] font-medium leading-none uppercase tracking-[0.14em] lg:tracking-[0.17em]
+                      font-structural text-[length:var(--ei-type-size-navigation)] font-medium leading-none uppercase tracking-[0.14em] lg:tracking-[0.17em]
                       transition-colors duration-500
                       ${
                         active
@@ -201,7 +201,7 @@ export function Header() {
                 border border-[var(--ei-theme-border)]
                 bg-[var(--ei-theme-surface)]
                 px-3 py-2
-                font-structural text-[var(--ei-type-size-navigation)] font-semibold uppercase tracking-[0.14em] lg:px-3.5 lg:tracking-[0.19em]
+                font-structural text-[length:var(--ei-type-size-navigation)] font-semibold uppercase tracking-[0.14em] lg:px-3.5 lg:tracking-[0.19em]
                 transition-all duration-500
                 hover:border-[var(--ei-theme-focus)]
                 hover:bg-[var(--ei-theme-surface-elevated)]
@@ -228,7 +228,7 @@ export function Header() {
             aria-expanded={menuOpen}
             className="
               ei-focus-rounded flex min-h-[44px] min-w-[60px] items-center justify-end rounded-full
-              font-structural text-[var(--ei-type-size-functional)] font-medium uppercase tracking-[0.18em]
+              font-structural text-[length:var(--ei-type-size-functional)] font-medium uppercase tracking-[0.18em]
               text-[var(--ei-header-text)]
               transition-colors duration-500
               hover:text-[var(--ei-header-text-hover)]
@@ -298,7 +298,7 @@ export function Header() {
                 type="button"
                 onClick={closeMenu}
                 aria-label="Close navigation menu"
-                className="ei-focus-rounded flex min-h-[44px] min-w-[60px] items-center justify-end rounded-full font-structural text-[var(--ei-type-size-functional)] font-medium uppercase tracking-[0.18em] text-[var(--ei-header-text)] transition-colors duration-500 hover:text-[var(--ei-header-text-hover)]"
+                className="ei-focus-rounded flex min-h-[44px] min-w-[60px] items-center justify-end rounded-full font-structural text-[length:var(--ei-type-size-functional)] font-medium uppercase tracking-[0.18em] text-[var(--ei-header-text)] transition-colors duration-500 hover:text-[var(--ei-header-text-hover)]"
               >
                 Close
               </button>
@@ -319,7 +319,7 @@ export function Header() {
             >
               <span
                 id={mobileMenuTitleId}
-                className="mb-6 font-structural text-[var(--ei-type-size-label)] uppercase tracking-[0.28em] text-[var(--ei-header-text-muted)]"
+                className="mb-6 font-structural text-[length:var(--ei-type-size-label)] uppercase tracking-[0.28em] text-[var(--ei-header-text-muted)]"
               >
                 Navigation
               </span>
@@ -399,7 +399,7 @@ export function Header() {
                     border border-[rgb(var(--ei-halo-blue-rgb)/0.24)]
                     bg-[linear-gradient(to_bottom,rgb(var(--ei-midnight-rgb)/0.64),rgb(var(--ei-void-rgb)/0.9))]
                     px-6 py-3
-                    font-structural text-[var(--ei-type-size-label)] font-medium uppercase tracking-[0.2em]
+                    font-structural text-[length:var(--ei-type-size-label)] font-medium uppercase tracking-[0.2em]
                     text-[var(--ei-button-text-primary)]
                     shadow-[inset_0_1px_0_rgb(var(--ei-ice-white-rgb)/0.07),0_0_24px_rgb(var(--ei-halo-blue-rgb)/0.075)]
                     transition-all duration-500

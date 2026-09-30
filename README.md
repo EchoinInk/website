@@ -176,6 +176,8 @@ Configure these bindings for every Cloudflare Pages environment that needs worki
 - `CONTACT_FROM_EMAIL`
 - `CONTACT_TO_EMAIL`
 
+For anonymous conversion measurement, also add the Analytics Engine binding `ANALYTICS` with the dataset `echo_funnel`. Event names, privacy boundaries, verification steps and the stable dataset schema are documented in [`docs/analytics/funnel-events.md`](docs/analytics/funnel-events.md). The current launch gate is documented in [`docs/launch-readiness.md`](docs/launch-readiness.md).
+
 The `CONTACT_FROM_EMAIL` sender domain must be verified with Resend before live form delivery can succeed. Local Vite preview serves only the built SPA and does not execute Pages Functions.
 
 ---

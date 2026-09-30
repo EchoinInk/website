@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import { lazy, Suspense } from 'react';
 import { Layout } from '@/components/layout/Layout';
+import { FunnelAnalytics } from '@/components/system/FunnelAnalytics';
 import { PageTransition } from '@/components/system/PageTransition';
 
 const HomePage = lazy(() => import('@/pages/HomePage').then((module) => ({ default: module.HomePage })));
@@ -66,6 +67,7 @@ function App() {
   return (
     <HelmetProvider>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <FunnelAnalytics />
         <a
           href="#main-content"
           className="ei-type-color-primary sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[9999] focus:rounded focus:bg-[var(--ei-theme-surface)] focus:px-4 focus:py-2 focus:outline-none focus:ring-2 focus:ring-[var(--ei-theme-focus)]"
