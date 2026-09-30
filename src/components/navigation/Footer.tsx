@@ -24,7 +24,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
       {/* Top boundary */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 right-0 top-0 h-px"
+        className="ei-footer-top-boundary pointer-events-none absolute left-0 right-0 top-0 h-px"
         style={{
           background:
             "linear-gradient(90deg, transparent 0%, var(--ei-theme-border) 30%, var(--ei-theme-border) 70%, transparent 100%)"
@@ -34,7 +34,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
       {/* Atmospheric depth */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 h-[50%] w-[50%] -translate-x-1/2"
+        className="ei-footer-atmosphere pointer-events-none absolute left-1/2 top-0 h-[50%] w-[50%] -translate-x-1/2"
         style={{
           background:
             "radial-gradient(ellipse 50% 50% at 50% 0%, color-mix(in srgb, var(--ei-theme-link) 7%, transparent) 0%, transparent 70%)",

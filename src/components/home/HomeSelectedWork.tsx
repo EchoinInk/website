@@ -19,7 +19,8 @@ export function HomeSelectedWork() {
   return (
     <Section
       theme="mist"
-      transitionTo="light"
+      transition="soft"
+      transitionTo="lightElevated"
       spacing="none"
       className="ei-home-selected-work"
       aria-labelledby="home-selected-work-heading"

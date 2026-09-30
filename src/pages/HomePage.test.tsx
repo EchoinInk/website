@@ -88,13 +88,33 @@ describe("homepage reference implementation", () => {
       "light"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
-      undefined,
-      "light",
-      "light",
-      "light",
-      "light",
-      "light",
+      "lightElevated",
       "mist",
+      "lightElevated",
+      "light",
+      "light",
+      "light",
+      "light",
+      undefined
+    ]);
+    expect(sections.map((section) => section.dataset.transition)).toEqual([
+      "soft",
+      "chapter",
+      "soft",
+      "chapter",
+      "atmospheric",
+      "atmospheric",
+      "motif",
+      undefined
+    ]);
+    expect(sections.map((section) => section.dataset.transitionMotif)).toEqual([
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      "node",
+      undefined,
       undefined
     ]);
 

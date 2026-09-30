@@ -27,7 +27,8 @@ export function HomeCredibility() {
   return (
     <Section
       theme="lightElevated"
-      transitionTo="light"
+      transition="chapter"
+      transitionTo="mist"
       spacing="none"
       className="ei-home-credibility"
       aria-label="How Echo in Ink works"

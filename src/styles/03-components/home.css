@@ -2657,6 +2657,10 @@
   }
 
   /* C — retain the orbital language at a more intentional scale. */
+  .ei-home-page .ei-home-credibility {
+    border-bottom: 0;
+  }
+
   .ei-home-page .ei-home-credibility-grid article > svg {
     width: 2.625rem;
     height: 2.625rem;
@@ -2896,6 +2900,30 @@
     row-gap: 1.5rem;
   }
 
+  .ei-home-page .ei-footer[data-variant="home"] {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ei-surface-emphasis) 48%, var(--ei-surface-lavender)),
+      color-mix(in srgb, var(--ei-surface-soft) 92%, var(--ei-moonlight-blue)) 10rem
+    );
+  }
+
+  .ei-home-page .ei-footer[data-variant="home"] .ei-footer-top-boundary {
+    right: 11%;
+    left: 11%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--ei-theme-border) 72%, transparent) 18%,
+      color-mix(in srgb, var(--ei-theme-border) 72%, transparent) 82%,
+      transparent
+    ) !important;
+  }
+
+  .ei-home-page .ei-footer[data-variant="home"] .ei-footer-atmosphere {
+    display: none;
+  }
+
   @media (min-width: 768px) {
     .ei-home-page .ei-footer[data-variant="home"] .ei-type-footer-link {
       min-height: 2.25rem;
@@ -2970,6 +2998,11 @@
 
     .ei-home-page .ei-home-closing-copy {
       padding: 1.75rem 1.5rem;
+    }
+
+    .ei-home-page .ei-footer[data-variant="home"] .ei-footer-top-boundary {
+      right: 14%;
+      left: 14%;
     }
   }
 }

@@ -19,22 +19,22 @@
   /* ── Legacy / Soft Atmospheric Glows ─────────────────────────── */
   .ei-glow-violet-soft {
     background: radial-gradient(
-        ellipse 68% 60% at 35% 48%,
-        rgb(var(--ei-violet-rgb) / 0.07) 0%,
-        rgb(var(--ei-midnight-rgb) / 0.04) 50%,
-        transparent 80%
-      );
+      ellipse 68% 60% at 35% 48%,
+      rgb(var(--ei-violet-rgb) / 0.07) 0%,
+      rgb(var(--ei-midnight-rgb) / 0.04) 50%,
+      transparent 80%
+    );
     filter: blur(72px);
     mix-blend-mode: screen;
   }
 
   .ei-aurora-cyan-glow {
     background: radial-gradient(
-        ellipse 60% 66% at 58% 46%,
-        rgb(var(--ei-halo-blue-rgb) / 0.07) 0%,
-        rgb(var(--ei-midnight-rgb) / 0.035) 54%,
-        transparent 82%
-      );
+      ellipse 60% 66% at 58% 46%,
+      rgb(var(--ei-halo-blue-rgb) / 0.07) 0%,
+      rgb(var(--ei-midnight-rgb) / 0.035) 54%,
+      transparent 82%
+    );
     filter: blur(60px);
     mix-blend-mode: screen;
   }
@@ -43,11 +43,11 @@
   /* Ambient violet glow — primary brand atmosphere */
   .ei-glow-violet {
     background: radial-gradient(
-        ellipse 55% 50% at 50% 55%,
-        rgb(var(--ei-violet-rgb) / 0.045) 0%,
-        rgb(var(--ei-violet-rgb) / 0.022) 50%,
-        transparent 70%
-      );
+      ellipse 55% 50% at 50% 55%,
+      rgb(var(--ei-violet-rgb) / 0.045) 0%,
+      rgb(var(--ei-violet-rgb) / 0.022) 50%,
+      transparent 70%
+    );
     filter: blur(100px);
     pointer-events: none;
   }
@@ -55,11 +55,11 @@
   /* Ambient indigo glow — secondary depth */
   .ei-glow-indigo {
     background: radial-gradient(
-        ellipse 60% 55% at 45% 50%,
-        rgb(var(--ei-violet-rgb) / 0.038) 0%,
-        rgb(var(--ei-halo-blue-rgb) / 0.015) 55%,
-        transparent 75%
-      );
+      ellipse 60% 55% at 45% 50%,
+      rgb(var(--ei-violet-rgb) / 0.038) 0%,
+      rgb(var(--ei-halo-blue-rgb) / 0.015) 55%,
+      transparent 75%
+    );
     filter: blur(110px);
     pointer-events: none;
   }
@@ -67,11 +67,11 @@
   /* Soft aqua accent — sparingly used */
   .ei-glow-aqua {
     background: radial-gradient(
-        ellipse 50% 45% at 55% 48%,
-        rgb(var(--ei-halo-blue-rgb) / 0.03) 0%,
-        rgb(var(--ei-halo-blue-rgb) / 0.015) 50%,
-        transparent 70%
-      );
+      ellipse 50% 45% at 55% 48%,
+      rgb(var(--ei-halo-blue-rgb) / 0.03) 0%,
+      rgb(var(--ei-halo-blue-rgb) / 0.015) 50%,
+      transparent 70%
+    );
     filter: blur(90px);
     pointer-events: none;
   }
@@ -81,20 +81,20 @@
   /* Deep background vignette */
   .ei-vignette-deep {
     background: radial-gradient(
-        circle at center,
-        transparent 30%,
-        rgb(var(--ei-void-rgb) / 0.4) 100%
-      );
+      circle at center,
+      transparent 30%,
+      rgb(var(--ei-void-rgb) / 0.4) 100%
+    );
     pointer-events: none;
   }
 
   /* Soft edge vignette for sections */
   .ei-vignette-soft {
     background: radial-gradient(
-        ellipse 80% 80% at 50% 50%,
-        transparent 50%,
-        rgb(var(--ei-midnight-rgb) / 0.25) 100%
-      );
+      ellipse 80% 80% at 50% 50%,
+      transparent 50%,
+      rgb(var(--ei-midnight-rgb) / 0.25) 100%
+    );
     pointer-events: none;
   }
 
@@ -103,21 +103,17 @@
   /* Gradient fade to next section */
   .ei-fade-to-ink {
     background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgb(var(--ei-void-rgb) / 0.5) 60%,
-        rgb(var(--ei-void-rgb) / 0.95) 100%
-      );
+      to bottom,
+      transparent 0%,
+      rgb(var(--ei-void-rgb) / 0.5) 60%,
+      rgb(var(--ei-void-rgb) / 0.95) 100%
+    );
     pointer-events: none;
   }
 
   /* Subtle top gradient for sections following hero */
   .ei-bleed-top {
-    background: linear-gradient(
-        to top,
-        transparent 0%,
-        rgb(var(--ei-void-rgb) / 0.15) 100%
-      );
+    background: linear-gradient(to top, transparent 0%, rgb(var(--ei-void-rgb) / 0.15) 100%);
     pointer-events: none;
   }
 
@@ -128,38 +124,38 @@
   }
 
   .ei-section[data-transition-to]::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: var(--ei-transition-depth);
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: var(--ei-transition-depth);
 
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .028 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E"),
-    linear-gradient(
-      180deg,
-      transparent 10%,
-      color-mix(in srgb, var(--ei-transition-accent) 5%, transparent) 62%,
-      transparent 94%
-    ),
-    radial-gradient(
-      ellipse 58% 86% at var(--ei-transition-focus-x, 70%) 100%,
-      color-mix(in srgb, var(--ei-transition-accent) 9%, transparent) 0%,
-      transparent 68%
-    ),
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      color-mix(in srgb, var(--ei-transition-canvas) 12%, transparent) 28%,
-      color-mix(in srgb, var(--ei-transition-canvas) 68%, transparent) 76%,
-      var(--ei-transition-canvas) 100%
-    );
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .028 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E"),
+      linear-gradient(
+        180deg,
+        transparent 10%,
+        color-mix(in srgb, var(--ei-transition-accent) 5%, transparent) 62%,
+        transparent 94%
+      ),
+      radial-gradient(
+        ellipse 58% 86% at var(--ei-transition-focus-x, 70%) 100%,
+        color-mix(in srgb, var(--ei-transition-accent) 9%, transparent) 0%,
+        transparent 68%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        color-mix(in srgb, var(--ei-transition-canvas) 12%, transparent) 28%,
+        color-mix(in srgb, var(--ei-transition-canvas) 68%, transparent) 76%,
+        var(--ei-transition-canvas) 100%
+      );
 
-  background-blend-mode: soft-light, normal, normal, normal;
-}
+    background-blend-mode: soft-light, normal, normal, normal;
+  }
 
   /* Preserve the homepage reference treatment; secondary pages rely on
      tonal canvas changes without a boundary rule. */
@@ -194,6 +190,133 @@
     --ei-transition-focus-x: 50%;
   }
 
+  /* Reusable editorial transition intents. `data-transition-to` continues to
+     own the destination canvas; these modifiers only control boundary rhythm. */
+  .ei-section[data-transition]::after {
+    opacity: 1;
+  }
+
+  .ei-section[data-transition="soft"]::after {
+    height: clamp(7.5rem, 10vw, 11.25rem);
+    background:
+      radial-gradient(
+        ellipse 58% 72% at var(--ei-transition-focus-x, 58%) 100%,
+        color-mix(in srgb, var(--ei-transition-accent) 5%, transparent),
+        transparent 72%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        color-mix(in srgb, var(--ei-transition-canvas) 28%, transparent) 54%,
+        var(--ei-transition-canvas) 100%
+      );
+  }
+
+  .ei-section[data-transition="chapter"]::after {
+    height: clamp(6.5rem, 8vw, 8.5rem);
+    background:
+      linear-gradient(
+          90deg,
+          transparent,
+          color-mix(in srgb, var(--ei-theme-border) 62%, transparent) 12%,
+          color-mix(in srgb, var(--ei-theme-border) 62%, transparent) 88%,
+          transparent
+        )
+        center 58% / 76% 1px no-repeat,
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        color-mix(in srgb, var(--ei-transition-canvas) 42%, transparent) 68%,
+        var(--ei-transition-canvas) 100%
+      );
+  }
+
+  .ei-section[data-transition="atmospheric"]::after {
+    height: clamp(7.5rem, 10vw, 10rem);
+    background:
+      radial-gradient(
+        ellipse 58% 115% at 78% 100%,
+        rgb(var(--ei-midnight-rgb) / 0.08) 0%,
+        color-mix(in srgb, var(--ei-transition-accent) 7%, transparent) 38%,
+        transparent 74%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        color-mix(in srgb, var(--ei-surface-lavender) 34%, transparent) 56%,
+        var(--ei-transition-canvas) 100%
+      );
+  }
+
+  .ei-section[data-transition="motif"]::after {
+    height: clamp(7rem, 9vw, 9.5rem);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--ei-transition-canvas) 48%, transparent) 62%,
+      var(--ei-transition-canvas) 100%
+    );
+  }
+
+  .ei-section[data-transition="motif"]::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    right: 14%;
+    bottom: -1.25rem;
+    width: min(42vw, 34rem);
+    height: 5.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--ei-moonlight-violet) 18%, transparent);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 18% 0,
+      color-mix(in srgb, var(--ei-echo-magenta) 42%, transparent) 0 1.5px,
+      transparent 2.5px
+    );
+    opacity: 0.58;
+    transform: rotate(-3deg);
+    transform-origin: center;
+  }
+
+  .ei-section[data-transition-motif="node"]::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    right: 18%;
+    bottom: 1.65rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    border: 1px solid color-mix(in srgb, var(--ei-echo-magenta) 52%, transparent);
+    background: color-mix(in srgb, var(--ei-surface-base) 76%, transparent);
+    box-shadow: 0 0 12px rgb(var(--ei-violet-rgb) / 0.12);
+    opacity: 0.72;
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 900px) {
+    .ei-section[data-transition="motif"]::before,
+    .ei-section[data-transition-motif="node"]::before {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ei-section[data-transition="soft"]::after,
+    .ei-section[data-transition="atmospheric"]::after,
+    .ei-section[data-transition="motif"]::after {
+      height: 6.5rem;
+    }
+
+    .ei-section[data-transition="chapter"]::after {
+      height: 5.75rem;
+      background-size:
+        72% 1px,
+        auto;
+    }
+  }
+
   /* ── Noise & Texture ─────────────────────────────────────────── */
 
   /* Film grain overlay */
@@ -210,10 +333,10 @@
   /* Minimal atmospheric pause section */
   .ei-breathing-space {
     background: radial-gradient(
-        ellipse 35% 25% at 50% 50%,
-        rgb(var(--ei-violet-rgb) / 0.015) 0%,
-        transparent 55%
-      );
+      ellipse 35% 25% at 50% 50%,
+      rgb(var(--ei-violet-rgb) / 0.015) 0%,
+      transparent 55%
+    );
     position: relative;
   }
 
@@ -229,10 +352,10 @@
     position: absolute;
     inset: -15%;
     background: radial-gradient(
-        ellipse 45% 40% at 50% 50%,
-        rgb(var(--ei-violet-rgb) / 0.022) 0%,
-        transparent 65%
-      );
+      ellipse 45% 40% at 50% 50%,
+      rgb(var(--ei-violet-rgb) / 0.022) 0%,
+      transparent 65%
+    );
     filter: blur(60px);
     pointer-events: none;
     z-index: -1;

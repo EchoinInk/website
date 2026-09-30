@@ -11,6 +11,8 @@ export function Hero() {
   return (
     <Section
       theme="light"
+      transition="soft"
+      transitionTo="lightElevated"
       spacing="none"
       className="ei-section-hero ei-home-hero ei-hero-system"
       aria-labelledby="hero-heading"

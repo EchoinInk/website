@@ -49,6 +49,7 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
   return (
     <Section
       theme="lightElevated"
+      transition="chapter"
       transitionTo="light"
       spacing="none"
       className="ei-home-capabilities"

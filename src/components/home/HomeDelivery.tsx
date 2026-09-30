@@ -18,6 +18,8 @@ export function HomeDelivery() {
   return (
     <Section
       theme="light"
+      transition="atmospheric"
+      transitionMotif="node"
       transitionTo="light"
       spacing="none"
       className="ei-home-delivery"
