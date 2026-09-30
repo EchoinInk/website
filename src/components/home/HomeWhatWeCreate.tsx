@@ -72,9 +72,7 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
             </div>
             <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
-                Brand, experience, product and systems are deeply connected. We shape the visible
-                and the structural together — from strategy and design through to implementation —
-                so the work feels coherent and works in the real world.
+                Brand, experience, product and systems are deeply connected. We bring the visible and structural together — from strategy and design through to implementation — to create work that feels coherent and works in the real world.
               </p>
             </div>
           </motion.div>

@@ -17,10 +17,9 @@ const steps = [
 export function HomeDelivery() {
   return (
     <Section
-      theme="light"
-      transition="atmospheric"
-      transitionMotif="node"
-      transitionTo="light"
+      theme="mist"
+      transition="soft"
+      transitionTo="lightElevated"
       spacing="none"
       className="ei-home-delivery"
       aria-labelledby="home-delivery-heading"
@@ -44,14 +43,13 @@ export function HomeDelivery() {
             <div>
               <SectionLabel label="Our Approach" tone="accent" />
               <h2 id="home-delivery-heading" className="ei-type-section-heading">
-                <span>Fewer gaps between</span> <span>the thinking and the thing</span>{" "}
-                <span>people use.</span>
+                Fewer gaps between the thinking and the thing
+              people use.
               </h2>
             </div>
             <div className="ei-home-delivery-copy">
               <p className="ei-home-section-intro">
-                Strategy, design and development move together through four connected stages —
-                keeping decisions clear, quality high, and momentum real.
+                Strategy, design and development stay connected from first decision to final handover — keeping the thinking aligned, the process clear and the work moving with purpose.
               </p>
               <Button to="/studio" variant="secondary">
                 Our way of working

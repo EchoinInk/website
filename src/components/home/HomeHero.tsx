@@ -19,14 +19,6 @@ export function Hero() {
     >
       <HeroBackground />
 
-      <p className="ei-home-hero-statement" aria-hidden="true">
-        Meaningful
-        <br />
-        worlds,
-        <br />
-        built to last.
-      </p>
-
       <Container
         size="xl"
         className="ei-home-hero-container ei-hero-system-container relative z-10"

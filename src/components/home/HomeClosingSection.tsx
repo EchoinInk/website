@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
 import {
-  blurEmergence,
   dissolveReveal,
   driftUp,
   DURATION,
-  EASE_LUXURY
+  EASE_LUXURY,
 } from "@/lib/motion-cinematic";
 
 export function ClosingSection() {
@@ -25,44 +25,62 @@ export function ClosingSection() {
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        <div>
-          <motion.span
+        <div className="ei-home-closing-heading">
+          <motion.div
             variants={dissolveReveal}
-            transition={{ duration: DURATION.slow, ease: EASE_LUXURY }}
-            className="ei-type-label"
+            transition={{
+              duration: DURATION.slow,
+              ease: EASE_LUXURY,
+            }}
           >
-            Ready to begin
-          </motion.span>
+            <SectionLabel label="Ready to begin" tone="accent" />
+          </motion.div>
 
           <motion.h2
             id="home-closing-heading"
-            variants={blurEmergence}
-            transition={{ duration: DURATION.slow, ease: EASE_LUXURY, delay: 0.05 }}
+            variants={dissolveReveal}
+            transition={{
+              duration: DURATION.slow,
+              ease: EASE_LUXURY,
+              delay: 0.05,
+            }}
+            className="ei-type-section-heading"
           >
-            Bring the challenge. Let’s make it real.
+            Make the mark. Let it echo.
           </motion.h2>
         </div>
 
-        <div>
+        <div className="ei-home-closing-support">
           <motion.p
             variants={driftUp}
-            transition={{ duration: DURATION.slow, ease: EASE_LUXURY, delay: 0.1 }}
+            transition={{
+              duration: DURATION.slow,
+              ease: EASE_LUXURY,
+              delay: 0.1,
+            }}
           >
-            Share the problem, the opportunity, or what you’re trying to make real. You don’t need a
-            complete brief — a starting point is enough.
+            Bring the challenge, the opportunity, or the idea — even if it’s still taking shape. We can help turn the starting point into something clear, considered and ready to move forward.
           </motion.p>
 
           <motion.div
             variants={driftUp}
-            transition={{ duration: DURATION.slow, ease: EASE_LUXURY, delay: 0.15 }}
+            transition={{
+              duration: DURATION.slow,
+              ease: EASE_LUXURY,
+              delay: 0.15,
+            }}
             className="ei-home-closing-actions"
           >
             <Button to={primaryCallToAction.href} variant="primary">
               {primaryCallToAction.label}
-              <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
+              <span
+                aria-hidden="true"
+                className="ei-cta-arrow ei-cta-arrow-right"
+              >
                 →
               </span>
             </Button>
+
             <Button to="/booking" variant="secondary">
               {siteActionLabels.requestStrategySession}
             </Button>

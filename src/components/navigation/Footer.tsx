@@ -61,8 +61,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 Echo in Ink
               </span>
               <p className="ei-type-footer-copy max-w-[48ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
-                Strategy, design, and development for brands, digital experiences, products, and
-                systems.
+                Thoughtful strategy, intentional design, and purposeful development — shaping brands, digital experiences, products, and systems that feel as good as they function.
               </p>
             </div>
 
@@ -123,8 +122,8 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
             >
               <div className="ei-footer-primary-grid grid grid-cols-2 items-start gap-8 md:grid-cols-[1.05fr_0.95fr_0.85fr_1.1fr] md:gap-8 lg:gap-10">
                 {/* Col 1 — Brand */}
-                <div className="order-1 col-span-2 md:order-1 md:col-span-1">
-                  <span className="ei-type-footer-brand mb-3 block font-structural text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
+                <div className="ei-footer-brand-column order-1 col-span-2 md:order-1 md:col-span-1">
+                  <span className="ei-type-footer-brand block font-structural text-[length:var(--ei-type-size-functional)] uppercase tracking-[0.18em]">
                     Echo in Ink
                   </span>
 
@@ -135,17 +134,17 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 </div>
 
                 {/* Col 2 — Navigation */}
-                <nav className="order-3 md:order-2" aria-label="Footer primary navigation">
-                  <span className="ei-type-footer-label mb-4 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                <nav className="ei-footer-navigation-column order-3 md:order-2" aria-label="Footer primary navigation">
+                  <span className="ei-type-footer-label block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Navigation
                   </span>
 
-                  <ul className="ei-footer-primary-links grid grid-cols-2 gap-x-7 gap-y-2">
+                  <ul className="ei-footer-primary-links grid grid-cols-2">
                     {primaryNavigation.map((link) => (
                       <li key={link.label}>
                         <Link
                           to={link.href}
-                          className="ei-type-footer-link inline-flex min-h-11 items-center font-structural text-[13px] transition-colors duration-400"
+                          className="ei-type-footer-link inline-flex min-h-0 items-center font-structural transition-colors duration-400"
                         >
                           {link.label}
                         </Link>
@@ -155,40 +154,37 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 </nav>
 
                 {/* Col 3 — Connect */}
-                <div className="order-2 md:order-3">
-                  <span className="ei-type-footer-label mb-4 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                <div className="ei-footer-connect-column order-2 md:order-3">
+                  <span className="ei-type-footer-label block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Connect
                   </span>
 
                   <a
                     href="mailto:hello@echoin.ink"
-                    className="ei-type-footer-link mb-1.5 inline-flex min-h-11 items-center font-structural text-[13px] transition-colors duration-400"
+                    className="ei-type-footer-link inline-flex min-h-0 items-center font-structural transition-colors duration-400"
                   >
                     hello@echoin.ink
                   </a>
 
-                  <span className="ei-type-footer-copy mb-5 block font-structural text-[length:var(--ei-type-size-functional)]">
+                  <span className="ei-type-footer-copy block font-structural text-[length:var(--ei-type-size-functional)]">
                     Auckland, New Zealand
                   </span>
 
-                  <span className="ei-type-footer-copy block max-w-[28ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
-                    Project enquiries and Strategy Session requests begin on their dedicated pages.
-                  </span>
+              
                 </div>
 
                 {/* Col 4 — Creative resources */}
-                <div className="relative order-4 md:order-4">
-                  <span className="ei-type-footer-label mb-4 block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                <div className="ei-footer-systems-column relative order-4 md:order-4">
+                  <span className="ei-type-footer-label block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
                     Creative Systems &amp; Tools
                   </span>
 
-                  <div className="ei-footer-systems-row flex items-start justify-between gap-5">
-                    <p className="ei-type-footer-copy mb-4 max-w-[32ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
-                      Prompt systems, reference frameworks, direction kits, and practical
-                      experiments for clearer creative decisions.
+                  <div className="ei-footer-systems-row grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+                    <p className="ei-type-footer-copy mb-0 max-w-[22.8ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
+                      Creative systems, frameworks, and practical tools designed to bring clarity, direction, and confidence to creative decisions.
                     </p>
 
-                    <div className="hidden shrink-0 pt-0.5 opacity-70 md:block">
+                    <div className="hidden shrink-0 opacity-70 md:block">
                       <OrbitalVisual variant="chorusCore" size={44} />
                     </div>
                   </div>

@@ -321,7 +321,7 @@
 
   .ei-works-project-media {
     position: relative;
-    min-height: 16rem;
+    min-height: 20rem;
     overflow: hidden;
   }
 
@@ -353,10 +353,10 @@
 
   .ei-works-project-copy {
     display: flex;
-    min-height: 27rem;
+    min-height: 22rem;
     flex-direction: column;
     align-items: flex-start;
-    padding: clamp(1.5rem, 4vw, 2.5rem);
+    padding: clamp(1.5rem, 3vw, 2rem);
   }
 
   .ei-works-project-header {
@@ -370,7 +370,7 @@
     gap: 1rem;
     color: var(--ei-color-text-muted);
     font-size: 0.66rem;
-    font-weight: 600;
+    font-weight:500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }

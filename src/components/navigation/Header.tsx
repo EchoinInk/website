@@ -202,7 +202,7 @@ export function Header() {
                 border border-[var(--ei-theme-border)]
                 bg-[var(--ei-theme-surface)]
                 ${isHome ? "px-[0.8125rem] py-[0.54rem] lg:px-[0.9375rem]" : "px-3 py-2 lg:px-3.5"}
-                font-structural text-[length:var(--ei-type-size-navigation)] font-semibold uppercase tracking-[0.14em] lg:tracking-[0.19em]
+                font-structural text-[length:var(--ei-type-size-navigation)] font-medium uppercase tracking-[0.14em] lg:tracking-[0.19em]
                 transition-all duration-500
                 hover:border-[var(--ei-theme-focus)]
                 hover:bg-[var(--ei-theme-surface-elevated)]

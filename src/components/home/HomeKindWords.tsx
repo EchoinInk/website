@@ -7,12 +7,12 @@ import { driftUp, VIEWPORT } from "@/lib/motion-cinematic";
 
 const evidenceNotes = [
   {
-    label: "Client words — when shareable.",
-    body: "Approved client words will appear here when they are ready to be shared. Until then, project provenance and evidence remain explicit."
+    label: "CLIENT WORDS — WHEN READY.",
+    body: "Client feedback will appear here when it’s ready to share. Until then, the work is presented with clear context and evidence."
   },
   {
-    label: "Project evidence — clearly labelled.",
-    body: "Lumo, Keystone and Codexia are each labelled with their provenance and maturity, so the work is clear without implying commissioned delivery or a public launch."
+    label: "THE WORK — IN CONTEXT.",
+    body: "Each project is shown with its provenance, maturity and status made explicit — keeping the work clear without overstating what it is."
   }
 ] as const;
 

@@ -37,7 +37,7 @@ export function HomeSelectedWork() {
             <div>
               <SectionLabel label="Selected Work" tone="accent" />
               <h2 id="home-selected-work-heading" className="ei-type-section-heading">
-                Three projects, shown with their context intact.
+                Selected projects, shown in meaningful context.
               </h2>
             </div>
             <div className="ei-home-section-support">

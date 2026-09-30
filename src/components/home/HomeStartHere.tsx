@@ -49,13 +49,12 @@ export function HomeStartHere() {
             <div>
               <SectionLabel label="Ways to Engage" tone="accent" />
               <h2 id="home-engagements-heading" className="ei-type-section-heading">
-                Three engagement models. Different starting points.
+                Different starting points. Three ways forward.
               </h2>
             </div>
             <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
-                Not every project needs the same approach. We shape the work around what you
-                actually need.
+                Not every project needs the same shape. We adapt the work to what you need, where you are, and what comes next.
               </p>
             </div>
           </motion.div>
