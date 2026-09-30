@@ -28,6 +28,7 @@ import {
   ContactSubmissionError,
   createEmptyContactFormData,
   submitContactForm,
+  validateContactField,
   validateContactForm,
   type ContactFieldErrors,
   type ContactFormState,
@@ -77,6 +78,13 @@ function buildProjectMessage(outcome: string, changedContext: string, timing: st
   ].join("\n");
 }
 
+function focusFirstInvalidField(errors: ContactFieldErrors) {
+  const firstField = ["name", "email", "projectUrl", "message"].find(
+    (field) => errors[field as keyof ContactFieldErrors],
+  );
+  if (firstField) document.getElementById(firstField)?.focus();
+}
+
 export function ContactPage() {
   const [searchParams] = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
@@ -121,15 +129,14 @@ export function ContactPage() {
       successRef.current?.focus();
       return;
     }
-    if (formState === "error") statusRef.current?.focus();
-  }, [formState]);
-
-  const focusFirstInvalidField = (errors: ContactFieldErrors) => {
-    const firstField = ["name", "email", "projectUrl", "message"].find(
-      (field) => errors[field as keyof ContactFieldErrors],
-    );
-    if (firstField) document.getElementById(firstField)?.focus();
-  };
+    if (formState === "error") {
+      if (hasFieldErrors) {
+        focusFirstInvalidField(fieldErrors);
+      } else {
+        statusRef.current?.focus();
+      }
+    }
+  }, [fieldErrors, formState, hasFieldErrors]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -173,7 +180,6 @@ export function ContactPage() {
       setFieldErrors(submissionError.fieldErrors ?? {});
       setStatusMessage(submissionError.message);
       setAnnouncement(submissionError.message);
-      if (submissionError.fieldErrors) focusFirstInvalidField(submissionError.fieldErrors);
     }
   };
 
@@ -191,6 +197,17 @@ export function ContactPage() {
       setFormState("idle");
       setStatusMessage("");
     }
+  };
+
+  const handleBlur = (field: keyof ContactFieldErrors) => {
+    const error = validateContactField(field, formData);
+
+    setFieldErrors((current) => {
+      const nextErrors = { ...current };
+      if (error) nextErrors[field] = error;
+      else delete nextErrors[field];
+      return nextErrors;
+    });
   };
 
   return (
@@ -311,6 +328,7 @@ export function ContactPage() {
                           label="Name"
                           value={formData.name}
                           onChange={handleChange}
+                          onBlur={() => handleBlur("name")}
                           error={fieldErrors.name}
                           required
                           autoComplete="name"
@@ -323,6 +341,7 @@ export function ContactPage() {
                           label="Email"
                           value={formData.email}
                           onChange={handleChange}
+                          onBlur={() => handleBlur("email")}
                           error={fieldErrors.email}
                           required
                           autoComplete="email"
@@ -349,6 +368,7 @@ export function ContactPage() {
                         label="What are you trying to achieve?"
                         value={formData.message}
                         onChange={handleChange}
+                        onBlur={() => handleBlur("message")}
                         error={fieldErrors.message}
                         hint="Describe the outcome, opportunity, problem or thing you want to create."
                         rows={7}
@@ -386,6 +406,7 @@ export function ContactPage() {
                           label="Existing project URL"
                           value={formData.projectUrl}
                           onChange={handleChange}
+                          onBlur={() => handleBlur("projectUrl")}
                           error={fieldErrors.projectUrl}
                           hint="Optional, if something already exists online."
                           autoComplete="url"
@@ -414,9 +435,9 @@ export function ContactPage() {
                           disabled={formState === "submitting"}
                         >
                           {formState === "submitting"
-                            ? "Sending..."
+                            ? "Sending Project Enquiry..."
                             : formState === "error"
-                              ? "Try again"
+                              ? "Send Project Enquiry Again"
                               : siteActionLabels.sendProjectEnquiry}
                         </Button>
                         <p>Your details are sent to Echo in Ink to respond to this enquiry.</p>

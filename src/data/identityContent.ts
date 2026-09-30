@@ -1,4 +1,5 @@
 import type { OrbitalVariant } from "@/components/ui/OrbitalVisual";
+import { primaryCallToAction } from "@/data/siteNavigation";
 
 export const identityHero = {
   eyebrow: "Identity",
@@ -10,7 +11,7 @@ export const identityHero = {
     "Identity begins as a feeling — an atmosphere waiting to be understood, shaped, and expressed.",
     "I translate that feeling into visual language, rhythm, and voice."
   ],
-  primaryCta: { label: "Start an Identity project", href: "/contact" },
+  primaryCta: { label: primaryCallToAction.label, href: "/contact" },
   secondaryCta: { label: "Explore Sessions", href: "/sessions" },
   atmosphereRail: ["Atmosphere", "Language", "Rhythm", "Voice", "Presence"]
 };
@@ -144,5 +145,5 @@ export const identityProcess = {
 export const identityClosing = {
   heading: "Give the work a world to belong to.",
   subline: "Identity begins here — quietly, clearly, and with intention.",
-  cta: { label: "Begin an Identity Kit", href: "/contact" }
+  cta: { label: primaryCallToAction.label, href: "/contact" }
 };

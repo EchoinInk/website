@@ -1,4 +1,5 @@
 import type { OrbitalVariant } from "@/components/orbitals/orbitals";
+import { primaryCallToAction } from "@/data/siteNavigation";
 
 import atmosphereReferenceImage from "@/assets/imagery/sections/works-image-3.webp";
 import toneOfVoiceImage from "@/assets/imagery/sections/ei-lightwave-work-card.png";
@@ -80,7 +81,7 @@ export const featuredSystem = {
     "A short structure for turning reflection into a creative brief",
   ],
   cta: {
-    label: "Discuss a related project",
+    label: primaryCallToAction.label,
     href: "/contact?inquiry=project",
   },
 } as const;

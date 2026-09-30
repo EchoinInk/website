@@ -54,6 +54,19 @@ describe("ContactPage", () => {
     expect(screen.getByLabelText(/^Name/)).toHaveFocus();
   });
 
+  it("validates a field on blur and associates its error accessibly", async () => {
+    renderContactPage();
+
+    const email = screen.getByLabelText(/^Email/);
+    fireEvent.change(email, { target: { value: "not-an-email" } });
+    fireEvent.blur(email);
+
+    const error = await screen.findByText("Please enter a valid email address.");
+    expect(email).toHaveAttribute("aria-invalid", "true");
+    expect(email).toHaveAttribute("aria-describedby", error.id);
+    expect(email).toHaveAttribute("aria-errormessage", error.id);
+  });
+
   it("uses the shared capability taxonomy without requiring a technical diagnosis", () => {
     renderContactPage();
 
@@ -154,6 +167,33 @@ describe("ContactPage", () => {
     );
   });
 
+  it("announces submission progress and prevents duplicate submission", async () => {
+    let resolveRequest: ((response: Response) => void) | undefined;
+    fetchMock.mockReturnValue(
+      new Promise<Response>((resolve) => {
+        resolveRequest = resolve;
+      }),
+    );
+
+    renderContactPage();
+    fillRequiredFields();
+    fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
+
+    const form = screen.getByRole("button", { name: "Sending Project Enquiry..." }).closest("form");
+    expect(form).toHaveAttribute("aria-busy", "true");
+    expect(screen.getByRole("button", { name: "Sending Project Enquiry..." })).toBeDisabled();
+    expect(screen.getByText("Sending your project enquiry...")).toBeInTheDocument();
+
+    resolveRequest?.(
+      new Response(JSON.stringify({ ok: true }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }),
+    );
+
+    await screen.findByText("Thank you. Your project enquiry is on its way.");
+  });
+
   it("shows a retryable error state and can recover on the next submit", async () => {
     fetchMock.mockRejectedValueOnce(new Error("network down")).mockResolvedValueOnce(
       new Response(JSON.stringify({ ok: true }), {
@@ -172,9 +212,14 @@ describe("ContactPage", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "Your message could not be sent just yet. Please try again, or email directly.",
     );
-    expect(screen.getByRole("button", { name: /try again/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/^Name/)).toHaveValue("Avery Reed");
+    expect(screen.getByLabelText(/^Email/)).toHaveValue("avery@example.com");
+    expect(screen.getByLabelText(/^What are you trying to achieve/)).toHaveValue(
+      "We are building a more considered studio presence and need help clarifying the identity and direction.",
+    );
+    expect(screen.getByRole("button", { name: "Send Project Enquiry Again" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /try again/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Send Project Enquiry Again" }));
 
     await waitFor(() =>
       expect(screen.getByRole("status")).toHaveTextContent(
@@ -184,5 +229,28 @@ describe("ContactPage", () => {
     expect(screen.getByRole("status")).toHaveTextContent(
       "Echo in Ink will review your enquiry and reply by email.",
     );
+  });
+
+  it("associates server validation errors and focuses the first invalid field", async () => {
+    fetchMock.mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          ok: false,
+          message: "Please check the highlighted fields and try again.",
+          fieldErrors: { email: "Please use a different email address." },
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      ),
+    );
+
+    renderContactPage();
+    fillRequiredFields();
+    fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
+
+    const error = await screen.findByText("Please use a different email address.");
+    const email = screen.getByLabelText(/^Email/);
+    await waitFor(() => expect(email).toHaveFocus());
+    expect(email).toHaveAttribute("aria-describedby", error.id);
+    expect(email).toHaveValue("avery@example.com");
   });
 });

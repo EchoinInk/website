@@ -250,7 +250,7 @@ export const worldsFitSignals = [
 ];
 
 export const worldsJourneyLinks = [
-  { label: 'Begin a collaboration', href: '/contact', variant: 'primary' },
+  { label: primaryCallToAction.label, href: '/contact', variant: 'primary' },
   { label: 'Explore identity translation', href: '/identity', variant: 'tertiary' },
   { label: siteActionLabels.viewWork, href: '/works', variant: 'tertiary' },
 ];

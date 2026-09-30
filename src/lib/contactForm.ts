@@ -108,6 +108,13 @@ export function validateContactForm(
   return errors;
 }
 
+export function validateContactField(
+  field: ContactFieldName,
+  rawFormData: ContactFormData,
+) {
+  return validateContactForm(rawFormData)[field];
+}
+
 export class ContactSubmissionError extends Error {
   fieldErrors?: ContactFieldErrors;
 
