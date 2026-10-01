@@ -20,7 +20,8 @@ export function HomeKindWords() {
   return (
     <Section
       theme="light"
-      transition="motif"
+      transition="atmospheric"
+      transitionDirection="forward"
       transitionTo="light"
       spacing="none"
       className="ei-home-kind-words"

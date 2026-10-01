@@ -232,33 +232,35 @@
   }
 
   .ei-section[data-transition="atmospheric"]::after {
-    height: clamp(5.625rem, 8vw, 8rem);
+    left: var(--ei-atmosphere-mist-left, -8%);
+    right: auto;
+    bottom: clamp(-5.3125rem, -5vw, -3.125rem);
+    width: min(82vw, 70rem);
+    height: clamp(6.25rem, 10vw, 10.625rem);
     background:
       radial-gradient(
-        ellipse 38% 28% at 24% 46%,
-        rgb(var(--ei-halo-blue-rgb) / 0.06) 0%,
-        rgb(var(--ei-halo-blue-rgb) / 0.025) 45%,
-        transparent 75%
+        ellipse 42% 62% at 24% 36%,
+        rgb(var(--ei-halo-blue-rgb) / 0.12) 0%,
+        rgb(var(--ei-halo-blue-rgb) / 0.05) 44%,
+        transparent 76%
       ),
       radial-gradient(
-        ellipse 45% 24% at 52% 56%,
-        rgb(var(--ei-violet-rgb) / 0.05) 0%,
-        rgb(var(--ei-violet-rgb) / 0.022) 48%,
+        ellipse 38% 58% at 59% 62%,
+        rgb(var(--ei-violet-rgb) / 0.085) 0%,
+        rgb(var(--ei-violet-rgb) / 0.03) 48%,
         transparent 78%
       ),
       radial-gradient(
-        ellipse 38% 30% at 82% 42%,
-        color-mix(in srgb, var(--ei-echo-magenta) 4%, transparent) 0%,
-        color-mix(in srgb, var(--ei-echo-magenta) 1.5%, transparent) 48%,
-        transparent 76%
-      ),
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--ei-transition-canvas) 20%, transparent) 58%,
-        var(--ei-transition-canvas) 100%
+        ellipse 24% 46% at 86% 42%,
+        color-mix(in srgb, var(--ei-echo-magenta) 3%, transparent) 0%,
+        transparent 72%
       );
-    filter: blur(16px);
+    filter: blur(24px);
+    opacity: 0.92;
+    transform: var(--ei-atmosphere-mist-transform, rotate(1.5deg));
+    transform-origin: center;
+    -webkit-mask-image: radial-gradient(ellipse 88% 94% at 50% 50%, #000 34%, transparent 82%);
+    mask-image: radial-gradient(ellipse 88% 94% at 50% 50%, #000 34%, transparent 82%);
   }
 
   .ei-section[data-transition="atmospheric"]::before {
@@ -266,38 +268,63 @@
     pointer-events: none;
     position: absolute;
     z-index: 2;
-    left: -5%;
-    bottom: -2rem;
-    width: 110%;
-    height: clamp(4.375rem, 8vw, 7.8125rem);
-    border-radius: 50%;
-    background: linear-gradient(
-      100deg,
-      transparent 4%,
-      rgb(var(--ei-halo-blue-rgb) / 0.018) 18%,
-      rgb(var(--ei-halo-blue-rgb) / 0.045) 38%,
-      rgb(var(--ei-violet-rgb) / 0.042) 57%,
-      color-mix(in srgb, var(--ei-echo-magenta) 3%, transparent) 76%,
-      transparent 96%
-    );
-    filter: blur(16px);
-    transform: rotate(1.5deg) skewX(-8deg);
+    left: var(--ei-atmosphere-ribbon-left, -6%);
+    bottom: clamp(-3.75rem, -3.5vw, -2.25rem);
+    width: min(72vw, 64rem);
+    height: clamp(4.75rem, 7.5vw, 7.5rem);
+    border-radius: 58% 42% 64% 36% / 72% 38% 62% 28%;
+    background:
+      radial-gradient(
+        ellipse 44% 80% at 24% 34%,
+        rgb(var(--ei-halo-blue-rgb) / 0.085) 0%,
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 34% 72% at 66% 68%,
+        rgb(var(--ei-violet-rgb) / 0.07) 0%,
+        transparent 72%
+      ),
+      linear-gradient(
+        103deg,
+        transparent 3%,
+        rgb(var(--ei-halo-blue-rgb) / 0.045) 17%,
+        rgb(var(--ei-halo-blue-rgb) / 0.085) 43%,
+        rgb(var(--ei-violet-rgb) / 0.065) 68%,
+        color-mix(in srgb, var(--ei-echo-magenta) 2.5%, transparent) 84%,
+        transparent 98%
+      );
+    filter: blur(17px);
+    opacity: 0.9;
+    transform: rotate(2.25deg) skewX(-8deg);
+    transform-origin: center;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 80%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 80%, transparent 100%);
+  }
+
+  .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"] {
+    --ei-atmosphere-mist-left: 26%;
+    --ei-atmosphere-mist-transform: scaleX(-1) rotate(1.5deg);
+    --ei-atmosphere-ribbon-left: 34%;
   }
 
   .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::before {
-    background: linear-gradient(
-      80deg,
-      transparent 4%,
-      color-mix(in srgb, var(--ei-echo-magenta) 2.5%, transparent) 22%,
-      rgb(var(--ei-violet-rgb) / 0.042) 43%,
-      rgb(var(--ei-halo-blue-rgb) / 0.045) 63%,
-      rgb(var(--ei-halo-blue-rgb) / 0.018) 82%,
-      transparent 96%
-    );
-    transform: rotate(-1.5deg) skewX(8deg);
+    transform: scaleX(-1) rotate(2.25deg) skewX(-8deg);
   }
 
-  .ei-section[data-transition="atmospheric"] > * {
+  /* The atmospheric light must cross the sibling paint boundary. Removing
+     isolation only for the adjoining pair lets the pseudo-elements sit above
+     both canvases; direct content remains in the higher shared stack. */
+  .ei-section[data-transition="atmospheric"],
+  .ei-section[data-transition="atmospheric"] + .ei-section {
+    isolation: auto;
+  }
+
+  .ei-section[data-transition="atmospheric"] {
+    overflow-x: clip;
+  }
+
+  .ei-section[data-transition="atmospheric"] > *,
+  .ei-section[data-transition="atmospheric"] + .ei-section > * {
     position: relative;
     z-index: 3;
   }
@@ -363,13 +390,25 @@
     }
 
     .ei-section[data-transition="atmospheric"]::after {
-      height: 5rem;
+      bottom: -3.125rem;
+      left: -8%;
+      width: 112vw;
+      height: 6.25rem;
+    }
+
+    .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::after {
+      left: -4%;
     }
 
     .ei-section[data-transition="atmospheric"]::before {
-      bottom: -1.25rem;
-      height: 3.75rem;
-      opacity: 0.72;
+      bottom: -2.25rem;
+      left: -4%;
+      width: 104vw;
+      height: 4.75rem;
+    }
+
+    .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::before {
+      left: 0;
     }
 
     .ei-section[data-transition="chapter"]::after {
