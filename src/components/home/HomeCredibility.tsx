@@ -8,17 +8,17 @@ import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinem
 const credibilityPoints = [
   {
     label: "Solve real problems",
-    body: "From complexity to clarity, we start with the problem.",
+    body: "We start with the challenge, not the deliverable.",
     visual: "chorusCore"
   },
   {
     label: "Founder-led, collaborative",
-    body: "Work directly with senior attention from first question through delivery.",
+    body: "Work directly with the person shaping and making the work.",
     visual: "axiomRing"
   },
   {
     label: "Design that survives",
-    body: "Considered systems, not fragile artifacts — built to be used, adapted and grown.",
+    body: "Built to be used, maintained, and evolved over time.",
     visual: "quietAxis"
   }
 ] as const satisfies readonly { label: string; body: string; visual: OrbitalVariant }[];

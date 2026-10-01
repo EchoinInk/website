@@ -19,7 +19,7 @@ export function HeroHeading() {
         id="hero-heading"
         className="ei-type-hero-home ei-home-hero-heading ei-hero-system-heading"
       >
-        We design and build brands, websites, digital products and <em>systems.</em>
+        We create <em>brands</em>, digital <em>experiences</em>, <em>products</em>, and <em>systems</em> that make complex things feel clear.
       </h1>
 
       <motion.p

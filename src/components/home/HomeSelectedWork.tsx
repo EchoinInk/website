@@ -38,14 +38,13 @@ export function HomeSelectedWork() {
             <div>
               <SectionLabel label="Selected Work" tone="accent" />
               <h2 id="home-selected-work-heading" className="ei-type-section-heading">
-                Selected projects, shown in meaningful context.
+                Projects with the thinking left intact.
               </h2>
             </div>
 
             <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
-                Different problems. Different shapes. Each project is presented with its provenance,
-                challenge and outcome — <strong>no speculative work posed as client work.</strong>
+                Every project shows the problem, constraints, decisions, and evidence behind the work—not just the finished surface.
               </p>
 
               <Button to="/works" variant="tertiary">

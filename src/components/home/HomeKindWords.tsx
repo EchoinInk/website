@@ -7,12 +7,12 @@ import { driftUp, VIEWPORT } from "@/lib/motion-cinematic";
 
 const evidenceNotes = [
   {
-    label: "CLIENT WORDS — WHEN READY.",
-    body: "Client feedback will appear here when it’s ready to share. Until then, the work is presented with clear context and evidence."
+    label: "Real feedback, when it can be shared.",
+    body: "Approved client words will appear here when attributable feedback is available for public use. Echo does not publish invented endorsements or imply client work where none has been verified."
   },
   {
-    label: "THE WORK — IN CONTEXT.",
-    body: "Each project is shown with its provenance, maturity and status made explicit — keeping the work clear without overstating what it is."
+    label: "Project evidence, clearly labelled.",
+    body: "Case studies distinguish commissioned, independent, internal, and exploratory work so the provenance of every project remains clear."
   }
 ] as const;
 

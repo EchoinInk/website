@@ -128,8 +128,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                   </span>
 
                   <p className="ei-type-footer-copy max-w-[31ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
-                    Strategy, design, and development brought together for brands, digital
-                    experiences, products, and systems.
+                    Echo in Ink is a creative technology studio bringing strategy, design, and development together across brands, digital experiences, products, and systems.
                   </p>
                 </div>
 
@@ -181,7 +180,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
 
                   <div className="ei-footer-systems-row grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
                     <p className="ei-type-footer-copy mb-0 max-w-[22.8ch] font-structural text-[length:var(--ei-type-size-functional)] leading-[1.7]">
-                      Creative systems, frameworks, and practical tools designed to bring clarity, direction, and confidence to creative decisions.
+                      Frameworks, prompt systems, reference libraries, and practical tools designed to bring clarity, consistency, and confidence to creative work.
                     </p>
 
                     <div className="hidden shrink-0 opacity-70 md:block">
@@ -265,7 +264,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 </span>
 
                 <span className="ei-type-footer-meta font-structural text-[length:var(--ei-type-size-meta)] uppercase tracking-[0.12em]">
-                  Strategy · Design · Development
+                  THOUGHTFUL STRATEGY · INTENTIONAL DESIGN · PURPOSEFUL DEVELOPMENT
                 </span>
               </div>
             </motion.div>

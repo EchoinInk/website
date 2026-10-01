@@ -8,10 +8,10 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const steps = [
-  ["01", "Clarify", "Understand the problem, constraints and opportunity."],
-  ["02", "Shape", "Define direction, structure and the path forward."],
-  ["03", "Make", "Design and build together."],
-  ["04", "Hand over", "Leave behind a maintainable system and clear documentation."]
+  ["01", "Clarify", "Understand the challenge, context, constraints, and opportunity."],
+  ["02", "Shape", "Define the direction, priorities, and structure of the response."],
+  ["03", "Make", "Design and build together, keeping decisions connected to implementation."],
+  ["04", "Hand over", "Leave behind something usable, maintainable, and ready to evolve."]
 ] as const;
 
 export function HomeDelivery() {

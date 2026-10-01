@@ -12,19 +12,19 @@ export function HomeStartHere() {
     "strategy-sessions": {
       title: "Strategy Session",
       description:
-        "A focused 60–90 minute session to bring clarity to a specific question or challenge.",
-      metadata: ["60–90 minutes", "Focused & strategic"]
+        "Focused guidance for a challenge, opportunity, or decision that needs clarity.",
+      metadata: ["60-90 minutes", "Focused & strategic"]
     },
     "digital-reset": {
       title: "Digital Reset",
       description:
-        "A contained redesign or rethink of an existing brand, website or product experience.",
-      metadata: ["2–8 weeks", "Focused scope"]
+        "A contained rethink of an existing brand, website, product, or digital experience.",
+      metadata: ["2-8 weeks", "Focused scope"]
     },
     "full-projects": {
       title: "Full Project",
       description:
-        "Strategy through to design and implementation for complex or ambitious work.",
+        "Strategy, design, and development brought together from definition through delivery.",
       metadata: ["Tailored timeline", "End-to-end"]
     }
   } as const;
@@ -51,14 +51,13 @@ export function HomeStartHere() {
             <div>
               <SectionLabel label="Ways to Engage" tone="accent" />
               <h2 id="home-engagements-heading" className="ei-type-section-heading">
-                Different starting points. Three ways forward.
+                Three ways to start. One direction forward.
               </h2>
             </div>
 
             <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
-                Not every project needs the same shape. We adapt the work to what you need, where
-                you are, and what comes next.
+                Not every project starts in the same place. Choose the level of support that meets you where you are.
               </p>
             </div>
           </motion.div>

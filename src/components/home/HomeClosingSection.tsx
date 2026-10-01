@@ -59,8 +59,8 @@ export function ClosingSection() {
               delay: 0.1,
             }}
           >
-            Bring the challenge, the opportunity, or the idea — even if it’s still taking shape. We can help turn the starting point into something clear, considered and ready to move forward.
-          </motion.p>
+            Whether you're building something new, refining what's already there, or figuring out the next step, let's start with a conversation.
+  </motion.p>
 
           <motion.div
             variants={driftUp}
