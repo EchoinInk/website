@@ -35,4 +35,41 @@ describe("semantic theme primitives", () => {
       "mist",
     );
   });
+
+  it("publishes optional atmospheric direction without changing the default contract", () => {
+    const { rerender } = render(
+      <Section theme="light" transition="atmospheric" transitionTo="mist">
+        Directional transition
+      </Section>,
+    );
+
+    const section = screen.getByText("Directional transition").closest("section");
+    expect(section).toHaveAttribute("data-transition", "atmospheric");
+    expect(section).toHaveAttribute("data-transition-to", "mist");
+    expect(section).not.toHaveAttribute("data-transition-direction");
+
+    rerender(
+      <Section
+        theme="light"
+        transition="atmospheric"
+        transitionDirection="forward"
+        transitionTo="mist"
+      >
+        Directional transition
+      </Section>,
+    );
+    expect(section).toHaveAttribute("data-transition-direction", "forward");
+
+    rerender(
+      <Section
+        theme="light"
+        transition="atmospheric"
+        transitionDirection="reverse"
+        transitionTo="mist"
+      >
+        Directional transition
+      </Section>,
+    );
+    expect(section).toHaveAttribute("data-transition-direction", "reverse");
+  });
 });

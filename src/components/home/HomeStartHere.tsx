@@ -32,6 +32,7 @@ export function HomeStartHere() {
     <Section
       theme="light"
       transition="atmospheric"
+      transitionDirection="forward"
       transitionTo="light"
       spacing="none"
       className="ei-home-engagements"

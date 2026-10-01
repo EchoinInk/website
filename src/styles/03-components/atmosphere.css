@@ -232,20 +232,74 @@
   }
 
   .ei-section[data-transition="atmospheric"]::after {
-    height: clamp(7.5rem, 10vw, 10rem);
+    height: clamp(5.625rem, 8vw, 8rem);
     background:
       radial-gradient(
-        ellipse 58% 115% at 78% 100%,
-        rgb(var(--ei-midnight-rgb) / 0.08) 0%,
-        color-mix(in srgb, var(--ei-transition-accent) 7%, transparent) 38%,
-        transparent 74%
+        ellipse 38% 28% at 24% 46%,
+        rgb(var(--ei-halo-blue-rgb) / 0.06) 0%,
+        rgb(var(--ei-halo-blue-rgb) / 0.025) 45%,
+        transparent 75%
+      ),
+      radial-gradient(
+        ellipse 45% 24% at 52% 56%,
+        rgb(var(--ei-violet-rgb) / 0.05) 0%,
+        rgb(var(--ei-violet-rgb) / 0.022) 48%,
+        transparent 78%
+      ),
+      radial-gradient(
+        ellipse 38% 30% at 82% 42%,
+        color-mix(in srgb, var(--ei-echo-magenta) 4%, transparent) 0%,
+        color-mix(in srgb, var(--ei-echo-magenta) 1.5%, transparent) 48%,
+        transparent 76%
       ),
       linear-gradient(
         180deg,
         transparent 0%,
-        color-mix(in srgb, var(--ei-surface-lavender) 34%, transparent) 56%,
+        color-mix(in srgb, var(--ei-transition-canvas) 20%, transparent) 58%,
         var(--ei-transition-canvas) 100%
       );
+    filter: blur(16px);
+  }
+
+  .ei-section[data-transition="atmospheric"]::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    left: -5%;
+    bottom: -2rem;
+    width: 110%;
+    height: clamp(4.375rem, 8vw, 7.8125rem);
+    border-radius: 50%;
+    background: linear-gradient(
+      100deg,
+      transparent 4%,
+      rgb(var(--ei-halo-blue-rgb) / 0.018) 18%,
+      rgb(var(--ei-halo-blue-rgb) / 0.045) 38%,
+      rgb(var(--ei-violet-rgb) / 0.042) 57%,
+      color-mix(in srgb, var(--ei-echo-magenta) 3%, transparent) 76%,
+      transparent 96%
+    );
+    filter: blur(16px);
+    transform: rotate(1.5deg) skewX(-8deg);
+  }
+
+  .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::before {
+    background: linear-gradient(
+      80deg,
+      transparent 4%,
+      color-mix(in srgb, var(--ei-echo-magenta) 2.5%, transparent) 22%,
+      rgb(var(--ei-violet-rgb) / 0.042) 43%,
+      rgb(var(--ei-halo-blue-rgb) / 0.045) 63%,
+      rgb(var(--ei-halo-blue-rgb) / 0.018) 82%,
+      transparent 96%
+    );
+    transform: rotate(-1.5deg) skewX(8deg);
+  }
+
+  .ei-section[data-transition="atmospheric"] > * {
+    position: relative;
+    z-index: 3;
   }
 
   .ei-section[data-transition="motif"]::after {
@@ -304,9 +358,18 @@
 
   @media (max-width: 767px) {
     .ei-section[data-transition="soft"]::after,
-    .ei-section[data-transition="atmospheric"]::after,
     .ei-section[data-transition="motif"]::after {
       height: 6.5rem;
+    }
+
+    .ei-section[data-transition="atmospheric"]::after {
+      height: 5rem;
+    }
+
+    .ei-section[data-transition="atmospheric"]::before {
+      bottom: -1.25rem;
+      height: 3.75rem;
+      opacity: 0.72;
     }
 
     .ei-section[data-transition="chapter"]::after {
