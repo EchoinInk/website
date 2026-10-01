@@ -24,7 +24,7 @@ export function HomeKindWords() {
       transitionDirection="forward"
       transitionTo="light"
       spacing="none"
-      className="ei-home-kind-words"
+      className="ei-home-kind-words ei-transition-closing"
       aria-labelledby="home-kind-words-heading"
     >
       <Container size="xl">

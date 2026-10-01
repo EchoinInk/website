@@ -43,8 +43,7 @@ export function HomeDelivery() {
             <div>
               <SectionLabel label="Our Approach" tone="accent" />
               <h2 id="home-delivery-heading" className="ei-type-section-heading">
-                Fewer gaps between the thinking and the thing
-              people use.
+                Fewer gaps between the thinking and the thing people use.
               </h2>
             </div>
             <div className="ei-home-delivery-copy">

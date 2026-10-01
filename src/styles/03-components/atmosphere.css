@@ -1,498 +1,1504 @@
-/* ────────────────────────────────────────────────────────────────
-   Atmospheric utility classes — reusable aurora, haze, and
+/* ────────────────────────────────────────────────────────────────*
 
-   glow primitives for decorative background layers.
-   ──────────────────────────────────────────────────────────────── */
+*   Atmospheric utility classes — reusable aurora, haze, and*
 
-/* ────────────────────────────────────────────────────────────────
-   Echo in Ink — Unified Atmospheric System
 
-   Consistent glows, depth, and cinematic ambience
-   ──────────────────────────────────────────────────────────────── */
+
+*   glow primitives for decorative background layers.*
+
+*   ──────────────────────────────────────────────────────────────── */
+
+
+
+/* ────────────────────────────────────────────────────────────────*
+
+*   Echo in Ink — Unified Atmospheric System*
+
+
+
+*   Consistent glows, depth, and cinematic ambience*
+
+*   ──────────────────────────────────────────────────────────────── */
+
+
 
 @layer components {
+
   html:not([data-page-theme="deep"]):not([data-page-theme="atmospheric"]) {
+
     --ei-cursor-violet-opacity: 0.018;
+
     --ei-cursor-blue-opacity: 0.012;
+
     --ei-cursor-blend-mode: multiply;
+
   }
-  /* ── Legacy / Soft Atmospheric Glows ─────────────────────────── */
+
+/* ── Legacy / Soft Atmospheric Glows ─────────────────────────── */
+
   .ei-glow-violet-soft {
+
     background: radial-gradient(
+
       ellipse 68% 60% at 35% 48%,
+
       rgb(var(--ei-violet-rgb) / 0.07) 0%,
+
       rgb(var(--ei-midnight-rgb) / 0.04) 50%,
+
       transparent 80%
+
     );
+
     filter: blur(72px);
+
     mix-blend-mode: screen;
+
   }
+
+
 
   .ei-aurora-cyan-glow {
+
     background: radial-gradient(
+
       ellipse 60% 66% at 58% 46%,
+
       rgb(var(--ei-halo-blue-rgb) / 0.07) 0%,
+
       rgb(var(--ei-midnight-rgb) / 0.035) 54%,
+
       transparent 82%
+
     );
+
     filter: blur(60px);
+
     mix-blend-mode: screen;
+
   }
 
-  /* ── Core Glow Primitives ────────────────────────────────────── */
-  /* Ambient violet glow — primary brand atmosphere */
+
+
+/* ── Core Glow Primitives ────────────────────────────────────── */
+
+/* Ambient violet glow — primary brand atmosphere */
+
   .ei-glow-violet {
+
     background: radial-gradient(
+
       ellipse 55% 50% at 50% 55%,
+
       rgb(var(--ei-violet-rgb) / 0.045) 0%,
+
       rgb(var(--ei-violet-rgb) / 0.022) 50%,
+
       transparent 70%
+
     );
+
     filter: blur(100px);
+
     pointer-events: none;
+
   }
 
-  /* Ambient indigo glow — secondary depth */
+
+
+/* Ambient indigo glow — secondary depth */
+
   .ei-glow-indigo {
+
     background: radial-gradient(
+
       ellipse 60% 55% at 45% 50%,
+
       rgb(var(--ei-violet-rgb) / 0.038) 0%,
+
       rgb(var(--ei-halo-blue-rgb) / 0.015) 55%,
+
       transparent 75%
+
     );
+
     filter: blur(110px);
+
     pointer-events: none;
+
   }
 
-  /* Soft aqua accent — sparingly used */
+
+
+/* Soft aqua accent — sparingly used */
+
   .ei-glow-aqua {
+
     background: radial-gradient(
+
       ellipse 50% 45% at 55% 48%,
+
       rgb(var(--ei-halo-blue-rgb) / 0.03) 0%,
+
       rgb(var(--ei-halo-blue-rgb) / 0.015) 50%,
+
       transparent 70%
+
     );
+
     filter: blur(90px);
+
     pointer-events: none;
+
   }
 
-  /* ── Depth Layers ────────────────────────────────────────────── */
 
-  /* Deep background vignette */
+
+/* ── Depth Layers ────────────────────────────────────────────── */
+
+
+
+/* Deep background vignette */
+
   .ei-vignette-deep {
+
     background: radial-gradient(
+
       circle at center,
+
       transparent 30%,
+
       rgb(var(--ei-void-rgb) / 0.4) 100%
+
     );
+
     pointer-events: none;
+
   }
 
-  /* Soft edge vignette for sections */
+
+
+/* Soft edge vignette for sections */
+
   .ei-vignette-soft {
+
     background: radial-gradient(
+
       ellipse 80% 80% at 50% 50%,
+
       transparent 50%,
+
       rgb(var(--ei-midnight-rgb) / 0.25) 100%
+
     );
+
     pointer-events: none;
+
   }
 
-  /* ── Section Transitions ─────────────────────────────────────── */
 
-  /* Gradient fade to next section */
-  .ei-fade-to-ink {
-    background: linear-gradient(
-      to bottom,
+
+/* ────────────────────────────────────────────────────────────────*
+
+*   Section Transitions*
+
+*   ──────────────────────────────────────────────────────────────── */
+
+
+
+/* Gradient fade to next section */
+
+
+
+.ei-fade-to-ink {
+
+  background: linear-gradient(
+
+    to bottom,
+
+    transparent 0%,
+
+    rgb(var(--ei-void-rgb) / 0.5) 60%,
+
+    rgb(var(--ei-void-rgb) / 0.95) 100%
+
+  );
+
+
+
+  pointer-events: none;
+
+}
+
+
+
+/* Subtle top gradient for sections following hero */
+
+
+
+.ei-bleed-top {
+
+  background: linear-gradient(
+
+    to top,
+
+    transparent 0%,
+
+    rgb(var(--ei-void-rgb) / 0.15) 100%
+
+  );
+
+
+
+  pointer-events: none;
+
+}
+
+
+
+/**
+
+* * Semantic section transitions.*
+
+* **
+
+* * The owning section keeps its own data-theme.*
+
+* * transitionTo controls the destination canvas.*
+
+* * transition controls boundary treatment.*
+
+* * transitionDirection controls atmospheric movement.*
+
+* */
+
+
+
+.ei-section[data-transition-to] {
+
+  isolation: isolate;
+
+}
+
+
+
+.ei-section[data-transition-to]::after {
+
+  content: "";
+
+  pointer-events: none;
+
+  position: absolute;
+
+  z-index: 1;
+
+
+
+  right: 0;
+
+  bottom: 0;
+
+  left: 0;
+
+
+
+  height: var(--ei-transition-depth);
+
+
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .028 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E"),
+
+    linear-gradient(
+
+      180deg,
+
+      transparent 10%,
+
+      color-mix(in srgb, var(--ei-transition-accent) 5%, transparent) 62%,
+
+      transparent 94%
+
+    ),
+
+    radial-gradient(
+
+      ellipse 58% 86% at var(--ei-transition-focus-x, 70%) 100%,
+
+      color-mix(in srgb, var(--ei-transition-accent) 9%, transparent) 0%,
+
+      transparent 68%
+
+    ),
+
+    linear-gradient(
+
+      180deg,
+
       transparent 0%,
-      rgb(var(--ei-void-rgb) / 0.5) 60%,
-      rgb(var(--ei-void-rgb) / 0.95) 100%
+
+      color-mix(in srgb, var(--ei-transition-canvas) 12%, transparent) 28%,
+
+      color-mix(in srgb, var(--ei-transition-canvas) 68%, transparent) 76%,
+
+      var(--ei-transition-canvas) 100%
+
     );
-    pointer-events: none;
+
+
+
+  background-blend-mode: soft-light, normal, normal, normal;
+
+}
+
+
+
+/* Destination canvases */
+
+
+
+.ei-section[data-transition-to="light"] {
+
+  --ei-transition-canvas: var(--ei-transition-canvas-light);
+
+  --ei-transition-accent: var(--ei-moonlight-violet);
+
+  --ei-transition-focus-x: 30%;
+
+}
+
+
+
+.ei-section[data-transition-to="lightElevated"] {
+
+  --ei-transition-canvas: var(--ei-transition-canvas-light-elevated);
+
+  --ei-transition-accent: var(--ei-moonlight-violet);
+
+  --ei-transition-focus-x: 70%;
+
+}
+
+
+
+.ei-section[data-transition-to="mist"] {
+
+  --ei-transition-canvas: var(--ei-transition-canvas-mist);
+
+  --ei-transition-accent: var(--ei-moonlight-violet);
+
+  --ei-transition-focus-x: 42%;
+
+}
+
+
+
+.ei-section[data-transition-to="atmospheric"] {
+
+  --ei-transition-canvas: var(--ei-transition-canvas-atmospheric);
+
+  --ei-transition-accent: var(--ei-theme-atmosphere-violet);
+
+  --ei-transition-focus-x: 72%;
+
+}
+
+
+
+.ei-section[data-transition-to="deep"] {
+
+  --ei-transition-canvas: var(--ei-transition-canvas-deep);
+
+  --ei-transition-accent: var(--ei-theme-atmosphere-blue);
+
+  --ei-transition-focus-x: 50%;
+
+}
+
+
+
+/**
+
+* * Reusable editorial transition intents.*
+
+* * data-transition-to continues to own the destination canvas.*
+
+* */
+
+
+
+.ei-section[data-transition]::after {
+
+  opacity: 1;
+
+}
+
+
+
+/* ── Soft ─────────────────────────────────────────────────────── */
+
+
+
+.ei-section[data-transition="soft"]::after {
+
+  height: clamp(7.5rem, 10vw, 11.25rem);
+
+
+
+  background:
+
+    radial-gradient(
+
+      ellipse 58% 72% at var(--ei-transition-focus-x, 58%) 100%,
+
+      color-mix(in srgb, var(--ei-transition-accent) 5%, transparent),
+
+      transparent 72%
+
+    ),
+
+    linear-gradient(
+
+      180deg,
+
+      transparent 0%,
+
+      color-mix(in srgb, var(--ei-transition-canvas) 28%, transparent) 54%,
+
+      var(--ei-transition-canvas) 100%
+
+    );
+
+}
+
+
+
+/* ── Chapter ──────────────────────────────────────────────────── */
+
+
+
+.ei-section[data-transition="chapter"]::after {
+
+  height: clamp(7rem, 9vw, 9.5rem);
+
+
+
+  background:
+
+/* extremely quiet cool atmosphere */
+
+    radial-gradient(
+
+      ellipse 42% 54% at 72% 78%,
+
+      rgb(var(--ei-halo-blue-rgb) / 0.025) 0%,
+
+      rgb(var(--ei-violet-rgb) / 0.012) 46%,
+
+      transparent 76%
+
+    ),
+
+
+
+/* tiny opposing lilac presence */
+
+    radial-gradient(
+
+      ellipse 28% 42% at 26% 92%,
+
+      color-mix(
+
+        in srgb,
+
+        var(--ei-echo-magenta) 1.5%,
+
+        transparent
+
+      ) 0%,
+
+      transparent 74%
+
+    ),
+
+
+
+/* canvas handoff */
+
+    linear-gradient(
+
+      180deg,
+
+      transparent 0%,
+
+      color-mix(
+
+        in srgb,
+
+        var(--ei-transition-canvas) 18%,
+
+        transparent
+
+      ) 42%,
+
+      color-mix(
+
+        in srgb,
+
+        var(--ei-transition-canvas) 58%,
+
+        transparent
+
+      ) 76%,
+
+      var(--ei-transition-canvas) 100%
+
+    );
+
+
+
+  opacity: 1;
+
+}
+
+
+
+/* ── Atmospheric ──────────────────────────────────────────────── */
+
+
+
+/**
+
+* * Atmospheric transitions intentionally extend across the section*
+
+* * boundary. The mist is broad and diffuse; the ribbon supplies*
+
+* * directional movement.*
+
+* **
+
+* * IMPORTANT:*
+
+* * These layers should not read as a horizontal divider.*
+
+* */
+
+
+
+.ei-section[data-transition="atmospheric"] {
+
+  --ei-atmosphere-direction: 1;
+
+  --ei-atmosphere-mist-x: -10%;
+
+  --ei-atmosphere-ribbon-x: -12%;
+
+
+
+  overflow-x: clip;
+
+}
+
+
+
+/**
+
+* * Broad mist field.*
+
+* **
+
+* * Taller than the previous implementation so colour can occupy*
+
+* * meaningful space above and below the boundary instead of*
+
+* * collapsing into a narrow horizontal band.*
+
+* */
+
+
+
+.ei-section[data-transition="atmospheric"]::after {
+  left: -5%;
+  right: auto;
+  bottom: -2.75rem;
+
+  width: 110vw;
+  max-width: none;
+  height: clamp(13rem, 20vw, 20rem);
+
+
+
+  background:
+
+/* Large blue entry — upper left */
+
+    radial-gradient(
+
+      ellipse 34% 58% at 16% 24%,
+
+      rgb(var(--ei-halo-blue-rgb) / 0.13) 0%,
+
+      rgb(var(--ei-halo-blue-rgb) / 0.06) 38%,
+
+      transparent 72%
+
+    ),
+
+
+
+/* Periwinkle body — lower and further inward */
+
+    radial-gradient(
+  ellipse 38% 62% at 40% 54%,
+  rgb(var(--ei-halo-blue-rgb) / 0.10) 0%,
+  rgb(var(--ei-violet-rgb) / 0.045) 42%,
+  transparent 70%
+),
+
+
+
+/* Violet rise — right of centre */
+
+    radial-gradient(
+
+      ellipse 32% 48% at 69% 34%,
+
+      rgb(var(--ei-violet-rgb) / 0.075) 0%,
+
+      rgb(var(--ei-violet-rgb) / 0.025) 48%,
+
+      transparent 73%
+
+    ),
+
+
+
+/* Small lilac/magenta exit */
+
+    radial-gradient(
+
+      ellipse 21% 36% at 88% 66%,
+
+      color-mix(in srgb, var(--ei-echo-magenta) 5%, transparent) 0%,
+
+      transparent 72%
+
+    );
+
+
+
+  opacity: 1;
+  filter: blur(31px);
+
+  transform:
+    scaleX(var(--ei-atmosphere-direction))
+    rotate(-2.5deg);
+
+  transform-origin: center;
+
+  -webkit-mask-image: radial-gradient(
+    ellipse 84% 72% at 46% 44%,
+    #000 8%,
+    rgb(0 0 0 / 0.9) 34%,
+    rgb(0 0 0 / 0.42) 60%,
+    transparent 86%
+  );
+
+  mask-image: radial-gradient(
+    ellipse 84% 72% at 46% 44%,
+    #000 8%,
+    rgb(0 0 0 / 0.9) 34%,
+    rgb(0 0 0 / 0.42) 60%,
+    transparent 86%
+  );
+}
+
+
+
+.ei-section[data-transition="atmospheric"]::before {
+
+  content: "";
+
+  pointer-events: none;
+
+
+
+  position: absolute;
+
+  z-index: 2;
+
+
+
+  left: -3%;
+
+  bottom: -1.75rem;
+
+
+
+  width: 106vw;
+
+  max-width: none;
+
+  height: clamp(8rem, 12vw, 12rem);
+
+
+
+/**
+
+*   * Directional ribbon:*
+
+*   * three offset pools instead of one continuous horizontal wash.*
+
+*   */
+
+
+
+  background:
+
+/* blue entry */
+
+    radial-gradient(
+
+      ellipse 26% 42% at 17% 24%,
+
+      rgb(var(--ei-halo-blue-rgb) / 0.075) 0%,
+
+      rgb(var(--ei-halo-blue-rgb) / 0.025) 48%,
+
+      transparent 73%
+
+    ),
+
+
+
+/* central flow — lowest point */
+
+    radial-gradient(
+
+      ellipse 38% 24% at 43% 67%,
+
+      rgb(var(--ei-halo-blue-rgb) / 0.09) 0%,
+
+      rgb(var(--ei-violet-rgb) / 0.05) 43%,
+
+      transparent 74%
+
+    ),
+
+
+
+/* violet exit — rises */
+
+    radial-gradient(
+
+      ellipse 31% 23% at 68% 35%,
+
+      rgb(var(--ei-violet-rgb) / 0.065) 0%,
+
+      color-mix(in srgb, var(--ei-echo-magenta) 3%, transparent) 46%,
+
+      transparent 75%
+
+    );
+
+
+
+  opacity: 0.94;
+
+
+
+  filter: blur(19px);
+
+
+
+/**
+
+*   * More rotation than before is intentional.*
+
+*   * This breaks the horizontal-divider silhouette.*
+
+*   */
+
+  transform:
+
+    scaleX(var(--ei-atmosphere-direction))
+
+    rotate(4deg)
+
+    skewX(-11deg);
+
+
+
+  transform-origin: center;
+
+
+
+  -webkit-mask-image: linear-gradient(
+
+    90deg,
+
+    transparent 1%,
+
+    #000 14%,
+
+    #000 78%,
+
+    transparent 96%
+
+  );
+
+
+
+  mask-image: linear-gradient(
+
+    90deg,
+
+    transparent 1%,
+
+    #000 14%,
+
+    #000 78%,
+
+    transparent 96%
+
+  );
+
+}
+
+
+
+/* Forward is the default: left → right */
+
+
+
+.ei-section[data-transition="atmospheric"][data-transition-direction="forward"] {
+
+  --ei-atmosphere-direction: 1;
+
+  --ei-atmosphere-mist-x: -10%;
+
+  --ei-atmosphere-ribbon-x: -12%;
+
+}
+
+
+
+/* Reverse is a true horizontal mirror: right → left */
+
+
+
+.ei-section[data-transition="atmospheric"][data-transition-direction="reverse"] {
+
+  --ei-atmosphere-direction: -1;
+
+  --ei-atmosphere-mist-x: -8%;
+
+  --ei-atmosphere-ribbon-x: -10%;
+
+}
+
+
+
+/* ── Reverse atmospheric composition ─────────────────────────────
+   A deeper right → left sweep used before stronger visual moments.
+   Keeps the forward atmosphere untouched.
+   ─────────────────────────────────────────────── */
+
+.ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::after {
+  bottom: -5rem;
+
+  background:
+    /* blue/periwinkle entry — high right after horizontal mirroring */
+    radial-gradient(
+      ellipse 38% 62% at 14% 20%,
+      rgb(var(--ei-halo-blue-rgb) / 0.15) 0%,
+      rgb(var(--ei-halo-blue-rgb) / 0.065) 38%,
+      transparent 72%
+    ),
+
+    /* broad central body — falls lower through the boundary */
+    radial-gradient(
+      ellipse 46% 58% at 44% 72%,
+      rgb(var(--ei-halo-blue-rgb) / 0.11) 0%,
+      rgb(var(--ei-violet-rgb) / 0.055) 46%,
+      transparent 75%
+    ),
+
+    /* violet rise */
+    radial-gradient(
+      ellipse 34% 50% at 70% 38%,
+      rgb(var(--ei-violet-rgb) / 0.085) 0%,
+      rgb(var(--ei-violet-rgb) / 0.03) 48%,
+      transparent 74%
+    ),
+
+    /* restrained lilac tail */
+    radial-gradient(
+      ellipse 20% 34% at 89% 70%,
+      color-mix(
+        in srgb,
+        var(--ei-echo-magenta) 5.5%,
+        transparent
+      ) 0%,
+      transparent 72%
+    );
+
+  filter: blur(32px);
+
+  transform:
+    scaleX(-1)
+    rotate(-3.5deg);
+}
+
+.ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::before {
+  bottom: -3.5rem;
+
+  background:
+    radial-gradient(
+      ellipse 28% 44% at 16% 20%,
+      rgb(var(--ei-halo-blue-rgb) / 0.09) 0%,
+      rgb(var(--ei-halo-blue-rgb) / 0.03) 48%,
+      transparent 74%
+    ),
+
+    radial-gradient(
+      ellipse 40% 26% at 44% 70%,
+      rgb(var(--ei-halo-blue-rgb) / 0.105) 0%,
+      rgb(var(--ei-violet-rgb) / 0.055) 44%,
+      transparent 75%
+    ),
+
+    radial-gradient(
+      ellipse 30% 24% at 70% 34%,
+      rgb(var(--ei-violet-rgb) / 0.07) 0%,
+      color-mix(
+        in srgb,
+        var(--ei-echo-magenta) 3%,
+        transparent
+      ) 48%,
+      transparent 76%
+    );
+
+  filter: blur(20px);
+
+  transform:
+    scaleX(-1)
+    rotate(5deg)
+    skewX(-10deg);
+}
+
+/* ── Closing atmospheric composition ─────────────────────────────
+   Final atmospheric gesture before the closing CTA.
+   Softer and more luminous than the primary section transitions.
+   ─────────────────────────────────────────────── */
+
+.ei-section.ei-transition-closing[data-transition="atmospheric"]::after {
+  bottom: -5.25rem;
+
+  height: clamp(11rem, 16vw, 16rem);
+
+  background:
+    /* soft periwinkle lift — left */
+    radial-gradient(
+      ellipse 34% 52% at 18% 32%,
+      rgb(var(--ei-halo-blue-rgb) / 0.075) 0%,
+      rgb(var(--ei-halo-blue-rgb) / 0.025) 42%,
+      transparent 74%
+    ),
+
+    /* broad violet body — low centre */
+    radial-gradient(
+      ellipse 46% 52% at 48% 72%,
+      rgb(var(--ei-violet-rgb) / 0.055) 0%,
+      rgb(var(--ei-violet-rgb) / 0.022) 48%,
+      transparent 76%
+    ),
+
+    /* restrained lilac echo — right */
+    radial-gradient(
+      ellipse 28% 42% at 78% 38%,
+      color-mix(
+        in srgb,
+        var(--ei-echo-magenta) 4%,
+        transparent
+      ) 0%,
+      transparent 74%
+    );
+
+  filter: blur(34px);
+
+  transform:
+    scaleX(1)
+    rotate(-1.5deg);
+}
+
+.ei-section.ei-transition-closing[data-transition="atmospheric"]::before {
+  bottom: -3.75rem;
+
+  height: clamp(7rem, 10vw, 9.5rem);
+
+  background:
+    radial-gradient(
+      ellipse 32% 30% at 24% 38%,
+      rgb(var(--ei-halo-blue-rgb) / 0.05) 0%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 42% 24% at 52% 66%,
+      rgb(var(--ei-violet-rgb) / 0.055) 0%,
+      color-mix(
+        in srgb,
+        var(--ei-echo-magenta) 2.5%,
+        transparent
+      ) 48%,
+      transparent 76%
+    );
+
+  opacity: 0.78;
+
+  filter: blur(23px);
+
+  transform:
+    scaleX(1)
+    rotate(2deg)
+    skewX(-7deg);
+}
+
+
+
+/* ── Atmospheric boundary stacking ────────────────────────────────
+   Allow atmospheric light to visibly cross the adjoining section
+   canvas while keeping all real section content above it.
+   ─────────────────────────────────────────────────────────────── */
+
+.ei-section[data-transition="atmospheric"] {
+  isolation: auto;
+  z-index: 1;
+}
+
+.ei-section[data-transition="atmospheric"] + .ei-section {
+  isolation: auto;
+  z-index: 0;
+}
+
+/* Atmospheric layers cross above the next section's canvas. */
+.ei-section[data-transition="atmospheric"]::after {
+  z-index: 1;
+}
+
+.ei-section[data-transition="atmospheric"]::before {
+  z-index: 2;
+}
+
+/* Actual content always remains above atmospheric decoration. */
+.ei-section[data-transition="atmospheric"] > *,
+.ei-section[data-transition="atmospheric"] + .ei-section > * {
+  position: relative;
+  z-index: 3;
+}
+
+
+
+/* ── Motif ────────────────────────────────────────────────────── */
+
+
+
+.ei-section[data-transition="motif"]::after {
+
+  height: clamp(7rem, 9vw, 9.5rem);
+
+
+
+  background: linear-gradient(
+
+    180deg,
+
+    transparent 0%,
+
+    color-mix(in srgb, var(--ei-transition-canvas) 48%, transparent) 62%,
+
+    var(--ei-transition-canvas) 100%
+
+  );
+
+}
+
+
+
+.ei-section[data-transition="motif"]::before {
+
+  content: "";
+
+  pointer-events: none;
+
+
+
+  position: absolute;
+
+  z-index: 2;
+
+
+
+  right: 14%;
+
+  bottom: -1.25rem;
+
+
+
+  width: min(42vw, 34rem);
+
+  height: 5.5rem;
+
+
+
+  border-top: 1px solid
+
+    color-mix(in srgb, var(--ei-moonlight-violet) 18%, transparent);
+
+
+
+  border-radius: 50%;
+
+
+
+  background: radial-gradient(
+
+    circle at 18% 0,
+
+    color-mix(in srgb, var(--ei-echo-magenta) 42%, transparent) 0 1.5px,
+
+    transparent 2.5px
+
+  );
+
+
+
+  opacity: 0.58;
+
+
+
+  transform: rotate(-3deg);
+
+  transform-origin: center;
+
+}
+
+
+
+.ei-section[data-transition-motif="node"]::before {
+
+  content: "";
+
+  pointer-events: none;
+
+
+
+  position: absolute;
+
+  z-index: 2;
+
+
+
+  right: 18%;
+
+  bottom: 1.65rem;
+
+
+
+  width: 0.42rem;
+
+  height: 0.42rem;
+
+
+
+  border: 1px solid
+
+    color-mix(in srgb, var(--ei-echo-magenta) 52%, transparent);
+
+
+
+  background: color-mix(
+
+    in srgb,
+
+    var(--ei-surface-base) 76%,
+
+    transparent
+
+  );
+
+
+
+  box-shadow: 0 0 12px rgb(var(--ei-violet-rgb) / 0.12);
+
+
+
+  opacity: 0.72;
+
+
+
+  transform: rotate(45deg);
+
+}
+
+
+
+/* ── Responsive ───────────────────────────────────────────────── */
+
+
+
+@media (max-width: 900px) {
+
+  .ei-section[data-transition="motif"]::before,
+
+  .ei-section[data-transition-motif="node"]::before {
+
+    display: none;
+
   }
 
-  /* Subtle top gradient for sections following hero */
-  .ei-bleed-top {
-    background: linear-gradient(to top, transparent 0%, rgb(var(--ei-void-rgb) / 0.15) 100%);
-    pointer-events: none;
-  }
+}
 
-  /* Semantic section transitions. The owning section keeps its data-theme;
-     this visual layer only eases its canvas toward the following family. */
-  .ei-section[data-transition-to] {
-    isolation: isolate;
-  }
 
-  .ei-section[data-transition-to]::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: var(--ei-transition-depth);
 
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .028 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E"),
-      linear-gradient(
-        180deg,
-        transparent 10%,
-        color-mix(in srgb, var(--ei-transition-accent) 5%, transparent) 62%,
-        transparent 94%
-      ),
-      radial-gradient(
-        ellipse 58% 86% at var(--ei-transition-focus-x, 70%) 100%,
-        color-mix(in srgb, var(--ei-transition-accent) 9%, transparent) 0%,
-        transparent 68%
-      ),
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--ei-transition-canvas) 12%, transparent) 28%,
-        color-mix(in srgb, var(--ei-transition-canvas) 68%, transparent) 76%,
-        var(--ei-transition-canvas) 100%
-      );
+@media (max-width: 767px) {
 
-    background-blend-mode: soft-light, normal, normal, normal;
-  }
+  .ei-section[data-transition="soft"]::after,
 
-  /* Preserve the homepage reference treatment; secondary pages rely on
-     tonal canvas changes without a boundary rule. */
+  .ei-section[data-transition="motif"]::after {
 
-  .ei-section[data-transition-to="light"] {
-    --ei-transition-canvas: var(--ei-transition-canvas-light);
-    --ei-transition-accent: var(--ei-moonlight-violet);
-    --ei-transition-focus-x: 30%;
-  }
+    height: 6.5rem;
 
-  .ei-section[data-transition-to="lightElevated"] {
-    --ei-transition-canvas: var(--ei-transition-canvas-light-elevated);
-    --ei-transition-accent: var(--ei-moonlight-violet);
-    --ei-transition-focus-x: 70%;
-  }
-
-  .ei-section[data-transition-to="mist"] {
-    --ei-transition-canvas: var(--ei-transition-canvas-mist);
-    --ei-transition-accent: var(--ei-moonlight-violet);
-    --ei-transition-focus-x: 42%;
-  }
-
-  .ei-section[data-transition-to="atmospheric"] {
-    --ei-transition-canvas: var(--ei-transition-canvas-atmospheric);
-    --ei-transition-accent: var(--ei-theme-atmosphere-violet);
-    --ei-transition-focus-x: 72%;
-  }
-
-  .ei-section[data-transition-to="deep"] {
-    --ei-transition-canvas: var(--ei-transition-canvas-deep);
-    --ei-transition-accent: var(--ei-theme-atmosphere-blue);
-    --ei-transition-focus-x: 50%;
-  }
-
-  /* Reusable editorial transition intents. `data-transition-to` continues to
-     own the destination canvas; these modifiers only control boundary rhythm. */
-  .ei-section[data-transition]::after {
-    opacity: 1;
-  }
-
-  .ei-section[data-transition="soft"]::after {
-    height: clamp(7.5rem, 10vw, 11.25rem);
-    background:
-      radial-gradient(
-        ellipse 58% 72% at var(--ei-transition-focus-x, 58%) 100%,
-        color-mix(in srgb, var(--ei-transition-accent) 5%, transparent),
-        transparent 72%
-      ),
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--ei-transition-canvas) 28%, transparent) 54%,
-        var(--ei-transition-canvas) 100%
-      );
   }
 
   .ei-section[data-transition="chapter"]::after {
-    height: clamp(6.5rem, 8vw, 8.5rem);
-    background:
-      linear-gradient(
-          90deg,
-          transparent,
-          color-mix(in srgb, var(--ei-theme-border) 62%, transparent) 12%,
-          color-mix(in srgb, var(--ei-theme-border) 62%, transparent) 88%,
-          transparent
-        )
-        center 58% / 76% 1px no-repeat,
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--ei-transition-canvas) 42%, transparent) 68%,
-        var(--ei-transition-canvas) 100%
-      );
+
+    height: 6rem;
+
   }
+
+/**
+
+*   * Keep the atmospheric composition asymmetric on mobile.*
+
+*   * It becomes wider than the viewport so its edges dissolve*
+
+*   * naturally instead of forming a visible rectangular strip.*
+
+*   */
+
+
 
   .ei-section[data-transition="atmospheric"]::after {
-    left: var(--ei-atmosphere-mist-left, -8%);
-    right: auto;
-    bottom: clamp(-5.3125rem, -5vw, -3.125rem);
-    width: min(82vw, 70rem);
-    height: clamp(6.25rem, 10vw, 10.625rem);
-    background:
-      radial-gradient(
-        ellipse 42% 62% at 24% 36%,
-        rgb(var(--ei-halo-blue-rgb) / 0.12) 0%,
-        rgb(var(--ei-halo-blue-rgb) / 0.05) 44%,
-        transparent 76%
-      ),
-      radial-gradient(
-        ellipse 38% 58% at 59% 62%,
-        rgb(var(--ei-violet-rgb) / 0.085) 0%,
-        rgb(var(--ei-violet-rgb) / 0.03) 48%,
-        transparent 78%
-      ),
-      radial-gradient(
-        ellipse 24% 46% at 86% 42%,
-        color-mix(in srgb, var(--ei-echo-magenta) 3%, transparent) 0%,
-        transparent 72%
-      );
-    filter: blur(24px);
-    opacity: 0.92;
-    transform: var(--ei-atmosphere-mist-transform, rotate(1.5deg));
-    transform-origin: center;
-    -webkit-mask-image: radial-gradient(ellipse 88% 94% at 50% 50%, #000 34%, transparent 82%);
-    mask-image: radial-gradient(ellipse 88% 94% at 50% 50%, #000 34%, transparent 82%);
+
+    left: -18%;
+
+    bottom: -4.25rem;
+
+
+
+    width: 136vw;
+
+    height: 9.5rem;
+
+
+
+    filter: blur(22px);
+
   }
+
+
 
   .ei-section[data-transition="atmospheric"]::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    z-index: 2;
-    left: var(--ei-atmosphere-ribbon-left, -6%);
-    bottom: clamp(-3.75rem, -3.5vw, -2.25rem);
-    width: min(72vw, 64rem);
-    height: clamp(4.75rem, 7.5vw, 7.5rem);
-    border-radius: 58% 42% 64% 36% / 72% 38% 62% 28%;
-    background:
-      radial-gradient(
-        ellipse 44% 80% at 24% 34%,
-        rgb(var(--ei-halo-blue-rgb) / 0.085) 0%,
-        transparent 68%
-      ),
-      radial-gradient(
-        ellipse 34% 72% at 66% 68%,
-        rgb(var(--ei-violet-rgb) / 0.07) 0%,
-        transparent 72%
-      ),
-      linear-gradient(
-        103deg,
-        transparent 3%,
-        rgb(var(--ei-halo-blue-rgb) / 0.045) 17%,
-        rgb(var(--ei-halo-blue-rgb) / 0.085) 43%,
-        rgb(var(--ei-violet-rgb) / 0.065) 68%,
-        color-mix(in srgb, var(--ei-echo-magenta) 2.5%, transparent) 84%,
-        transparent 98%
-      );
+
+    left: -15%;
+
+    bottom: -3.25rem;
+
+
+
+    width: 130vw;
+
+    height: 7rem;
+
+
+
     filter: blur(17px);
-    opacity: 0.9;
-    transform: rotate(2.25deg) skewX(-8deg);
-    transform-origin: center;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 80%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 15%, #000 80%, transparent 100%);
+
   }
 
-  .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"] {
-    --ei-atmosphere-mist-left: 26%;
-    --ei-atmosphere-mist-transform: scaleX(-1) rotate(1.5deg);
-    --ei-atmosphere-ribbon-left: 34%;
+
+
+  .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::after {
+
+    left: -18%;
+
   }
+
+
 
   .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::before {
-    transform: scaleX(-1) rotate(2.25deg) skewX(-8deg);
+
+    left: -15%;
+
   }
 
-  /* The atmospheric light must cross the sibling paint boundary. Removing
-     isolation only for the adjoining pair lets the pseudo-elements sit above
-     both canvases; direct content remains in the higher shared stack. */
-  .ei-section[data-transition="atmospheric"],
-  .ei-section[data-transition="atmospheric"] + .ei-section {
-    isolation: auto;
-  }
+}
 
-  .ei-section[data-transition="atmospheric"] {
-    overflow-x: clip;
-  }
 
-  .ei-section[data-transition="atmospheric"] > *,
-  .ei-section[data-transition="atmospheric"] + .ei-section > * {
-    position: relative;
-    z-index: 3;
-  }
 
-  .ei-section[data-transition="motif"]::after {
-    height: clamp(7rem, 9vw, 9.5rem);
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      color-mix(in srgb, var(--ei-transition-canvas) 48%, transparent) 62%,
-      var(--ei-transition-canvas) 100%
-    );
-  }
+/* ── Noise & Texture ─────────────────────────────────────────── */
 
-  .ei-section[data-transition="motif"]::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    z-index: 2;
-    right: 14%;
-    bottom: -1.25rem;
-    width: min(42vw, 34rem);
-    height: 5.5rem;
-    border-top: 1px solid color-mix(in srgb, var(--ei-moonlight-violet) 18%, transparent);
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at 18% 0,
-      color-mix(in srgb, var(--ei-echo-magenta) 42%, transparent) 0 1.5px,
-      transparent 2.5px
-    );
-    opacity: 0.58;
-    transform: rotate(-3deg);
-    transform-origin: center;
-  }
 
-  .ei-section[data-transition-motif="node"]::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    z-index: 2;
-    right: 18%;
-    bottom: 1.65rem;
-    width: 0.42rem;
-    height: 0.42rem;
-    border: 1px solid color-mix(in srgb, var(--ei-echo-magenta) 52%, transparent);
-    background: color-mix(in srgb, var(--ei-surface-base) 76%, transparent);
-    box-shadow: 0 0 12px rgb(var(--ei-violet-rgb) / 0.12);
-    opacity: 0.72;
-    transform: rotate(45deg);
-  }
 
-  @media (max-width: 900px) {
-    .ei-section[data-transition="motif"]::before,
-    .ei-section[data-transition-motif="node"]::before {
-      display: none;
-    }
-  }
+/* Film grain overlay */
 
-  @media (max-width: 767px) {
-    .ei-section[data-transition="soft"]::after,
-    .ei-section[data-transition="motif"]::after {
-      height: 6.5rem;
-    }
-
-    .ei-section[data-transition="atmospheric"]::after {
-      bottom: -3.125rem;
-      left: -8%;
-      width: 112vw;
-      height: 6.25rem;
-    }
-
-    .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::after {
-      left: -4%;
-    }
-
-    .ei-section[data-transition="atmospheric"]::before {
-      bottom: -2.25rem;
-      left: -4%;
-      width: 104vw;
-      height: 4.75rem;
-    }
-
-    .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::before {
-      left: 0;
-    }
-
-    .ei-section[data-transition="chapter"]::after {
-      height: 5.75rem;
-      background-size:
-        72% 1px,
-        auto;
-    }
-  }
-
-  /* ── Noise & Texture ─────────────────────────────────────────── */
-
-  /* Film grain overlay */
   .ei-grain {
+
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+
     background-repeat: repeat;
+
     mix-blend-mode: overlay;
+
     opacity: 0.4;
+
     pointer-events: none;
+
   }
 
-  /* ── Breathing Space Atmosphere ──────────────────────────────── */
 
-  /* Minimal atmospheric pause section */
+
+/* ── Breathing Space Atmosphere ──────────────────────────────── */
+
+
+
+/* Minimal atmospheric pause section */
+
   .ei-breathing-space {
+
     background: radial-gradient(
+
       ellipse 35% 25% at 50% 50%,
+
       rgb(var(--ei-violet-rgb) / 0.015) 0%,
+
       transparent 55%
+
     );
+
     position: relative;
+
   }
 
-  /* ── Monogram Framing ────────────────────────────────────────── */
 
-  /* Sacred space around the EI monogram */
+
+/* ── Monogram Framing ────────────────────────────────────────── */
+
+
+
+/* Sacred space around the EI monogram */
+
   .ei-monogram-frame {
+
     position: relative;
+
   }
+
+
 
   .ei-monogram-frame::before {
+
     content: "";
+
     position: absolute;
+
     inset: -15%;
+
     background: radial-gradient(
+
       ellipse 45% 40% at 50% 50%,
+
       rgb(var(--ei-violet-rgb) / 0.022) 0%,
+
       transparent 65%
+
     );
+
     filter: blur(60px);
+
     pointer-events: none;
+
     z-index: -1;
+
   }
+
 }
+
+
 
 /* ── Animation Keyframes ─────────────────────────────────────── */
+
 @keyframes ei-glow-pulse {
+
   0%,
+
   100% {
+
     opacity: 0.4;
+
   }
+
   50% {
+
     opacity: 0.6;
+
   }
+
 }
+
+
 
 @keyframes ei-grain-shift {
+
   0%,
+
   100% {
+
     transform: translate(0, 0);
+
   }
+
   50% {
+
     transform: translate(-1%, -1%);
+
   }
+
 }
 
+
+
 @keyframes ei-luminance-drift {
+
   0%,
+
   100% {
+
     opacity: 0.35;
+
     transform: scale(1);
+
   }
+
   50% {
+
     opacity: 0.45;
+
     transform: scale(1.02);
+
   }
+
 }

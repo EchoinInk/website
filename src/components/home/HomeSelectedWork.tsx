@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 
 import lumoProjectVisual from "@/assets/imagery/hero/lumo-page-hero-desktop.webp";
+import { ProjectCard } from "@/components/cards/ProjectCard";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { ProjectCard } from "@/components/cards/ProjectCard";
 import { worksProjects } from "@/data/worksProjects";
 import { driftUp, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
@@ -41,11 +41,13 @@ export function HomeSelectedWork() {
                 Selected projects, shown in meaningful context.
               </h2>
             </div>
+
             <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
                 Different problems. Different shapes. Each project is presented with its provenance,
                 challenge and outcome — <strong>no speculative work posed as client work.</strong>
               </p>
+
               <Button to="/works" variant="tertiary">
                 View all work
                 <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">

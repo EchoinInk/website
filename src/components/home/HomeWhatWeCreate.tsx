@@ -25,19 +25,23 @@ const capabilityVisuals: Record<
 const capabilityProblems: Record<ServiceCapabilityId, { prompt: string; outcome: string }> = {
   "brand-identity": {
     prompt: "When what you've become no longer matches how you're seen.",
-    outcome: "Strategy, positioning, messaging, and visual identity systems that reflect what the organisation has become—and where it is headed."
+    outcome:
+      "Strategy, positioning, messaging, and visual identity systems that reflect what the organisation has become—and where it is headed."
   },
   "websites-experiences": {
     prompt: "When your digital presence needs more than a refresh.",
-    outcome: "Websites, interfaces, and digital experiences that make the business clearer, easier to use, and more effective."
+    outcome:
+      "Websites, interfaces, and digital experiences that make the business clearer, easier to use, and more effective."
   },
   "digital-products": {
     prompt: "When an idea needs structure and momentum.",
-    outcome: "Product strategy, UX, interaction design, and implementation that turn promising ideas into coherent, usable products."
+    outcome:
+      "Product strategy, UX, interaction design, and implementation that turn promising ideas into coherent, usable products."
   },
   "systems-automation": {
     prompt: "When manual work creates unnecessary friction.",
-    outcome: "Operational systems, tools, workflows, and automation that reduce repetitive work and make complexity easier to manage."
+    outcome:
+      "Operational systems, tools, workflows, and automation that reduce repetitive work and make complexity easier to manage."
   }
 };
 
@@ -67,12 +71,15 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
             <div>
               <SectionLabel label="Areas of Practice" tone="accent" />
               <h2 id="home-capabilities-heading" className="ei-type-section-heading">
-                <span>Different challenges.</span> <span>One connected practice.</span>
+                <span>Different challenges.</span>{" "}
+                <span>One connected practice.</span>
               </h2>
             </div>
+
             <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
-                Brand, experience, product, and systems rarely exist in isolation. Bringing them together creates work that is more cohesive, useful, and built to last.
+                Brand, experience, product, and systems rarely exist in isolation. Bringing them
+                together creates work that is more cohesive, useful, and built to last.
               </p>
             </div>
           </motion.div>
@@ -93,14 +100,26 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
                       <OrbitalVisual variant={visual.variant} size={62} />
                       <span aria-hidden="true">→</span>
                     </div>
+
                     <h3>{capability.title}</h3>
+
                     <span className="ei-home-capability-label">
                       {capabilityProblems[capability.id].prompt}
                     </span>
+
                     <p>{capabilityProblems[capability.id].outcome}</p>
+
                     <span className="sr-only">{capability.description}</span>
+
                     <span className="ei-card-action">
-Explore {capability.id === "websites-experiences" ? "Experiences" : capability.title.split(" ")[0]}                      <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
+                      Explore{" "}
+                      {capability.id === "websites-experiences"
+                        ? "Experiences"
+                        : capability.title.split(" ")[0]}
+                      <span
+                        aria-hidden="true"
+                        className="ei-cta-arrow ei-cta-arrow-right"
+                      >
                         →
                       </span>
                     </span>

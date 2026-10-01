@@ -23,7 +23,8 @@ export function HomeStartHere() {
     },
     "full-projects": {
       title: "Full Project",
-      description: "Strategy through to design and implementation for complex or ambitious work.",
+      description:
+        "Strategy through to design and implementation for complex or ambitious work.",
       metadata: ["Tailored timeline", "End-to-end"]
     }
   } as const;
@@ -53,16 +54,22 @@ export function HomeStartHere() {
                 Different starting points. Three ways forward.
               </h2>
             </div>
+
             <div className="ei-home-section-support">
               <p className="ei-home-section-intro">
-                Not every project needs the same shape. We adapt the work to what you need, where you are, and what comes next.
+                Not every project needs the same shape. We adapt the work to what you need, where
+                you are, and what comes next.
               </p>
             </div>
           </motion.div>
 
           <div className="ei-home-engagement-grid">
             {engagementModels.map((model, index) => (
-              <motion.article key={model.id} variants={driftUp} className="ei-home-engagement">
+              <motion.article
+                key={model.id}
+                variants={driftUp}
+                className="ei-home-engagement"
+              >
                 <Link
                   to={model.href}
                   aria-label={`${model.cta}: ${engagementPresentation[model.id].title}`}
@@ -70,11 +77,15 @@ export function HomeStartHere() {
                   <span className="ei-home-engagement-index">
                     {String(index + 1).padStart(2, "0")}
                   </span>
+
                   <span className="ei-home-card-arrow" aria-hidden="true">
                     →
                   </span>
+
                   <h3>{engagementPresentation[model.id].title}</h3>
+
                   <p>{engagementPresentation[model.id].description}</p>
+
                   <div className="ei-home-engagement-meta">
                     {engagementPresentation[model.id].metadata.map((item) => (
                       <span key={item}>{item}</span>

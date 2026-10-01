@@ -391,11 +391,7 @@
     /* Semantic boundary canvases used by Section transitions. */
     --ei-transition-canvas-light: var(--ei-surface-base);
     --ei-transition-canvas-light-elevated: var(--ei-surface-base);
-    --ei-transition-canvas-mist: color-mix(
-      in srgb,
-      var(--ei-surface-base) 88%,
-      var(--ei-surface-lavender) 12%
-    );
+   --ei-transition-canvas-mist: var(--ei-surface-base);
     --ei-transition-canvas-atmospheric: var(--ei-ink);
     --ei-transition-canvas-deep: var(--ei-ink);
     --ei-transition-depth: clamp(5rem, 10vw, 10rem);
@@ -556,17 +552,14 @@
     --ei-theme-card: var(--ei-surface-card);
   }
 
-  [data-theme="mist"] {
-    --ei-theme-canvas: color-mix(
-      in srgb,
-      var(--ei-surface-base) 88%,
-      var(--ei-surface-lavender) 12%
-    );
-    --ei-theme-surface: var(--ei-surface-soft);
-    --ei-theme-surface-elevated: var(--ei-surface-card);
-    --ei-theme-card: rgb(255 254 254 / 0.9);
-    --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.78);
-  }
+ [data-theme="mist"] {
+  --ei-theme-canvas: var(--ei-surface-base);
+
+  --ei-theme-surface: var(--ei-surface-soft);
+  --ei-theme-surface-elevated: var(--ei-surface-card);
+  --ei-theme-card: rgb(255 254 254 / 0.9);
+  --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.78);
+}
   [data-header-surface="light"] {
     --ei-theme-header: rgb(var(--ei-moonlight-canvas-rgb) / 0.86);
     --ei-theme-header-text: var(--ei-moonlight-ink);
