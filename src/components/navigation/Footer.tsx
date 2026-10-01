@@ -175,7 +175,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
 
                 {/* Col 4 — Creative resources */}
                 <div className="ei-footer-systems-column relative order-4 md:order-4">
-                  <span className="ei-type-footer-label block font-mono text-[length:var(--ei-type-size-label)] uppercase tracking-[0.22em]">
+                  <span className="ei-type-footer-label ei-footer-systems-heading block font-mono text-[length:var(--ei-type-size-label)] font-bold uppercase tracking-[0.22em]">
                     Creative Systems &amp; Tools
                   </span>
 

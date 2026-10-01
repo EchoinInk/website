@@ -1463,7 +1463,7 @@ column-gap: 2rem;
   .ei-home-capability-label {
     min-height: 2.5rem;
     margin-block: 1.45rem 0;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     line-height: 1.5;
   }
 
@@ -2491,7 +2491,7 @@ column-gap: 2rem;
   .ei-home-page .ei-home-capability-label {
     color: #514b5e;
     font-size: 0.77rem;
-    font-weight: 400;
+    font-weight: semibold;
   }
 
   .ei-home-page .ei-home-capability-item p {
@@ -3238,4 +3238,96 @@ background: color-mix(in srgb, var(--ei-surface-card) 96%, var(--ei-surface-lave
 
     column-gap: 1.5rem !important;
   }
+}
+
+/* Final mobile refinements live after the homepage cascade by design. */
+@media (max-width: 767px) {
+  .ei-home-page .ei-home-hero.ei-hero-system {
+    min-height: 44rem;
+  }
+
+  .ei-home-page .ei-home-hero .ei-home-hero-copy {
+    padding-block: 7rem 5rem;
+  }
+
+  .ei-home-page .ei-home-hero-picture {
+    inset: 0;
+    height: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .ei-home-page .ei-home-hero-image {
+    object-position: 62% center;
+  }
+
+  .ei-home-page .ei-home-hero-wash {
+    background:
+      linear-gradient(
+        90deg,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.98) 0%,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.9) 48%,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.42) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.82) 0%,
+        transparent 42%,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.92) 100%
+      );
+  }
+
+  .ei-home-page
+    .ei-home-selected-work
+    .ei-works-project-card[data-home-compact="true"]
+    .ei-card-action {
+    bottom: 1.5rem;
+  }
+
+  .ei-home-page .ei-home-capabilities .ei-home-section-header {
+    gap: 1.25rem !important;
+  }
+
+  .ei-home-page .ei-home-engagement > a {
+    min-height: 0;
+    padding-bottom: 1.25rem;
+  }
+
+  .ei-home-page .ei-home-engagement-meta {
+    margin-top: 1.25rem;
+  }
+
+  .ei-home-page .ei-home-card-arrow {
+    top: 3.25rem;
+  }
+
+  .ei-home-page .ei-home-closing-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .ei-home-page .ei-home-closing-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 389px) {
+  .ei-home-page .ei-home-hero.ei-hero-system {
+    min-height: 46rem;
+  }
+
+  .ei-home-page .ei-home-hero .ei-home-hero-copy {
+    padding-bottom: 5rem;
+  }
+
+  .ei-home-page .ei-home-hero-image {
+    object-position: 59% center;
+  }
+}
+
+.ei-footer .ei-footer-systems-heading {
+  margin-bottom: 0.4rem !important;
+  font-weight: 700 !important;
 }

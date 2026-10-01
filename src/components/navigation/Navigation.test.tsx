@@ -65,10 +65,9 @@ describe("site navigation", () => {
       "aria-current",
       "page"
     );
-    expect(within(headerNav).getByRole("link", { name: "Start a Project" })).toHaveAttribute(
-      "href",
-      "/contact"
-    );
+    expect(
+      within(headerNav).queryByRole("link", { name: "Start a Project" })
+    ).not.toBeInTheDocument();
   });
 
   it("provides a focused compact footer without the full navigation taxonomy", () => {
@@ -169,9 +168,10 @@ describe("site navigation", () => {
     const firstFocusable = within(dialog).getByRole("link", {
       name: "Echo in Ink home"
     });
-    const lastFocusable = within(dialog).getByRole("link", {
-      name: "Start a Project"
-    });
+    const lastFocusable = within(dialog).getByRole("link", { name: "Contact" });
+    expect(
+      within(dialog).queryByRole("link", { name: "Start a Project" })
+    ).not.toBeInTheDocument();
 
     lastFocusable.focus();
     fireEvent.keyDown(document, { key: "Tab" });

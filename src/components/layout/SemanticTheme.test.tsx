@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
+import { describe, expect, it } from "vitest";
 
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";

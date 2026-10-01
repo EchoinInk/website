@@ -6,7 +6,6 @@ import wordmark from "@/assets/brand/marks/echo-in-ink-wordmark.png";
 import { useSectionAwareTheme } from "@/components/navigation/useSectionAwareTheme";
 import {
   isNavigationItemActive,
-  primaryCallToAction,
   primaryNavigation
 } from "@/data/siteNavigation";
 import { DURATION } from "@/lib/motion-cinematic";
@@ -106,7 +105,6 @@ export function Header() {
   }
 
   const closeMenu = () => setMenuOpen(false);
-  const contactActive = isNavigationItemActive(pathname, primaryCallToAction);
   const isHome = pathname === "/";
   const menuTransition = prefersReducedMotion
     ? { duration: 0.01 }
@@ -194,30 +192,6 @@ export function Header() {
               })}
             </div>
 
-            <Link
-              to={primaryCallToAction.href}
-              aria-current={contactActive ? "page" : undefined}
-              className={`
-                ei-focus-rounded rounded-full
-                border border-[var(--ei-theme-border)]
-                bg-[var(--ei-theme-surface)]
-                ${isHome ? "px-[0.8125rem] py-[0.54rem] lg:px-[0.9375rem]" : "px-3 py-2 lg:px-3.5"}
-                font-structural text-[length:var(--ei-type-size-navigation)] font-medium uppercase tracking-[0.14em] lg:tracking-[0.19em]
-                transition-all duration-500
-                hover:border-[var(--ei-theme-focus)]
-                hover:bg-[var(--ei-theme-surface-elevated)]
-                hover:!text-[var(--ei-header-text-hover)]
-                hover:shadow-[0_0_24px_rgb(var(--ei-halo-blue-rgb)/0.12)]
-                focus-visible:!text-[var(--ei-header-text-hover)]
-                ${
-                  contactActive
-                    ? "border-[var(--ei-theme-focus)] bg-[var(--ei-theme-surface-elevated)] !text-[var(--ei-header-text)] shadow-[0_0_22px_rgb(var(--ei-halo-blue-rgb)/0.12)]"
-                    : `!text-[var(--ei-header-text)] ${isHome ? "opacity-[0.88]" : "opacity-80"}`
-                }
-              `}
-            >
-              {primaryCallToAction.label}
-            </Link>
           </div>
 
           <button
@@ -396,25 +370,6 @@ export function Header() {
               </div>
 
               <div className="pt-7">
-                <Link
-                  to={primaryCallToAction.href}
-                  onClick={closeMenu}
-                  className="
-                    ei-focus-rounded inline-flex min-h-[44px] w-full items-center justify-center rounded-full
-                    border border-[rgb(var(--ei-halo-blue-rgb)/0.24)]
-                    bg-[linear-gradient(to_bottom,rgb(var(--ei-midnight-rgb)/0.64),rgb(var(--ei-void-rgb)/0.9))]
-                    px-6 py-3
-                    font-structural text-[length:var(--ei-type-size-label)] font-medium uppercase tracking-[0.2em]
-                    text-[var(--ei-button-text-primary)]
-                    shadow-[inset_0_1px_0_rgb(var(--ei-ice-white-rgb)/0.07),0_0_24px_rgb(var(--ei-halo-blue-rgb)/0.075)]
-                    transition-all duration-500
-                    hover:border-[rgb(var(--ei-halo-blue-rgb)/0.42)]
-                    hover:text-[var(--ei-button-text-primary-hover)]
-                  "
-                >
-                  {primaryCallToAction.label}
-                </Link>
-
                 <p className="ei-type-color-muted mt-4 max-w-[32ch] font-[var(--ei-font-copy)] text-[0.72rem] leading-[1.65] tracking-[-0.004em]">
                   Designing worlds that hold meaning, atmosphere, and emotional intelligence.
                 </p>
