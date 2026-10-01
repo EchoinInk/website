@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 
-import studioHeroDesktop from "@/assets/imagery/hero/studio-hero-desktop.webp";
-import studioHeroMobile from "@/assets/imagery/hero/studio-hero-mobile.webp";
+import studioHeroDesktop from "@/assets/imagery/hero/studio-hero-desktop.png";
+import studioHeroMobile from "@/assets/imagery/hero/studio-hero-mobile.png";
 import studioPhilosophyArtifact from "@/assets/imagery/sections/studio-philosophy-artifact.webp";
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
@@ -9,61 +9,79 @@ import { Section } from "@/components/layout/Section";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageSectionHero } from "@/components/sections/PageSectionHero";
 import { Button } from "@/components/ui/Button";
+import { CtaOrbitalBackground } from "@/components/ui/CTAOrbitalBackground";
 import { EchoCard } from "@/components/ui/EchoCard";
 import { OrbitalVisual, type OrbitalVariant } from "@/components/ui/OrbitalVisual";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import {
-  primaryCapabilities,
-  type ServiceCapabilityId,
-} from "@/data/servicesContent";
+import { primaryCapabilities, type ServiceCapabilityId } from "@/data/servicesContent";
 import { primaryCallToAction } from "@/data/siteNavigation";
-import {
-  driftUp,
-  fadeSoft,
-  staggerContainer,
-  STAGGER,
-  VIEWPORT,
-} from "@/lib/motion-cinematic";
+import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
 const capabilityVisuals: Record<ServiceCapabilityId, OrbitalVariant> = {
   "brand-identity": "axiomRing",
   "websites-experiences": "memoryComet",
   "digital-products": "focusDial",
-  "systems-automation": "quietAxis",
+  "systems-automation": "quietAxis"
+};
+
+const studioCapabilityCopy: Record<
+  ServiceCapabilityId,
+  { summary: string; scope: string; relationship: string }
+> = {
+  "brand-identity": {
+    summary: "Creating identities with clarity, character and staying power.",
+    scope: "Positioning, brand foundations, messaging, visual systems and expression.",
+    relationship: "Identity shapes experiences"
+  },
+  "websites-experiences": {
+    summary: "Designing digital experiences that feel intuitive, useful and unmistakably yours.",
+    scope: "Websites, customer journeys, content architecture and interactive experiences.",
+    relationship: "Experiences inform products"
+  },
+  "digital-products": {
+    summary: "Turning ideas into products people can understand and use.",
+    scope: "Product strategy, UX/UI, prototyping, validation and product systems.",
+    relationship: "Products require systems"
+  },
+  "systems-automation": {
+    summary: "Building the frameworks that help work scale without losing quality.",
+    scope: "Operational systems, workflows, automation, internal tools and AI-assisted processes.",
+    relationship: "Systems unlock new possibilities"
+  }
 };
 
 const principles = [
   {
-    title: "Meaning over noise",
-    body: "Clarity is not the absence of character. It is the discipline of making what matters easier to see and feel.",
+    title: "Signal over noise",
+    body: "Clarity creates confidence. Every element should have a reason to exist."
   },
   {
-    title: "Design with feeling",
-    body: "Atmosphere carries meaning. Strategy, story and interaction become more coherent when they are shaped together.",
+    title: "Craft with intention",
+    body: "Visual decisions carry meaning. Atmosphere, interaction and language should work together, not compete for attention."
   },
   {
-    title: "Systems with soul",
-    body: "Craft should survive the first impression. Reusable structures give the work consistency without flattening its character.",
-  },
+    title: "Systems with character",
+    body: "Consistency shouldn't come at the expense of personality. Strong systems make creativity easier to sustain."
+  }
 ] as const;
 
 const workingModel = [
   {
     title: "Direct involvement",
-    body: "The founder stays close to the work, the decisions and the details throughout the engagement.",
+    body: "No unnecessary layers of account management. Work directly with the person shaping the work."
   },
   {
-    title: "Continuity through execution",
-    body: "Strategy, design and development remain connected instead of being handed between disconnected departments.",
+    title: "Connected execution",
+    body: "Strategy, design and development stay aligned from beginning to end."
   },
   {
-    title: "Specialist support with purpose",
-    body: "Specialist collaborators are brought in selectively when the work genuinely benefits from their expertise.",
+    title: "Purposeful collaboration",
+    body: "Specialists are brought in selectively when they add genuine value."
   },
   {
-    title: "Technology in service of the work",
-    body: "Tools and platforms are selected for the problem, the people using them and what the work needs to become.",
-  },
+    title: "Technology that serves the outcome",
+    body: "Tools support the goal. They don’t become the goal."
+  }
 ] as const;
 
 export function StudioPage() {
@@ -80,16 +98,16 @@ export function StudioPage() {
     >
       <PageSectionHero
         eyebrow="THE STUDIO"
-        title="A creative technology studio for ambitious digital work."
-        description="Echo in Ink brings strategy, design and development together to shape brands, digital experiences, products and systems."
-        offerAnchor="High-touch work. Meaningful worlds."
+        title="Where strategy, design and technology speak the same language."
+        description="Echo in Ink is a founder-led studio creating brands, digital experiences, products and systems with equal attention to thinking, craft and execution."
+        offerAnchor="Made with care. Built with purpose."
         ctaLabel={primaryCallToAction.label}
         ctaHref={primaryCallToAction.href}
         secondaryCtaLabel="View Work"
         secondaryCtaHref="/works"
         image={studioHeroDesktop}
         mobileImage={studioHeroMobile}
-        imageAlt="Atmospheric violet and blue light forming an open, luminous space"
+        imageAlt="An atmospheric creative workstation surrounded by violet cosmic imagery and design studies"
         theme="light"
         tone="editorial"
         headingId="studio-heading"
@@ -98,6 +116,7 @@ export function StudioPage() {
       <Section
         theme="lightElevated"
         transitionTo="mist"
+        transition="soft"
         spacing="none"
         className="ei-studio-capabilities"
         aria-labelledby="studio-capabilities-heading"
@@ -113,11 +132,13 @@ export function StudioPage() {
             <motion.div variants={driftUp} className="ei-studio-section-heading">
               <SectionLabel label="Connected practice" tone="accent" />
               <div>
-                <h2 id="studio-capabilities-heading">One studio, four connected capabilities.</h2>
+                <h2 id="studio-capabilities-heading">
+                  One studio. Multiple disciplines. One connected practice.
+                </h2>
                 <p>
-                  The work can move across strategy, identity, experience and technology according
-                  to the problem. These are the same four areas used across Echo&apos;s commercial
-                  offer—not a separate Studio taxonomy.
+                  Every project requires a different balance of strategy, design and technology.
+                  Rather than treating these as separate services, Echo brings them together around
+                  the problem that needs solving.
                 </p>
               </div>
             </motion.div>
@@ -131,17 +152,33 @@ export function StudioPage() {
                       <OrbitalVisual variant={capabilityVisuals[capability.id]} size={54} />
                     </div>
                     <h3>{capability.title}</h3>
-                    <p>{capability.description}</p>
+                    <p className="ei-studio-capability-summary">
+                      {studioCapabilityCopy[capability.id].summary}
+                    </p>
+                    <p className="ei-studio-capability-scope">
+                      {studioCapabilityCopy[capability.id].scope}
+                    </p>
                   </EchoCard>
                 </motion.div>
               ))}
             </div>
 
-            <motion.div variants={fadeSoft} className="ei-studio-services-link">
-              <p>For the complete capability and engagement-model explanation:</p>
-              <Button to="/services" variant="secondary">
-                Explore Services
-              </Button>
+            <motion.div
+              variants={fadeSoft}
+              className="ei-studio-capability-relationships"
+              aria-label="How Echo in Ink's disciplines influence one another"
+            >
+              <div className="ei-studio-relationship-line" aria-hidden="true">
+                <svg viewBox="0 0 1000 72" preserveAspectRatio="none">
+                  <path d="M0 24 C125 24 125 58 250 58 S375 24 500 24 S625 58 750 58 S875 24 1000 24" />
+                </svg>
+              </div>
+              {primaryCapabilities.map((capability) => (
+                <div key={capability.id} className="ei-studio-relationship">
+                  <span aria-hidden="true" />
+                  <p>{studioCapabilityCopy[capability.id].relationship}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </Container>
@@ -150,6 +187,7 @@ export function StudioPage() {
       <Section
         theme="mist"
         transitionTo="light"
+        transition="chapter"
         spacing="none"
         className="ei-studio-philosophy"
         aria-labelledby="studio-philosophy-heading"
@@ -165,17 +203,12 @@ export function StudioPage() {
             <motion.div variants={driftUp} className="ei-studio-philosophy-intro">
               <div>
                 <SectionLabel label="Studio philosophy" />
-                <h2 id="studio-philosophy-heading">High-touch work. Meaningful worlds.</h2>
+                <h2 id="studio-philosophy-heading">Meaning first. Everything else follows.</h2>
               </div>
               <div>
                 <p className="ei-studio-philosophy-lead">
-                  Design is not decoration—it is meaning made visible. Atmosphere is how that
-                  meaning is felt.
-                </p>
-                <p>
-                  Echo looks for the point where message, form and function become one coherent
-                  experience. The goal is not more noise, but work with enough clarity and craft to
-                  hold attention.
+                  The goal isn&apos;t simply to make something look better. It&apos;s to create
+                  alignment between what something is, what it does and how it feels.
                 </p>
               </div>
             </motion.div>
@@ -203,6 +236,7 @@ export function StudioPage() {
       <Section
         theme="light"
         transitionTo="lightElevated"
+        transition="soft"
         spacing="none"
         className="ei-studio-model"
         aria-labelledby="studio-model-heading"
@@ -218,12 +252,79 @@ export function StudioPage() {
             <motion.div variants={driftUp} className="ei-studio-section-heading">
               <SectionLabel label="Founder-led by design" tone="accent" />
               <div>
-                <h2 id="studio-model-heading">Direct thinking, carried through the work.</h2>
+                <h2 id="studio-model-heading">Small by design. Close by choice.</h2>
                 <p>
-                  Echo in Ink is a founder-led creative technology studio. That keeps the line from
-                  the first strategic question to the final implementation clear, considered and
-                  accountable.
+                  Echo in Ink is intentionally founder-led. The person helping define the strategy
+                  is the same person shaping the design, building the system and guiding
+                  implementation. That continuity keeps decisions connected and reduces unnecessary
+                  complexity.
                 </p>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeSoft} className="ei-studio-founder-diagram">
+              <div
+                className="ei-studio-founder-primary"
+                aria-label="Echo in Ink working relationship"
+              >
+                <div className="ei-studio-founder-node">
+                  <span className="ei-studio-founder-node-mark" aria-hidden="true">
+                    01
+                  </span>
+                  <div>
+                    <strong>Client</strong>
+                    <small>Your problem, opportunity or idea.</small>
+                  </div>
+                </div>
+                <span className="ei-studio-founder-arrow" aria-hidden="true">
+                  ↔
+                </span>
+                <div className="ei-studio-founder-node ei-studio-founder-node-lead">
+                  <span className="ei-studio-founder-node-mark" aria-hidden="true">
+                    ✦
+                  </span>
+                  <div>
+                    <strong>Founder / Lead</strong>
+                    <small>Strategy, design and development, directly involved.</small>
+                  </div>
+                </div>
+                <span className="ei-studio-founder-arrow" aria-hidden="true">
+                  ↔
+                </span>
+                <div className="ei-studio-founder-node">
+                  <span className="ei-studio-founder-node-mark" aria-hidden="true">
+                    03
+                  </span>
+                  <div>
+                    <strong>Specialists when needed</strong>
+                    <small>A trusted network for additional expertise and scale.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div className="ei-studio-handoffs" aria-label="Comparison of project handoffs">
+                <p className="ei-studio-handoffs-label">Fewer handoffs</p>
+                <div className="ei-studio-handoff-row ei-studio-handoff-row-echo">
+                  <strong>Echo in Ink</strong>
+                  <ol>
+                    <li>Client</li>
+                    <li>Founder / Lead</li>
+                    <li>
+                      Specialists <span>(when needed)</span>
+                    </li>
+                  </ol>
+                </div>
+                <div className="ei-studio-handoff-row">
+                  <strong>Traditional model</strong>
+                  <ol>
+                    <li>Client</li>
+                    <li>Account</li>
+                    <li>Strategy</li>
+                    <li>Design</li>
+                    <li>Development</li>
+                    <li>Handover</li>
+                  </ol>
+                </div>
               </div>
             </motion.div>
 
@@ -240,16 +341,25 @@ export function StudioPage() {
         </Container>
       </Section>
 
-      <Section theme="lightElevated" spacing="none" className="ei-studio-closing">
+      <Section
+        theme="lightElevated"
+        transitionTo="deep"
+        transition="atmospheric"
+        spacing="none"
+        className="ei-studio-closing"
+      >
         <CTASection
           variant="editorialInvitation"
           panelTheme="deep"
           eyebrow="Continue"
-          heading="See what this way of working can make."
-          body="Explore selected work and its project context, or bring Echo the challenge you are ready to shape."
+          heading="Let's make something thoughtful."
+          body="Whether you're building a brand, refining a product or creating better systems, Echo in Ink helps bring ideas into focus and turn them into work that lasts."
+          decoration={<CtaOrbitalBackground />}
           actions={
             <>
-              <Button to="/works" variant="secondary">View Work</Button>
+              <Button to="/works" variant="secondary">
+                View Work
+              </Button>
               <Button to={primaryCallToAction.href}>{primaryCallToAction.label}</Button>
             </>
           }

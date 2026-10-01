@@ -84,25 +84,32 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "A creative technology studio for ambitious digital work."
+        name: "Where strategy, design and technology speak the same language."
       })
     ).toBeInTheDocument();
-    expect(screen.getByText(/founder-led creative technology studio/i)).toBeInTheDocument();
+    expect(screen.getByText(/intentionally founder-led/i)).toBeInTheDocument();
 
     primaryCapabilities.forEach((capability) => {
       expect(screen.getByRole("heading", { level: 3, name: capability.title })).toBeInTheDocument();
-      expect(screen.getByText(capability.description)).toBeInTheDocument();
     });
+
+    expect(
+      screen.getByLabelText("How Echo in Ink's disciplines influence one another")
+    ).toBeInTheDocument();
+    expect(screen.getByText("Identity shapes experiences")).toBeInTheDocument();
+    expect(screen.getByText("Experiences inform products")).toBeInTheDocument();
+    expect(screen.getByText("Products require systems")).toBeInTheDocument();
+    expect(screen.getByText("Systems unlock new possibilities")).toBeInTheDocument();
+
+    expect(screen.getByLabelText("Echo in Ink working relationship")).toBeInTheDocument();
+    expect(screen.getByLabelText("Comparison of project handoffs")).toBeInTheDocument();
+    expect(screen.getByText("Traditional model")).toBeInTheDocument();
 
     expect(screen.getAllByRole("link", { name: primaryCallToAction.label })[0]).toHaveAttribute(
       "href",
       primaryCallToAction.href
     );
     expect(screen.getAllByRole("link", { name: "View Work" })[0]).toHaveAttribute("href", "/works");
-    expect(screen.getByRole("link", { name: "Explore Services" })).toHaveAttribute(
-      "href",
-      "/services"
-    );
 
     const sections = Array.from(
       container.querySelectorAll<HTMLElement>(".ei-studio-page > div > [data-theme]")
@@ -119,7 +126,14 @@ describe("Phase 6 Studio and Work contracts", () => {
       "mist",
       "light",
       "lightElevated",
-      undefined
+      "deep"
+    ]);
+    expect(sections.map((section) => section.dataset.transition)).toEqual([
+      undefined,
+      "soft",
+      "chapter",
+      "soft",
+      "atmospheric"
     ]);
   });
 
@@ -202,9 +216,10 @@ describe("Phase 6 Studio and Work contracts", () => {
     ).toBeInTheDocument();
     expect(within(lumo.container).getByText("Echo’s role")).toBeInTheDocument();
     expect(within(lumo.container).getByText(/no launch, clinical validation/i)).toBeInTheDocument();
-    expect(
-      within(lumo.container).getByRole("link", { name: "Explore Services" })
-    ).toHaveAttribute("href", "/services");
+    expect(within(lumo.container).getByRole("link", { name: "Explore Services" })).toHaveAttribute(
+      "href",
+      "/services"
+    );
     expect(within(lumo.container).getByRole("link", { name: "Interface screens" })).toHaveAttribute(
       "href",
       "#product-screens"
