@@ -9,7 +9,7 @@ export function HeroBackground() {
 
       <picture
         aria-hidden="true"
-        className="ei-home-hero-picture ei-hero-system-media"
+        className="ei-home-hero-picture"
       >
         <source media="(max-width: 768px)" srcSet={homeHeroMobile} />
 
