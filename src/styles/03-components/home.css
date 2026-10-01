@@ -3294,7 +3294,18 @@ background: color-mix(in srgb, var(--ei-surface-card) 96%, var(--ei-surface-lave
     gap: 1.25rem !important;
   }
 
+  .ei-home-page .ei-home-capability-item p {
+    max-width: none;
+  }
+
+  .ei-home-page .ei-home-engagement,
+  .ei-home-page .ei-home-engagement:first-child,
+  .ei-home-page .ei-home-engagement:last-child {
+    min-height: 0;
+  }
+
   .ei-home-page .ei-home-engagement > a {
+    height: auto;
     min-height: 0;
     padding-bottom: 1.25rem;
   }
@@ -3304,7 +3315,11 @@ background: color-mix(in srgb, var(--ei-surface-card) 96%, var(--ei-surface-lave
   }
 
   .ei-home-page .ei-home-card-arrow {
-    top: 3.25rem;
+    top: 2.85rem;
+  }
+
+  .ei-home-page .ei-home-delivery {
+    padding-inline: 0;
   }
 
   .ei-home-page .ei-home-closing-actions {
