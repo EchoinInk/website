@@ -353,19 +353,19 @@
 
   .ei-home-capability-label {
     display: block;
-    margin-bottom: 0.8rem;
     color: var(--ei-color-text-accent);
-    font-family: var(--ei-font-system);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-family: var(--ei-font-mono);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     line-height: 1.4;
-    text-transform: uppercase;
+    text-transform: none;
+    max-width: 25ch;
   }
 
   .ei-home-capability-item p,
   .ei-home-engagement p {
-    margin-top: 0.9rem;
+    margin-top: .9rem;
     color: var(--ei-color-text-secondary);
     font-family: var(--ei-font-copy);
     font-size: 0.98rem;
@@ -374,8 +374,8 @@
   }
 
   .ei-home-capability-item .ei-card-action {
-    margin-top: auto;
-    padding-top: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 0.3rem;
   }
 
   /* Selected work */
@@ -1444,7 +1444,7 @@ column-gap: 2rem;
   }
 
   .ei-home-capability-meta {
-    min-height: 4.5rem;
+    min-height: 2rem;
     align-items: flex-start;
     color: var(--ei-color-text-primary);
   }
@@ -1455,26 +1455,31 @@ column-gap: 2rem;
   }
 
   .ei-home-capability-item h3 {
-    min-height: 3.75rem;
+    min-height: 2.3rem;
     margin-top: 0.55rem;
     font-size: clamp(1.35rem, 1.65vw, 1.8rem);
   }
 
+  @media (min-width: 768px) {
+    .ei-home-capability-item h3 {
+      min-width: 14ch;
+    }
+  }
+
   .ei-home-capability-label {
-    min-height: 2.5rem;
-    margin-block: 1.45rem 0;
-    font-size: 0.78rem;
+    min-height: 3rem;
+    font-size: 0.92rem;
     line-height: 1.5;
   }
 
   .ei-home-capability-item p {
-    margin-top: 0.65rem;
+    margin-top: 1.05rem;
     font-size: 0.87rem;
     line-height: 1.55;
   }
 
   .ei-home-capability-item .ei-card-action {
-    padding-top: 1.4rem;
+    padding-top: 0.5rem;
     font-size: 0.64rem;
   }
 
@@ -2489,9 +2494,10 @@ column-gap: 2rem;
   }
 
   .ei-home-page .ei-home-capability-label {
-    color: #514b5e;
-    font-size: 0.77rem;
-    font-weight: semibold;
+    color: #4568b5;
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 400;
   }
 
   .ei-home-page .ei-home-capability-item p {
