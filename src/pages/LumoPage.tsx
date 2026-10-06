@@ -10,8 +10,8 @@ export function LumoPage() {
       description="Lumo is an independent product prototype exploring calm planning, emotional safety and coherent digital expression."
       structuredData={createProjectStructuredData(lumoProject, "/works/lumo")}
       atmosphere="works"
-      theme="light"
-      footerTheme="light"
+      theme="deep"
+      footerTheme="deep"
       footerVariant="compact"
       withTopSpacing={false}
       className="ei-lumo-page"

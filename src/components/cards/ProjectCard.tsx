@@ -16,16 +16,16 @@ interface ProjectCardProps extends WorkProject {
 export function ProjectCard({
   title,
   category,
+  thesis,
   description,
   proofLine,
-  challenge,
   image,
   href,
   result,
+  focusAreas,
   presentation,
   capabilities,
   classification,
-  scope,
   index = 0,
   showEvidence = false,
   highlightOutcome = false,
@@ -59,6 +59,7 @@ export function ProjectCard({
             {homeCompact ? null : <span>{number}</span>}
           </div>
           <h3>{title}</h3>
+          {homeCompact ? null : <p className="ei-works-project-thesis">{thesis}</p>}
           {homeCompact ? null : <p className="ei-works-project-category">{category}</p>}
           {showEvidence || homeCompact ? (
             <p className="ei-works-project-description">{homeCompact ? proofLine : description}</p>
@@ -74,16 +75,20 @@ export function ProjectCard({
           />
         ) : null}
         {homeCompact ? null : showEvidence ? (
-          <dl className="ei-works-project-summary" aria-label={`${title} project summary`}>
-            <div>
-              <dt>Challenge / opportunity</dt>
-              <dd>{challenge}</dd>
+          <>
+            <div className="ei-works-project-focus">
+              <span>Focus areas</span>
+              <ul>
+                {focusAreas.map((area) => (
+                  <li key={area}>{area}</li>
+                ))}
+              </ul>
             </div>
-            <div>
-              <dt>Echo&apos;s role</dt>
-              <dd>{scope}</dd>
+            <div className="ei-works-project-outcome">
+              <span>Outcome</span>
+              <p>{result}</p>
             </div>
-          </dl>
+          </>
         ) : highlightOutcome ? (
           <div className="ei-works-project-outcome">
             <span>Evidence boundary</span>
@@ -121,7 +126,7 @@ export function ProjectCard({
         interactive={isLinked}
         padding="none"
         className="ei-works-project-card"
-        data-theme="deep"
+        data-theme={homeCompact ? "deep" : "light"}
         data-presentation={presentation}
         data-outcome-highlighted={highlightOutcome ? "true" : undefined}
         data-home-compact={homeCompact ? "true" : undefined}

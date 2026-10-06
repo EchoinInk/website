@@ -15,27 +15,23 @@ function renderPage() {
 }
 
 describe("Codexia case study", () => {
-  it("publishes a complete, truthful project narrative with repository-backed evidence", () => {
+  it("publishes the complete, evidence-bounded Codexia narrative", () => {
     const { container } = renderPage();
 
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Engineering work with authority, evidence and recovery built in.",
+        name: "Engineering authority, evidence and recovery built into the work itself.",
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Problem / opportunity")).toBeInTheDocument();
-    expect(screen.getByText("Constraints")).toBeInTheDocument();
-    expect(screen.getByText("Echo's role")).toBeInTheDocument();
-    expect(screen.getByText("Product / system architecture")).toBeInTheDocument();
-    expect(screen.getByText("Interface and implementation evidence")).toBeInTheDocument();
-    expect(screen.getByText("Current development state")).toBeInTheDocument();
-    expect(screen.getByText("What the project demonstrates")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "What is shown—and what is not claimed." })).toBeInTheDocument();
-    expect(screen.getByText(/No public launch, customer adoption, commercial outcome/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/approved implementation target/i).length).toBeGreaterThan(0);
-    expect(screen.getByText("app/api/engineering/route.ts")).toBeInTheDocument();
-    expect(screen.getByText("lib/platform-integration/service.ts")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "The opportunity was never another code generator." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Make the lifecycle visible. Keep each authority in its lane." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "One engineering lifecycle. Multiple working surfaces." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Define" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Complete" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "What is shown. And what is not claimed." })).toBeInTheDocument();
+    expect(screen.getByText("Advanced Working Prototype")).toBeInTheDocument();
+    expect(screen.getByText("Enterprise certification")).toBeInTheDocument();
     expect(screen.getAllByRole("img", { name: /Codexia/i }).length).toBeGreaterThanOrEqual(4);
     expect(container.querySelectorAll("main")).toHaveLength(1);
   });
@@ -44,19 +40,19 @@ describe("Codexia case study", () => {
     renderPage();
 
     const localNav = screen.getByRole("navigation", { name: "Codexia case study sections" });
-    expect(within(localNav).getByRole("link", { name: /Architecture/i })).toHaveAttribute(
+    expect(within(localNav).getByRole("link", { name: /Lifecycle/i })).toHaveAttribute(
       "href",
-      "#architecture",
+      "#system-model",
     );
-    expect(within(localNav).getByRole("link", { name: /Evidence boundary/i })).toHaveAttribute(
+    expect(within(localNav).getByRole("link", { name: /Current state/i })).toHaveAttribute(
       "href",
-      "#evidence-boundary",
+      "#current-state",
     );
 
     const projectNav = screen.getByRole("navigation", { name: "Explore other projects" });
     expect(within(projectNav).getByText("Keystone", { exact: false })).toBeInTheDocument();
     expect(within(projectNav).getByText("LUMO", { exact: false })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "View Lumo case study" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Explore Lumo/i })).toHaveAttribute(
       "href",
       "/works/lumo",
     );

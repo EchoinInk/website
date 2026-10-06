@@ -1,47 +1,31 @@
-import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-import worksHeroDesktop from "@/assets/imagery/hero/works-hero-signal-stream-desktop.webp";
-import worksHeroMobile from "@/assets/imagery/hero/works-hero-signal-stream-mobile.webp";
+import worksHeroDesktop from "@/assets/imagery/hero/works-hero-desktop.png";
+import worksHeroMobile from "@/assets/imagery/hero/works-hero-mobile.png";
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageSectionHero } from "@/components/sections/PageSectionHero";
 import { Button } from "@/components/ui/Button";
+import { CtaOrbitalBackground } from "@/components/ui/CTAOrbitalBackground";
 import { EchoCard } from "@/components/ui/EchoCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectContext } from "@/components/works/ProjectContext";
-import { WorkFilterBar } from "@/components/works/WorkFilterBar";
 import { WorksGrid } from "@/components/works/WorksGrid";
 import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
-import {
-  lumoProject,
-  worksProjects,
-  type ProjectProvenance,
-  type WorkFilter
-} from "@/data/worksProjects";
+import { lumoProject, provenanceTaxonomy } from "@/data/worksProjects";
 import { driftUp, fadeSoft, staggerContainer, STAGGER, VIEWPORT } from "@/lib/motion-cinematic";
 
-const provenanceDescriptions: Record<ProjectProvenance, string> = {
-  "Independent Product": "A product initiated and developed independently by Echo in Ink.",
-  "Concept Project":
-    "A self-directed concept used to explore and demonstrate a specific direction.",
-  "Internal Project": "A studio-initiated system or tool developed for internal exploration."
-};
-
-const displayedProvenance = Array.from(
-  new Set(worksProjects.map((project) => project.classification.provenance))
-);
+const displayedProvenance = provenanceTaxonomy.filter(({ id }) => id !== "exploratory-study");
 
 export function WorksPage() {
-  const [activeFilter, setActiveFilter] = useState<WorkFilter>("All Work");
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <PageShell
       title="Selected Work — Echo in Ink"
-      description="Three studio-initiated projects spanning an independent prototype, an internal exploratory study and a governed engineering prototype."
+      description="Selected product and system work shown with its thinking, constraints, provenance and maturity intact."
       atmosphere="works"
       theme="light"
       withTopSpacing={false}
@@ -49,24 +33,44 @@ export function WorksPage() {
     >
       <PageSectionHero
         eyebrow="SELECTED WORK"
-        title="Three projects, shown with their context intact."
-        description="Lumo, Keystone and Codexia form this selected collection. Each is labelled with its provenance and maturity so the work is clear without implying commissioned delivery or a public launch."
-        offerAnchor="Project evidence, shown with its context."
+        title="Work shown with its context intact."
+        description={
+          <>
+            <span>Every project represents more than a finished screen, visual identity or system.</span>
+            <span>
+              The work shown here includes the thinking behind the outcome, the constraints it
+              responded to and the role it was designed to play. The goal is not simply to display
+              results, but to demonstrate how strategy, design and technology come together in
+              practice.
+            </span>
+          </>
+        }
+        offerAnchor="Evidence, not highlights."
         ctaLabel={siteActionLabels.viewWork}
         ctaHref="#selected-work"
         secondaryCtaLabel={primaryCallToAction.label}
         secondaryCtaHref={primaryCallToAction.href}
         image={worksHeroDesktop}
         mobileImage={worksHeroMobile}
-        imageAlt="A blue-violet signal stream moving through a dark atmospheric field"
+        imageAlt="Lumo, Keystone and Codexia product concepts arranged across a violet mountain landscape"
         theme="light"
         tone="editorial"
         headingId="works-heading"
+        supportingContent={
+          <div className="ei-works-trust-signal" role="note" aria-label="Project provenance commitment">
+            <span className="ei-works-trust-icon" aria-hidden="true">◇</span>
+            <span>
+              <strong>No speculative work presented as client work.</strong>
+              <small>Every project is labelled with its purpose, provenance and maturity.</small>
+            </span>
+          </div>
+        }
       />
 
       <Section
         theme="lightElevated"
-        transitionTo="mist"
+        transition="chapter"
+        transitionTo="light"
         spacing="none"
         className="ei-works-featured"
         aria-labelledby="works-featured-heading"
@@ -80,42 +84,44 @@ export function WorksPage() {
             className="ei-works-section-inner"
           >
             <motion.div variants={driftUp} className="ei-works-featured-label">
-              <SectionLabel label="Featured project" />
+              <SectionLabel label="Featured case study" />
             </motion.div>
 
             <motion.div variants={fadeSoft}>
-              <EchoCard
-                variant="proof"
-                padding="none"
-                className="ei-works-featured-panel"
-                data-theme="deep"
-              >
+              <EchoCard variant="proof" padding="none" className="ei-works-featured-panel">
                 <div className="ei-works-featured-media">
-                  <img src={lumoProject.image} alt="" aria-hidden="true" />
+                  <img
+                    src={lumoProject.image}
+                    alt="Lumo mobile interface concepts with the supportive cloud companion"
+                  />
                   <div className="ei-works-featured-scrim" aria-hidden="true" />
                 </div>
                 <div className="ei-works-featured-copy">
-                  <p className="ei-works-featured-kicker">Independent product evidence</p>
-                  <h2 id="works-featured-heading">{lumoProject.title}</h2>
+                  <p className="ei-works-featured-kicker">01 · Featured project</p>
+                  <h2 id="works-featured-heading">Lumo</h2>
                   <p className="ei-works-featured-category">{lumoProject.category}</p>
+                  <div className="ei-works-featured-summary">
+                    {lumoProject.description.split(". ").map((sentence) => (
+                      <p key={sentence}>{sentence.endsWith(".") ? sentence : `${sentence}.`}</p>
+                    ))}
+                  </div>
                   <ProjectContext
                     classification={lumoProject.classification}
                     capabilities={lumoProject.capabilities}
                     className="ei-works-featured-context"
                   />
-                  <p className="ei-works-featured-proof">{lumoProject.proofLine}</p>
                   <dl className="ei-works-featured-evidence" aria-label="Lumo project summary">
                     <div>
-                      <dt>Echo&apos;s role</dt>
-                      <dd>{lumoProject.scope}</dd>
-                    </div>
-                    <div>
-                      <dt>Challenge / opportunity</dt>
+                      <dt>Challenge</dt>
                       <dd>{lumoProject.challenge}</dd>
                     </div>
+                    <div className="ei-works-featured-outcome">
+                      <dt>Outcome</dt>
+                      <dd>{lumoProject.result}</dd>
+                    </div>
                   </dl>
-                  <Button to={lumoProject.href ?? "/works/lumo"} variant="secondary">
-                    View Lumo Case Study
+                  <Button to={lumoProject.href ?? "/works/lumo"} variant="tertiary">
+                    View Lumo Case Study <span aria-hidden="true">→</span>
                   </Button>
                 </div>
               </EchoCard>
@@ -126,8 +132,9 @@ export function WorksPage() {
 
       <Section
         id="selected-work"
-        theme="mist"
-        transitionTo="light"
+        theme="light"
+        transition="soft"
+        transitionTo="lightElevated"
         spacing="none"
         className="ei-works-collection-section"
         aria-labelledby="works-collection-heading"
@@ -143,31 +150,29 @@ export function WorksPage() {
             <motion.div variants={driftUp} className="ei-works-section-heading">
               <SectionLabel label="Project collection" />
               <div>
-                <h2 id="works-collection-heading">What each project demonstrates.</h2>
+                <h2 id="works-collection-heading">Different challenges. Different answers.</h2>
+                <p>No two projects begin in the same place.</p>
                 <p>
-                  Explore Keystone and Codexia alongside the featured Lumo case study. Each project
-                  shows the challenge, Echo&apos;s role and the maturity of its evidence. Deeper proof
-                  and evidence boundaries live in each case study.
+                  Some require clearer positioning. Others need stronger systems, better experiences
+                  or more deliberate product thinking. The outcome changes. The underlying approach
+                  remains consistent.
                 </p>
               </div>
             </motion.div>
 
-            <motion.div variants={fadeSoft} className="ei-works-filter-wrap">
-              <WorkFilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
-            </motion.div>
-
             <motion.div variants={fadeSoft}>
-              <WorksGrid activeFilter={activeFilter} />
+              <WorksGrid />
             </motion.div>
           </motion.div>
         </Container>
       </Section>
 
       <Section
-        theme="light"
-        transitionTo="lightElevated"
+        theme="lightElevated"
+        transition="atmospheric"
+        transitionTo="deep"
         spacing="none"
-        className="ei-works-reading-guide"
+        className="ei-works-reading-guide ei-transition-closing"
         aria-labelledby="works-reading-guide-heading"
       >
         <Container size="xl">
@@ -179,47 +184,58 @@ export function WorksPage() {
             className="ei-works-section-inner"
           >
             <motion.div variants={driftUp} className="ei-works-section-heading">
-              <SectionLabel label="How to read the work" tone="accent" />
+              <SectionLabel label="How the work is labelled" tone="accent" />
               <div>
-                <h2 id="works-reading-guide-heading">Clear labels, honest limits.</h2>
+                <h2 id="works-reading-guide-heading">Clear categories. Clear expectations.</h2>
+                <p>Practice work, internal products and commercial projects are not the same thing.</p>
                 <p>
-                  Provenance says what kind of project it was. Status describes its maturity.
-                  Capabilities show which part of Echo&apos;s shared commercial practice it
-                  demonstrates.
+                  Each project is labelled accordingly so the context is always visible and the
+                  nature of the work remains clear.
                 </p>
               </div>
             </motion.div>
 
             <div className="ei-works-guide-grid">
               {displayedProvenance.map((provenance, index) => (
-                <motion.div key={provenance} variants={driftUp}>
+                <motion.div key={provenance.id} variants={driftUp}>
                   <EchoCard padding="lg" className="ei-works-guide-card">
                     <span>{String(index + 1).padStart(2, "0")}</span>
-                    <h3>{provenance}</h3>
-                    <p>{provenanceDescriptions[provenance]}</p>
+                    <h3>{provenance.label}</h3>
+                    <p>{provenance.description}</p>
+                    <p>{provenance.supporting}</p>
                   </EchoCard>
                 </motion.div>
               ))}
             </div>
 
             <motion.p variants={fadeSoft} className="ei-works-guide-note">
-              No project in the current collection is presented as client work. If verified client
-              work is added later, it should be labelled just as explicitly.
+              Every project includes context about its purpose, scope and role within the broader
+              body of work.
             </motion.p>
           </motion.div>
         </Container>
       </Section>
 
-      <Section theme="lightElevated" spacing="none" className="ei-works-closing">
+      <Section theme="deep" spacing="none" className="ei-works-closing">
         <CTASection
           variant="editorialInvitation"
           panelTheme="deep"
           eyebrow="Start something real"
-          heading="Bring the challenge. Build the evidence."
-          body="If the work needs strategy, design and technology to move together, tell Echo what you are trying to make."
+          heading={<>Bring the challenge.<br />We&apos;ll explore the shape of the answer.</>}
+          body={
+            <>
+              <p>The best projects don&apos;t begin with a solution.</p>
+              <p>They begin with a problem worth understanding.</p>
+              <p>
+                If the work requires strategy, design and technology to move together, Echo in Ink
+                can help bring the pieces into alignment.
+              </p>
+            </>
+          }
+          decoration={<CtaOrbitalBackground />}
           actions={<Button to={primaryCallToAction.href}>{primaryCallToAction.label}</Button>}
           secondary={
-            <Button to="/studio" variant="tertiary">
+            <Button to="/studio" variant="secondary">
               How the Studio Works
             </Button>
           }

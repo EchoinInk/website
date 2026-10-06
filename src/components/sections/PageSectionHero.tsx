@@ -17,7 +17,7 @@ interface PageSectionHeroProps {
   eyebrow: string;
   title: string;
   italicWord?: string;
-  description: string;
+  description: ReactNode;
   offerAnchor?: ReactNode;
   ctaLabel?: ReactNode;
   ctaHref?: string;
@@ -31,6 +31,7 @@ interface PageSectionHeroProps {
   theme?: SemanticTheme;
   tone?: "cinematic" | "editorial";
   headingId?: string;
+  supportingContent?: ReactNode;
 }
 
 export function PageSectionHero({
@@ -51,6 +52,7 @@ export function PageSectionHero({
   theme,
   tone = "cinematic",
   headingId = "editorial-hero-heading",
+  supportingContent,
 }: PageSectionHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const titleParts = italicWord
@@ -233,6 +235,11 @@ export function PageSectionHero({
                 
               </motion.div>
             ) : null}</div>
+            {supportingContent ? (
+              <motion.div variants={fadeSoft} className="ei-page-section-hero-supporting">
+                {supportingContent}
+              </motion.div>
+            ) : null}
           </motion.div>
         </div>
       </Container>

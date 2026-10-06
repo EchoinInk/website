@@ -100,10 +100,6 @@ export function Header() {
     };
   }, [menuOpen]);
 
-  if (pathname === "/works/lumo") {
-    return null;
-  }
-
   const closeMenu = () => setMenuOpen(false);
   const isHome = pathname === "/";
   const menuTransition = prefersReducedMotion

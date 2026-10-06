@@ -143,23 +143,20 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Three projects, shown with their context intact."
+        name: "Work shown with its context intact."
       })
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/No project in the current collection is presented as client work/i)
+      screen.getByText(/No speculative work presented as client work/i)
     ).toBeInTheDocument();
     expect(screen.queryByText("The Vortex Group")).not.toBeInTheDocument();
 
     const cards = container.querySelectorAll(".ei-works-project-card");
     expect(cards).toHaveLength(2);
-    expect(screen.getByRole("button", { name: "All Work" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Products & Apps" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Systems & Automation" })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Brand & Identity" })).not.toBeInTheDocument();
+    expect(screen.getByText("A calmer operating model for creative work.")).toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: "Websites & Digital Experiences" })
-    ).not.toBeInTheDocument();
+      screen.getByText("A governed engineering system for authority and progression.")
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /Keystone — Internal Project, Exploratory Study/i })
     ).toHaveAttribute("href", "/works/keystone");
@@ -169,8 +166,8 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(screen.getByText("View Keystone case study")).toBeInTheDocument();
     expect(screen.getByText("View Codexia case study")).toBeInTheDocument();
     expect(screen.queryByText("Preview only · No case study")).not.toBeInTheDocument();
-    expect(screen.getAllByText("Challenge / opportunity")).toHaveLength(3);
-    expect(screen.getAllByText("Echo's role")).toHaveLength(3);
+    expect(screen.getAllByText("Outcome")).toHaveLength(3);
+    expect(screen.getAllByText("Focus areas")).toHaveLength(2);
     expect(cards[0]).toHaveAttribute("data-link-state", "linked");
     expect(cards[1]).toHaveAttribute("data-link-state", "linked");
     expect(screen.getByRole("link", { name: "View Lumo Case Study" })).toHaveAttribute(
@@ -184,15 +181,15 @@ describe("Phase 6 Studio and Work contracts", () => {
     expect(sections.map((section) => section.dataset.theme)).toEqual([
       "light",
       "lightElevated",
-      "mist",
       "light",
-      "lightElevated"
+      "lightElevated",
+      "deep"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
-      "mist",
       "light",
       "lightElevated",
+      "deep",
       undefined
     ]);
   });

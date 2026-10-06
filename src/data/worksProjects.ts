@@ -5,7 +5,36 @@ import { primaryCapabilities, type ServiceCapabilityId } from "@/data/servicesCo
 
 export type ProjectPresentation = "study" | "fragment";
 
-export type ProjectProvenance = "Independent Product" | "Concept Project" | "Internal Project";
+export const provenanceTaxonomy = [
+  {
+    id: "independent-product",
+    label: "Independent Product",
+    description: "A product conceived, designed and developed internally by Echo in Ink.",
+    supporting: "Used to explore ideas, test systems and investigate new opportunities."
+  },
+  {
+    id: "internal-project",
+    label: "Internal Project",
+    description:
+      "A studio tool, framework or operational system created to support the practice itself.",
+    supporting: "Designed for internal use rather than commercial deployment."
+  },
+  {
+    id: "commercial-project",
+    label: "Commercial Project",
+    description: "Work undertaken in partnership with a client, organisation or external team.",
+    supporting: "Focused on solving real-world business, operational or product challenges."
+  },
+  {
+    id: "exploratory-study",
+    label: "Exploratory Study",
+    description: "A self-initiated exercise investigating a problem, medium or emerging idea.",
+    supporting: "Used to test new directions and develop the studio's thinking."
+  }
+] as const;
+
+export type ProvenanceTaxonomyLabel = (typeof provenanceTaxonomy)[number]["label"];
+export type ProjectProvenance = ProvenanceTaxonomyLabel | "Concept Project";
 
 export type ProjectStatus = "Prototype" | "Exploratory Study";
 
@@ -18,12 +47,14 @@ export interface ProjectClassification {
 export interface WorkProject {
   title: string;
   category: string;
+  thesis: string;
   description: string;
   proofLine: string;
   challenge: string;
   scope: string;
   output: string;
   result: string;
+  focusAreas: readonly string[];
   image: string;
   href?: string;
   capabilities: readonly ServiceCapabilityId[];
@@ -35,15 +66,24 @@ export interface WorkProject {
 export const worksProjects: WorkProject[] = [
   {
     title: "LUMO",
-    category: "Emotionally supportive companion app concept",
+    category: "Emotionally supportive companion product concept",
+    thesis: "A calmer digital world for overwhelmed humans.",
     description:
-      "An emotionally supportive companion app concept shaped around gentle planning, reduced cognitive load, and emotionally safe interaction.",
+      "An exploration into what happens when emotional support, product design and digital experience design are treated as part of the same conversation. Rather than focusing solely on features, the work explores how clarity, atmosphere, interaction and behavioural design combine to create a calmer experience.",
     proofLine:
       "Turning an emotionally supportive product concept into a calmer, more coherent digital world for overwhelmed humans.",
-    challenge: "Translate emotional safety into a clear, credible product world.",
+    challenge:
+      "Transform a broad product vision into something that felt focused, understandable and emotionally coherent.",
     scope: "Identity system, digital atmosphere, and interface direction.",
     output: "A connected visual language and modular experience system.",
-    result: "A calmer, more recognisable expression of Lumo across its core touchpoints.",
+    result:
+      "A complete concept direction spanning product thinking, experience design, visual identity and interaction principles.",
+    focusAreas: [
+      "Product thinking",
+      "Experience design",
+      "Visual identity",
+      "Interaction principles"
+    ],
     image: lumoFeatured,
     href: "/works/lumo",
     capabilities: ["brand-identity", "websites-experiences", "digital-products"],
@@ -57,16 +97,23 @@ export const worksProjects: WorkProject[] = [
   },
   {
     title: "Keystone",
-    category: "Studio operations platform concept",
+    category: "Internal Product • Operations System",
+    thesis: "A calmer operating model for creative work.",
     description:
-      "An internal product concept exploring how projects, tasks, content and studio operations could live in one coherent control centre.",
+      "A studio operations platform exploring how information, workflows and decision-making can be brought together into a more usable system. Built to reduce friction, improve visibility and create stronger connections between planning and execution.",
     proofLine:
       "Exploring a calmer operational workspace for seeing active work, priorities and studio signals together.",
     challenge:
       "Bring several studio-management concerns into one legible workspace without overstating what has been built.",
     scope: "Product concept, interface direction, and operational information architecture.",
     output: "A focused control-centre interface concept for internal studio operations.",
-    result: "An exploratory visual direction; no launched platform or measured outcome is claimed.",
+    result: "A coherent operating model and working prototype direction.",
+    focusAreas: [
+      "System architecture",
+      "Workflow design",
+      "Operational clarity",
+      "Internal product thinking"
+    ],
     image: keystoneHome,
     href: "/works/keystone",
     capabilities: ["digital-products", "systems-automation"],
@@ -79,9 +126,10 @@ export const worksProjects: WorkProject[] = [
   },
   {
     title: "Codexia",
-    category: "Governed engineering platform prototype",
+    category: "Independent Product • Creative Platform",
+    thesis: "A governed engineering system for authority and progression.",
     description:
-      "An independently developed engineering-platform prototype exploring governed planning, execution, validation and reporting for software work.",
+      "A concept platform exploring the intersection of creativity, structured workflows and AI-assisted creation. Designed as an environment where strategy, design systems, content and experimentation can coexist within a connected ecosystem.",
     proofLine:
       "Giving complex engineering workflows a clearer operational surface while keeping authority and evidence visible.",
     challenge:
@@ -89,8 +137,13 @@ export const worksProjects: WorkProject[] = [
     scope: "Product architecture, interface system, and engineering workflow design.",
     output:
       "A working prototype direction and a visual control surface for governed engineering work.",
-    result:
-      "Prototype evidence only; no public launch, customer adoption or external validation is claimed.",
+    result: "An established product model, interface direction and working prototype evidence.",
+    focusAreas: [
+      "User experience design",
+      "Product systems",
+      "Creative workflows",
+      "AI-assisted processes"
+    ],
     image: codexiaHome,
     href: "/works/codexia",
     capabilities: ["digital-products", "systems-automation"],
