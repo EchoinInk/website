@@ -82,6 +82,23 @@ describe("ContactPage", () => {
       "href",
       "/booking",
     );
+    expect(screen.queryByRole("link", { name: /view work/i })).not.toBeInTheDocument();
+    expect(screen.getByText("Systems & Automation")).toBeInTheDocument();
+  });
+
+  it("places reassurance before the form and progressively discloses optional context", () => {
+    const { container } = renderContactPage();
+
+    const trust = screen.getByText("A direct response").closest("section");
+    const form = container.querySelector("#contact-form");
+    const details = screen.getByText("Optional context").closest("details");
+
+    expect(
+      trust?.compareDocumentPosition(form as Node) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(details).not.toHaveAttribute("open");
+    fireEvent.click(screen.getByText("Optional context").closest("summary")!);
+    expect(details).toHaveAttribute("open");
   });
 
   it("preserves project intent from the established query string", async () => {
@@ -94,12 +111,12 @@ describe("ContactPage", () => {
 
     renderContactPage("/contact?inquiry=project");
     fillRequiredFields();
+    fireEvent.click(screen.getByText("Optional context").closest("summary")!);
     fireEvent.change(screen.getByLabelText(/what has changed/i), {
       target: { value: "The current site no longer reflects the business." },
     });
-    fireEvent.change(screen.getByLabelText(/when are you hoping to begin/i), {
-      target: { value: "November, but flexible" },
-    });
+    fireEvent.click(screen.getByRole("button", { name: /when are you hoping to begin/i }));
+    fireEvent.click(screen.getByRole("option", { name: "1–2 months" }));
     fireEvent.click(screen.getByRole("button", { name: siteActionLabels.sendProjectEnquiry }));
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
@@ -107,7 +124,7 @@ describe("ContactPage", () => {
     const body = JSON.parse(init?.body as string);
     expect(body.exploration).toBe("Project Inquiry");
     expect(body.message).toContain("What has changed or isn't working?");
-    expect(body.message).toContain("November, but flexible");
+    expect(body.message).toContain("1–2 months");
   });
 
   it("submits a selected project type through the existing exploration field", async () => {
@@ -120,6 +137,7 @@ describe("ContactPage", () => {
 
     renderContactPage();
     fillRequiredFields();
+    fireEvent.click(screen.getByText("Optional context").closest("summary")!);
     fireEvent.click(
       screen.getByRole("button", {
         name: /what kind of project does this seem closest to/i,

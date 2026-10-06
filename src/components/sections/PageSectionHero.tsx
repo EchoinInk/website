@@ -3,6 +3,13 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import type { SemanticTheme } from "@/components/layout/PageShell";
+import {
+  Section,
+  type SectionTransition,
+  type SectionTransitionDirection,
+  type SectionTransitionMotif,
+  type SectionTransitionTarget,
+} from "@/components/layout/Section";
 import { PageOfferAnchor } from "@/components/sections/PageOfferAnchor";
 import { Button } from "@/components/ui/Button";
 import {
@@ -32,6 +39,10 @@ interface PageSectionHeroProps {
   tone?: "cinematic" | "editorial";
   headingId?: string;
   supportingContent?: ReactNode;
+  transition?: SectionTransition;
+  transitionDirection?: SectionTransitionDirection;
+  transitionMotif?: SectionTransitionMotif;
+  transitionTo?: SectionTransitionTarget;
 }
 
 export function PageSectionHero({
@@ -53,6 +64,10 @@ export function PageSectionHero({
   tone = "cinematic",
   headingId = "editorial-hero-heading",
   supportingContent,
+  transition,
+  transitionDirection,
+  transitionMotif,
+  transitionTo,
 }: PageSectionHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const titleParts = italicWord
@@ -63,12 +78,13 @@ export function PageSectionHero({
   const isEditorial = tone === "editorial";
 
   return (
-    <motion.section
-      variants={staggerContainer(STAGGER.cinematic, 0)}
-      initial={prefersReducedMotion ? false : "hidden"}
-      whileInView="visible"
-      viewport={VIEWPORT.loose}
-      data-theme={theme}
+    <Section
+      theme={theme}
+      transition={transition}
+      transitionDirection={transitionDirection}
+      transitionMotif={transitionMotif}
+      transitionTo={transitionTo}
+      spacing="none"
       data-tone={tone}
       className="ei-page-section-hero ei-hero-system
   relative flex w-full overflow-hidden
@@ -76,6 +92,13 @@ export function PageSectionHero({
 "
       aria-labelledby={headingId}
     >
+      <motion.div
+        variants={staggerContainer(STAGGER.cinematic, 0)}
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView="visible"
+        viewport={VIEWPORT.loose}
+        className="contents"
+      >
       <picture
         className="ei-page-section-hero-media ei-hero-system-media absolute z-0 block"
         aria-hidden="true"
@@ -245,6 +268,7 @@ export function PageSectionHero({
       </Container>
 
       <span className="sr-only">{imageAlt}</span>
-    </motion.section>
+      </motion.div>
+    </Section>
   );
 }

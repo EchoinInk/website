@@ -25,8 +25,8 @@ import {
   archivePhilosophy,
   type ArchiveFilter,
 } from '@/data/archiveContent';
-import archiveImageDesktop from '@/assets/imagery/hero/archive-hero-nebula-spiral-desktop.webp';
-import archiveImageMobile from '@/assets/imagery/hero/archive-hero-nebula-spiral-mobile.webp';
+import archiveImageDesktop from '@/assets/imagery/hero/insights-hero-desktop.png';
+import archiveImageMobile from '@/assets/imagery/hero/insights-hero-mobile.png';
 import archiveEssayDesktop from '@/assets/imagery/sections/archive-essay-desktop.webp';
 import archiveEssayMobile from '@/assets/imagery/sections/archive-essay-mobile.webp';
 import {
@@ -115,6 +115,8 @@ export function ArchivePage() {
         id="archive-featured"
         spacing="none"
         theme="light"
+        transition="chapter"
+        transitionTo="lightElevated"
         className="ei-archive-section ei-archive-featured-section"
       >
         <Container size="xl" className="relative z-10">
@@ -159,7 +161,13 @@ export function ArchivePage() {
         </Container>
       </Section>
 
-      <Section theme="lightElevated" spacing="none" className="ei-archive-section ei-archive-categories">
+      <Section
+        theme="lightElevated"
+        transition="soft"
+        transitionTo="lightElevated"
+        spacing="none"
+        className="ei-archive-section ei-archive-categories"
+      >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
@@ -169,7 +177,7 @@ export function ArchivePage() {
             className="mx-auto max-w-[1180px]"
           >
             <motion.div variants={driftUp} className="ei-archive-section-heading">
-              <SectionLabel label="Ways into the archive" index="03" />
+              <SectionLabel label="Find your way" index="03" />
               <div>
                 <h2 className="ei-type-editorial-heading">Follow a subject, or follow the signal.</h2>
                 <p className="ei-type-body-editorial">
@@ -223,7 +231,13 @@ export function ArchivePage() {
         </Container>
       </Section>
 
-      <Section theme="lightElevated" spacing="none" className="ei-archive-section ei-archive-notes-section">
+      <Section
+        theme="lightElevated"
+        transition="chapter"
+        transitionTo="mist"
+        spacing="none"
+        className="ei-archive-section ei-archive-notes-section"
+      >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
@@ -286,7 +300,9 @@ export function ArchivePage() {
         id="archive-index"
         spacing="none"
         theme="mist"
-        transitionTo="lightElevated"
+        transition="atmospheric"
+        transitionTo="deep"
+        transitionDirection="forward"
         className="ei-archive-section ei-archive-index-section"
       >
         <Container size="xl" className="relative z-10">
@@ -324,7 +340,14 @@ export function ArchivePage() {
         </Container>
       </Section>
 
-      <Section theme="lightElevated" transitionTo="mist" spacing="none" className="ei-archive-section ei-archive-philosophy-section">
+      <Section
+        theme="deep"
+        transition="motif"
+        transitionMotif="node"
+        transitionTo="deep"
+        spacing="none"
+        className="ei-archive-section ei-archive-philosophy-section"
+      >
         <Container size="xl" className="relative z-10">
           <motion.div
             variants={staggerContainer(STAGGER.loose, 0)}
@@ -335,7 +358,7 @@ export function ArchivePage() {
           >
             <EchoCard variant="offer" padding="none" className="ei-archive-philosophy" data-theme="deep">
               <div className="ei-archive-philosophy-copy">
-                <SectionLabel label="A living constellation" index="06" tone="accent" />
+                <SectionLabel label="A larger field" index="06" tone="accent" />
                 <motion.h2 variants={blurEmergence} className="ei-type-editorial-heading">{archivePhilosophy.title}</motion.h2>
                 <p className="ei-type-body-editorial">{archivePhilosophy.description}</p>
               </div>
@@ -350,9 +373,9 @@ export function ArchivePage() {
 
       <CTASection
         variant="editorialInvitation"
-        theme="mist"
+        theme="deep"
         panelTheme="deep"
-        eyebrow="Follow the signal"
+        eyebrow="Further reading"
         heading={archiveCta.title}
         body={archiveCta.description}
         className="ei-archive-closing"

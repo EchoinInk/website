@@ -186,11 +186,18 @@ describe("Phase 6 Studio and Work contracts", () => {
       "deep"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
-      undefined,
+      "lightElevated",
       "light",
       "lightElevated",
       "deep",
-      undefined
+      "light"
+    ]);
+    expect(sections.map((section) => section.dataset.transition)).toEqual([
+      "atmospheric",
+      "chapter",
+      "soft",
+      "atmospheric",
+      "soft"
     ]);
   });
 

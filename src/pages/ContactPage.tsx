@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent 
 import { motion, useReducedMotion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 
-import contactHeroDesktop from "@/assets/imagery/hero/contact-hero-planet-dawn-desktop.webp";
-import contactHeroMobile from "@/assets/imagery/hero/contact-hero-planet-dawn-mobile.webp";
+import contactHeroDesktop from "@/assets/imagery/hero/contact-hero-desktop.png";
+import contactHeroMobile from "@/assets/imagery/hero/contact-hero-mobile.png";
 import { Container } from "@/components/layout/Container";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
@@ -58,6 +58,13 @@ const trustItems: Array<{
   }
 ];
 
+const projectTimingOptions = [
+  "As soon as practical",
+  "1–2 months",
+  "3–6 months",
+  "Later / exploring"
+] as const;
+
 type ContactFieldEvent =
   | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   | { target: { name: string; value: string } };
@@ -100,6 +107,7 @@ export function ContactPage() {
   const [announcement, setAnnouncement] = useState("");
   const statusRef = useRef<HTMLDivElement | null>(null);
   const successRef = useRef<HTMLDivElement | null>(null);
+  const optionalDetailsRef = useRef<HTMLDetailsElement | null>(null);
   const enquiryStartedRef = useRef(false);
   const enquiryAttributionRef = useRef<ReturnType<typeof consumeFunnelAttribution>>();
 
@@ -133,6 +141,7 @@ export function ContactPage() {
       return;
     }
     if (formState === "error") {
+      if (fieldErrors.projectUrl) optionalDetailsRef.current?.setAttribute("open", "");
       if (hasFieldErrors) {
         focusFirstInvalidField(fieldErrors);
       } else {
@@ -152,6 +161,7 @@ export function ContactPage() {
     }
 
     if (Object.keys(nextFieldErrors).length > 0) {
+      if (nextFieldErrors.projectUrl) optionalDetailsRef.current?.setAttribute("open", "");
       setFieldErrors(nextFieldErrors);
       setFormState("idle");
       setStatusMessage("Please check the highlighted fields and try again.");
@@ -249,18 +259,41 @@ export function ContactPage() {
         eyebrow="START A PROJECT"
         title="Begin with what you're trying to make real."
         description="Share the problem, the opportunity, what has changed, what is not working, or what you want to create. You do not need to arrive with a predefined technical solution."
-        offerAnchor="For broader work across brand, digital experiences, products and systems."
-        ctaLabel={siteActionLabels.startProject}
-        ctaHref="#contact-form"
-        secondaryCtaLabel={siteActionLabels.viewWork}
-        secondaryCtaHref="/works"
+        offerAnchor="A clear brief is welcome, but not required."
         image={contactHeroDesktop}
         mobileImage={contactHeroMobile}
-        imageAlt="Atmospheric violet orbital sphere over a reflective horizon"
+        imageAlt="A glowing violet path crossing a reflective landscape toward an illuminated monolith"
         theme="light"
         tone="editorial"
         headingId="contact-heading"
+        transition="atmospheric"
+        transitionTo="light"
       />
+
+      <Section
+        theme="light"
+        transition="soft"
+        transitionTo="mist"
+        spacing="none"
+        className="ei-contact-reassurance"
+        aria-label="What to expect when you enquire"
+      >
+        <Container size="xl">
+          <motion.div {...reveal} className="ei-contact-reassurance-inner">
+            <div className="ei-contact-trust-grid">
+              {trustItems.map((item) => (
+                <motion.article key={item.title} variants={driftUp}>
+                  <OrbitalVisual variant={item.icon} size={34} />
+                  <div>
+                    <h2>{item.title}</h2>
+                    <p>{item.description}</p>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </motion.div>
+        </Container>
+      </Section>
 
       <Section
         id="contact-form"
@@ -312,9 +345,10 @@ export function ContactPage() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} noValidate aria-busy={formState === "submitting"}>
-                      <p className="ei-contact-form-intro">
-                        Tell Echo what you are trying to achieve. Fields marked * are required.
-                      </p>
+                      <div className="ei-contact-form-heading-row">
+                        <p className="ei-contact-form-kicker">Required to begin</p>
+                        <p className="ei-contact-form-intro">Fields marked * are required.</p>
+                      </div>
 
                       <div
                         ref={statusRef}
@@ -333,7 +367,7 @@ export function ContactPage() {
                         <p>
                           {formState === "submitting"
                             ? "Sending your project enquiry..."
-                            : statusMessage || "A project type is helpful, but optional."}
+                            : statusMessage}
                         </p>
                         {(formState === "error" || hasFieldErrors) && (
                           <a href={`mailto:${CONTACT_DIRECT_EMAIL}`}>Email directly</a>
@@ -374,18 +408,6 @@ export function ContactPage() {
                         />
                       </div>
 
-                      <EchoSelect
-                        id="exploration"
-                        name="exploration"
-                        label="What kind of project does this seem closest to?"
-                        value={visibleProjectType}
-                        onChange={handleChange}
-                        options={projectInquiryTypeOptions}
-                        placeholder="Select an option, or leave this open"
-                        hint="Optional. Choose the closest fit—you do not need to diagnose the solution."
-                        disabled={formState === "submitting"}
-                      />
-
                       <EchoTextarea
                         id="message"
                         name="message"
@@ -395,55 +417,87 @@ export function ContactPage() {
                         onBlur={() => handleBlur("message")}
                         error={fieldErrors.message}
                         hint="Describe the outcome, opportunity, problem or thing you want to create."
-                        rows={7}
+                        placeholder="Our product has grown, but the website still reflects the company we were two years ago."
+                        rows={6}
                         required
                         disabled={formState === "submitting"}
                       />
 
-                      <EchoTextarea
-                        id="project-context"
-                        name="projectContext"
-                        label="What has changed or isn't working?"
-                        value={changedContext}
-                        onChange={(event) => {
-                          markEnquiryStarted();
-                          setChangedContext(event.target.value);
-                        }}
-                        hint="Optional. Share why this matters now or what prompted the enquiry."
-                        rows={5}
-                        disabled={formState === "submitting"}
-                      />
+                      <details ref={optionalDetailsRef} className="ei-contact-optional">
+                        <summary>
+                          <span className="ei-contact-optional-icon" aria-hidden="true">
+                            +
+                          </span>
+                          <span>
+                            <strong>Optional context</strong>
+                            <small>
+                              Add anything else that might help. You can leave this blank.
+                            </small>
+                          </span>
+                          <span className="ei-contact-optional-chevron" aria-hidden="true">
+                            ⌄
+                          </span>
+                        </summary>
+                        <div className="ei-contact-optional-fields">
+                          <EchoSelect
+                            id="exploration"
+                            name="exploration"
+                            label="What kind of project does this seem closest to? (optional)"
+                            value={visibleProjectType}
+                            onChange={handleChange}
+                            options={projectInquiryTypeOptions}
+                            placeholder="Select an option"
+                            hint="Choose the closest fit—you do not need to diagnose the solution."
+                            disabled={formState === "submitting"}
+                          />
 
-                      <div className="ei-contact-form-row">
-                        <EchoFormField
-                          type="text"
-                          id="project-timing"
-                          name="projectTiming"
-                          label="When are you hoping to begin?"
-                          value={timing}
-                          onChange={(event) => {
-                            markEnquiryStarted();
-                            setTiming(event.target.value);
-                          }}
-                          hint="Optional. A rough month, date or ‘flexible’ is enough."
-                          autoComplete="off"
-                          disabled={formState === "submitting"}
-                        />
-                        <EchoFormField
-                          type="url"
-                          id="projectUrl"
-                          name="projectUrl"
-                          label="Existing project URL"
-                          value={formData.projectUrl}
-                          onChange={handleChange}
-                          onBlur={() => handleBlur("projectUrl")}
-                          error={fieldErrors.projectUrl}
-                          hint="Optional, if something already exists online."
-                          autoComplete="url"
-                          inputMode="url"
-                          disabled={formState === "submitting"}
-                        />
-                      </div>
+                          <EchoTextarea
+                            id="project-context"
+                            name="projectContext"
+                            label="What has changed or isn't working? (optional)"
+                            value={changedContext}
+                            onChange={(event) => {
+                              markEnquiryStarted();
+                              setChangedContext(event.target.value);
+                            }}
+                            placeholder="What has changed, what isn't working, or what is creating the need now?"
+                            hint="Share why this matters now or what prompted the enquiry."
+                            rows={4}
+                            disabled={formState === "submitting"}
+                          />
+
+                          <div className="ei-contact-form-row">
+                            <EchoSelect
+                              id="project-timing"
+                              name="projectTiming"
+                              label="When are you hoping to begin? (optional)"
+                              value={timing}
+                              onChange={(event) => {
+                                markEnquiryStarted();
+                                setTiming(event.target.value);
+                              }}
+                              options={projectTimingOptions}
+                              placeholder="Select a timeframe"
+                              disabled={formState === "submitting"}
+                            />
+                            <EchoFormField
+                              type="url"
+                              id="projectUrl"
+                              name="projectUrl"
+                              label="Existing project URL (optional)"
+                              value={formData.projectUrl}
+                              onChange={handleChange}
+                              onBlur={() => handleBlur("projectUrl")}
+                              error={fieldErrors.projectUrl}
+                              placeholder="https://"
+                              hint="If something already exists online."
+                              autoComplete="url"
+                              inputMode="url"
+                              disabled={formState === "submitting"}
+                            />
+                          </div>
+                        </div>
+                      </details>
 
                       <div className="ei-contact-honeypot" aria-hidden="true">
                         <EchoFormField
@@ -470,7 +524,10 @@ export function ContactPage() {
                               ? "Send Project Enquiry Again"
                               : siteActionLabels.sendProjectEnquiry}
                         </Button>
-                        <p>Your details are sent to Echo in Ink to respond to this enquiry.</p>
+                        <div className="ei-contact-submit-notes">
+                          <p>You’ll receive a personal response within a few business days.</p>
+                          <p>Your details and project context are kept private.</p>
+                        </div>
                       </div>
                     </form>
                   )}
@@ -484,28 +541,25 @@ export function ContactPage() {
       <Section
         theme="lightElevated"
         spacing="none"
-        className="ei-contact-reassurance"
+        className="ei-contact-session-section"
         aria-labelledby="contact-alternative-heading"
       >
         <Container size="xl">
-          <motion.div {...reveal} className="ei-contact-reassurance-inner">
-            <div className="ei-contact-trust-grid">
-              {trustItems.map((item) => (
-                <motion.article key={item.title} variants={driftUp}>
-                  <OrbitalVisual variant={item.icon} size={34} />
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </motion.article>
-              ))}
-            </div>
+          <motion.div {...reveal} className="ei-contact-session-inner">
             <motion.aside variants={fadeSoft} className="ei-contact-session-path">
+              <picture className="ei-contact-session-art" aria-hidden="true">
+                <source media="(max-width: 767px)" srcSet={contactHeroMobile} />
+                <img src={contactHeroDesktop} alt="" loading="lazy" />
+              </picture>
               <div>
                 <SectionLabel label="A smaller, focused engagement" />
                 <h2 id="contact-alternative-heading">Need focused clarity on one question?</h2>
-                <p>{strategySessionsEngagement.description} It can stand alone.</p>
+                <p>
+                  A 60–90 minute strategy session for a clearly defined problem. It can stand alone.
+                </p>
               </div>
               <Button to={strategySessionsEngagement.href} variant="secondary">
-                {siteActionLabels.requestStrategySession}
+                {siteActionLabels.requestStrategySession} <span aria-hidden="true">→</span>
               </Button>
             </motion.aside>
           </motion.div>

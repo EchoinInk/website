@@ -12,7 +12,7 @@ const spacingMap = {
   closing: "ei-section-closing"
 } as const;
 
-type SectionSpacing = keyof typeof spacingMap;
+export type SectionSpacing = keyof typeof spacingMap;
 export type SectionTransitionTarget = "light" | "lightElevated" | "mist" | "atmospheric" | "deep";
 export type SectionTransition = "soft" | "chapter" | "atmospheric" | "motif";
 export type SectionTransitionDirection = "forward" | "reverse";

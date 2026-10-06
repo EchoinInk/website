@@ -18,8 +18,28 @@
   }
 
   .ei-archive-page .ei-page-section-hero-image {
-    object-position: 64% center;
-    opacity: 0.56;
+    object-position: 62% center;
+    opacity: 0.78;
+  }
+
+  .ei-archive-page .ei-page-section-hero {
+    min-height: clamp(46rem, 72vw, 55.5rem);
+  }
+
+  .ei-archive-page .ei-page-section-hero-media {
+    background: #0b0a24;
+  }
+
+  .ei-archive-page .ei-page-section-hero-bottom-fade {
+    height: clamp(9rem, 15vw, 14rem);
+    background:
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        rgb(var(--ei-moonlight-violet-rgb) / 0.08) 38%,
+        rgb(var(--ei-moonlight-canvas-rgb) / 0.76) 74%,
+        var(--ei-color-background-canvas) 100%
+      ) !important;
   }
 
   .ei-archive-section {
@@ -29,6 +49,30 @@
 
   .ei-archive-featured-section {
     padding-top: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .ei-archive-featured-section[data-transition="chapter"],
+  .ei-archive-notes-section[data-transition="chapter"] {
+    --ei-transition-depth: clamp(7rem, 9vw, 9.5rem);
+  }
+
+  .ei-archive-featured-section[data-transition="chapter"]::before,
+  .ei-archive-notes-section[data-transition="chapter"]::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+    right: clamp(1.5rem, 7vw, 8rem);
+    bottom: 2.5rem;
+    left: clamp(1.5rem, 7vw, 8rem);
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--ei-moonlight-violet-rgb) / 0.22) 18%,
+      rgb(var(--ei-moonlight-violet-rgb) / 0.12) 76%,
+      transparent
+    );
   }
 
   .ei-archive-featured {
@@ -301,7 +345,10 @@
   }
 
   .ei-archive-philosophy-section {
-    padding-top: clamp(5rem, 10vw, 9rem);
+    padding-block: clamp(6rem, 11vw, 10rem) clamp(2rem, 4vw, 3.5rem);
+    background:
+      radial-gradient(circle at 78% 8%, rgb(var(--ei-violet-rgb) / 0.16), transparent 34%),
+      var(--ei-color-background-canvas);
   }
 
   .ei-archive-philosophy {
@@ -311,7 +358,8 @@
     border-color: var(--ei-theme-border);
     background:
       radial-gradient(circle at 82% 20%, rgb(var(--ei-violet-rgb) / 0.18), transparent 42%),
-      var(--ei-theme-card);
+      rgb(var(--ei-midnight-rgb) / 0.9);
+    box-shadow: 0 28px 90px rgb(var(--ei-ink-rgb) / 0.34);
   }
 
   .ei-archive-philosophy-copy {
@@ -388,13 +436,30 @@
   .ei-archive-constellation-node[data-node="4"] { bottom: 17%; left: 17%; }
 
   .ei-archive-closing {
+    position: relative;
+    overflow: hidden;
     background: var(--ei-color-background-canvas);
-    padding-block: clamp(4.5rem, 9vw, 8rem);
+    padding-block: clamp(2rem, 4vw, 3.5rem) clamp(4.5rem, 8vw, 7rem);
   }
 
   .ei-archive-closing .ei-cta-section-panel {
     border-color: var(--ei-theme-border);
-    background: var(--ei-theme-card);
+    background:
+      radial-gradient(circle at 82% 42%, rgb(var(--ei-violet-rgb) / 0.18), transparent 32%),
+      linear-gradient(180deg, rgb(var(--ei-midnight-rgb) / 0.92), var(--ei-ink));
+    padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .ei-archive-closing::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    height: clamp(4rem, 7vw, 6rem);
+    background: linear-gradient(180deg, transparent, rgb(var(--ei-moonlight-canvas-rgb) / 0.1));
   }
 
   @media (min-width: 768px) {
@@ -427,9 +492,25 @@
   }
 
   @media (max-width: 767px) {
+    .ei-archive-page .ei-page-section-hero {
+      min-height: 69rem;
+    }
+
+    .ei-archive-page .ei-page-section-hero .ei-hero-system-copy {
+      padding-block: 7rem 40rem;
+    }
+
+    .ei-archive-page .ei-page-section-hero-media {
+      height: 42rem;
+      opacity: 0.58;
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 11%, #000 84%, transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 11%, #000 84%, transparent 100%);
+    }
+
     .ei-archive-page .ei-page-section-hero-image {
-      object-position: 58% center;
-      opacity: 0.42;
+      object-position: center center;
+      opacity: 1;
+      filter: brightness(0.88) saturate(0.96) contrast(1.03);
     }
 
     .ei-archive-pathway-grid {
@@ -457,6 +538,12 @@
 
     .ei-archive-constellation-node {
       font-size: 0.56rem;
+    }
+
+    .ei-archive-featured-section[data-transition="chapter"]::before,
+    .ei-archive-notes-section[data-transition="chapter"]::before {
+      right: 1.25rem;
+      left: 1.25rem;
     }
   }
 

@@ -1,56 +1,109 @@
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/Button";
-import { ProjectContext } from "@/components/works/ProjectContext";
 import { ProjectNavigation } from "@/components/works/ProjectNavigation";
-import { getWorkProject } from "@/data/worksProjects";
 import { primaryCallToAction } from "@/data/siteNavigation";
-
-const keystoneProject = getWorkProject("Keystone")!;
+import keystoneLockup from "@/assets/projects/keystone/keystone-lockup.png";
 
 const sectionLinks = [
-  ["01", "Context", "context"],
-  ["02", "Approach", "approach"],
-  ["03", "System", "system"],
-  ["04", "Prototype state", "prototype-state"],
-  ["05", "Evidence boundary", "evidence-boundary"],
+  ["01", "Opportunity", "opportunity"],
+  ["02", "Operating model", "operating-model"],
+  ["03", "Orientation", "orientation"],
+  ["04", "From direction to prototype", "architecture"],
+  ["05", "Evidence", "evidence"]
 ] as const;
 
-const decisions = [
-  {
-    title: "Organise around decisions",
-    body: "The workspace starts with what needs attention, not with a wall of undifferentiated reporting.",
-    artifact: "Priority model · daily operating view",
-  },
-  {
-    title: "Keep domains distinct",
-    body: "Projects, tasks, content and studio signals remain separate views connected by shared context.",
-    artifact: "Information architecture · domain map",
-  },
-  {
-    title: "Reveal detail progressively",
-    body: "A calm overview leads into focused working surfaces instead of compressing every control into one dashboard.",
-    artifact: "Navigation model · disclosure pattern",
-  },
-  {
-    title: "Design state before polish",
-    body: "Empty, active, attention and completed states are treated as product structure, not decorative variants.",
-    artifact: "State model · interface inventory",
-  },
+const operatingPicture = [
+  [
+    "Commitments",
+    "What we have committed to, for whom, and when — including the deadlines that shape delivery."
+  ],
+  [
+    "Project state",
+    "Where each project stands across delivery, progress, blockers and its next milestone."
+  ],
+  ["Resourcing", "How people are allocated, where capacity exists, and where it is constrained."],
+  [
+    "Decisions / Risk",
+    "What needs a decision, what is at risk, and what may block progress or affect finances."
+  ]
 ] as const;
 
-const systemLayers = [
-  ["Signals", "What needs attention now"],
-  ["Work", "Projects, tasks and decisions"],
-  ["Publishing", "Content moving through the studio"],
-  ["Operations", "Recurring internal responsibilities"],
+const informationModel = [
+  ["Projects", "Client work and internal initiatives."],
+  ["Workstreams", "Key areas of focus within each project."],
+  ["Commitments", "What the studio has agreed to deliver."],
+  ["Status", "Current state, progress, deadlines and risk."],
+  ["Decisions", "What requires resolution or action next."]
+] as const;
+
+const priorities = [
+  [
+    "What must you know in 10 seconds?",
+    "Active projects, critical deadlines, major risks, resourcing health and anything requiring immediate attention."
+  ],
+  [
+    "What indicates risk?",
+    "Delayed milestones, resourcing conflicts, blockers, unresolved decisions and financial warnings."
+  ],
+  [
+    "What requires action?",
+    "Decisions awaiting input, approaching deadlines, interventions and items explicitly flagged at risk."
+  ],
+  [
+    "What can wait for drill-down?",
+    "Detailed tasks, individual notes, project-specific context, deeper resource or financial detail, and non-urgent updates."
+  ]
+] as const;
+
+const architecture = [
+  [
+    "01",
+    "Product direction",
+    "Goals, users, operational problems and success criteria.",
+    "Why Keystone exists"
+  ],
+  [
+    "02",
+    "Information model",
+    "Key entities, relationships, rules and operational states.",
+    "What the system understands"
+  ],
+  [
+    "03",
+    "Interaction / interface",
+    "Navigation, hierarchy, components and interaction patterns shaped around the model.",
+    "How people work with it"
+  ],
+  [
+    "04",
+    "Prototype direction",
+    "A high-fidelity control-centre composition and project-specific interface language.",
+    "How the direction is tested"
+  ]
+] as const;
+
+const principles = [
+  ["Reduce noise", "Focus on what matters, remove distractions and avoid unnecessary complexity."],
+  [
+    "Clarify hierarchy",
+    "Create a clear structure for projects, workstreams, commitments and decisions."
+  ],
+  [
+    "Make operational state visible",
+    "Surface progress, deadlines, risk and resourcing in a calm, consistent way."
+  ],
+  [
+    "Design for internal use",
+    "Shape the concept around the studio’s operating patterns, with adoption and maintainability in mind."
+  ]
 ] as const;
 
 function SectionHeading({
   index,
   eyebrow,
   title,
-  body,
+  body
 }: {
   index: string;
   eyebrow: string;
@@ -59,52 +112,193 @@ function SectionHeading({
 }) {
   return (
     <header className="ei-keystone-section-heading">
-      <p><span>{index}</span>{eyebrow}</p>
+      <p>
+        <span>{index}</span>
+        {eyebrow}
+      </p>
       <h2>{title}</h2>
       {body ? <p className="ei-keystone-section-intro">{body}</p> : null}
     </header>
   );
 }
 
-function WorkspaceArtifact() {
+function KeystoneControlCentre({ compact = false }: { compact?: boolean }) {
   return (
-    <figure className="ei-keystone-workspace-artifact">
-      <div className="ei-keystone-workspace-frame">
-        <div className="ei-keystone-workspace-bar">
-          <span>Keystone</span>
-          <span>Internal system study</span>
-        </div>
-        <div className="ei-keystone-workspace-body">
-          <aside aria-label="Exploratory workspace areas">
-            <strong>Control centre</strong>
-            <span className="is-active">Overview</span>
-            <span>Projects</span>
-            <span>Tasks</span>
-            <span>Content</span>
-            <span>Studio</span>
-          </aside>
-          <div className="ei-keystone-workspace-main">
-            <div className="ei-keystone-workspace-heading">
-              <span>Operating view</span>
-              <strong>What needs attention?</strong>
+    <figure className={`ei-keystone-control-centre${compact ? " is-compact" : ""}`}>
+      <div className="ei-keystone-ui-topbar">
+        <strong>Keystone</strong>
+        <span>Operating view · Prototype</span>
+      </div>
+      <div className="ei-keystone-ui-body">
+        <aside aria-label="Prototype workspace areas">
+          <strong>Control centre</strong>
+          <span className="is-active">Home</span>
+          <span>Projects</span>
+          <span>People</span>
+          <span>Finances</span>
+          <span>Commitments</span>
+          <span>Decisions</span>
+        </aside>
+        <div className="ei-keystone-ui-main">
+          <div className="ei-keystone-ui-heading">
+            <div>
+              <span>Studio overview</span>
+              <strong>Good morning.</strong>
             </div>
-            <div className="ei-keystone-workspace-grid">
-              <div><span>Now</span><strong>Active work</strong><i /></div>
-              <div><span>Next</span><strong>Upcoming decisions</strong><i /></div>
-              <div><span>Watch</span><strong>Studio signals</strong><i /></div>
-            </div>
-            <div className="ei-keystone-workspace-lanes">
-              <div><span>Priority</span><i /><i /><i /></div>
-              <div><span>Projects</span><i /><i /></div>
-            </div>
+            <small>Current operating picture</small>
+          </div>
+          <div className="ei-keystone-ui-metrics">
+            <article>
+              <b>8</b>
+              <span>Active projects</span>
+              <small>2 need attention</small>
+            </article>
+            <article>
+              <b>3</b>
+              <span>Require action</span>
+              <small>Risk or decision</small>
+            </article>
+            <article>
+              <b>12</b>
+              <span>Deadlines</span>
+              <small>Next 30 days</small>
+            </article>
+            <article>
+              <b>92%</b>
+              <span>Resourcing</span>
+              <small>Near capacity</small>
+            </article>
+          </div>
+          <div className="ei-keystone-ui-panels">
+            <article>
+              <div>
+                <strong>Current commitments</strong>
+                <span>Status</span>
+              </div>
+              <p>
+                <i className="is-blue" />
+                Product direction <em>In progress</em>
+              </p>
+              <p>
+                <i className="is-amber" />
+                Prototype review <em>Decision due</em>
+              </p>
+              <p>
+                <i className="is-cyan" />
+                Studio operations <em>On track</em>
+              </p>
+            </article>
+            <article>
+              <div>
+                <strong>Upcoming decisions</strong>
+                <span>Timing</span>
+              </div>
+              <p>
+                <i className="is-red" />
+                Resolve capacity conflict <em>Today</em>
+              </p>
+              <p>
+                <i className="is-amber" />
+                Confirm next milestone <em>3 days</em>
+              </p>
+              <p>
+                <i className="is-blue" />
+                Review scope <em>1 week</em>
+              </p>
+            </article>
           </div>
         </div>
       </div>
-      <figcaption>
-        <span>Interface composition study</span>
-        <p>A representative control-centre artifact showing hierarchy and information relationships. It is not a live product capture.</p>
-      </figcaption>
+      {!compact ? (
+        <figcaption>
+          <span>High-fidelity interface composition</span>
+          <p>
+            A representative design artifact for testing hierarchy and information relationships —
+            not a live product capture.
+          </p>
+        </figcaption>
+      ) : null}
     </figure>
+  );
+}
+
+function KeystoneOperatingModelDiagram() {
+  return (
+    <div className="ei-keystone-model" aria-label="Keystone before and after information model">
+      <section className="ei-keystone-model-before">
+        <header>
+          <span>Before</span>
+          <p>Information scattered across tools, notes and conversations.</p>
+        </header>
+        <div className="ei-keystone-fragments" aria-label="Fragmented operating concepts">
+          <span>Tools</span>
+          <span>Notes</span>
+          <span>Projects</span>
+          <span>Tasks</span>
+          <span>Decisions</span>
+        </div>
+        <p className="ei-keystone-model-note">
+          Duplicated context · unclear relationships · no reliable operating view
+        </p>
+      </section>
+      <div className="ei-keystone-model-shift" aria-hidden="true">
+        →
+      </div>
+      <section className="ei-keystone-model-after">
+        <header>
+          <span>After</span>
+          <p>A clear information model aligned to how the studio actually works.</p>
+        </header>
+        <div className="ei-keystone-model-chain">
+          {informationModel.map(([title, body], index) => (
+            <article key={title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              {index < informationModel.length - 1 ? <b aria-hidden="true">→</b> : null}
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function KeystoneEvidencePanel() {
+  return (
+    <aside className="ei-keystone-evidence-panel" aria-labelledby="keystone-evidence-title">
+      <h3 id="keystone-evidence-title">What exists and what’s exploratory</h3>
+      <div>
+        <span className="is-supported">✓</span>
+        <p>
+          <strong>Supported</strong>Internal project and product framing
+        </p>
+      </div>
+      <div>
+        <span className="is-supported">✓</span>
+        <p>
+          <strong>Supported</strong>Information architecture and system modelling
+        </p>
+      </div>
+      <div>
+        <span className="is-supported">✓</span>
+        <p>
+          <strong>Supported</strong>High-fidelity interface composition and state direction
+        </p>
+      </div>
+      <div>
+        <span>○</span>
+        <p>
+          <strong>Not evidenced</strong>Working Keystone frontend or data layer
+        </p>
+      </div>
+      <div>
+        <span>○</span>
+        <p>
+          <strong>Not evidenced</strong>Internal usage, user validation or production deployment
+        </p>
+      </div>
+    </aside>
   );
 }
 
@@ -115,180 +309,217 @@ export function KeystoneCaseStudy() {
         <div className="ei-keystone-hero-grid" aria-hidden="true" />
         <div className="ei-keystone-shell ei-keystone-hero-layout">
           <div className="ei-keystone-hero-copy">
-            <p className="ei-keystone-kicker">Selected work · Internal project</p>
+            <img
+              className="ei-keystone-brand-lockup"
+              src={keystoneLockup}
+              alt="Keystone Studio Operations System"
+            />
+            <p className="ei-keystone-kicker">Case study · Keystone</p>
             <h1 id="keystone-heading">A calmer control centre for the work behind the studio.</h1>
             <p className="ei-keystone-hero-lede">
-              Keystone is an exploratory internal product study into how projects, tasks, content
-              and operational signals might live in one coherent workspace.
+              Keystone is an internal operating-platform concept for the studio, designed to bring
+              clarity across commitments, project state, finances, resourcing, blockers, deadlines
+              and decisions — in one coherent view.
             </p>
-            <ProjectContext
-              classification={keystoneProject.classification}
-              capabilities={keystoneProject.capabilities}
-              scope={keystoneProject.scope}
-              className="ei-keystone-context"
-            />
+            <dl className="ei-keystone-meta">
+              <div>
+                <dt>Provenance</dt>
+                <dd>Internal project</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Exploratory / high-fidelity prototype</dd>
+              </div>
+              <div>
+                <dt>Evidence</dt>
+                <dd>Product model and interface composition</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Operational clarity and decision-making</dd>
+              </div>
+              <div>
+                <dt>Scope</dt>
+                <dd>Projects, resourcing, finances, commitments, risk</dd>
+              </div>
+            </dl>
           </div>
-          <WorkspaceArtifact />
+          <KeystoneControlCentre />
         </div>
       </section>
 
       <nav className="ei-keystone-local-nav" aria-label="Keystone case study sections">
         <div className="ei-keystone-shell">
           {sectionLinks.map(([index, label, id]) => (
-            <a key={id} href={`#${id}`}><span>{index}</span>{label}</a>
+            <a key={id} href={`#${id}`}>
+              <span>{index}</span>
+              {label}
+            </a>
           ))}
         </div>
       </nav>
 
-      <section id="context" className="ei-keystone-section ei-keystone-section-context">
+      <section id="opportunity" className="ei-keystone-section ei-keystone-section-opportunity">
         <div className="ei-keystone-shell">
-          <SectionHeading
-            index="01"
-            eyebrow="Context"
-            title="The opportunity was a clearer operating picture—not another busy dashboard."
-          />
-          <div className="ei-keystone-context-grid">
-            <article>
-              <h3>Context</h3>
-              <p>Studio work spans delivery, planning, publishing and recurring operations. The concept asks how those concerns could be seen together without losing their individual shape.</p>
-            </article>
-            <article>
-              <h3>Problem / opportunity</h3>
-              <p>Important work becomes harder to steer when priorities, tasks and signals are distributed across unrelated views. Keystone explores a shared orientation layer for that work.</p>
-            </article>
-            <article>
-              <h3>Constraints</h3>
-              <p>Keep dense operational information legible, preserve clear ownership between domains, and avoid presenting speculative automation or placeholder data as working capability.</p>
-            </article>
-            <article>
-              <h3>Echo&apos;s role</h3>
-              <p>Product strategy, information architecture, workflow modelling, interface direction and system prototyping for an internal studio concept.</p>
-            </article>
+          <div className="ei-keystone-split-heading">
+            <SectionHeading
+              index="01"
+              eyebrow="Opportunity"
+              title="The opportunity was a clearer operating picture — not another busy dashboard."
+            />
+            <p>
+              An operating picture is a single, reliable view of what the studio is committed to,
+              how work is progressing, where capacity is constrained, what is at risk, which
+              deadlines are approaching, and where decisions are required. The goal is not more
+              information — it is better orientation.
+            </p>
           </div>
-        </div>
-      </section>
-
-      <section id="approach" className="ei-keystone-section ei-keystone-section-approach">
-        <div className="ei-keystone-shell">
-          <SectionHeading
-            index="02"
-            eyebrow="Approach and key decisions"
-            title="Build the operating model before decorating the dashboard."
-            body="The exploration moved from studio questions to domains, states and decision paths, then into a restrained interface language designed for frequent use."
-          />
-          <div className="ei-keystone-decision-grid">
-            {decisions.map((decision, index) => (
-              <article key={decision.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{decision.title}</h3>
-                <p>{decision.body}</p>
-                <small>{decision.artifact}</small>
+          <div className="ei-keystone-picture-grid">
+            {operatingPicture.map(([title, body], index) => (
+              <article key={title}>
+                <span>0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="system" className="ei-keystone-section ei-keystone-section-system">
+      <section id="operating-model" className="ei-keystone-section ei-keystone-section-model">
         <div className="ei-keystone-shell">
-          <SectionHeading
-            index="03"
-            eyebrow="System and artifacts"
-            title="One orientation layer, with focused working surfaces beneath it."
-            body="The system study separates overview from action. The control centre helps someone orient; each domain remains responsible for its own detailed work."
-          />
-          <div className="ei-keystone-system-map" aria-label="Keystone information architecture">
-            <div className="ei-keystone-system-core">
-              <span>Shared orientation</span>
-              <strong>Control centre</strong>
-              <p>Attention · priority · status · next decision</p>
-            </div>
-            <div className="ei-keystone-system-layers">
-              {systemLayers.map(([title, body], index) => (
+          <div className="ei-keystone-split-heading">
+            <SectionHeading
+              index="02"
+              eyebrow="Operating model"
+              title="Build the operating model before decorating the dashboard."
+            />
+            <p>
+              We mapped the studio’s operating concepts, clarified their relationships, and defined
+              how information moves before designing an interface. The result is a system shaped by
+              the work — system before surface.
+            </p>
+          </div>
+          <KeystoneOperatingModelDiagram />
+        </div>
+      </section>
+
+      <section id="orientation" className="ei-keystone-section ei-keystone-section-orientation">
+        <div className="ei-keystone-shell">
+          <div className="ei-keystone-split-heading">
+            <SectionHeading
+              index="03"
+              eyebrow="Orientation layer"
+              title="One orientation layer, with focused working surfaces beneath it."
+            />
+            <p>
+              The control centre provides a high-level orientation layer, with focused surfaces for
+              deeper work. Its first job is to clarify what is happening, what needs attention, and
+              where to go next.
+            </p>
+          </div>
+          <div className="ei-keystone-orientation-layout">
+            <KeystoneControlCentre compact />
+            <div className="ei-keystone-priority-list">
+              {priorities.map(([title, body], index) => (
                 <article key={title}>
                   <span>0{index + 1}</span>
-                  <div><h3>{title}</h3><p>{body}</p></div>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{body}</p>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
-          <aside className="ei-keystone-artifact-note">
-            <strong>Documented artifact set</strong>
-            <p>Product framing, domain map, navigation model, interface composition, state inventory and a representative control-centre direction.</p>
-          </aside>
         </div>
       </section>
 
-      <section id="prototype-state" className="ei-keystone-section ei-keystone-section-state">
-        <div className="ei-keystone-shell ei-keystone-state-grid">
-          <div>
+      <section id="architecture" className="ei-keystone-section ei-keystone-section-architecture">
+        <div className="ei-keystone-shell">
+          <div className="ei-keystone-split-heading">
             <SectionHeading
               index="04"
-              eyebrow="Implementation / prototype state"
-              title="A developed product direction, still intentionally exploratory."
+              eyebrow="From direction to prototype"
+              title="A product system built in a deliberate sequence."
             />
+            <p>
+              Each layer sets the conditions for the next. Product intent shapes the model; the
+              model shapes interaction; the interface becomes a way to test the direction without
+              overstating platform maturity.
+            </p>
           </div>
-          <div className="ei-keystone-state-list">
-            <article>
-              <span>Defined</span>
-              <h3>Product and information model</h3>
-              <p>The core opportunity, operational domains, hierarchy and navigation direction have been framed.</p>
-            </article>
-            <article>
-              <span>Explored</span>
-              <h3>Interface system</h3>
-              <p>A project-specific dark workspace language and representative control-centre composition have been developed.</p>
-            </article>
-            <article>
-              <span>Not claimed</span>
-              <h3>Working platform</h3>
-              <p>No production application, live automation, user validation, commercial deployment or measured operational result is represented.</p>
-            </article>
-          </div>
+          <ol className="ei-keystone-architecture-flow">
+            {architecture.map(([number, title, body, outcome]) => (
+              <li key={title}>
+                <span>{number}</span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                  <small>{outcome}</small>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="ei-keystone-section ei-keystone-section-demonstrates">
+      <section className="ei-keystone-section ei-keystone-section-principles">
         <div className="ei-keystone-shell">
           <SectionHeading
             index="05"
-            eyebrow="What the project demonstrates"
-            title="Strategic product thinking expressed through structure, state and interface."
+            eyebrow="Strategic thinking"
+            title="Strategic product thinking for a calmer, more effective studio."
           />
-          <div className="ei-keystone-demonstrates-grid">
-            <p>Turning a broad operational ambition into a bounded product concept.</p>
-            <p>Designing information architecture for several connected work domains.</p>
-            <p>Making dense workspace UI feel calm without hiding necessary complexity.</p>
-            <p>Separating demonstrated design work from future implementation intent.</p>
+          <div className="ei-keystone-principles-grid">
+            {principles.map(([title, body], index) => (
+              <article key={title}>
+                <span>0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="evidence-boundary" className="ei-keystone-section ei-keystone-section-boundary">
-        <div className="ei-keystone-shell ei-keystone-boundary-grid">
+      <section id="evidence" className="ei-keystone-section ei-keystone-section-evidence">
+        <div className="ei-keystone-shell ei-keystone-evidence-layout">
           <div>
-            <p className="ei-keystone-kicker">Evidence boundary</p>
+            <p className="ei-keystone-kicker">06 · Exploratory work</p>
             <h2>Exploratory internal work, shown at its actual maturity.</h2>
+            <p className="ei-keystone-evidence-copy">
+              Keystone is an internal exploratory project developed far enough to test its operating
+              model, information architecture, interface hierarchy and visual direction. It is shown
+              as evidence of product and systems thinking — not as a working or finished production
+              platform.
+            </p>
+            <p className="ei-keystone-evidence-boundary">
+              No client, live data layer, internal adoption, user validation, automation capability,
+              production deployment or measured operational result is claimed.
+            </p>
           </div>
-          <div>
-            <p>Keystone is an internal concept study. The evidence supports claims about product framing, information architecture, system modelling and interface direction.</p>
-            <p>It is not client work and no client, users, launch, revenue, adoption, testimonial, automation capability or measured outcome is claimed. Interface compositions are design artifacts, not live product captures.</p>
-          </div>
+          <KeystoneEvidencePanel />
         </div>
       </section>
 
       <section className="ei-keystone-section ei-keystone-next-step">
         <div className="ei-keystone-shell">
           <p className="ei-keystone-kicker">Next project</p>
-          <h2>Continue to Codexia: a governed engineering platform with implementation evidence.</h2>
+          <h2>
+            Continue to Codexia: a governed engineering platform with implementation evidence.
+          </h2>
           <div className="ei-keystone-actions">
-            <Button to="/works/codexia" variant="secondary">View Codexia case study</Button>
+            <Button to="/works/codexia" variant="secondary">
+              View Codexia case study
+            </Button>
             <Button to="/contact?inquiry=project">{primaryCallToAction.label}</Button>
           </div>
-          <Link to="/works" className="ei-keystone-back-link">View all selected work <span aria-hidden="true">↗</span></Link>
+          <Link to="/works" className="ei-keystone-back-link">
+            View all selected work <span aria-hidden="true">↗</span>
+          </Link>
         </div>
       </section>
-
       <div className="ei-keystone-project-navigation">
         <ProjectNavigation currentProject="Keystone" />
       </div>

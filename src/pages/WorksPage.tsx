@@ -55,6 +55,8 @@ export function WorksPage() {
         imageAlt="Lumo, Keystone and Codexia product concepts arranged across a violet mountain landscape"
         theme="light"
         tone="editorial"
+        transition="atmospheric"
+        transitionTo="lightElevated"
         headingId="works-heading"
         supportingContent={
           <div className="ei-works-trust-signal" role="note" aria-label="Project provenance commitment">
@@ -216,7 +218,13 @@ export function WorksPage() {
         </Container>
       </Section>
 
-      <Section theme="deep" spacing="none" className="ei-works-closing">
+      <Section
+        theme="deep"
+        transition="soft"
+        transitionTo="light"
+        spacing="none"
+        className="ei-works-closing"
+      >
         <CTASection
           variant="editorialInvitation"
           panelTheme="deep"

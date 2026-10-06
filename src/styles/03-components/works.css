@@ -654,8 +654,10 @@
 }
 
 @layer components {
-  .ei-works-page > .ei-page-section-hero {
+  .ei-works-page .ei-page-section-hero {
     min-height: clamp(53rem, 78vw, 61rem);
+    overflow-x: clip !important;
+    overflow-y: visible !important;
   }
 
   .ei-works-page .ei-page-section-hero-media {
@@ -1011,7 +1013,7 @@
   }
 
   @media (max-width: 767px) {
-    .ei-works-page > .ei-page-section-hero {
+    .ei-works-page .ei-page-section-hero {
       min-height: 70rem;
     }
 

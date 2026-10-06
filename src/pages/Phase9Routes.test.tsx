@@ -86,18 +86,37 @@ describe("Phase 9 editorial, systems, and public-route contracts", () => {
       "lightElevated",
       "lightElevated",
       "mist",
-      "lightElevated",
-      "mist",
+      "deep",
+      "deep",
+    ]);
+    expect(sections.map((section) => section.dataset.transition)).toEqual([
+      undefined,
+      "chapter",
+      "soft",
+      "chapter",
+      "atmospheric",
+      "motif",
+      undefined,
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       undefined,
-      undefined,
-      undefined,
-      undefined,
+      "lightElevated",
       "lightElevated",
       "mist",
+      "deep",
+      "deep",
       undefined,
     ]);
+  });
+
+  it("art-directs the Insights hero with the supplied desktop and mobile artwork", () => {
+    const { container } = renderPage(<ArchivePage />, "/insights");
+    const hero = container.querySelector(".ei-page-section-hero picture");
+
+    expect(hero?.querySelector("source")).toHaveAttribute("media", "(min-width: 768px)");
+    expect(hero?.querySelector("source")?.getAttribute("srcset")).toContain("insights-hero-desktop.png");
+    expect(hero?.querySelector("img")?.getAttribute("src")).toContain("insights-hero-mobile.png");
+    expect(hero).toHaveAttribute("aria-hidden", "true");
   });
 
   it("keeps Creative Systems & Tools distinct from Systems & Automation", () => {

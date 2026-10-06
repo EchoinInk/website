@@ -22,7 +22,7 @@ export const primaryCapabilities = [
   },
   {
     id: "websites-experiences",
-    title: "Digital Experiences",
+    title: "Websites & Digital Experiences",
     description:
       "Digital strategy, information architecture, UX/UI, responsive design and development.",
     href: "/services",
@@ -36,7 +36,7 @@ export const primaryCapabilities = [
   },
   {
     id: "systems-automation",
-    title: "Systems & Tools",
+    title: "Systems & Automation",
     description:
       "Custom software, internal tools, integrations, workflow automation and selective AI implementation.",
     href: "/services",
