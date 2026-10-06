@@ -23,14 +23,14 @@ describe("homepage reference implementation", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "We design and build brands, websites, digital products and systems."
+        name: "We create brands , digital experiences , products , and systems that make complex things feel clear."
       })
     ).toBeInTheDocument();
     expect(
       screen.getByText(/Strategy, identity, product design and development/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText("From complexity to clarity, we start with the problem.")
+      screen.getByText("We start with the challenge, not the deliverable.")
     ).toBeInTheDocument();
 
     const hero = screen.getByRole("heading", { level: 1 }).closest("section")!;
@@ -60,13 +60,13 @@ describe("homepage reference implementation", () => {
       );
     });
 
-    expect(screen.getByText(/Not every project needs the same approach/i)).toBeInTheDocument();
+    expect(screen.getByText(/Not every project starts in the same place/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { level: 2, name: /Fewer gaps between/i })
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /Real people/i })).toBeInTheDocument();
     expect(
-      screen.getByText(/project provenance and evidence remain explicit/i)
+      screen.getByText(/provenance of every project remains clear/i)
     ).toBeInTheDocument();
     expect(screen.queryByText("Best when:")).not.toBeInTheDocument();
   });
@@ -83,28 +83,28 @@ describe("homepage reference implementation", () => {
       "mist",
       "lightElevated",
       "light",
-      "light",
+      "mist",
       "light",
       "light"
     ]);
     expect(sections.map((section) => section.dataset.transitionTo)).toEqual([
       "lightElevated",
-      "mist",
+      undefined,
       "lightElevated",
       "light",
       "light",
-      "light",
+      "lightElevated",
       "light",
       undefined
     ]);
     expect(sections.map((section) => section.dataset.transition)).toEqual([
       "soft",
+      undefined,
+      "atmospheric",
       "chapter",
+      "atmospheric",
       "soft",
-      "chapter",
       "atmospheric",
-      "atmospheric",
-      "motif",
       undefined
     ]);
     expect(sections.map((section) => section.dataset.transitionMotif)).toEqual([
@@ -113,7 +113,7 @@ describe("homepage reference implementation", () => {
       undefined,
       undefined,
       undefined,
-      "node",
+      undefined,
       undefined,
       undefined
     ]);
@@ -154,8 +154,8 @@ describe("homepage reference implementation", () => {
 
     const evidence = container.querySelector<HTMLElement>(".ei-home-evidence-grid")!;
     expect(evidence.querySelectorAll(".ei-home-evidence-card")).toHaveLength(2);
-    expect(within(evidence).getByText("Client words — when shareable.")).toBeInTheDocument();
-    expect(within(evidence).getByText("Project evidence — clearly labelled.")).toBeInTheDocument();
+    expect(within(evidence).getByText("Real feedback, when it can be shared.")).toBeInTheDocument();
+    expect(within(evidence).getByText("Project evidence, clearly labelled.")).toBeInTheDocument();
 
     const heroPicture = container.querySelector<HTMLPictureElement>(".ei-home-hero-picture")!;
     expect(heroPicture.querySelector("source")).toHaveAttribute("srcset", "/home-hero-mobile.webp");

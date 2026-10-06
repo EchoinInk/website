@@ -22,7 +22,7 @@ describe("launch metadata", () => {
     renderRoute("/");
     await screen.findByRole("heading", {
       level: 1,
-      name: "We design and build brands, websites, digital products and systems.",
+      name: "We create brands , digital experiences , products , and systems that make complex things feel clear.",
     });
 
     await waitFor(() => {
@@ -63,7 +63,7 @@ describe("launch metadata", () => {
     renderRoute("/works/codexia");
     await screen.findByRole("heading", {
       level: 1,
-      name: "Engineering work with authority, evidence and recovery built in.",
+      name: "Engineering authority, evidence and recovery built into the work itself.",
     });
 
     await waitFor(() => {

@@ -28,6 +28,7 @@ build
 
 # Testing
 coverage
+.cache
 
 # Vite
 .vite

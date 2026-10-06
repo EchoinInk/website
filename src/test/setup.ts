@@ -21,26 +21,31 @@ Object.defineProperty(window, "matchMedia", {
   }),
 });
 
-class ResizeObserverMock {
-  observe() {}
-  unobserve() {}
+class ResizeObserverMock implements ResizeObserver {
+  constructor(_callback: ResizeObserverCallback) {}
+
+  observe(_target: Element, _options?: ResizeObserverOptions) {}
+  unobserve(_target: Element) {}
   disconnect() {}
 }
 
-class IntersectionObserverMock {
-  observe() {}
-  unobserve() {}
+class IntersectionObserverMock implements IntersectionObserver {
+  readonly root = null;
+  readonly rootMargin = "0px";
+  readonly thresholds = [0];
+
+  constructor(_callback: IntersectionObserverCallback, _options?: IntersectionObserverInit) {}
+
+  observe(_target: Element) {}
+  unobserve(_target: Element) {}
   disconnect() {}
-  takeRecords() {
+  takeRecords(): IntersectionObserverEntry[] {
     return [];
   }
 }
 
-(globalThis as { ResizeObserver: typeof ResizeObserverMock }).ResizeObserver =
-  ResizeObserverMock;
-(globalThis as {
-  IntersectionObserver: typeof IntersectionObserverMock;
-}).IntersectionObserver = IntersectionObserverMock;
+globalThis.ResizeObserver = ResizeObserverMock;
+globalThis.IntersectionObserver = IntersectionObserverMock;
 
 Object.defineProperty(Element.prototype, "scrollIntoView", {
   configurable: true,

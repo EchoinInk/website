@@ -8,10 +8,10 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.test.json && tsc --noEmit -p tsconfig.node.json",
     "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "SWC_NATIVE_BINDING_CACHE=\"$PWD/.cache/swc-native\" vitest run",
+    "test:watch": "SWC_NATIVE_BINDING_CACHE=\"$PWD/.cache/swc-native\" vitest"
   },
   "dependencies": {
     "@playwright/test": "^1.60.0",

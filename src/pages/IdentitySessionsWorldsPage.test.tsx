@@ -101,10 +101,12 @@ describe("Phase 7 capability and engagement contracts", () => {
   });
 
   it("keeps Brand Worlds outside the four primary capabilities", () => {
+    const primaryCapabilityTitles: readonly string[] = primaryCapabilities.map(
+      ({ title }) => title,
+    );
+
     expect(primaryCapabilities).toHaveLength(4);
-    expect(
-      primaryCapabilities.some((capability) => capability.title === brandWorldsCapability.title),
-    ).toBe(false);
+    expect(primaryCapabilityTitles).not.toContain(brandWorldsCapability.title);
 
     const { container } = renderPage(<WorldsPage />);
     const page = container.querySelector<HTMLElement>(".ei-worlds-page")!;

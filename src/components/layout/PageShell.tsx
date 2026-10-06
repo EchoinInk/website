@@ -72,7 +72,9 @@ export function PageShell({
 
   useLayoutEffect(() => {
     document.documentElement.dataset.pageTheme = theme;
-    return () => delete document.documentElement.dataset.pageTheme;
+    return () => {
+      delete document.documentElement.dataset.pageTheme;
+    };
   }, [theme]);
 
   return (
