@@ -60,13 +60,6 @@
     text-wrap: pretty;
   }
 
-  .ei-hero-system-aside {
-    position: absolute;
-    right: 0;
-    bottom: 5.5rem;
-    left: calc(var(--ei-hero-artwork-start) + clamp(3rem, 5vw, 5rem));
-  }
-
   .ei-hero-system-media {
     inset: 0;
     overflow: hidden;
@@ -133,17 +126,17 @@
       line-height: 1.65;
     }
 
-    .ei-hero-system-aside {
-      right: 0;
-      bottom: 2.25rem;
-      left: 0;
-    }
-
     .ei-hero-system-media {
       inset: auto 0 0;
       height: 22rem;
       clip-path: none;
-      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+      -webkit-mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        #000 18%,
+        #000 82%,
+        transparent 100%
+      );
       mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
     }
 

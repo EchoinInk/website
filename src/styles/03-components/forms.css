@@ -19,8 +19,7 @@
 
   /* ── Form Inputs ─────────────────────────────────────────────── */
   .ei-form-input,
-  .ei-form-textarea,
-  .ei-form-select {
+  .ei-form-textarea {
     font-family: var(--ei-font-structural);
     font-size: 0.9375rem;
     font-weight: 400;
@@ -37,7 +36,8 @@
     box-shadow: var(--ei-form-control-shadow);
 
     /* Transition for interaction */
-    transition: border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transition:
+      border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
       background 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -58,20 +58,19 @@
 
   /* Hover state - subtle luminance shift */
   .ei-form-input:hover,
-  .ei-form-textarea:hover,
-  .ei-form-select:hover {
+  .ei-form-textarea:hover {
     border-color: var(--ei-form-control-border);
     background: var(--ei-form-control-bg-hover);
   }
 
   /* Focus state - softly acknowledged */
   .ei-form-input:focus,
-  .ei-form-textarea:focus,
-  .ei-form-select:focus {
+  .ei-form-textarea:focus {
     border-color: var(--ei-form-control-border-focus);
     color: var(--ei-color-text-primary);
     background: var(--ei-form-control-bg-focus);
-    box-shadow: 0 0 0 1px var(--ei-form-control-border-focus),
+    box-shadow:
+      0 0 0 1px var(--ei-form-control-border-focus),
       0 0 28px rgb(var(--ei-halo-blue-rgb) / 0.07);
   }
 
@@ -84,37 +83,10 @@
   /* Focus label enhancement */
   .ei-form-input:focus + .ei-form-label,
   .ei-form-textarea:focus + .ei-form-label,
-  .ei-form-select:focus + .ei-form-label,
   /* For when label precedes input */
   :has(> .ei-form-input:focus) .ei-form-label,
-  :has(> .ei-form-textarea:focus) .ei-form-label,
-  :has(> .ei-form-select:focus) .ei-form-label {
+  :has(> .ei-form-textarea:focus) .ei-form-label {
     color: var(--ei-color-text-tertiary);
-  }
-
-  /* ── Select Specific ─────────────────────────────────────────── */
-  .ei-form-select {
-    cursor: pointer;
-    background-image: linear-gradient(
-        45deg,
-        transparent 50%,
-        var(--ei-color-text-secondary) 50%
-      ),
-      linear-gradient(
-        135deg,
-        var(--ei-color-text-secondary) 50%,
-        transparent 50%
-      );
-    background-repeat: no-repeat;
-    background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
-    background-size: 5px 5px, 5px 5px;
-    padding-right: 2.5rem;
-  }
-
-  .ei-form-select option {
-    background: var(--ei-theme-surface-elevated);
-    color: var(--ei-color-text-tertiary);
-    padding: 0.5rem;
   }
 
   /* ── Textarea Specific ───────────────────────────────────────── */
@@ -124,47 +96,8 @@
     line-height: 1.8;
   }
 
-  /* ── Submit Button ───────────────────────────────────────────── */
-  .ei-form-submit {
-    font-family: var(--ei-font-structural);
-    font-size: var(--ei-type-size-functional);
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ei-color-text-accent);
-
-    /* Refined button styling */
-    padding: 1.25rem 3rem;
-    background: var(--ei-button-secondary-bg);
-    border: 1px solid var(--ei-button-secondary-border);
-    border-radius: 0;
-    cursor: pointer;
-
-    /* Calm, confident transitions */
-    transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .ei-form-submit:hover:not(:disabled) {
-    background: var(--ei-button-secondary-bg-hover);
-    border-color: var(--ei-button-secondary-border-hover);
-    color: var(--ei-color-text-primary);
-  }
-
-  .ei-form-submit:active:not(:disabled) {
-    transform: scale(0.985);
-  }
-
-  .ei-form-submit:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
   .ei-form-input:disabled,
-  .ei-form-textarea:disabled,
-  .ei-form-select:disabled {
+  .ei-form-textarea:disabled {
     cursor: not-allowed;
     color: var(--ei-color-text-muted);
     background: var(--ei-theme-surface);
