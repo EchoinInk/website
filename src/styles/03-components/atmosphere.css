@@ -716,156 +716,101 @@
 
 
 
+/* ── Directional flow ribbon ─────────────────────────────────────
+   The atmospheric transition is a hybrid:
+
+   ::after  = Soft Mist Bleed
+   ::before = Directional Flow
+
+   This layer should read as one long, shallow atmospheric current,
+   not as a second collection of glow pools.
+   ─────────────────────────────────────────────────────────────── */
+
 .ei-section[data-transition="atmospheric"]::before {
-
   content: "";
-
   pointer-events: none;
 
-
-
   position: absolute;
-
   z-index: 2;
 
+  left: -4%;
+  bottom: -1.5rem;
 
-
-  left: -3%;
-
-  bottom: -1.75rem;
-
-
-
-  width: 106vw;
-
+  width: 108vw;
   max-width: none;
+  height: clamp(7rem, 10vw, 10rem);
 
-  height: clamp(8rem, 12vw, 12rem);
-
-
-
-/**
-
-*   * Directional ribbon:*
-
-*   * three offset pools instead of one continuous horizontal wash.*
-
-*   */
-
-
-
+  /*
+   * Directional ribbon.
+   *
+   * A long blue → periwinkle → violet current travels diagonally
+   * through the mist. Small secondary fields soften the entry and
+   * exit without turning the ribbon back into a horizontal band.
+   */
   background:
+  /* high blue entry */
+  radial-gradient(
+    ellipse 34% 16% at 14% 26%,
+    rgb(var(--ei-halo-blue-rgb) / 0.09),
+    transparent 72%
+  ),
 
-/* blue entry */
+  /* descending periwinkle current */
+  radial-gradient(
+    ellipse 40% 14% at 37% 48%,
+    rgb(var(--ei-halo-blue-rgb) / 0.085),
+    transparent 72%
+  ),
 
-    radial-gradient(
+  /* low violet body */
+  radial-gradient(
+    ellipse 38% 13% at 61% 67%,
+    rgb(var(--ei-violet-rgb) / 0.075),
+    transparent 72%
+  ),
 
-      ellipse 26% 42% at 17% 24%,
-
-      rgb(var(--ei-halo-blue-rgb) / 0.075) 0%,
-
-      rgb(var(--ei-halo-blue-rgb) / 0.025) 48%,
-
-      transparent 73%
-
+  /* rising lilac exit */
+  radial-gradient(
+    ellipse 28% 12% at 84% 47%,
+    color-mix(
+      in srgb,
+      var(--ei-echo-magenta) 4%,
+      transparent
     ),
+    transparent 72%
+  );
 
+  opacity: 1;
 
-
-/* central flow — lowest point */
-
-    radial-gradient(
-
-      ellipse 38% 24% at 43% 67%,
-
-      rgb(var(--ei-halo-blue-rgb) / 0.09) 0%,
-
-      rgb(var(--ei-violet-rgb) / 0.05) 43%,
-
-      transparent 74%
-
-    ),
-
-
-
-/* violet exit — rises */
-
-    radial-gradient(
-
-      ellipse 31% 23% at 68% 35%,
-
-      rgb(var(--ei-violet-rgb) / 0.065) 0%,
-
-      color-mix(in srgb, var(--ei-echo-magenta) 3%, transparent) 46%,
-
-      transparent 75%
-
-    );
-
-
-
-  opacity: 0.94;
-
-
-
-  filter: blur(19px);
-
-
-
-/**
-
-*   * More rotation than before is intentional.*
-
-*   * This breaks the horizontal-divider silhouette.*
-
-*   */
+  filter: blur(17px);
 
   transform:
-
     scaleX(var(--ei-atmosphere-direction))
-
-    rotate(4deg)
-
-    skewX(-11deg);
-
-
+    rotate(5deg)
+    skewX(-10deg);
 
   transform-origin: center;
 
+  /*
+   * Elliptical mask prevents the diagonal gradient from exposing
+   * its rectangular bounds.
+   */
+  -webkit-mask-image: radial-gradient(
+  ellipse 90% 52% at 48% 50%,
+  #000 8%,
+  rgb(0 0 0 / 0.94) 32%,
+  rgb(0 0 0 / 0.52) 58%,
+  transparent 86%
+);
 
-
-  -webkit-mask-image: linear-gradient(
-
-    90deg,
-
-    transparent 1%,
-
-    #000 14%,
-
-    #000 78%,
-
-    transparent 96%
-
-  );
-
-
-
-  mask-image: linear-gradient(
-
-    90deg,
-
-    transparent 1%,
-
-    #000 14%,
-
-    #000 78%,
-
-    transparent 96%
-
-  );
-
+mask-image: radial-gradient(
+  ellipse 90% 52% at 48% 50%,
+  #000 8%,
+  rgb(0 0 0 / 0.94) 32%,
+  rgb(0 0 0 / 0.52) 58%,
+  transparent 86%
+);
 }
-
 
 
 /* Forward is the default: left → right */
@@ -954,36 +899,14 @@
 .ei-section[data-transition="atmospheric"][data-transition-direction="reverse"]::before {
   bottom: -3.5rem;
 
-  background:
-    radial-gradient(
-      ellipse 28% 44% at 16% 20%,
-      rgb(var(--ei-halo-blue-rgb) / 0.09) 0%,
-      rgb(var(--ei-halo-blue-rgb) / 0.03) 48%,
-      transparent 74%
-    ),
-
-    radial-gradient(
-      ellipse 40% 26% at 44% 70%,
-      rgb(var(--ei-halo-blue-rgb) / 0.105) 0%,
-      rgb(var(--ei-violet-rgb) / 0.055) 44%,
-      transparent 75%
-    ),
-
-    radial-gradient(
-      ellipse 30% 24% at 70% 34%,
-      rgb(var(--ei-violet-rgb) / 0.07) 0%,
-      color-mix(
-        in srgb,
-        var(--ei-echo-magenta) 3%,
-        transparent
-      ) 48%,
-      transparent 76%
-    );
-
-  filter: blur(20px);
+  /*
+   * Inherit the shared directional-flow background.
+   * Reverse direction is handled by --ei-atmosphere-direction.
+   */
+  filter: blur(17px);
 
   transform:
-    scaleX(-1)
+    scaleX(var(--ei-atmosphere-direction))
     rotate(5deg)
     skewX(-10deg);
 }
@@ -1038,32 +961,58 @@
 
   height: clamp(7rem, 10vw, 9.5rem);
 
+  /*
+   * Final directional echo.
+   * Uses the same elongated flow language as the primary
+   * atmospheric transition, but at deliberately lower intensity.
+   */
   background:
+    /* soft blue entry */
     radial-gradient(
-      ellipse 32% 30% at 24% 38%,
-      rgb(var(--ei-halo-blue-rgb) / 0.05) 0%,
+      ellipse 32% 13% at 18% 30%,
+      rgb(var(--ei-halo-blue-rgb) / 0.045) 0%,
       transparent 72%
     ),
 
+    /* quiet periwinkle movement */
     radial-gradient(
-      ellipse 42% 24% at 52% 66%,
-      rgb(var(--ei-violet-rgb) / 0.055) 0%,
+      ellipse 38% 12% at 42% 51%,
+      rgb(var(--ei-halo-blue-rgb) / 0.04) 0%,
+      rgb(var(--ei-violet-rgb) / 0.025) 46%,
+      transparent 72%
+    ),
+
+    /* restrained violet exit */
+    radial-gradient(
+      ellipse 32% 11% at 68% 62%,
+      rgb(var(--ei-violet-rgb) / 0.04) 0%,
+      color-mix(
+        in srgb,
+        var(--ei-echo-magenta) 2%,
+        transparent
+      ) 46%,
+      transparent 74%
+    ),
+
+    /* very faint lilac tail */
+    radial-gradient(
+      ellipse 22% 10% at 84% 44%,
       color-mix(
         in srgb,
         var(--ei-echo-magenta) 2.5%,
         transparent
-      ) 48%,
-      transparent 76%
+      ) 0%,
+      transparent 72%
     );
 
-  opacity: 0.78;
+  opacity: 0.72;
 
-  filter: blur(23px);
+  filter: blur(21px);
 
   transform:
     scaleX(1)
-    rotate(2deg)
-    skewX(-7deg);
+    rotate(3deg)
+    skewX(-8deg);
 }
 
 
