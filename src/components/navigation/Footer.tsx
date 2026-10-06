@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { OrbitalVisual } from "@/components/ui/OrbitalVisual";
 import { primaryNavigation, secondaryNavigation } from "@/data/siteNavigation";
-import { atmosphericFade, EASE_LUXURY, DURATION, VIEWPORT } from "@/system/motion/cinematic";
+import { dissolveReveal, EASE_LUXURY, DURATION, VIEWPORT } from "@/lib/motion-cinematic";
 
 interface FooterProps {
   theme?: "light" | "deep";
@@ -48,7 +48,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
             initial={prefersReducedMotion ? false : "hidden"}
             whileInView="visible"
             viewport={VIEWPORT.normal}
-            variants={atmosphericFade}
+            variants={dissolveReveal}
             transition={{
               duration: DURATION.slow,
               ease: EASE_LUXURY,
@@ -112,7 +112,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={VIEWPORT.normal}
-              variants={atmosphericFade}
+              variants={dissolveReveal}
               transition={{
                 duration: DURATION.slow,
                 ease: EASE_LUXURY,
@@ -209,7 +209,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
                 initial={prefersReducedMotion ? false : "hidden"}
                 whileInView="visible"
                 viewport={VIEWPORT.normal}
-                variants={atmosphericFade}
+                variants={dissolveReveal}
                 transition={{
                   duration: DURATION.slower,
                   ease: EASE_LUXURY,
@@ -241,7 +241,7 @@ export default function Footer({ theme = "light", variant = "full" }: FooterProp
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               viewport={VIEWPORT.normal}
-              variants={atmosphericFade}
+              variants={dissolveReveal}
               transition={{
                 duration: DURATION.slower,
                 ease: EASE_LUXURY,
