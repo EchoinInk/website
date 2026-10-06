@@ -57,9 +57,9 @@ export const brandWorldsCapability = {
   href: "/worlds",
 } as const;
 
-export type EngagementModelId = "strategy-sessions" | "digital-reset" | "full-projects";
+type EngagementModelId = "strategy-sessions" | "digital-reset" | "full-projects";
 
-export interface EngagementModel {
+interface EngagementModel {
   id: EngagementModelId;
   title: string;
   description: string;

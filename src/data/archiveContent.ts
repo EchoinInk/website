@@ -90,5 +90,4 @@ export const archiveCta = {
 } as const;
 
 export type ArchiveFilter = (typeof archiveFilters)[number];
-export type ArchiveIndexIcon = (typeof archiveIndex)[number]["icon"];
 export type ArchiveIndexEntry = (typeof archiveIndex)[number];

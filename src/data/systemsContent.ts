@@ -15,7 +15,7 @@ export const systemsHero = {
     "These are creative resources and experiments. Custom software, integrations, workflow automation, and selective AI implementation sit within Systems & Automation on Services.",
 } as const;
 
-export interface SystemsCategory {
+interface SystemsCategory {
   layer: string;
   title: string;
   description: string;
@@ -86,7 +86,7 @@ export const featuredSystem = {
   },
 } as const;
 
-export interface CreativeResource {
+interface CreativeResource {
   title: string;
   description: string;
   type: string;

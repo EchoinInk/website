@@ -33,7 +33,7 @@ function isBrowser() {
   return typeof window !== "undefined";
 }
 
-export function normaliseAnalyticsPath(pathname: string) {
+function normaliseAnalyticsPath(pathname: string) {
   const path = pathname.split(/[?#]/, 1)[0] || "/";
   return path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
 }

@@ -1,4 +1,4 @@
-export interface SiteNavigationItem {
+interface SiteNavigationItem {
   label: string;
   href: string;
   activePaths?: readonly string[];

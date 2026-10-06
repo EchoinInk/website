@@ -33,14 +33,6 @@ import {
 
 const featuredEntries = archiveIndex.slice(0, 3);
 
-function scrollToIndex() {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.getElementById('full-index')?.scrollIntoView({
-    behavior: reduceMotion ? 'auto' : 'smooth',
-    block: 'start',
-  });
-}
-
 export function ArchiveIndexPage() {
   const prefersReducedMotion = useReducedMotion();
   const [activeFilter, setActiveFilter] = useState<ArchiveFilter>('All');

@@ -3,7 +3,7 @@ import codexiaHome from "@/assets/projects/codexia-home.png";
 import keystoneHome from "@/assets/projects/keystone-home.png";
 import { primaryCapabilities, type ServiceCapabilityId } from "@/data/servicesContent";
 
-export type ProjectPresentation = "study" | "fragment";
+type ProjectPresentation = "study" | "fragment";
 
 export const provenanceTaxonomy = [
   {
@@ -33,10 +33,10 @@ export const provenanceTaxonomy = [
   }
 ] as const;
 
-export type ProvenanceTaxonomyLabel = (typeof provenanceTaxonomy)[number]["label"];
-export type ProjectProvenance = ProvenanceTaxonomyLabel | "Concept Project";
+type ProvenanceTaxonomyLabel = (typeof provenanceTaxonomy)[number]["label"];
+type ProjectProvenance = ProvenanceTaxonomyLabel | "Concept Project";
 
-export type ProjectStatus = "Prototype" | "Exploratory Study";
+type ProjectStatus = "Prototype" | "Exploratory Study";
 
 export interface ProjectClassification {
   provenance: ProjectProvenance;
@@ -157,10 +157,6 @@ export const worksProjects: WorkProject[] = [
 ];
 
 export const lumoProject = worksProjects[0];
-export const homeFeaturedProjects = worksProjects.filter((project) =>
-  ["Keystone", "Codexia"].includes(project.title)
-);
-
 export function getWorkProject(title: string) {
   return worksProjects.find((project) => project.title === title);
 }
@@ -181,7 +177,3 @@ export function getCapabilityLabels(capabilities: readonly ServiceCapabilityId[]
     .filter((capability) => capabilities.includes(capability.id))
     .map((capability) => capability.title);
 }
-
-export const workFilters = ["All Work", "Products & Apps", "Systems & Automation"] as const;
-
-export type WorkFilter = (typeof workFilters)[number];

@@ -60,17 +60,6 @@ function EmphasizedText({
   );
 }
 
-function scrollToArchiveIndex() {
-  const reduceMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  ).matches;
-
-  document.getElementById('archive-index')?.scrollIntoView({
-    behavior: reduceMotion ? 'auto' : 'smooth',
-    block: 'start',
-  });
-}
-
 const archivePathways = archiveFilters.filter((filter) => filter !== 'All');
 
 export function ArchivePage() {

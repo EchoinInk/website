@@ -14,7 +14,7 @@ function readSemanticTheme(value?: string): SemanticTheme | undefined {
   return value && semanticThemes.has(value as SemanticTheme) ? (value as SemanticTheme) : undefined;
 }
 
-export function getThemeBelowHeader(header: HTMLElement) {
+function getThemeBelowHeader(header: HTMLElement) {
   const headerRect = header.getBoundingClientRect();
   const probeY =
     headerRect.height > 0

@@ -10,8 +10,5 @@
     "src/**/*.spec.tsx",
     "src/test/**/*.ts"
   ],
-  "exclude": [
-    "src/components/lumo/LumoHero.tsx",
-    "src/components/system/index.ts"
-  ]
+  "exclude": []
 }

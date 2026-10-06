@@ -1,5 +1,5 @@
 import { Button } from "../ui/Button";
-import { primaryCallToAction, siteActionLabels } from "@/data/siteNavigation";
+import { primaryCallToAction } from "@/data/siteNavigation";
 
 export function HeroCTA() {
   return (
