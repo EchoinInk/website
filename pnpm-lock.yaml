@@ -32,9 +32,6 @@ importers:
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.1
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.19)
     devDependencies:
       '@eslint/js':
         specifier: ^9.32.0
@@ -54,9 +51,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.31)
-      '@vheemstra/imagemin-avifenc':
-        specifier: ^2.1.0
-        version: 2.1.0
       '@vheemstra/vite-plugin-imagemin':
         specifier: ^2.2.1
         version: 2.2.1(vite@5.4.21(@types/node@22.20.5))
@@ -901,15 +895,6 @@ packages:
   '@typescript-eslint/visitor-keys@8.71.0':
     resolution: {integrity: sha512-8eQ9R218XORK+KLosnf4bu/QsUXvUyVwTbArg7/0NMB1Pu87OJKvj4nhFblkYE8gQV73mW1dx1ptlPCkwRGa7A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@vheemstra/avifenc-bin@2.1.1':
-    resolution: {integrity: sha512-wH0cDsCrs+Uy/CPhV/OuphViB8RtYfDn9yvHs8YDj3bxA4v7JP8kWdRMssZtXUoSeLcLJPUvLoLzQl8MEo5dQQ==}
-    engines: {node: ^14.13.1 || >=16.0.0}
-    hasBin: true
-
-  '@vheemstra/imagemin-avifenc@2.1.0':
-    resolution: {integrity: sha512-9v+dc0u+LiPghRxWN+7rLkeemDtXeRFyFeJdDf4XhlbcY3pmUTvlDxv0qf4YLGsgukOzGpIHV0jytrtzuq+DJA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   '@vheemstra/vite-plugin-imagemin@2.2.1':
     resolution: {integrity: sha512-T2mpUVJDmwXI5kPflwO1NPd16R4ADGjETfJYHJ2pJ/jqbNvSSOgzIgt2OLn4IYjK9o/RhgJL5eoK6IUip+hYPQ==}
@@ -1863,10 +1848,6 @@ packages:
     resolution: {integrity: sha512-NhOds0mDx9lJu+1lBRO0xbwFo5nobA7GCk/0e5xjr6+6XugX985+0OyGX35BNrTkPAsdLcIKg02HUQJOK8D8kw==}
     engines: {node: '>=18'}
 
-  is-jpg@3.0.0:
-    resolution: {integrity: sha512-Vcd67KWHZblEKEBrtP25qLZ8wN9ICoAhl1pKUqD7SM7hf2qtuRl7loDgP5Zigh2oN/+7uj+KVyC0eRJvgOEFeQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
   is-natural-number@4.0.1:
     resolution: {integrity: sha512-Y4LTamMe0DDQIIAlaer9eKebAlDSV6huy+TWhJVPlzZh2o4tRP5SQWFlLn5N0To4mDD22/qdOq+veo1cSISLgQ==}
 
@@ -2649,11 +2630,6 @@ packages:
 
   tailwind-merge@2.6.1:
     resolution: {integrity: sha512-Oo6tHdpZsGpkKG88HJ8RR1rg/RdnEkQEfMoEk2x1XRI3F1AxeU+ijRXpiVUF4UbLfcxxRGw6TbUINKYdWVsQTQ==}
-
-  tailwindcss-animate@1.0.7:
-    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || insiders'
 
   tailwindcss@3.4.19:
     resolution: {integrity: sha512-3ofp+LL8E+pK/JuPLPggVAIaEuhvIz4qNcf3nA1Xn2o/7fb7s/TYpHhwGDv1ZU3PkBluUVaF8PyCHcm48cKLWQ==}
@@ -3546,18 +3522,6 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.71.0
       eslint-visitor-keys: 5.0.1
-
-  '@vheemstra/avifenc-bin@2.1.1':
-    dependencies:
-      bin-build: 3.0.0
-      bin-wrapper: 4.1.0
-
-  '@vheemstra/imagemin-avifenc@2.1.0':
-    dependencies:
-      '@vheemstra/avifenc-bin': 2.1.1
-      exec-buffer: 3.2.0
-      is-jpg: 3.0.0
-      is-png: 3.0.1
 
   '@vheemstra/vite-plugin-imagemin@2.2.1(vite@5.4.21(@types/node@22.20.5))':
     dependencies:
@@ -4674,8 +4638,6 @@ snapshots:
       identifier-regex: 1.1.0
       super-regex: 1.1.0
 
-  is-jpg@3.0.0: {}
-
   is-natural-number@4.0.1: {}
 
   is-number@7.0.0: {}
@@ -5384,10 +5346,6 @@ snapshots:
   symbol-tree@3.2.4: {}
 
   tailwind-merge@2.6.1: {}
-
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.19):
-    dependencies:
-      tailwindcss: 3.4.19
 
   tailwindcss@3.4.19:
     dependencies:

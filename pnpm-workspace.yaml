@@ -1,6 +1,5 @@
 allowBuilds:
   '@swc/core': true
-  '@vheemstra/avifenc-bin': true
   cwebp-bin: true
   esbuild: true
   pngquant-bin: true
