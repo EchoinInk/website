@@ -39,12 +39,12 @@
   body,
   #root {
     min-height: 100%;
-    background: var(--ei-color-background-body);
+    background-color: var(--ei-color-background-canvas);
     color: var(--ei-color-text-primary);
   }
 
   body {
-    background-color: var(--ei-color-background-body);
+    background: var(--ei-color-background-canvas);
     color: var(--ei-color-text-primary);
     font-family: var(--ei-font-structural);
     -webkit-font-smoothing: antialiased;

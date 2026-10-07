@@ -634,82 +634,6 @@
     padding-top: var(--ei-section-closing-top);
   }
 
-  .ei-editorial-layout {
-    padding-top: clamp(7rem, 16vh, 12rem);
-  }
-
-  .ei-editorial-header {
-    padding-bottom: var(--ei-section-standard-bottom);
-  }
-
-  .ei-editorial-eyebrow,
-  .ei-editorial-metadata {
-    color: var(--ei-color-text-muted);
-    font-family: var(--ei-font-structural);
-    font-size: 0.6875rem;
-    letter-spacing: 0.2em;
-    line-height: 1.5;
-    text-transform: uppercase;
-  }
-
-  .ei-editorial-title {
-    max-width: 18ch;
-    margin-top: var(--ei-space-5);
-    color: var(--ei-color-text-primary);
-    font-family: var(--ei-font-editorial);
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 400;
-    letter-spacing: -0.045em;
-    line-height: 0.98;
-    text-wrap: balance;
-  }
-
-  .ei-editorial-subtitle {
-    max-width: 44ch;
-    margin-top: var(--ei-space-6);
-    color: var(--ei-color-text-secondary);
-    font-family: var(--ei-font-editorial);
-    font-size: clamp(1.2rem, 2vw, 1.65rem);
-    font-style: italic;
-    line-height: 1.5;
-  }
-
-  .ei-editorial-metadata {
-    margin-top: var(--ei-space-6);
-  }
-
-  .ei-editorial-lead {
-    padding-block: var(--ei-space-7);
-    border-block: 1px solid var(--ei-color-border-hairline);
-    color: var(--ei-color-text-secondary);
-    font-family: var(--ei-font-editorial);
-    font-size: clamp(1.2rem, 2vw, 1.55rem);
-    line-height: 1.6;
-  }
-
-  .ei-editorial-grid {
-    position: relative;
-    padding-block: var(--ei-section-standard-top) var(--ei-section-standard-bottom);
-  }
-
-  .ei-editorial-body {
-    color: var(--ei-color-text-secondary);
-    font-family: var(--ei-font-copy);
-    font-size: 1rem;
-    line-height: 1.9;
-  }
-
-  .ei-editorial-aside {
-    max-width: var(--ei-reading-max);
-    margin: var(--ei-space-7) auto 0;
-    padding-inline: var(--ei-gutter-mobile);
-    color: var(--ei-color-text-tertiary);
-  }
-
-  .ei-editorial-footer {
-    padding-block: var(--ei-section-closing-top) var(--ei-section-closing-bottom);
-  }
-
   @media (min-width: 768px) {
     .ei-content-frame-gutters {
       padding-inline: 2.5rem;
@@ -791,17 +715,6 @@
    ───────────────────────────────────────────────────────── */
 
 @layer components {
-  html,
-  body,
-  #root {
-    background-color: var(--ei-color-background-canvas);
-  }
-
-  body {
-    color: var(--ei-color-text-primary);
-    background: var(--ei-color-background-canvas);
-  }
-
   .ei-studio-page,
   .ei-identity-page,
   .ei-systems-page,

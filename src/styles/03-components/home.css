@@ -277,6 +277,17 @@
     color: var(--ei-color-text-accent);
   }
 
+  @media (max-width: 389px) {
+    .ei-home-hero-actions {
+      gap: 0.75rem;
+    }
+
+    .ei-home-hero-actions .ei-page-section-hero-button-primary,
+    .ei-home-hero-actions .ei-page-section-hero-button-secondary {
+      width: 100%;
+    }
+  }
+
   /* Capabilities */
   .ei-home-capabilities {
     background:
@@ -1517,8 +1528,6 @@ column-gap: 2rem;
     max-width: none;
     height: 100%;
     min-height: 15.5rem;
-    box-sizing: border-box;
-
     flex-direction: column;
     margin: 0;
     padding: 1.55rem 1.75rem 0 2.25rem;

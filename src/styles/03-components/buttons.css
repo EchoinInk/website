@@ -237,59 +237,6 @@
   opacity: 0.86;
   transform: scale(1.04);
 }
-.ei-home-hero-actions .ei-page-section-hero-button-primary {
-  background:
-    linear-gradient(
-      135deg,
-      rgb(var(--ei-halo-blue-rgb) / 0.24),
-      rgb(var(--ei-violet-rgb) / 0.2) 54%,
-      rgb(var(--ei-echo-magenta-rgb) / 0.14)
-    ),
-    rgb(var(--ei-midnight-rgb) / 0.46);
-  box-shadow:
-    inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.08),
-    inset 0 0 32px rgb(var(--ei-halo-blue-rgb) / 0.08),
-    0 0 34px rgb(var(--ei-halo-blue-rgb) / 0.14);
-}
-
-.ei-home-hero-actions .ei-page-section-hero-button-primary:hover {
-  background:
-    linear-gradient(
-      135deg,
-      rgb(var(--ei-halo-blue-rgb) / 0.32),
-      rgb(var(--ei-violet-rgb) / 0.25) 54%,
-      rgb(var(--ei-echo-magenta-rgb) / 0.18)
-    ),
-    rgb(var(--ei-midnight-rgb) / 0.54);
-  box-shadow:
-    inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.12),
-    inset 0 0 38px rgb(var(--ei-halo-blue-rgb) / 0.11),
-    0 0 44px rgb(var(--ei-halo-blue-rgb) / 0.18);
-}
-
-.ei-home-hero-actions .ei-page-section-hero-button-secondary {
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
-}
-
-.ei-home-hero-actions .ei-page-section-hero-button-secondary:hover {
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
-}
-
-@media (max-width: 389px) {
-  .ei-home-hero-actions {
-    gap: 0.75rem;
-  }
-
-  .ei-home-hero-actions .ei-page-section-hero-button-primary,
-  .ei-home-hero-actions .ei-page-section-hero-button-secondary {
-    width: 100%;
-  }
-}
-
 @media (max-width: 768px) {
   .ei-btn-primary-cinematic,
   .ei-btn-secondary-cinematic {

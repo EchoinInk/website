@@ -48,6 +48,7 @@
 
   /* Essay reading surface */
   .ei-editorial-layout {
+    padding-top: clamp(7rem, 16vh, 12rem);
     background: var(--ei-moonlight-canvas);
     color: var(--ei-moonlight-ink);
   }
@@ -81,6 +82,7 @@
     font-weight: 400;
     line-height: 0.92;
     letter-spacing: -0.055em;
+    text-wrap: balance;
   }
 
   .ei-editorial-subtitle {
@@ -89,7 +91,12 @@
     color: var(--ei-moonlight-muted);
     font-family: var(--ei-font-copy);
     font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    font-style: italic;
     line-height: 1.65;
+  }
+
+  .ei-editorial-metadata {
+    margin-top: var(--ei-space-6);
   }
 
   .ei-editorial-meta-row {
@@ -107,7 +114,11 @@
   .ei-editorial-lead {
     position: relative;
     padding-block: clamp(3rem, 7vw, 5.5rem);
+    border-block: 1px solid var(--ei-color-border-hairline);
     color: var(--ei-moonlight-ink);
+    font-family: var(--ei-font-editorial);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    line-height: 1.6;
   }
 
   .ei-editorial-lead::before {
@@ -129,15 +140,20 @@
   }
 
   .ei-editorial-grid {
+    position: relative;
     display: grid;
     max-width: 1120px;
     margin-inline: auto;
     gap: 2rem;
+    padding-top: var(--ei-section-standard-top);
     padding-bottom: clamp(4rem, 9vw, 8rem);
   }
 
   .ei-editorial-body {
     color: var(--ei-moonlight-ink);
+    font-family: var(--ei-font-copy);
+    font-size: 1rem;
+    line-height: 1.9;
   }
 
   .ei-editorial-body p {
@@ -176,7 +192,10 @@
 
   .ei-editorial-aside {
     align-self: start;
+    max-width: var(--ei-reading-max);
+    margin: var(--ei-space-7) auto 0;
     padding-inline: 1.5rem;
+    color: var(--ei-color-text-tertiary);
   }
 
   .ei-essay-aside-card {
@@ -223,6 +242,7 @@
   }
 
   .ei-editorial-footer {
+    padding-block: var(--ei-section-closing-top) var(--ei-section-closing-bottom);
     background: var(--ei-moonlight-surface);
   }
 
