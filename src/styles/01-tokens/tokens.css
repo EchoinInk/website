@@ -44,7 +44,6 @@
     --ei-surface-lavender: #f1ebf8;
     --ei-surface-emphasis: #eae2f3;
     --ei-surface-card: #fffefe;
-    --ei-surface-dark-object: var(--ei-ink);
     --ei-moonlight-canvas: var(--ei-surface-base);
     --ei-moonlight-surface: var(--ei-surface-soft);
     --ei-moonlight-ink: #171426;
@@ -68,9 +67,6 @@
 
     --ei-color-surface: rgba(11, 13, 42, 0.64);
     --ei-color-surface-elevated: rgba(11, 13, 42, 0.82);
-    --ei-color-surface-hover: rgba(11, 13, 42, 0.96);
-    --ei-color-surface-glass: rgba(227, 216, 253, 0.055);
-    --ei-color-surface-scrim: rgba(5, 3, 11, 0.72);
 
     --ei-color-text-primary: #f4eeff;
     --ei-color-text-secondary: #d9cff6;
@@ -88,8 +84,6 @@
     --ei-font-copy: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       "Segoe UI", sans-serif;
 
-    --ei-card-action-text: var(--ei-color-text-tertiary);
-    --ei-card-action-text-hover: var(--ei-color-text-accent);
     --ei-header-text: var(--ei-color-text-secondary);
     --ei-header-text-hover: var(--ei-color-text-primary);
     --ei-header-text-active: var(--ei-color-text-accent);
@@ -107,74 +101,10 @@
     --ei-color-border-hairline: rgba(227, 216, 253, 0.08);
     --ei-color-border-soft: rgba(227, 216, 253, 0.12);
     --ei-color-border-medium: rgba(227, 216, 253, 0.18);
-    --ei-color-border-bright: rgba(247, 245, 250, 0.28);
 
     --ei-color-border-blue: rgba(73, 133, 253, 0.34);
     --ei-color-border-violet: rgba(113, 7, 234, 0.36);
     --ei-color-border-magenta: rgba(221, 18, 203, 0.36);
-
-    /* ────────────────────────────────────────────────────────────────
-       BACKGROUNDS
-       ──────────────────────────────────────────────────────────────── */
-
-    --ei-background-body: radial-gradient(
-        circle at 18% 18%,
-        rgba(73, 133, 253, 0.16) 0%,
-        transparent 30%
-      ),
-      radial-gradient(
-        circle at 78% 22%,
-        rgba(221, 18, 203, 0.14) 0%,
-        transparent 34%
-      ),
-      radial-gradient(
-        circle at 50% 88%,
-        rgba(113, 7, 234, 0.16) 0%,
-        transparent 46%
-      ),
-      linear-gradient(135deg, #05030b 0%, #080718 48%, #0b0d2a 100%);
-
-    --ei-background-deep-space: radial-gradient(
-        circle at 20% 18%,
-        rgba(73, 133, 253, 0.18) 0%,
-        transparent 34%
-      ),
-      radial-gradient(
-        circle at 82% 24%,
-        rgba(221, 18, 203, 0.16) 0%,
-        transparent 38%
-      ),
-      radial-gradient(
-        circle at 50% 88%,
-        rgba(113, 7, 234, 0.16) 0%,
-        transparent 46%
-      ),
-      var(--ei-void);
-
-    --ei-background-glow-field: radial-gradient(
-        circle at 30% 20%,
-        rgba(73, 133, 253, 0.28) 0%,
-        transparent 32%
-      ),
-      radial-gradient(
-        circle at 78% 28%,
-        rgba(221, 18, 203, 0.26) 0%,
-        transparent 36%
-      ),
-      radial-gradient(
-        circle at 48% 78%,
-        rgba(113, 7, 234, 0.22) 0%,
-        transparent 44%
-      );
-
-    --ei-background-nebula: linear-gradient(
-      135deg,
-      #05030b 0%,
-      #080718 32%,
-      #0b0d2a 52%,
-      #7107ea 74%,
-      #dd12cb 100%
-    );
 
     /* ────────────────────────────────────────────────────────────────
        GRADIENTS
@@ -219,21 +149,6 @@
        GLOWS
        ──────────────────────────────────────────────────────────────── */
 
-    --ei-glow-blue: 0 0 24px rgba(73, 133, 253, 0.36),
-      0 0 64px rgba(73, 133, 253, 0.18);
-
-    --ei-glow-violet: 0 0 30px rgba(113, 7, 234, 0.36),
-      0 0 86px rgba(113, 7, 234, 0.18);
-
-    --ei-glow-magenta: 0 0 28px rgba(221, 18, 203, 0.34),
-      0 0 72px rgba(230, 105, 242, 0.18);
-
-    --ei-glow-balanced: 0 0 28px rgba(73, 133, 253, 0.22),
-      0 0 52px rgba(221, 18, 203, 0.2);
-
-    --ei-glow-soft-field: 0 0 120px rgba(73, 133, 253, 0.09),
-      0 0 160px rgba(221, 18, 203, 0.09);
-
     /* ────────────────────────────────────────────────────────────────
        SHADOWS / RINGS / FOCUS
        ──────────────────────────────────────────────────────────────── */
@@ -247,15 +162,6 @@
 
     --ei-ring-focus: 0 0 0 1px rgba(247, 245, 250, 0.2),
       0 0 0 4px rgba(73, 133, 253, 0.18);
-
-    --ei-ring-accent: 0 0 0 1px rgba(73, 133, 253, 0.34),
-      0 0 28px rgba(73, 133, 253, 0.18);
-
-    --ei-ring-accent-secondary: 0 0 0 1px rgba(221, 18, 203, 0.34),
-      0 0 28px rgba(221, 18, 203, 0.18);
-
-    --ei-button-focus-ring: 0 0 0 2px rgb(var(--ei-halo-blue-rgb) / 0.72),
-      0 0 0 5px rgb(var(--ei-halo-blue-rgb) / 0.18);
 
     /* ────────────────────────────────────────────────────────────────
        COMPONENT SEMANTICS
@@ -271,16 +177,12 @@
     --ei-button-bg: var(--ei-gradient-primary);
     --ei-button-bg-hover: var(--ei-gradient-primary-hover);
     --ei-button-border: rgba(247, 245, 250, 0.18);
-    --ei-button-border-hover: rgba(247, 245, 250, 0.34);
     --ei-button-text: var(--ei-ice-white);
 
     --ei-button-secondary-bg: rgba(227, 216, 253, 0.055);
     --ei-button-secondary-bg-hover: rgba(227, 216, 253, 0.085);
     --ei-button-secondary-border: rgba(227, 216, 253, 0.14);
     --ei-button-secondary-border-hover: rgba(227, 216, 253, 0.24);
-    --ei-button-secondary-text: var(--ei-moonlit);
-
-    --ei-filter-bg: rgba(227, 216, 253, 0.055);
     --ei-filter-bg-hover: rgba(227, 216, 253, 0.085);
     --ei-filter-bg-active: rgba(221, 18, 203, 0.14);
     --ei-filter-border: rgba(227, 216, 253, 0.12);
@@ -311,35 +213,16 @@
        LAYOUT & SPACING
        ──────────────────────────────────────────────────────────────── */
 
-    --ei-page-max-width: 1280px;
-    --ei-page-gutter: clamp(1.5rem, 4vw, 4rem);
-
-    --ei-section-padding-y: clamp(5rem, 10vw, 9rem);
     --ei-section-padding-y-sm: clamp(3rem, 7vw, 6rem);
 
-    /* ── Typography scale ────────────────────────────────────────── */
-    --ei-text-xs: 0.75rem;
-    --ei-text-sm: 0.875rem;
-    --ei-text-base: 1rem;
-    --ei-text-md: 1.125rem;
-    --ei-text-lg: 1.5rem;
-    --ei-text-xl: 2rem;
-    --ei-text-2xl: 3rem;
-    --ei-text-3xl: 4.5rem;
-    --ei-text-4xl: 6rem;
-
     /* ── Radius & Blur ───────────────────────────────────────────── */
-    --radius-card: 28px;
     --radius-button: 9999px;
-    --blur-glass: blur(24px);
-    --blur-atmosphere: blur(60px);
 
     /* ── Motion ──────────────────────────────────────────────────── */
     --ei-ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
     --ei-duration-fast: 0.2s;
     --ei-duration-normal: 0.4s;
     --ei-duration-slow: 0.8s;
-    --ei-duration-slower: 1.2s;
 
     /* Functional type floors. Decorative microtype may remain smaller, but
        controls and supporting information must stay readable at 100% zoom. */
@@ -401,9 +284,6 @@
     --ei-color-background-canvas: var(--ei-theme-canvas);
     --ei-color-surface: var(--ei-theme-surface);
     --ei-color-surface-elevated: var(--ei-theme-surface-elevated);
-    --ei-color-surface-hover: var(--ei-theme-card-hover);
-    --ei-color-surface-glass: rgb(var(--ei-moonlight-surface-rgb) / 0.72);
-    --ei-color-surface-scrim: var(--ei-theme-image-scrim);
     --ei-color-text-primary: var(--ei-theme-text-primary);
     --ei-color-text-secondary: var(--ei-theme-text-secondary);
     --ei-color-text-tertiary: var(--ei-theme-text-muted);
@@ -419,7 +299,6 @@
     --ei-button-bg: var(--ei-theme-button);
     --ei-button-bg-hover: var(--ei-theme-button-hover);
     --ei-button-border: transparent;
-    --ei-button-border-hover: transparent;
     --ei-button-text: var(--ei-theme-button-text);
     --ei-button-secondary-bg: var(--ei-theme-surface);
     --ei-button-secondary-bg-hover: var(--ei-theme-surface-elevated);
@@ -427,7 +306,6 @@
     --ei-button-secondary-border-hover: rgb(
       var(--ei-moonlight-violet-rgb) / 0.46
     );
-    --ei-button-secondary-text: var(--ei-theme-text-primary);
     --ei-header-text: var(--ei-theme-header-text);
     --ei-header-text-hover: var(--ei-theme-link);
     --ei-header-text-active: var(--ei-theme-link);
@@ -445,7 +323,6 @@
     --ei-shadow-hover: var(--ei-theme-shadow-elevated);
     --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas),
       0 0 0 4px var(--ei-theme-focus);
-    --ei-button-focus-ring: var(--ei-ring-focus);
     --ei-selection-bg: var(--ei-theme-selection);
     --ei-selection-color: var(--ei-theme-text-primary);
   }
@@ -486,9 +363,6 @@
     --ei-color-background-canvas: var(--ei-theme-canvas);
     --ei-color-surface: var(--ei-theme-surface);
     --ei-color-surface-elevated: var(--ei-theme-surface-elevated);
-    --ei-color-surface-hover: var(--ei-theme-card-hover);
-    --ei-color-surface-glass: rgb(var(--ei-moonlight-surface-rgb) / 0.72);
-    --ei-color-surface-scrim: var(--ei-theme-image-scrim);
     --ei-color-text-primary: var(--ei-theme-text-primary);
     --ei-color-text-secondary: var(--ei-theme-text-secondary);
     --ei-color-text-tertiary: var(--ei-theme-text-muted);
@@ -508,7 +382,6 @@
     --ei-button-bg: var(--ei-theme-button);
     --ei-button-bg-hover: var(--ei-theme-button-hover);
     --ei-button-border: transparent;
-    --ei-button-border-hover: transparent;
     --ei-button-text: var(--ei-theme-button-text);
     --ei-button-secondary-bg: var(--ei-theme-surface);
     --ei-button-secondary-bg-hover: var(--ei-theme-surface-elevated);
@@ -516,7 +389,6 @@
     --ei-button-secondary-border-hover: rgb(
       var(--ei-moonlight-violet-rgb) / 0.46
     );
-    --ei-button-secondary-text: var(--ei-theme-text-primary);
     --ei-header-text: var(--ei-theme-header-text);
     --ei-header-text-hover: var(--ei-theme-link);
     --ei-header-text-active: var(--ei-theme-link);
@@ -534,7 +406,6 @@
     --ei-shadow-hover: var(--ei-theme-shadow-elevated);
     --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas),
       0 0 0 4px var(--ei-theme-focus);
-    --ei-button-focus-ring: var(--ei-ring-focus);
     --ei-selection-bg: var(--ei-theme-selection);
     --ei-selection-color: var(--ei-theme-text-primary);
   }
@@ -609,16 +480,12 @@
     --ei-theme-selection: rgb(var(--ei-halo-blue-rgb) / 0.26);
     --ei-theme-scrollbar: rgb(var(--ei-ice-white-rgb) / 0.08);
     --ei-theme-scrollbar-hover: rgb(var(--ei-ice-white-rgb) / 0.15);
-    --ei-color-surface-glass: rgb(var(--ei-moonlit-rgb) / 0.055);
-    --ei-color-surface-scrim: rgb(var(--ei-void-rgb) / 0.72);
     --ei-card-border-hover: rgb(var(--ei-moonlit-rgb) / 0.2);
     --ei-button-border: rgb(var(--ei-ice-white-rgb) / 0.18);
-    --ei-button-border-hover: rgb(var(--ei-ice-white-rgb) / 0.34);
     --ei-button-secondary-bg: rgb(var(--ei-moonlit-rgb) / 0.055);
     --ei-button-secondary-bg-hover: rgb(var(--ei-moonlit-rgb) / 0.085);
     --ei-button-secondary-border: rgb(var(--ei-moonlit-rgb) / 0.14);
     --ei-button-secondary-border-hover: rgb(var(--ei-moonlit-rgb) / 0.24);
-    --ei-button-secondary-text: var(--ei-moonlit);
     --ei-form-control-shadow: inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04);
     --ei-form-panel-bg: linear-gradient(
       180deg,
@@ -652,8 +519,6 @@
     --ei-color-background-canvas: var(--ei-theme-canvas);
     --ei-color-surface: var(--ei-theme-surface);
     --ei-color-surface-elevated: var(--ei-theme-surface-elevated);
-    --ei-color-surface-hover: var(--ei-theme-card-hover);
-    --ei-color-surface-scrim: var(--ei-theme-image-scrim);
     --ei-color-text-primary: var(--ei-theme-text-primary);
     --ei-color-text-secondary: var(--ei-theme-text-secondary);
     --ei-color-text-tertiary: var(--ei-theme-text-muted);
@@ -692,7 +557,6 @@
     --ei-shadow-hover: var(--ei-theme-shadow-elevated);
     --ei-ring-focus: 0 0 0 2px var(--ei-theme-canvas),
       0 0 0 4px var(--ei-theme-focus);
-    --ei-button-focus-ring: var(--ei-ring-focus);
     --ei-selection-bg: var(--ei-theme-selection);
   }
 }

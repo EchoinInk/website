@@ -134,7 +134,7 @@ export function Header() {
         <nav aria-label="Primary navigation" className="relative flex items-center justify-between">
           <Link
             to="/"
-            className="ei-focus-rounded group inline-flex min-h-[44px] shrink-0 items-center rounded-sm"
+            className="ei-focus-rounded group inline-flex min-h-[44px] shrink-0 items-center rounded-none"
             aria-label="Echo in Ink home"
             onClick={closeMenu}
           >
@@ -260,7 +260,7 @@ export function Header() {
                 to="/"
                 aria-label="Echo in Ink home"
                 onClick={closeMenu}
-                className="ei-focus-rounded inline-flex min-h-[44px] items-center rounded-sm"
+                className="ei-focus-rounded inline-flex min-h-[44px] items-center rounded-none"
               >
                 <img
                   src={wordmark}

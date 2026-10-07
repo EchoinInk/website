@@ -6,17 +6,12 @@
   }
 
   .ei-lumo-case-study {
-    --lumo-ink: #040514;
-    --lumo-panel: #090b25;
-    --lumo-panel-2: #0d1030;
     --lumo-line: rgb(156 132 255 / 0.24);
     --lumo-line-soft: rgb(207 197 255 / 0.12);
     --lumo-text: #f5f2ff;
     --lumo-copy: #c8c5dc;
     --lumo-muted: #a6a2bd;
-    --lumo-violet: #9f78ff;
     --lumo-pink: #f18be8;
-    --lumo-blue: #66c8ff;
     position: relative;
     color: var(--lumo-text);
     isolation: isolate;

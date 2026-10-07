@@ -28,9 +28,6 @@
     --ei-narrow-max: 520px;
     --ei-editorial-narrow-max: 860px;
 
-    /* Legacy-compatible aliases */
-    --ei-page-max-width: var(--ei-page-max);
-
     /* ─────────────────────────────────────────────────────────
        Gutters
        ───────────────────────────────────────────────────────── */
@@ -38,8 +35,6 @@
     --ei-gutter-mobile: 1.25rem;
     --ei-gutter-tablet: 3rem;
     --ei-gutter-desktop: clamp(4rem, 6vw, 6rem);
-
-    --ei-page-gutter: clamp(1.5rem, 4vw, 4rem);
 
     /* ─────────────────────────────────────────────────────────
        Spacing Scale
@@ -55,16 +50,11 @@
     --ei-space-6: 2rem;
     --ei-space-7: 3rem;
     --ei-space-8: 4rem;
-    --ei-space-9: 6rem;
-    --ei-space-10: 8rem;
-    --ei-space-11: 12rem;
-    --ei-space-12: 16rem;
 
     /* ─────────────────────────────────────────────────────────
        Grid Gaps
        ───────────────────────────────────────────────────────── */
 
-    --ei-grid-gap-sm: 1rem;
     --ei-grid-gap-md: 1.5rem;
     --ei-grid-gap-lg: 2.5rem;
     --ei-grid-gap-xl: 4rem;
@@ -73,7 +63,6 @@
        Section Rhythm
        ───────────────────────────────────────────────────────── */
 
-    --ei-section-padding-y: clamp(5rem, 10vw, 9rem);
     --ei-section-padding-y-sm: clamp(3rem, 7vw, 6rem);
 
     --ei-section-intimate-top: clamp(4rem, 10vh, 7rem);

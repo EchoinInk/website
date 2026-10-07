@@ -590,9 +590,7 @@
 
   --ei-atmosphere-direction: 1;
 
-  --ei-atmosphere-mist-x: -10%;
 
-  --ei-atmosphere-ribbon-x: -12%;
 
 
 
@@ -821,9 +819,7 @@ mask-image: radial-gradient(
 
   --ei-atmosphere-direction: 1;
 
-  --ei-atmosphere-mist-x: -10%;
 
-  --ei-atmosphere-ribbon-x: -12%;
 
 }
 
@@ -837,9 +833,7 @@ mask-image: radial-gradient(
 
   --ei-atmosphere-direction: -1;
 
-  --ei-atmosphere-mist-x: -8%;
 
-  --ei-atmosphere-ribbon-x: -10%;
 
 }
 

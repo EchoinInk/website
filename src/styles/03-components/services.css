@@ -22,7 +22,7 @@
   .ei-services-hero-label-4 { top: 61%; right: 3%; }
 
   .ei-services-jump-container { position: relative; z-index: 12; }
-  .ei-page-jump-links { display: flex; min-height: 4.75rem; align-items: center; justify-content: space-between; gap: 1.5rem; border-bottom: 1px solid var(--ei-theme-border, rgb(var(--ei-moonlight-ink-rgb) / 0.12)); color: var(--ei-theme-text-secondary, var(--ei-moonlight-text-secondary)); font-family: var(--ei-font-structural); }
+  .ei-page-jump-links { display: flex; min-height: 4.75rem; align-items: center; justify-content: space-between; gap: 1.5rem; border-bottom: 1px solid var(--ei-theme-border, rgb(var(--ei-moonlight-ink-rgb) / 0.12)); color: var(--ei-theme-text-secondary); font-family: var(--ei-font-structural); }
   .ei-page-jump-links > span { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; }
   .ei-page-jump-links ul { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.45rem 1.4rem; margin: 0; padding: 0; list-style: none; }
   .ei-page-jump-links a { display: inline-flex; min-height: 44px; align-items: center; color: inherit; font-size: 0.78rem; text-decoration: none; }

@@ -8,7 +8,6 @@
 @layer utilities {
   @media (max-width: 768px) {
     :root {
-      --ei-section-padding-y: 4rem;
       --ei-section-padding-y-sm: 3rem;
     }
 

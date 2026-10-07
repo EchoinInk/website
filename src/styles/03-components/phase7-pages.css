@@ -245,7 +245,7 @@
     margin-top: clamp(3rem, 7vw, 6rem);
     padding: clamp(1.75rem, 4vw, 3.5rem);
     border: 1px solid var(--ei-theme-border);
-    border-radius: var(--ei-radius-lg);
+    border-radius: var(--ei-card-radius-lg);
     background: var(--ei-theme-card);
     box-shadow: var(--ei-theme-shadow);
   }
@@ -335,7 +335,7 @@
     min-height: 22rem;
     margin: 0;
     border: 1px solid var(--ei-theme-border);
-    border-radius: var(--ei-radius-lg);
+    border-radius: var(--ei-card-radius-lg);
     background: var(--ei-theme-card);
   }
 
@@ -367,7 +367,7 @@
     min-height: 24rem;
     margin: clamp(3rem, 7vw, 6rem) 0 0;
     border: 1px solid var(--ei-theme-border);
-    border-radius: var(--ei-radius-lg);
+    border-radius: var(--ei-card-radius-lg);
   }
 
   .ei-worlds-atmosphere-image::after {

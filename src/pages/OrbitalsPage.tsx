@@ -41,7 +41,7 @@ export function OrbitalsPage() {
   return (
     <main
       id="main-content"
-      className="min-h-screen bg-[var(--ei-color-bg)] px-6 py-20 md:px-10"
+      className="min-h-screen bg-[var(--ei-color-background-canvas)] px-6 py-20 md:px-10"
     >
       <Helmet>
         <title>Orbitals — Echo in Ink Internal</title>
