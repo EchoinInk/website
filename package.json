@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "SWC_NATIVE_BINDING_CACHE=\"$PWD/.cache/swc-native\" vite build",
+    "build:dev": "SWC_NATIVE_BINDING_CACHE=\"$PWD/.cache/swc-native\" vite build --mode development",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.test.json && tsc --noEmit -p tsconfig.node.json",
     "preview": "vite preview",
