@@ -7,6 +7,7 @@ import executionWorkspace from "@/assets/projects/codexia/execution-workspace-v2
 import ideWorkspace from "@/assets/projects/codexia/ide-workspace-v2.png";
 import missionWorkspace from "@/assets/projects/codexia/mission-workspace-v2.png";
 import codexiaLogo from "@/assets/projects/codexia/logo-light.svg";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 import { ProjectNavigation } from "@/components/works/ProjectNavigation";
 
 const opportunity = [
@@ -50,13 +51,12 @@ const architecture = [
 function Heading({ number, label, title, children }: { number: string; label: string; title: string; children?: React.ReactNode }) {
   return <header className="ei-codexia-heading"><p><span>{number}</span>{label}</p><h2>{title}</h2>{children}</header>;
 }
-
 function PrincipleGrid({ items, className = "" }: { items: ReadonlyArray<readonly [string, string]>; className?: string }) {
   return <div className={`ei-codexia-principles ${className}`}>{items.map(([title, body], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>;
 }
 
 function ProductImage({ src, alt, label, featured = false }: { src: string; alt: string; label: string; featured?: boolean }) {
-  return <figure className={`ei-codexia-product-image${featured ? " is-featured" : ""}`}><div><img src={src} alt={alt} loading={featured ? "eager" : "lazy"} /></div><figcaption>{label}</figcaption></figure>;
+  return <figure className={`ei-codexia-product-image${featured ? " is-featured" : ""}`}><div><ImageLightbox src={src} alt={alt} loading={featured ? "eager" : "lazy"} /></div><figcaption>{label}</figcaption></figure>;
 }
 
 export function CodexiaCaseStudy() {

@@ -22,26 +22,37 @@ const capabilityVisuals: Record<
   "systems-automation": { variant: "quietAxis", tone: "ice" }
 };
 
-const capabilityProblems: Record<ServiceCapabilityId, { prompt: string; outcome: string }> = {
+const capabilityProblems: Record<
+  ServiceCapabilityId,
+  { prompt: string; outcome: string; mobileOutcome: string }
+> = {
   "brand-identity": {
     prompt: "When what you've become no longer matches how you're seen.",
     outcome:
-      "Strategy, positioning, messaging, and visual identity systems that reflect what the organisation has become—and where it is headed."
+      "Strategy, positioning, messaging, and visual identity systems that reflect what the organisation has become—and where it is headed.",
+    mobileOutcome:
+      "Strategy, positioning, messaging, and identity systems that reflect what the organisation has become."
   },
   "websites-experiences": {
     prompt: "When your digital presence needs more than a refresh.",
     outcome:
-      "Websites, interfaces, and digital experiences that make the business clearer, easier to use, and more effective."
+      "Websites, interfaces, and digital experiences that make the business clearer, easier to use, and more effective.",
+    mobileOutcome:
+      "Websites and digital experiences that make the business clearer, easier to use, and more effective."
   },
   "digital-products": {
     prompt: "When an idea needs structure and momentum.",
     outcome:
-      "Product strategy, UX, interaction design, and implementation that turn promising ideas into coherent, usable products."
+      "Product strategy, UX, interaction design, and implementation that turn promising ideas into coherent, usable products.",
+    mobileOutcome:
+      "Product strategy, UX, and implementation that turn promising ideas into coherent, usable products."
   },
   "systems-automation": {
     prompt: "When manual work creates unnecessary friction.",
     outcome:
-      "Operational systems, tools, workflows, and automation that reduce repetitive work and make complexity easier to manage."
+      "Operational systems, tools, workflows, and automation that reduce repetitive work and make complexity easier to manage.",
+    mobileOutcome:
+      "Systems, workflows, and automation that reduce repetitive work and make complexity easier to manage."
   }
 };
 
@@ -71,8 +82,7 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
             <div>
               <SectionLabel label="Areas of Practice" tone="accent" />
               <h2 id="home-capabilities-heading" className="ei-type-section-heading">
-                <span>Different challenges.</span>{" "}
-                <span>One connected practice.</span>
+                <span>Different challenges.</span> <span>One connected practice.</span>
               </h2>
             </div>
 
@@ -98,7 +108,6 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
                   >
                     <div className="ei-home-capability-meta">
                       <OrbitalVisual variant={visual.variant} size={62} />
-                      <span aria-hidden="true">→</span>
                     </div>
 
                     <h3>{capability.title}</h3>
@@ -107,7 +116,14 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
                       {capabilityProblems[capability.id].prompt}
                     </span>
 
-                    <p>{capabilityProblems[capability.id].outcome}</p>
+                    <p>
+                      <span className="ei-home-capability-outcome-full">
+                        {capabilityProblems[capability.id].outcome}
+                      </span>
+                      <span className="ei-home-capability-outcome-mobile">
+                        {capabilityProblems[capability.id].mobileOutcome}
+                      </span>
+                    </p>
 
                     <span className="sr-only">{capability.description}</span>
 
@@ -116,10 +132,7 @@ export function WhatWeCreate({ capabilities = primaryCapabilities }: WhatWeCreat
                       {capability.id === "websites-experiences"
                         ? "Experiences"
                         : capability.title.split(" ")[0]}
-                      <span
-                        aria-hidden="true"
-                        className="ei-cta-arrow ei-cta-arrow-right"
-                      >
+                      <span aria-hidden="true" className="ei-cta-arrow ei-cta-arrow-right">
                         →
                       </span>
                     </span>

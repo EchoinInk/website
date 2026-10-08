@@ -250,6 +250,17 @@
     gap: 1.25rem;
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    .ei-works-selected-grid:has(.ei-works-project-card[data-interactive="true"]:hover)
+      .ei-works-project-motion:not(:has(.ei-works-project-card:hover)) {
+      opacity: 0.66;
+    }
+
+    .ei-works-project-motion {
+      transition: opacity var(--ei-duration-normal) var(--ei-ease-soft);
+    }
+  }
+
   .ei-works-project-motion,
   .ei-works-project-card,
   .ei-works-project-link {
@@ -582,6 +593,10 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .ei-works-project-motion {
+      transform: none !important;
+    }
+
     .ei-works-project-media img {
       transition: none;
     }

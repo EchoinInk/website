@@ -6,6 +6,7 @@ import wordmark from "@/assets/brand/marks/echo-in-ink-wordmark.png";
 import { useSectionAwareTheme } from "@/components/navigation/useSectionAwareTheme";
 import {
   isNavigationItemActive,
+  primaryCallToAction,
   primaryNavigation
 } from "@/data/siteNavigation";
 import { DURATION } from "@/lib/motion-cinematic";
@@ -187,7 +188,6 @@ export function Header() {
                 );
               })}
             </div>
-
           </div>
 
           <button
@@ -294,10 +294,19 @@ export function Header() {
             >
               <span
                 id={mobileMenuTitleId}
-                className="mb-6 font-structural text-[length:var(--ei-type-size-label)] uppercase tracking-[0.28em] text-[var(--ei-header-text-muted)]"
+                className="mb-4 font-structural text-[length:var(--ei-type-size-label)] uppercase tracking-[0.28em] text-[var(--ei-header-text-muted)]"
               >
                 Navigation
               </span>
+
+              <Link
+                to={primaryCallToAction.href}
+                onClick={closeMenu}
+                className="ei-focus-rounded mb-4 inline-flex min-h-12 items-center justify-between rounded-full border border-[var(--ei-button-border)] bg-[var(--ei-button-bg)] px-5 font-structural text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[var(--ei-theme-button-text)] shadow-[0_12px_30px_rgb(var(--ei-violet-rgb)/0.12)]"
+              >
+                <span>{primaryCallToAction.label}</span>
+                <span aria-hidden="true">→</span>
+              </Link>
 
               <div className="flex flex-col">
                 {primaryNavigation.map((item, index) => {
@@ -332,7 +341,17 @@ export function Header() {
                           }
                         `}
                       >
-                        <span>{item.label}</span>
+                        <span className="inline-flex items-center gap-3">
+                          {active ? (
+                            <span
+                              aria-hidden="true"
+                              className="text-[0.55rem] text-[rgb(var(--ei-halo-blue-rgb)/0.88)]"
+                            >
+                              ✦
+                            </span>
+                          ) : null}
+                          {item.label}
+                        </span>
 
                         <span
                           aria-hidden="true"

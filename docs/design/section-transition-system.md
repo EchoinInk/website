@@ -38,12 +38,12 @@ This means the current section uses the `mist` theme and creates a forward atmos
 
 ### Props
 
-| Prop | Purpose |
-| --- | --- |
-| `theme` | Defines the visual environment of the current section. |
-| `transition` | Defines the treatment of the boundary after the current section. Core values are `atmospheric`, `soft`, and `chapter`; omit it for `none`. |
-| `transitionTo` | Defines the destination canvas that the transition must resolve into. It should match the following section's theme. |
-| `transitionDirection` | Defines the directional flow of an atmospheric transition: `forward` or `reverse`. |
+| Prop                  | Purpose                                                                                                                                    |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `theme`               | Defines the visual environment of the current section.                                                                                     |
+| `transition`          | Defines the treatment of the boundary after the current section. Core values are `atmospheric`, `soft`, and `chapter`; omit it for `none`. |
+| `transitionTo`        | Defines the destination canvas that the transition must resolve into. It should match the following section's theme.                       |
+| `transitionDirection` | Defines the directional flow of an atmospheric transition: `forward` or `reverse`.                                                         |
 
 `transitionTo` controls colour resolution, while `transition` controls the character and depth of the boundary. They are complementary, not interchangeable.
 
@@ -147,9 +147,7 @@ Soft transitions are useful when continuity matters more than direction and the 
 Use `none` when no treatment is needed. In the current implementation, `none` means omitting `transition`, `transitionTo`, and `transitionDirection`; it is not a literal `transition="none"` value.
 
 ```tsx
-<Section theme="light">
-  {/* No transition treatment */}
-</Section>
+<Section theme="light">{/* No transition treatment */}</Section>
 ```
 
 This is the correct choice for boundaries that are already resolved by spacing, page completion, or a shared canvas—especially Closing to Footer.
@@ -158,12 +156,12 @@ This is the correct choice for boundaries that are already resolved by spacing, 
 
 Choose the transition by asking what the boundary must do:
 
-| Boundary intent | Transition |
-| --- | --- |
-| Energy | `atmospheric` |
-| Continuity | `chapter` |
-| Recovery | `soft` |
-| Nothing | `none` |
+| Boundary intent | Transition    |
+| --------------- | ------------- |
+| Energy          | `atmospheric` |
+| Continuity      | `chapter`     |
+| Recovery        | `soft`        |
+| Nothing         | `none`        |
 
 If more than one intent seems plausible, choose the quieter treatment. Atmospheric transitions should remain scarce enough to retain meaning.
 
@@ -171,14 +169,14 @@ If more than one intent seems plausible, choose the quieter treatment. Atmospher
 
 The homepage is the canonical example of how transition intensity is composed across a full page.
 
-| Boundary | Treatment | Direction | Purpose |
-| --- | --- | --- | --- |
-| Selected Work → Areas of Practice | `atmospheric` | `forward` | Expressive. Carries momentum from project evidence into the breadth of the practice. |
-| Areas of Practice → Ways to Engage | `chapter` | — | Quiet. Marks an editorial change from capabilities to engagement models. |
-| Ways to Engage → Our Approach | `atmospheric` | `reverse` | Expressive and stronger. Builds renewed energy before the primary dark-panel visual moment. |
-| Our Approach → Kind Words | `soft` | — | Recovery. Releases intensity and creates room for quieter evidence. |
-| Kind Words → Closing CTA | `atmospheric` with `ei-transition-closing` | `forward` | Faint final echo. Carries residual atmosphere into the call to action. |
-| Closing CTA → Footer | `none` | — | Calm. Lets the page resolve without another effect. |
+| Boundary                           | Treatment                                  | Direction | Purpose                                                                                     |
+| ---------------------------------- | ------------------------------------------ | --------- | ------------------------------------------------------------------------------------------- |
+| Selected Work → Areas of Practice  | `atmospheric`                              | `forward` | Expressive. Carries momentum from project evidence into the breadth of the practice.        |
+| Areas of Practice → Ways to Engage | `chapter`                                  | —         | Quiet. Marks an editorial change from capabilities to engagement models.                    |
+| Ways to Engage → Our Approach      | `atmospheric`                              | `reverse` | Expressive and stronger. Builds renewed energy before the primary dark-panel visual moment. |
+| Our Approach → Kind Words          | `soft`                                     | —         | Recovery. Releases intensity and creates room for quieter evidence.                         |
+| Kind Words → Closing CTA           | `atmospheric` with `ei-transition-closing` | `forward` | Faint final echo. Carries residual atmosphere into the call to action.                      |
+| Closing CTA → Footer               | `none`                                     | —         | Calm. Lets the page resolve without another effect.                                         |
 
 The intended intensity sequence is:
 
@@ -239,10 +237,13 @@ For every page, read the sequence at full length. A transition that works in iso
 ## Responsive guidance
 
 - Preserve the transition's intent and asymmetry at every breakpoint; do not attempt to preserve desktop dimensions exactly.
+- The current implementation keeps the full atmospheric geometry through the 768–1000px middle zone, while decorative node motifs are removed below 900px so they do not compete with reflowed content.
+- Below 768px, soft and chapter fades reduce to 6–6.5rem. Atmospheric fields widen to 130–136vw and reduce to a 9.5rem mist with a 6.5rem current; the overflow belongs to the outgoing section and is clipped horizontally there.
 - On narrow screens, atmospheric fields may be wider than the viewport so their edges dissolve naturally rather than reveal a rectangular strip.
 - Reduce height, blur, and intensity where necessary to keep the effect proportional to shorter mobile sections.
 - Check portrait phones, landscape phones, tablets, and wide desktop layouts. A composition can become a band at one aspect ratio even if it works at another.
 - Keep transition decoration from causing horizontal scrolling. The current implementation uses clipped horizontal overflow for atmospheric sections.
+- Transition pseudo-elements remain absolutely positioned and non-interactive; they do not contribute to section height, so mobile spacing must come from the section's content rhythm rather than transition depth.
 - Verify the transition in context with real content and section spacing, not in an isolated demo alone.
 
 ## Accessibility guidance

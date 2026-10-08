@@ -169,9 +169,10 @@ describe("site navigation", () => {
       name: "Echo in Ink home"
     });
     const lastFocusable = within(dialog).getByRole("link", { name: "Contact" });
-    expect(
-      within(dialog).queryByRole("link", { name: "Start a Project" })
-    ).not.toBeInTheDocument();
+    expect(within(dialog).getByRole("link", { name: "Start a Project" })).toHaveAttribute(
+      "href",
+      "/contact"
+    );
 
     lastFocusable.focus();
     fireEvent.keyDown(document, { key: "Tab" });
