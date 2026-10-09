@@ -26,26 +26,22 @@ const capabilityVisuals: Record<ServiceCapabilityId, OrbitalVariant> = {
 
 const studioCapabilityCopy: Record<
   ServiceCapabilityId,
-  { summary: string; scope: string; relationship: string }
+  { summary: string; relationship: string }
 > = {
   "brand-identity": {
-    summary: "Creating identities with clarity, character and staying power.",
-    scope: "Positioning, brand foundations, messaging, visual systems and expression.",
+    summary: "Identity decisions shape product language, tone and trust.",
     relationship: "Identity shapes experiences"
   },
   "websites-experiences": {
     summary: "Designing digital experiences that feel intuitive, useful and unmistakably yours.",
-    scope: "Websites, customer journeys, content architecture and interactive experiences.",
     relationship: "Experiences inform products"
   },
   "digital-products": {
     summary: "Turning ideas into products people can understand and use.",
-    scope: "Product strategy, UX/UI, prototyping, validation and product systems.",
     relationship: "Products require systems"
   },
   "systems-automation": {
     summary: "Building the frameworks that help work scale without losing quality.",
-    scope: "Operational systems, workflows, automation, internal tools and AI-assisted processes.",
     relationship: "Systems unlock new possibilities"
   }
 };
@@ -154,9 +150,6 @@ export function StudioPage() {
                     <h3>{capability.title}</h3>
                     <p className="ei-studio-capability-summary">
                       {studioCapabilityCopy[capability.id].summary}
-                    </p>
-                    <p className="ei-studio-capability-scope">
-                      {studioCapabilityCopy[capability.id].scope}
                     </p>
                   </EchoCard>
                 </motion.div>

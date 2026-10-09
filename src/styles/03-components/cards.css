@@ -26,6 +26,7 @@
     --ei-card-shadow-hover:
       0 36px 140px rgb(0 0 0 / 0.54), 0 0 80px rgb(var(--ei-echo-magenta-rgb) / 0.1);
     --ei-card-inner-highlight: inset 0 1px 0 rgb(var(--ei-ice-white-rgb) / 0.04);
+    --ei-card-padding-xs: 0.75rem;
     --ei-card-padding-sm: 1.5rem;
     --ei-card-padding-md: 1.75rem;
     --ei-card-padding-lg: 2.5rem;

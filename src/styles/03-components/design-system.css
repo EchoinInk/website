@@ -120,6 +120,10 @@
       box-shadow var(--ei-duration-normal) var(--ei-ease-soft);
   }
 
+  .ei-echo-card[data-padding="xs"] {
+    padding: var(--ei-card-padding-xs);
+  }
+
   .ei-echo-card[data-padding="sm"] {
     padding: var(--ei-card-padding-sm);
   }

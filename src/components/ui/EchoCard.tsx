@@ -11,7 +11,7 @@ interface EchoCardProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   variant?: EchoCardVariant;
   interactive?: boolean;
-  padding?: "none" | "sm" | "md" | "lg";
+  padding?: "xs" | "none" | "sm" | "md" | "lg";
 }
 
 export function EchoCard({
